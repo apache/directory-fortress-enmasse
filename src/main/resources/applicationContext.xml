@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <context:component-scan base-package="com.jts" />
+
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <jaxrs:server id="restContainer" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="fortressService" />
+        </jaxrs:serviceBeans>
+
+        <jaxrs:inInterceptors>
+            <ref bean="annotationsInterceptor"/>
+        </jaxrs:inInterceptors>
+
+        <jaxrs:outFaultInterceptors>
+            <bean class="com.jts.enmasse.SecurityOutFaultInterceptor"/>
+        </jaxrs:outFaultInterceptors>
+
+    </jaxrs:server>
+
+    <bean id="annotationsInterceptor" class="com.jts.enmasse.FortressInterceptor">
+         <property name="securedObject" ref="securedObject"/>
+    </bean>
+
+  <bean id="securedObject" class="com.jts.enmasse.FortressServiceImpl"/>
+
+</beans>

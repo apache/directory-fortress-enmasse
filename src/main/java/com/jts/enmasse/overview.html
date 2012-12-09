@@ -1,0 +1,96 @@
+<!--
+ Copyright © Joshua Tree Software, LLC, 2011-2012 All Rights Reserved.
+ Licensed to Joshua Tree Software, LLC under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The BSD licenses this file to You under the 3-clause license
+ ("New BSD License" or "Modified BSD License"); you may not use this file except
+ in compliance with the License.  You may obtain a copy of the License at
+
+      https://joshuatreesoftware.us/
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<html>
+   <head>
+      <title>Overview of the com.jts.enmasse component</title>
+   </head>
+   <body>
+       EnMasse is a web application that implements <A HREF="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</A> Web services to interface with
+       <A HREF="https://joshuatreesoftware.us/jtspages/fortress.php">Fortress</A> and <A HREF="http://www.openldap.org/">OpenLDAP</A>.
+
+       <h2>What technologies are in use?</h2>
+
+       EnMasse was built using established <A HREF="http://www.opensource.org/">Open Source</A> technologies including
+       <A HREF="http://cxf.apache.org/">Apache CXF</A> (web services stack), <A HREF="http://www.springsource.org/">Spring Framework</A> (glue), <A HREF="http://maven.apache.org/">Maven</A> (dependencies)
+       and <A HREF="http://java.sun.com/xml/downloads/jaxb.html">JAXB</A> (data binding layer) and runs inside any reasonably compliant Java Servlets container.
+
+       <a href="com/jts/enmasse/FortressService.html">EnMasse service</a> access control decisions are enforced using <A HREF="https://joshuatreesoftware.us/jtspages/sentry.php">Sentry</A> which itself
+       uses declarative <A HREF="http://docs.oracle.com/javaee/5/tutorial/doc/bnbwk.html">Java EE Security</A> and <A HREF="http://static.springsource.org/spring-security/site/">Spring Security</A> policy hooks that are wired to
+       connect back to the <A HREF="com/jts/fortress/rbac/package-summary.html">Fortress</A> <A HREF="http://en.wikipedia.org/wiki/Role-based_access_control">RBAC</A> component.
+
+       EnMasse server-side is a <a href="http://java.sun.com/developer/technicalArticles/tools/webapps_1/">Java Web program</a> artifact and is wholly dependent on <A HREF="com/jts/fortress/package-summary.html">Fortress</A>
+       but also needs a <A HREF="http://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol">V3 compliant LDAP</A> server like OpenLDAP.  For more information on installing and setting up OpenLDAP check out
+       <A HREF="https://joshuatreesoftware.us/jtspages/install.html">Fortress Builder</A>
+
+       <h2>What can EnMasse do?</h2>
+
+       Contained within this application are Web APIs to perform authentication, authorization, administration, audit and password policies.
+       The most important package in this system, <A HREF="com/jts/enmasse/package-summary.html">com.jts.enmasse</A>, contains the public Web APIs that are called by external systems.
+
+       There is a one-to-one correspondence between a Fortress API and an EnMasse Web service. The Fortress
+       APIs are organized into 'Managers' each implementing a specific area of functionality within the
+       Identity and Access Management lifecycle.
+       For a list of EnMasse services, see <a href="com/jts/enmasse/FortressService.html">FortressService</a>.
+
+       <h3>Fortress Manager Overview</h3>
+        <ol>
+        <li><a href="com/jts/fortress/AccessMgr.html">AccessMgr</a> - This object performs runtime access control operations on objects that are provisioned <a href="http://csrc.nist.gov/groups/SNS/rbac/documents/draft-rbac-implementation-std-v01.pdf">RBAC</a> entities that reside in LDAP directory.</li>
+        <li><a href="com/jts/fortress/AdminMgr.html">AdminMgr</a> - This object performs administrative functions to provision Fortress <a href="http://csrc.nist.gov/groups/SNS/rbac/documents/draft-rbac-implementation-std-v01.pdf">RBAC</a> entities into the LDAP directory.</li>
+        <li><a href="com/jts/fortress/AuditMgr.html">AuditMgr</a> - This interface prescribes methods used to search OpenLDAP's slapd access log.</li>
+        <li><a href="com/jts/fortress/DelegatedAccessMgr.html">DelegatedAccessMgr</a> - This interface prescribes the API for performing runtime delegated access control operations on objects that are provisioned Fortress <a href="http://profsandhu.com/journals/tissec/p113-oh.pdf">ARBAC02</a> entities that reside in LDAP directory.</li>
+        <li><a href="com/jts/fortress/DelegatedAdminMgr.html">DelegatedAdminMgr</a> - This class prescribes the <a href="http://profsandhu.com/journals/tissec/p113-oh.pdf">ARBAC02</a> DelegatedAdminMgr interface for performing policy administration of Fortress ARBAC entities that reside in LDAP directory.</li>
+        <li><a href="com/jts/fortress/DelegatedReviewMgr.html">DelegatedReviewMgr</a> - This class prescribes the <a href="http://profsandhu.com/journals/tissec/p113-oh.pdf">ARBAC02</a> DelegatedReviewMgr interface for performing policy interrogation of provisioned Fortress ARBAC02 entities that reside in LDAP directory.</li>
+        <li><a href="com/jts/fortress/PswdPolicyMgr.html">PswdPolicyMgr</a> - This object adheres to <a href="http://tools.ietf.org/html/draft-behera-ldap-password-policy-10">IETF PW policy draft</a> and is used to perform administrative and review functions on the <a href="com/jts/fortress/pwpolicy/PswdPolicy.html">PWPOLICIES</a> and <a href="com/jts/fortress/rbac/User.html">USERS</a> data sets within Fortress.</li>
+        <li><a href="com/jts/fortress/ReviewMgr.html">ReviewMgr</a> - This interface prescribes the administrative review functions on already provisioned Fortress <a href="http://csrc.nist.gov/groups/SNS/rbac/documents/draft-rbac-implementation-std-v01.pdf">RBAC</a> entities that reside in LDAP directory.</li>
+        </ol>
+
+       <h2>How can I connect with EnMasse?</h2>
+
+        Clients have a choice in how to connect with the EnMasse Web services. Integration can occur using a
+        preferred Web service toolkit like <a href="http://axis.apache.org/axis/">AXIS 1</a>, <a href="http://axis.apache.org/axis2/java/core/">AXIS 2</a>,
+        <a href="http://metro.java.net/">Metro</a>, <a href="http://cxf.apache.org/">CXF</a>, <a href="http://static.springsource.org/spring-ws/sites/1.5/">Spring Web Services</a>,
+        <a href="http://wso2.com/products/web-services-framework/php">WSO2</a>, <a href="http://jquery.com/">JQuery</a>, etc, or by using the Fortress APIs
+        themselves which have built in support for calling EnMasse.
+
+        The Fortress API plugs into its backend data repository (LDAP) using a simple facade pattern that
+        shields its clients from downstream details. The behavior of the Fortress APIs does not change based
+        on the route it takes.
+
+       <h3>Options for EnMasse service Integration</h3>
+        <ol>
+        <li>Client uses Fortress to connect to EnMasse:<br>
+            Client-->Fortress-->HTTP/S-->EnMasse</li>
+        <li>Client uses other Web frameworks to connect to EnMasse:<br>
+            Client[Axis, Metro, CXF, SpringWS,...]-->HTTP/S-->EnMasse</li>
+        </ol>
+      </p>
+      <h2>What are the conditions of use?</h2>
+      <p>
+         This software development toolkit is open source, thus free to use and distribute via the <a href="http://www.opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.
+         It was developed and tested on open systems like <a href="http://www.ubuntu.com/">Ubuntu</a> and <a href="http://www.centos.org/">Centos</a> and was helped along
+         by the following open source products:
+          <ol>
+          <li><a href="http://www.openldap.org/project/">The OpenLDAP Project</a></li>
+          <li><a href="http://www.apache.org/">The Apache Software Foundation</a></li>
+          <li><a href="http://www.unboundid.com/">UnboundID</a></li>
+          <li><a href="http://www.eigenbase.org/">The Eigenbase Project</a></li>
+          <li><a href="http://ehcache.org/">Ehcache</a></li>
+          </ol>
+      </p>
+   </body>
+</html>

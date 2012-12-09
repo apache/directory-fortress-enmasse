@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+   <FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <userId>emtestuser1</userId>
+         <description>enmasse test user1</description>
+         <ou>emtestorg1</ou>
+         <sn>user1</sn>
+         <cn>emtest user1</cn>
+         <address>
+            <addresses>123 Test Ln</addresses>
+            <addresses>Suite 1</addresses>
+            <addresses>c/o resident</addresses>
+            <city>TestCity</city>
+            <state>AR</state>
+            <country>US</country>
+            <postalCode>72113</postalCode>
+         </address>
+         <phones>111-222-3333</phones>
+         <phones>222-222-3333</phones>
+         <mobiles>333-222-3333</mobiles>
+         <mobiles>444-222-3333</mobiles>
+         <props>
+            <modId>bfe32a67-cf2e-4c43-9365-682b56ff8970</modId>
+            <entry>
+               <key>prop1</key>
+               <value>value1</value>
+            </entry>
+         </props>
+         <locked>false</locked>
+         <reset>false</reset>
+         <timeout>0</timeout>
+         <password>112</password>
+         <password>97</password>
+         <password>115</password>
+         <password>115</password>
+         <password>119</password>
+         <password>111</password>
+         <password>114</password>
+         <password>100</password>
+      </entity>
+   </FortRequest>

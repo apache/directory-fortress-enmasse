@@ -1,0 +1,38 @@
+Hello,
+
+We have created a new application, called EnMasse.  
+
+EnMasse is a web application that implements RESTful Web services to interface with
+Fortress/OpenLDAP. EnMasse was built using established Open Source technologies including
+Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data
+binding layer) and runs inside any reasonably compliant Java Servlets container. EnMasse’s service
+access decisions are made using declarative Java EE and Spring security policy hooks that are wired to
+connect back to the Fortress RBAC component itself.
+ 
+This product has not been published and we would like to release it as one of
+the products under OpenLDAP family of products. 
+
+What we would like from OpenLDAP foundation is the following:
+
+1. Separate GIT project called EnMasse.
+2. Mailing list for developers and users to communicate with project team.
+3. Issue tracking for EnMasse project.
+4. Project page for overview and how to find out more information.
+
+I have uploaded one package, entitled enmasse-openldap-submission.zip to our FTP server that contains the source, documentation and other items for you to look at.
+host: joshuatreesoftware.us
+user: jtreeguest
+pw: Guest123
+
+Everything under the target folder contain generated project artifacts including deployable web archive (war) and javadoc and will not be checked into GIT.
+The source is located /src folder in the package.
+
+Statement of origin for submitted works:
+
+The contributed EnMasse works described above were provided by JoshuaTree Software, LLC and referenced in this ITS were created by JoshuaTree Software, LLC, 
+who is the exclusive owner of the contributed works.  The contributed works are made available as indicated in the copyright and license statements attached to the work.
+
+Sincerely,
+
+Shawn McKinney
+Principal, JoshuaTree Software, LLC

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+   <FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="permGrant" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <objName>emtestobj1</objName>
+         <opName>add</opName>
+         <roleNm>emrole1</roleNm>
+         <admin>false</admin>
+      </entity>
+   </FortRequest>

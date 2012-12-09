@@ -1,0 +1,93 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>En Masse Policy Server</display-name>
+
+    <!-- Add for Spring support -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <!--filter>
+     <filter-name>springSecurityFilterChain</filter-name>
+     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter-->
+
+    <!--filter-mapping>
+     <filter-name>springSecurityFilterChain</filter-name>
+     <url-pattern>/*</url-pattern>
+    </filter-mapping-->
+
+    <!--security-constraint>
+       <display-name>En Masse Security Constraint</display-name>
+       <web-resource-collection>
+          <web-resource-name>Protected Area</web-resource-name>
+          <url-pattern>/*</url-pattern>
+          <http-method>DELETE</http-method>
+          <http-method>GET</http-method>
+          <http-method>POST</http-method>
+          <http-method>PUT</http-method>
+       </web-resource-collection>
+       <auth-constraint>
+          <role-name>role1</role-name>
+       </auth-constraint>
+     </security-constraint-->
+
+    <!--filter>
+     <filter-name>springSecurityFilterChain</filter-name>
+     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+     <filter-name>springSecurityFilterChain</filter-name>
+     <url-pattern>/*</url-pattern>
+    </filter-mapping-->
+
+
+
+    <security-constraint>
+       <display-name>En Masse Security Constraint</display-name>
+       <web-resource-collection>
+          <web-resource-name>Protected Area</web-resource-name>
+          <!-- Define the context-relative URL(s) to be protected -->
+          <!--url-pattern>/jsp/security/protected/*</url-pattern-->
+          <!--url-pattern>/enmasse/userRead/*</url-pattern-->
+          <url-pattern>/*</url-pattern>
+          <!-- If you list http methods, only those methods are protected -->
+          <!--http-method>GET</http-method-->
+       </web-resource-collection>
+       <auth-constraint>
+          <!-- Anyone with one of the listed roles may access this area -->
+          <role-name>role1</role-name>
+       </auth-constraint>
+     </security-constraint>
+
+     <!-- Default login configuration uses form-based authentication -->
+     <login-config>
+       <auth-method>BASIC</auth-method>
+       <realm-name>Java Sentry Realm Authentication Area</realm-name>
+     </login-config>
+
+     <!-- Security roles referenced by this web application -->
+     <security-role>
+       <role-name>role1</role-name>
+     </security-role>
+
+</web-app>

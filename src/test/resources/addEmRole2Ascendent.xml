@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+   <FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="roleRelationship" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <child>
+            <name>emrole1</name>
+         </child>
+         <parent>
+            <name>emrole2</name>
+            <description>em test role 2</description>
+             <beginDate>20120101</beginDate>
+             <endLockDate>20130101</endLockDate>
+             <beginTime>0800</beginTime>
+             <endTime>1700</endTime>
+             <dayMask>23456</dayMask>
+             <beginLockDate>none</beginLockDate>
+             <endDate>none</endDate>
+         </parent>
+      </entity>
+   </FortRequest>

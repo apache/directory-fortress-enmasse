@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+   <FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="permission" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <objectName>emtestobj1</objectName>
+         <opName>add</opName>
+         <admin>false</admin>
+      </entity>
+      <session>
+         <user>
+            <userId>emtestuser1</userId>
+            <name>emtest user1</name>
+            <internalId>89f2a02f-31b9-48cc-b85e-8f73043be1a7</internalId>
+            <ou>emtestorg1</ou>
+            <sn>user1</sn>
+            <cn>emtest user1</cn>
+            <dn>uid=emtestuser1,ou=People,dc=jts,dc=com</dn>
+            <locked>false</locked>
+            <reset>false</reset>
+            <timeout>0</timeout>
+            <roles>
+               <name>emrole1</name>
+               <userId>emtestuser1</userId>
+               <parents>EMROLE2</parents>
+               <beginDate>20120101</beginDate>
+               <beginLockDate>none</beginLockDate>
+               <beginTime>0100</beginTime>
+               <dayMask>1234567</dayMask>
+               <endDate>none</endDate>
+               <endLockDate>20140101</endLockDate>
+               <endTime>2359</endTime>
+               <timeout>0</timeout>
+            </roles>
+         </user>
+         <isAuthenticated>true</isAuthenticated>
+         <sessionId>eb4ea749-35b2-446e-98f0-228262dc0068</sessionId>
+         <lastAccess>1335050462631</lastAccess>
+         <timeout>0</timeout>
+         <errorId>0</errorId>
+         <expirationSeconds>0</expirationSeconds>
+         <graceLogins>0</graceLogins>
+         <warningId>10</warningId>
+      </session>
+   </FortRequest>

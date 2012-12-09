@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+   <FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="userRole" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <userId>emtestuser1</userId>
+         <name>emrole1</name>
+         <beginDate>20120101</beginDate>
+         <endLockDate>20140101</endLockDate>
+         <beginTime>0100</beginTime>
+         <endTime>2359</endTime>
+         <dayMask>1234567</dayMask>
+         <beginLockDate>none</beginLockDate>
+         <endDate>none</endDate>
+      </entity>
+   </FortRequest>
