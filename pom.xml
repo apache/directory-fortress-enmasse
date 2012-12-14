@@ -228,7 +228,7 @@
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/main/assembly/dist.xml</descriptor>
+                                <descriptor>src/main/assembly/distsrc.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </execution>
