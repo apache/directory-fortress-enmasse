@@ -240,7 +240,7 @@
     </build>
 
     <dependencies>
-        <!-- Fortress Core & its dependencies -->
+        <!-- Fortress & its dependencies -->
         <dependency>
           <groupId>us.joshuatreesoftware</groupId>
           <artifactId>fortress</artifactId>
