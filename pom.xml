@@ -9,7 +9,7 @@
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC18</version>
+    <version>1.0-RC19</version>
     <name>fortress-enmasse</name>
     <url>https://joshuatreesoftware.us</url>
     <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP. En Masse was built using established Open Source technologies including Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant Java Servlets container. En Masse’s service access decisions are made using declarative Java EE and Spring security policy hooks that are wired to connect back to the Fortress RBAC component itself.  There is a one-to-one correspondence between a Fortress API and an En Masse service. The Fortress APIs are organized into 'Managers' each implementing a specific area of functionality within the Identity and Access Management lifecycle.</description>
@@ -22,8 +22,8 @@
     </licenses>
 
     <scm>
-      <url>http://www.openldap.org/devel/gitweb.cgi?p=openldap-fortress-core.git;a=summary</url>
-      <connection>http://www.openldap.org/devel/gitweb.cgi?p=openldap-fortress-core.git;a=summary</connection>
+      <url>http://www.openldap.org/software/repo/openldap-fortress-enmasse.git/</url>
+      <connection>git://git.openldap.org/openldap-fortress-enmasse.git</connection>
     </scm>
 
     <parent>
@@ -51,7 +51,7 @@
 
     <developers>
         <developer>
-            <!--id>duke</id-->
+            <id>smckinney</id>
             <name>Shawn McKinney</name>
             <email>shawn.mckinney@joshuatreesoftware.us</email>
             <roles>
@@ -63,7 +63,7 @@
     </developers>
 
     <properties>
-        <version>1.0-RC18</version>
+        <version>${version}</version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.6</java.version>
         <servlet-api.version>2.5.0</servlet-api.version>
@@ -112,7 +112,6 @@
                 </executions>
             </plugin>
 
-<!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -126,7 +125,6 @@
                     </execution>
                 </executions>
             </plugin>
--->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -136,6 +134,9 @@
                     <server>local-tomcat</server>
 			        <url>http://localhost:8080/manager/html</url>
                     <path>/enmasse-${version}</path>
+                    <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
+                    <username>tcmanager</username>
+                    <password>m@nager123</password>
                 </configuration>
             </plugin>
 
@@ -151,7 +152,7 @@
                     <author>true</author>
                     <doctitle>${title}</doctitle>
                     <windowtitle>${title}</windowtitle>
-                    <!-- pull in Fortress source needed which is needed for en masse javadoc generation -->
+                    <!-- pull in source if needed for en masse javadoc generation -->
                     <!--
                                         <includeDependencySources>true</includeDependencySources>
                                         <dependencySourceIncludes>
