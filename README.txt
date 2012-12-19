@@ -3,18 +3,15 @@ ________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
 RC18 (BETA RELEASE CANDIDATE)
-Last updated: December 8, 2012
+Last updated: December 19, 2012
 ___________________________________________________________________________________
 ###################################################################################
 # Guidelines & Tips for first-time users of EnMasse Web Application
 ###################################################################################
 
-1. In the document that follows, when you read "[version]" substitute with current info.
-  For example - if the downloaded package version is 1.0 change enmasse-dist-[version] to enmasse-dist-1.0
+1. The source code for this project is located under openldap-fortress-enmasse/src folder.
 
-2. The source code for this project is located under enmasse-dist-[version]/src folder.
-
-3. For EnMasse Services-level documentation, jump to SECTION 6.
+2. For EnMasse Services-level documentation, jump to SECTION 6.
 ___________________________________________________________________________________
 ###################################################################################
 # Important Notes about EnMasse Web Application
@@ -72,15 +69,18 @@ http://tomcat.apache.org
 6. Fortress Sentry package (a.k.a Realm) installed:
 instructions: http://www.joshuatreesoftware.us/iamfortress/javadocs/api-sentry/com/jts/fortress/sentry/tomcat/package-summary.html
 binaries: https://iamfortress.org/projects
+
+Note: There is a complete EnMasse demo that handles these prereqs for you located here:
+https://iamfortress.org/EnMasse
+
 _________________________________________________________________________________
 ###################################################################################
 # SECTION 2:  Instructions for EnMasse installation using distribution package
 ###################################################################################
 
-1. Retrieve Fortress EnMasse source code bundle which is referred to below as 'enmasse-dist':
-https://iamfortress.org/projects
+1. Retrieve Fortress EnMasse source code bundle either from iamfortress.org or OpenLDAP.org.
 
-2. Extract contents of enmasse-dist-[version].zip to target env.
+2. Extract contents of openldap-fortress-enmasse.tar.gz to target env.
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 3:  Instructions to build EnMasse Web archive file
@@ -177,8 +177,8 @@ $ mvn javadoc:javadoc
 
 2. View the document output here:
 
-enmasse-dist-[version]/target/site/apidocs
+openldap-fortress-enmasse/target/site/apidocs
 
 3. To view Service-level documentation, go here:
 
-enmasse-dist-[version]/target/site/apidocs/com/jts/enmasse/FortressServiceImpl.html
+openldap-fortress-enmasse/target/site/apidocs/com/jts/enmasse/FortressServiceImpl.html
