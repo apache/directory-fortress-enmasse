@@ -9,7 +9,7 @@
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC19</version>
+    <version>1.0-RC20</version>
     <name>fortress-enmasse</name>
     <url>https://joshuatreesoftware.us</url>
     <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP. En Masse was built using established Open Source technologies including Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant Java Servlets container. En Masse’s service access decisions are made using declarative Java EE and Spring security policy hooks that are wired to connect back to the Fortress RBAC component itself.  There is a one-to-one correspondence between a Fortress API and an En Masse service. The Fortress APIs are organized into 'Managers' each implementing a specific area of functionality within the Identity and Access Management lifecycle.</description>
@@ -64,7 +64,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC19</version>
+        <version>1.0-RC20</version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.6</java.version>
         <servlet-api.version>2.5.0</servlet-api.version>
@@ -76,6 +76,7 @@
         <test>com.jts.enmasse.EmTest</test>
         <javadoc.stylesheet>${basedir}/src/main/java/com/jts/enmasse/fortress-javadoc.css</javadoc.stylesheet>
         <title>${name} ${version}</title>
+
     </properties>
 
     <build>
@@ -113,21 +114,11 @@
                 </executions>
             </plugin>
 
-<!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4</version>
             </plugin>
--->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -407,5 +398,35 @@
           </plugin>
         </plugins>
       </reporting>
+
+    <profiles>
+      <profile>
+        <id>release-sign-artifacts</id>
+        <activation>
+          <property>
+            <name>performRelease</name>
+            <value>true</value>
+          </property>
+        </activation>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <version>1.1</version>
+              <executions>
+                <execution>
+                  <id>sign-artifacts</id>
+                  <phase>verify</phase>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+    </profiles>
 
 </project>
