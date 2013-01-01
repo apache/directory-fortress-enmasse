@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 package com.jts.enmasse;
 
@@ -36,7 +36,6 @@ import javax.xml.bind.Unmarshaller;
  * Test Client to drive EnMasse Service methods.
  *
  * @author Shawn McKinney
- * @created December 17, 2011
  */
 public final class Client
 {

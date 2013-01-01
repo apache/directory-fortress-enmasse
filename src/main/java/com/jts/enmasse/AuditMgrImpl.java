@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 package com.jts.enmasse;
 
@@ -19,7 +19,6 @@ import java.util.List;
  * Utility for EnMasse Server.  This class is thread safe.
  *
  * @author Shawn McKinney
- * @created February 19, 2012
  */
 class AuditMgrImpl
 {

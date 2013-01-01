@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 
 package com.jts.enmasse;
@@ -29,7 +29,6 @@ import javax.ws.rs.WebApplicationException;
  * Test Client to drive EnMasse Service methods.
  *
  * @author Shawn McKinney
- * @created April 20, 2012
  */
 public final class EmTest
 {

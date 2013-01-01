@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 package com.jts.enmasse;
 
@@ -23,7 +23,6 @@ import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
  * Utility for EnMasse Server.
  *
  * @author Shawn McKinney
- * @created December 31, 2011
  */
 public class FortressInterceptor extends SimpleAuthorizingInterceptor
 {

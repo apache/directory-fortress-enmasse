@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 package com.jts.enmasse;
 
@@ -10,7 +10,6 @@ import com.jts.fortress.rest.FortResponse;
  * Interface for EnMasse Service methods.
  *
  * @author Shawn McKinney
- * @created December 17, 2011
  */
 public interface FortressService
 {
@@ -723,19 +722,19 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
      * </ul>
      * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#child}</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -768,19 +767,19 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>childRole - {@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing child Role</li>
-     * <li>parentRole - {@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of new Role to be parent</li>
+     * <li>childRole - {@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing child Role</li>
+     * <li>parentRole - {@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of new Role to be parent</li>
      * </ul>
      * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -808,8 +807,8 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing role to be parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing role to be child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing role to be parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing role to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -837,8 +836,8 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1696,7 +1695,7 @@ public interface FortressService
      * <h4> This API will...</h4>
      * <ul>
      * <li> authenticate user password.
-     * <li> perform <a href="http://www.openldap.org/">OpenLDAP</a> <a href="http://tools.ietf.org/html/draft-behera-ldap-password-policy-10">password policy evaluation</a>, see {@link com.jts.fortress.ldap.openldap.OLPWControlImpl}.
+     * <li> perform <a href="http://www.openldap.org/">OpenLDAP</a> <a href="http://tools.ietf.org/html/draft-behera-ldap-password-policy-10">password policy evaluation</a>.
      * <li> fail for any user who is locked by OpenLDAP's policies {@link com.jts.fortress.rbac.User#isLocked()}.
      * <li> evaluate temporal {@link com.jts.fortress.util.time.Constraint}(s) on {@link com.jts.fortress.rbac.User}, {@link com.jts.fortress.rbac.UserRole} and {@link com.jts.fortress.rbac.UserAdminRole} entities.
      * <li> process selective role activations into User RBAC Session {@link com.jts.fortress.rbac.User#roles}.
@@ -2098,19 +2097,19 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
      * </ul>
-     * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#child}</h5>
+     * <h5>optional parameters {@code com.jts.fortress.rbac.RoleRelationship#child}</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2143,19 +2142,19 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>childRole - {@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing child AdminRole</li>
-     * <li>parentRole - {@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of new AdminRole to be parent</li>
+     * <li>childRole - {@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing child AdminRole</li>
+     * <li>parentRole - {@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of new AdminRole to be parent</li>
      * </ul>
      * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2189,8 +2188,8 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing AdminRole to be parent</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing AdminRole to be child</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing AdminRole to be parent</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing AdminRole to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2219,8 +2218,8 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
-     * <li>{@link com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
+     * <li>{@code com.jts.fortress.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2322,13 +2321,13 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
      * </ul>
-     * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#child}</h5>
+     * <h5>optional parameters {@code com.jts.fortress.rbac.RoleRelationship#child}</h5>
      * <ul>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#description} - maps to description attribute on organizationalUnit object class for new child</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#description} - maps to description attribute on organizationalUnit object class for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2360,13 +2359,13 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of existing OrgUnit to be child</li>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of new OrgUnit to be parent</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of existing OrgUnit to be child</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of new OrgUnit to be parent</li>
      * </ul>
      * <h5>optional parameters {@link com.jts.fortress.rbac.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#description} - maps to description attribute on organizationalUnit object class for new parent</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#description} - maps to description attribute on organizationalUnit object class for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2397,9 +2396,9 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2425,9 +2424,9 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to remove as parent</li>
-     * <li>parent - {@link com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@link com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to remove as child</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to remove as parent</li>
+     * <li>parent - {@code com.jts.fortress.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link com.jts.fortress.rbac.OrgUnit.Type#USER} or {@link com.jts.fortress.rbac.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code com.jts.fortress.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to remove as child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2620,9 +2619,9 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RolePerm} entity.</li>
      * <h5>{@link com.jts.fortress.rbac.RolePerm} required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -2640,9 +2639,9 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.RolePerm} entity.</li>
      * <h5>{@link com.jts.fortress.rbac.RolePerm} required parameters</h5>
      * <ul>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
-     * <li>{@link com.jts.fortress.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
+     * <li>{@code com.jts.fortress.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -3041,7 +3040,7 @@ public interface FortressService
      * and given timestamp field {@link com.jts.fortress.rbac.UserAudit#beginDate}.<BR>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} optional parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#userId} - contains the target userId<</li>
@@ -3065,7 +3064,7 @@ public interface FortressService
      * Method also can discriminate between all events or failed only by setting {@link com.jts.fortress.rbac.UserAudit#failedOnly}.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} optional parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#userId} - contains the target userId</li>
@@ -3089,7 +3088,7 @@ public interface FortressService
      * Method also can discriminate between all events or failed only by setting flag {@link com.jts.fortress.rbac.UserAudit#failedOnly}..
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} optional parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#userId} - contains the target userId<</li>
@@ -3111,7 +3110,7 @@ public interface FortressService
      * and timestamp {@link com.jts.fortress.rbac.UserAudit#beginDate}.<BR>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} required parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#userId} - contains the target userId<</li>
@@ -3137,7 +3136,7 @@ public interface FortressService
      * userId {@link com.jts.fortress.rbac.UserAudit#internalUserId} is set it will limit search by that field.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} optional parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#dn} - contains the LDAP distinguished name for the updated object.  For example if caller
@@ -3168,7 +3167,7 @@ public interface FortressService
      * This event is generated when Fortress looks up User record prior to LDAP bind operation.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link @link com.jts.fortress.rbac.UserAudit} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link com.jts.fortress.rbac.UserAudit} entity</li>
      * <h5>{@link com.jts.fortress.rbac.UserAudit} optional parameters</h5>
      * <ul>
      * <li>{@link com.jts.fortress.rbac.UserAudit#userId} - contains the target userId</li>

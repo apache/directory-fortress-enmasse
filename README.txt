@@ -1,9 +1,9 @@
-Copyright © 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+Copyright © 2011-2013. JoshuaTree. All Rights Reserved.
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
-RC18 (BETA RELEASE CANDIDATE)
-Last updated: December 19, 2012
+RC20 (BETA RELEASE CANDIDATE)
+Last updated: December 31, 2012
 ___________________________________________________________________________________
 ###################################################################################
 # Guidelines & Tips for first-time users of EnMasse Web Application

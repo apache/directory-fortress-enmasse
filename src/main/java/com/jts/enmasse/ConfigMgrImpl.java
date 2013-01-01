@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
+ */
 package com.jts.enmasse;
 
 import com.jts.fortress.cfg.ConfigMgr;
@@ -14,7 +17,6 @@ import java.util.Properties;
  * Utility for EnMasse Server.  This class is thread safe.
  *
  * @author Shawn McKinney
- * @created March 4, 2012
  */
 class ConfigMgrImpl
 {
