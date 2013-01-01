@@ -22,7 +22,7 @@
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC20</version>
+    <version>1.0-RC21</version>
     <name>fortress-enmasse</name>
     <url>https://joshuatreesoftware.us</url>
     <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP. En Masse was built using established Open Source technologies including Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant Java Servlets container. En Masse’s service access decisions are made using declarative Java EE and Spring security policy hooks that are wired to connect back to the Fortress RBAC component itself.  There is a one-to-one correspondence between a Fortress API and an En Masse service. The Fortress APIs are organized into 'Managers' each implementing a specific area of functionality within the Identity and Access Management lifecycle.</description>
@@ -77,7 +77,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC20</version>
+        <version>1.0-RC21</version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.6</java.version>
         <servlet-api.version>2.5.0</servlet-api.version>
