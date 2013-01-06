@@ -52,10 +52,10 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
             ClassLoaderUtils.loadClass(name, FortressInterceptor.class);
             annotationClassName = name;
         }
-        catch (Throwable ex)
+        catch (ClassNotFoundException ex)
         {
-            ex.printStackTrace();
-            throw new IllegalArgumentException("Annotation class " + name + " is not available");
+            String warning = CLS_NM + ".setAnnotationClassName caught ClassNotFoundException-" + ex;
+            log.warn((warning));
         }
     }
 
