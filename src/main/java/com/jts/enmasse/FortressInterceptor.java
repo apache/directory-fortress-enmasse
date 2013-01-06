@@ -1,32 +1,32 @@
 /*
- * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
+ * Copyright (c) 2011-2013, JoshuaTree. All Rights Reserved.
  */
 package com.jts.enmasse;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.cxf.common.classloader.ClassLoaderUtils;
-import org.apache.cxf.common.logging.LogUtils;
 import org.apache.cxf.common.util.ClassHelper;
 import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
 
 
 /**
- * Utility for EnMasse Server.
+ * Security Utility for EnMasse Server.
  *
  * @author Shawn McKinney
  */
 public class FortressInterceptor extends SimpleAuthorizingInterceptor
 {
-    private static final Logger LOG = LogUtils.getL7dLogger(FortressInterceptor.class);
+    private static final String CLS_NM = FortressInterceptor.class.getName();
+    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(CLS_NM);
+
     private static final String DEFAULT_ANNOTATION_CLASS_NAME = "javax.annotation.security.RolesAllowed";
     private static final Set<String> SKIP_METHODS;
 
@@ -40,11 +40,15 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     private String annotationClassName = DEFAULT_ANNOTATION_CLASS_NAME;
 
+    /**
+     *
+     * @param name
+     */
     public void setAnnotationClassName(String name)
     {
         try
         {
-            LOG.info("setAnnotationClassName:" + name);
+            log.info(CLS_NM + ".setAnnotationClassName:" + name);
             ClassLoaderUtils.loadClass(name, FortressInterceptor.class);
             annotationClassName = name;
         }
@@ -55,29 +59,38 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
         }
     }
 
+    /**
+     *
+     * @param object
+     */
     public void setSecuredObject(Object object)
     {
-        LOG.info("setSecuredObject:" + object);
+        log.info(CLS_NM + ".setSecuredObject:" + object);
         Class<?> cls = ClassHelper.getRealClass(object);
         Map<String, String> rolesMap = new HashMap<String, String>();
         findRoles(cls, rolesMap);
         if (rolesMap.isEmpty())
         {
-            LOG.warning("The roles map is empty, the service object is not protected");
+            log.warn(CLS_NM + ".setSecuredObject The roles map is empty, the service object is not protected");
         }
-        else if (LOG.isLoggable(Level.FINE))
+        else if (log.isDebugEnabled())
         {
             for (Map.Entry<String, String> entry : rolesMap.entrySet())
             {
-                LOG.fine("Method: " + entry.getKey() + ", roles: " + entry.getValue());
+                log.debug(CLS_NM + ".setSecuredObject Method: " + entry.getKey() + ", roles: " + entry.getValue());
             }
         }
         super.setMethodRolesMap(rolesMap);
     }
 
+    /**
+     *
+     * @param cls
+     * @param rolesMap
+     */
     protected void findRoles(Class<?> cls, Map<String, String> rolesMap)
     {
-        LOG.info("findRoles:" + rolesMap);
+        log.info(CLS_NM + ".findRoles:" + rolesMap);
         if (cls == null || cls == Object.class)
         {
             return;
@@ -114,9 +127,15 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
         }
     }
 
+    /**
+     *
+     * @param anns
+     * @param annName
+     * @return String roles
+     */
     private String getRoles(Annotation[] anns, String annName)
     {
-        LOG.info("getRoles:" + annName);
+        log.debug(CLS_NM + ".getRoles:" + annName);
         for (Annotation ann : anns)
         {
             if (ann.annotationType().getName().equals(annName))
@@ -136,9 +155,17 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
                     }
                     return sb.toString();
                 }
-                catch (Exception ex)
+                catch (java.lang.NoSuchMethodException ex)
                 {
-                    // ignore
+                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught NoSuchMethodException=" + ex);
+                }
+                catch (java.lang.IllegalAccessException ex)
+                {
+                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught IllegalAccessException=" + ex);
+                }
+                catch (InvocationTargetException ex)
+                {
+                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught InvocationTargetException=" + ex);
                 }
                 break;
             }

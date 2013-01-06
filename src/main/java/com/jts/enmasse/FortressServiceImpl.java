@@ -16,7 +16,7 @@ import com.jts.fortress.rest.HttpIds;
 import org.springframework.stereotype.Service;
 
 /**
- * Implementation for EnMasse Service methods forwards to delegate.
+ * Implementation for EnMasse Service methods forwards to delegate.  This class is thread safe.
  *
  * @author Shawn McKinney
  */
