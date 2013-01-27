@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;

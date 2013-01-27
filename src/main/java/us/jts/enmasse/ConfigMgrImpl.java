@@ -1,14 +1,14 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
-import com.jts.fortress.cfg.ConfigMgr;
-import com.jts.fortress.cfg.ConfigMgrFactory;
-import com.jts.fortress.rbac.Props;
-import com.jts.fortress.rest.FortRequest;
-import com.jts.fortress.rest.FortResponse;
-import com.jts.fortress.rest.RestUtils;
+import us.jts.fortress.cfg.ConfigMgr;
+import us.jts.fortress.cfg.ConfigMgrFactory;
+import us.jts.fortress.rbac.Props;
+import us.jts.fortress.rest.FortRequest;
+import us.jts.fortress.rest.FortResponse;
+import us.jts.fortress.rest.RestUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Properties;
@@ -43,7 +43,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());
@@ -72,7 +72,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());
@@ -104,7 +104,7 @@ class ConfigMgrImpl
             }
             response.setErrorCode(0);
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());
@@ -132,7 +132,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());

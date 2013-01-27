@@ -1,17 +1,17 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
-import com.jts.fortress.DelReviewMgr;
-import com.jts.fortress.DelReviewMgrFactory;
-import com.jts.fortress.SecurityException;
-import com.jts.fortress.rbac.AdminRole;
-import com.jts.fortress.rbac.OrgUnit;
-import com.jts.fortress.rbac.UserAdminRole;
-import com.jts.fortress.rbac.User;
-import com.jts.fortress.rest.FortRequest;
-import com.jts.fortress.rest.FortResponse;
+import us.jts.fortress.DelReviewMgr;
+import us.jts.fortress.DelReviewMgrFactory;
+import us.jts.fortress.SecurityException;
+import us.jts.fortress.rbac.AdminRole;
+import us.jts.fortress.rbac.OrgUnit;
+import us.jts.fortress.rbac.UserAdminRole;
+import us.jts.fortress.rbac.User;
+import us.jts.fortress.rest.FortRequest;
+import us.jts.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -43,7 +43,7 @@ class DelegatedReviewMgrImpl
             response.setEntity(outRole);
             response.setErrorCode(0);
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());

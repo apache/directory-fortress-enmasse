@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.interceptor.security.AccessDeniedException;

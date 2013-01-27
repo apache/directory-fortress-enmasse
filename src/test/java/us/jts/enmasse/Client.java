@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
 import java.io.File;
 import java.io.InputStream;
@@ -10,12 +10,11 @@ import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.jts.fortress.rest.HttpIds;
-import com.jts.fortress.rbac.OrgUnit;
-import com.jts.fortress.rbac.PermObj;
-import com.jts.fortress.rbac.Permission;
-import com.jts.fortress.rbac.Role;
-import com.jts.fortress.rbac.Session;
+import us.jts.fortress.rest.HttpIds;
+import us.jts.fortress.rbac.OrgUnit;
+import us.jts.fortress.rbac.PermObj;
+import us.jts.fortress.rbac.Permission;
+import us.jts.fortress.rbac.Session;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;
@@ -471,10 +470,10 @@ public final class Client
             wc.header("Authorization", authorizationHeader);
             //wc.accept("application/json");
             wc.accept("application/xml");
-            Collection<? extends com.jts.fortress.rbac.User> collection = wc.getCollection(com.jts.fortress.rbac.User.class);
+            Collection<? extends us.jts.fortress.rbac.User> collection = wc.getCollection(us.jts.fortress.rbac.User.class);
 
             int i = 1;
-            for (com.jts.fortress.rbac.User user : collection)
+            for (us.jts.fortress.rbac.User user : collection)
             {
                 System.out.println("User[" + i++ + "]");
                 System.out.println("    userId: " + user.getUserId());
@@ -497,7 +496,7 @@ public final class Client
                 if(user.getRoles() != null)
                 {
                     int j = 1;
-                    for(com.jts.fortress.rbac.UserRole userRole : user.getRoles())
+                    for(us.jts.fortress.rbac.UserRole userRole : user.getRoles())
                     {
                         System.out.println("--------------------------------------------------------------------------");
                         System.out.println("User[" + user.getUserId() + "] UserRole[" + j++ + "]");
@@ -546,8 +545,8 @@ public final class Client
                 + org.apache.cxf.common.util.Base64Utility.encode(new String(userId + ":" + password).getBytes());
             wc.header("Authorization", authorizationHeader);
             wc.accept("application/xml");
-            Collection<? extends com.jts.fortress.rbac.Role> collection = wc.getCollection(com.jts.fortress.rbac.Role.class);
-            for (com.jts.fortress.rbac.Role role : collection)
+            Collection<? extends us.jts.fortress.rbac.Role> collection = wc.getCollection(us.jts.fortress.rbac.Role.class);
+            for (us.jts.fortress.rbac.Role role : collection)
             {
                 System.out.println("Role: " + role.getName() + " description:" + role.getDescription());
                 System.out.println("    parents: " + role.getParents());

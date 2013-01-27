@@ -6,7 +6,7 @@
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
 
-       https://joshuatreesoftware.us/
+       http://jts.us/License
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,14 +22,14 @@
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC21</version>
+    <version>1.0-RC22</version>
     <name>fortress-enmasse</name>
-    <url>https://joshuatreesoftware.us</url>
+    <url>http://jts.us</url>
     <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP. En Masse was built using established Open Source technologies including Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant Java Servlets container. En Masse’s service access decisions are made using declarative Java EE and Spring security policy hooks that are wired to connect back to the Fortress RBAC component itself.  There is a one-to-one correspondence between a Fortress API and an En Masse service. The Fortress APIs are organized into 'Managers' each implementing a specific area of functionality within the Identity and Access Management lifecycle.</description>
     <licenses>
       <license>
         <name>BSD</name>
-        <url>https://www.joshuatreesoftware.us/License</url>
+        <url>http://jts.us/License</url>
         <distribution>repo</distribution>
       </license>
     </licenses>
@@ -66,18 +66,18 @@
         <developer>
             <id>smckinney</id>
             <name>Shawn McKinney</name>
-            <email>shawn.mckinney@joshuatreesoftware.us</email>
+            <email>shawn.mckinney@jts.us</email>
             <roles>
                 <role>Developer</role>
             </roles>
-            <organization>joshuatreesoftware.us</organization>
+            <organization>jts.us</organization>
             <timezone>-6</timezone>
         </developer>
     </developers>
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC21</version>
+        <version>1.0-RC22</version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.6</java.version>
         <servlet-api.version>2.5.0</servlet-api.version>
@@ -86,8 +86,8 @@
         <base.dir>.</base.dir>
         <src.java.dir>${base.dir}/src/main/java</src.java.dir>
         <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
-        <test>com.jts.enmasse.EmTest</test>
-        <javadoc.stylesheet>${basedir}/src/main/java/com/jts/enmasse/fortress-javadoc.css</javadoc.stylesheet>
+        <test>us.jts.enmasse.EmTest</test>
+        <javadoc.stylesheet>${basedir}/src/main/java/us/jts/enmasse/fortress-javadoc.css</javadoc.stylesheet>
         <title>${name} ${version}</title>
 
     </properties>
@@ -167,7 +167,7 @@
                 <configuration>
                     <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2013 Joshua Tree Software, LLC. All Rights Reserved.  Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
                     <stylesheetfile>${javadoc.stylesheet}</stylesheetfile>
-                    <overview>${basedir}/src/main/java/com/jts/enmasse/overview.html</overview>
+                    <overview>src/main/java/us/jts/enmasse/overview.html</overview>
                     <version>true</version>
                     <author>true</author>
                     <doctitle>${title}</doctitle>

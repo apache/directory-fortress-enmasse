@@ -1,7 +1,7 @@
 Fortress EnMasse Web Application
 Copyright (c) 2011-2013 JoshuaTree.  All rights reserved.
 
-This product distribution source code was developed by JoshuaTree (https://joshuatreesoftware.us/).
+This product distribution source code was developed by JoshuaTree (http://jts.us/).
 
 The purpose of this NOTICE.txt file is to include notices that are required by the copyright owner and their license. Some of the accompanying products have an attribution requirement, so see below. Other accompanying products do not require attribution, so are not listed. 
 

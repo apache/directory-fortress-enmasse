@@ -1,20 +1,20 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
-import com.jts.fortress.DelAccessMgr;
-import com.jts.fortress.DelAccessMgrFactory;
-import com.jts.fortress.SecurityException;
-import com.jts.fortress.rbac.RolePerm;
-import com.jts.fortress.rbac.UserAdminRole;
-import com.jts.fortress.rbac.Permission;
-import com.jts.fortress.rbac.Role;
-import com.jts.fortress.rbac.Session;
-import com.jts.fortress.rbac.User;
-import com.jts.fortress.rbac.UserRole;
-import com.jts.fortress.rest.FortRequest;
-import com.jts.fortress.rest.FortResponse;
+import us.jts.fortress.DelAccessMgr;
+import us.jts.fortress.DelAccessMgrFactory;
+import us.jts.fortress.SecurityException;
+import us.jts.fortress.rbac.RolePerm;
+import us.jts.fortress.rbac.UserAdminRole;
+import us.jts.fortress.rbac.Permission;
+import us.jts.fortress.rbac.Role;
+import us.jts.fortress.rbac.Session;
+import us.jts.fortress.rbac.User;
+import us.jts.fortress.rbac.UserRole;
+import us.jts.fortress.rest.FortRequest;
+import us.jts.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -48,7 +48,7 @@ class DelegatedAccessMgrImpl
             response.setAuthorized(result);
             response.setErrorCode(0);
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             String warning = CLS_NM + ".canAssign caught SecurityException=" + se;
             log.warn(warning);

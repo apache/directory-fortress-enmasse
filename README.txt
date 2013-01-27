@@ -154,15 +154,15 @@ http.host=localhost
 http.port=80
 
 # These will override default and enable client to call REST implementations:
-reviewmgr.implementation=com.jts.fortress.rest.ReviewMgrRestImpl
-adminmgr.implementation=com.jts.fortress.rest.AdminMgrRestImpl
-accessmgr.implementation=com.jts.fortress.rest.AccessMgrRestImpl
-delegated.adminmgr.implementation=com.jts.fortress.rest.DelegatedAdminMgrRestImpl
-delegated.reviewmgr.implementation=com.jts.fortress.rest.DelegatedReviewMgrRestImpl
-policymgr.implementation=com.jts.fortress.rest.PswdPolicyMgrRestImpl
-delegated.accessmgr.implementation=com.jts.fortress.rest.DelegatedAccessMgrRestImpl
-auditmgr.implementation=com.jts.fortress.rest.AuditMgrRestImpl
-configmgr.implementation=com.jts.fortress.rest.ConfigMgrRestImpl
+reviewmgr.implementation=us.jts.fortress.rest.ReviewMgrRestImpl
+adminmgr.implementation=us.jts.fortress.rest.AdminMgrRestImpl
+accessmgr.implementation=us.jts.fortress.rest.AccessMgrRestImpl
+delegated.adminmgr.implementation=us.jts.fortress.rest.DelegatedAdminMgrRestImpl
+delegated.reviewmgr.implementation=us.jts.fortress.rest.DelegatedReviewMgrRestImpl
+policymgr.implementation=us.jts.fortress.rest.PswdPolicyMgrRestImpl
+delegated.accessmgr.implementation=us.jts.fortress.rest.DelegatedAccessMgrRestImpl
+auditmgr.implementation=us.jts.fortress.rest.AuditMgrRestImpl
+configmgr.implementation=us.jts.fortress.rest.ConfigMgrRestImpl
 
 ___________________________________________________________________________________
 ###################################################################################

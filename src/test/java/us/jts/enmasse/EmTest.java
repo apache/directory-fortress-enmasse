@@ -2,18 +2,18 @@
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
 
-package com.jts.enmasse;
+package us.jts.enmasse;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.jts.fortress.RestException;
-import com.jts.fortress.GlobalErrIds;
-import com.jts.fortress.rest.FortResponse;
-import com.jts.fortress.rest.HttpIds;
-import com.jts.fortress.rest.RestUtils;
+import us.jts.fortress.RestException;
+import us.jts.fortress.GlobalErrIds;
+import us.jts.fortress.rest.FortResponse;
+import us.jts.fortress.rest.HttpIds;
+import us.jts.fortress.rest.RestUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;

@@ -1,21 +1,26 @@
 /*
  * Copyright (c) 2009-2013, JoshuaTree. All Rights Reserved.
  */
-package com.jts.enmasse;
+package us.jts.enmasse;
 
-import com.jts.fortress.*;
-import com.jts.fortress.SecurityException;
-import com.jts.fortress.rbac.AdminRole;
-import com.jts.fortress.rbac.PermGrant;
-import com.jts.fortress.rbac.PermObj;
-import com.jts.fortress.rbac.Permission;
-import com.jts.fortress.rbac.Role;
-import com.jts.fortress.rbac.RoleRelationship;
-import com.jts.fortress.rbac.SDSet;
-import com.jts.fortress.rbac.User;
-import com.jts.fortress.rbac.UserRole;
-import com.jts.fortress.rest.FortRequest;
-import com.jts.fortress.rest.FortResponse;
+import us.jts.fortress.AdminMgr;
+import us.jts.fortress.AdminMgrFactory;
+import us.jts.fortress.DelAdminMgr;
+import us.jts.fortress.DelAdminMgrFactory;
+import us.jts.fortress.ReviewMgr;
+import us.jts.fortress.ReviewMgrFactory;
+import us.jts.fortress.SecurityException;
+import us.jts.fortress.rbac.AdminRole;
+import us.jts.fortress.rbac.PermGrant;
+import us.jts.fortress.rbac.PermObj;
+import us.jts.fortress.rbac.Permission;
+import us.jts.fortress.rbac.Role;
+import us.jts.fortress.rbac.RoleRelationship;
+import us.jts.fortress.rbac.SDSet;
+import us.jts.fortress.rbac.User;
+import us.jts.fortress.rbac.UserRole;
+import us.jts.fortress.rest.FortRequest;
+import us.jts.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 /**
@@ -40,7 +45,7 @@ class AdminMgrImpl
             response.setEntity(outUser);
             response.setErrorCode(0);
         }
-        catch (com.jts.fortress.SecurityException se)
+        catch (us.jts.fortress.SecurityException se)
         {
             log.warn("SecurityException=" + se);
             response.setErrorCode(se.getErrorId());
