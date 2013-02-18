@@ -46,7 +46,7 @@ class DelegatedAdminMgrImpl
         }
         catch (us.jts.fortress.SecurityException se)
         {
-            log.warn("SecurityException=" + se + " warnId=" + se.getErrorId());
+            log.info(CLS_NM + " caught " + se + " warnId=" + se.getErrorId());
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -67,7 +67,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -88,7 +88,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se + " errorId=" + se.getErrorId());
+            log.info(CLS_NM + " caught " + se + " errorId=" + se.getErrorId());
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -109,7 +109,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -130,7 +130,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -151,7 +151,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -172,7 +172,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -193,7 +193,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -214,7 +214,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -235,7 +235,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -256,7 +256,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -277,7 +277,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -298,7 +298,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -319,7 +319,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -340,7 +340,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -361,7 +361,7 @@ class DelegatedAdminMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }

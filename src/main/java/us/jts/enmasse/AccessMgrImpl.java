@@ -46,7 +46,7 @@ class AccessMgrImpl
         }
         catch (us.jts.fortress.SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -66,7 +66,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -86,7 +86,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -109,7 +109,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -130,7 +130,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -151,7 +151,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -172,7 +172,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -193,7 +193,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -214,7 +214,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -236,7 +236,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -257,7 +257,7 @@ class AccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }

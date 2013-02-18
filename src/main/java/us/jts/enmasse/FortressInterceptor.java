@@ -55,7 +55,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
         catch (ClassNotFoundException ex)
         {
             String warning = CLS_NM + ".setAnnotationClassName caught ClassNotFoundException-" + ex;
-            log.warn((warning));
+            log.info((warning));
         }
     }
 
@@ -71,7 +71,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
         findRoles(cls, rolesMap);
         if (rolesMap.isEmpty())
         {
-            log.warn(CLS_NM + ".setSecuredObject The roles map is empty, the service object is not protected");
+            log.info(CLS_NM + ".setSecuredObject The roles map is empty, the service object is not protected");
         }
         else if (log.isDebugEnabled())
         {
@@ -157,15 +157,15 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
                 }
                 catch (java.lang.NoSuchMethodException ex)
                 {
-                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught NoSuchMethodException=" + ex);
+                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught NoSuchMethodException=" + ex);
                 }
                 catch (java.lang.IllegalAccessException ex)
                 {
-                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught IllegalAccessException=" + ex);
+                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught IllegalAccessException=" + ex);
                 }
                 catch (InvocationTargetException ex)
                 {
-                    log.warn(CLS_NM + ".getRoles annName=" + annName + ", caught InvocationTargetException=" + ex);
+                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught InvocationTargetException=" + ex);
                 }
                 break;
             }

@@ -51,7 +51,7 @@ class DelegatedAccessMgrImpl
         catch (us.jts.fortress.SecurityException se)
         {
             String warning = CLS_NM + ".canAssign caught SecurityException=" + se;
-            log.warn(warning);
+            log.info(warning);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -73,7 +73,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -95,7 +95,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -117,7 +117,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -140,7 +140,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -161,7 +161,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -182,7 +182,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
@@ -202,7 +202,7 @@ class DelegatedAccessMgrImpl
         }
         catch (SecurityException se)
         {
-            log.warn("SecurityException=" + se);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }

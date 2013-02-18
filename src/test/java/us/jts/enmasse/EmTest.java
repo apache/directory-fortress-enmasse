@@ -60,7 +60,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_REVOKE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "addEmTestPermission.xml", HttpIds.PERM_DELETE);
@@ -71,7 +71,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.PERM_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "addEmTestObj1.xml", HttpIds.OBJ_DELETE);
@@ -82,7 +82,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.OBJ_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "emTestPermOrg1.xml", HttpIds.ORG_DELETE);
@@ -93,7 +93,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "emTestPermOrg1.xml", HttpIds.ORG_ADD);
@@ -115,7 +115,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DEASGN + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "delEmUser1.xml", HttpIds.USER_DELETE);
@@ -126,7 +126,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.USER_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "emTestOrg1.xml", HttpIds.ORG_DELETE);
@@ -137,7 +137,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "emTestOrg1.xml", HttpIds.ORG_ADD);
@@ -159,7 +159,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELINHERIT + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "addEmRole1.xml", HttpIds.ROLE_DELETE);
@@ -170,7 +170,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "delEmRole2.xml", HttpIds.ROLE_DELETE);
@@ -181,7 +181,7 @@ public final class EmTest
             {
                 // don't fail if the delete was not successful as this may be the first run:
                 String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.warn(warn);
+                log.info(warn);
             }
 
             szResponse = post(USER_ID, PASSWORD, "addEmRole1.xml", HttpIds.ROLE_ADD);
