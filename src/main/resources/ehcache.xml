@@ -73,7 +73,7 @@ This ehcache.xml corresponds to a single CacheManager.
            timeToIdleSeconds="600"
            timeToLiveSeconds="600"
            memoryStoreEvictionPolicy="LFU"
-           />                           "J2eePolicyMgrImpl"
+           />
 
     <!--
         Contains the JGraphT hierarchies for ARBAC roles. There should be one element for every tenant.
