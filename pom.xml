@@ -261,73 +261,12 @@
     </build>
 
     <dependencies>
-        <!-- Fortress & its dependencies -->
+        <!-- Fortress -->
         <dependency>
           <groupId>us.joshuatreesoftware</groupId>
           <artifactId>fortress</artifactId>
           <version>${version}</version>
         </dependency>
-        <dependency>
-          <groupId>commons-lang</groupId>
-          <artifactId>commons-lang</artifactId>
-          <version>2.4</version>
-        </dependency>
-        <dependency>
-          <groupId>commons-configuration</groupId>
-          <artifactId>commons-configuration</artifactId>
-          <version>1.6</version>
-        </dependency>
-        <dependency>
-          <groupId>commons-collections</groupId>
-          <artifactId>commons-collections</artifactId>
-          <version>3.2.1</version>
-        </dependency>
-        <dependency>
-          <groupId> commons-pool</groupId>
-          <artifactId> commons-pool</artifactId>
-          <version>1.5.2</version>
-        </dependency>
-        <dependency>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-          <version>1.1.1</version>
-        </dependency>
-        <dependency>
-           <groupId>com.unboundid</groupId>
-           <artifactId>unboundid-ldapsdk</artifactId>
-           <version>2.1.0</version>
-        </dependency>
-        <dependency>
-           <groupId>log4j</groupId>
-           <artifactId>log4j</artifactId>
-           <version>1.2.16</version>
-        </dependency>
-        <dependency>
-           <groupId>org.jasypt</groupId>
-           <artifactId>jasypt</artifactId>
-           <version>1.8</version>
-        </dependency>
-        <dependency>
-           <groupId>org.jgrapht</groupId>
-           <artifactId>jgrapht-jdk1.5</artifactId>
-           <version>0.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>2.6.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-        <dependency>
-           <groupId>org.slf4j</groupId>
-           <artifactId>slf4j-jcl</artifactId>
-           <version>1.6.1</version>
-        </dependency>
-
         <!-- EnMasse Dependencies -->
         <dependency>
            <groupId>org.apache.cxf</groupId>

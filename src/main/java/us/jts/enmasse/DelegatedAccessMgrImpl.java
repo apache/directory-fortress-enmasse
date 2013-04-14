@@ -50,8 +50,7 @@ class DelegatedAccessMgrImpl
         }
         catch (us.jts.fortress.SecurityException se)
         {
-            String warning = CLS_NM + ".canAssign caught SecurityException=" + se;
-            log.info(warning);
+            log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
             response.setErrorMessage(se.getMessage());
         }
