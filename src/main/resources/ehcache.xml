@@ -5,10 +5,11 @@ Fortress CacheManager Configuration
 ==========================
 This ehcache.xml corresponds to a single CacheManager.
 -->
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<ehcache name="fortress-enmasse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="ehcache.xsd"
          updateCheck="true" monitoring="autodetect"
-         dynamicConfig="true">
+         dynamicConfig="true"
+        >
 
     <cacheManagerEventListenerFactory class="" properties=""/>
 
@@ -34,7 +35,7 @@ This ehcache.xml corresponds to a single CacheManager.
            />
 
     <!--
-        This cache contains password policy entries.  It is used to save a read on User password policy edits. There should be one element for every tenant.
+        Thic cache contains password policy entries.  It is used to save a read on User password policy edits. There should be one element for every tenant.
     -->
     <cache name="fortress.policies"
            maxElementsInMemory="10"
