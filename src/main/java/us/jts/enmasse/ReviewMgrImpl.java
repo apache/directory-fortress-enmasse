@@ -538,6 +538,27 @@ class ReviewMgrImpl
         return response;
     }
 
+    FortResponse ssdSetsM(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            reviewMgr.setAdmin(request.getSession());
+            SDSet inSdSet = (SDSet) request.getEntity();
+            List<SDSet> outSets = reviewMgr.ssdSets(inSdSet);
+            response.setEntities(outSets);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
+        }
+        return response;
+    }
+
     FortResponse dsdRoleSetsM(FortRequest request)
     {
         FortResponse response = new FortResponse();
@@ -615,6 +636,27 @@ class ReviewMgrImpl
         catch (SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
+        }
+        return response;
+    }
+
+    FortResponse dsdSetsM(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            reviewMgr.setAdmin(request.getSession());
+            SDSet inSdSet = (SDSet) request.getEntity();
+            List<SDSet> outSets = reviewMgr.dsdSets(inSdSet);
+            response.setEntities(outSets);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
         }
         return response;
     }

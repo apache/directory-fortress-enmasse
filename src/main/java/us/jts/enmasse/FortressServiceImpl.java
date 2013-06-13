@@ -1945,7 +1945,7 @@ public class FortressServiceImpl implements FortressService
      * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching SSD sets.
      */
     @POST
-    @Path("/" + HttpIds.SSD_SETS + "/")
+    @Path("/" + HttpIds.SSD_ROLE_SETS + "/")
     @RolesAllowed({ENMASSE_SUPER_USER, REVIEW_MGR_USER})
     @Override
     public FortResponse ssdRoleSets(FortRequest request)
@@ -2029,6 +2029,34 @@ public class FortressServiceImpl implements FortressService
     }
 
     /**
+     * This function returns the list of all SSD sets that have a particular SSD set name.
+     * If the parameter is left blank, function will return all SSD sets.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching SSD sets.
+     */
+    @POST
+    @Path("/" + HttpIds.SSD_SETS + "/")
+    @RolesAllowed({ENMASSE_SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse ssdSets(FortRequest request)
+    {
+        return reviewMgrImpl.ssdSetsM(request);
+    }
+
+    /**
      * This function returns the list of all DSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all DSD role sets.
      * <h4>required parameters</h4>
@@ -2048,7 +2076,7 @@ public class FortressServiceImpl implements FortressService
      * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching DSD sets.
      */
     @POST
-    @Path("/" + HttpIds.DSD_SETS + "/")
+    @Path("/" + HttpIds.DSD_ROLE_SETS + "/")
     @RolesAllowed({ENMASSE_SUPER_USER, REVIEW_MGR_USER})
     @Override
     public FortResponse dsdRoleSets(FortRequest request)
@@ -2129,6 +2157,34 @@ public class FortressServiceImpl implements FortressService
     public FortResponse dsdRoleSetCardinality(FortRequest request)
     {
         return reviewMgrImpl.dsdRoleSetCardinalityM(request);
+    }
+
+    /**
+     * This function returns the list of all DSD sets that have a particular DSD set name.
+     * If the parameter is left blank, function will return all DSD sets.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching DSD sets.
+     */
+    @POST
+    @Path("/" + HttpIds.DSD_SETS + "/")
+    @RolesAllowed({ENMASSE_SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse dsdSets(FortRequest request)
+    {
+        return reviewMgrImpl.dsdSetsM(request);
     }
 
     /**

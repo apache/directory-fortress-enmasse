@@ -1578,6 +1578,27 @@ public interface FortressService
     public FortResponse ssdRoleSetCardinality(FortRequest request);
 
     /**
+     * This function returns the list of all SSD sets that have a particular SSD set name.
+     * If the parameter is left blank, function will return all SSD sets.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching SSD sets.
+     */
+    public FortResponse ssdSets(FortRequest request);
+
+    /**
      * This function returns the list of all DSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all DSD role sets.
      * <h4>required parameters</h4>
@@ -1651,6 +1672,27 @@ public interface FortressService
      * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains the cardinality.
      */
     public FortResponse dsdRoleSetCardinality(FortRequest request);
+
+    /**
+     * This function returns the list of all DSD sets that have a particular DSD set name.
+     * If the parameter is left blank, function will return all DSD sets.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link us.jts.fortress.rbac.SDSet} containing all matching DSD sets.
+     */
+    public FortResponse dsdSets(FortRequest request);
 
     // AccessMgr
 
