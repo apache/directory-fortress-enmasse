@@ -886,6 +886,41 @@ public interface FortressService
     public FortResponse createSsdSet(FortRequest request);
 
     /**
+     * This command updates existing SSD set of roles and sets the cardinality n of its subsets
+     * that cannot have common users.
+     * <p/>
+     * The command is valid if and only if:
+     * <ul>
+     * <li>The name of the SSD set exists in directory.
+     * <li> All the roles in the SSD set are members of the ROLES data set.
+     * <li> n is a natural number greater than or equal to 2 and less than or equal to the cardinality of the SSD role set.
+     * <li> The SSD constraint for the new role set is satisfied.
+     * </ul>
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name of existing SSD role set to be modified</li>
+     * </ul>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} optional parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link us.jts.fortress.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link us.jts.fortress.rbac.SDSet#description} - contains any safe text</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link us.jts.fortress.rbac.SDSet}
+     */
+    public FortResponse updateSsdSet(FortRequest request);
+
+    /**
      * This command adds a role to a named SSD set of roles. The cardinality associated with the role set remains unchanged.
      * <p/>
      * The command is valid if and only if:
@@ -1024,6 +1059,41 @@ public interface FortressService
      * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link us.jts.fortress.rbac.SDSet}
      */
     public FortResponse createDsdSet(FortRequest request);
+
+    /**
+     * This command updates existing DSD set of roles and sets the cardinality n of its subsets
+     * that cannot have common users.
+     * <p/>
+     * The command is valid if and only if:
+     * <ul>
+     * <li>The name of the DSD set exists in directory.
+     * <li> All the roles in the DSD set are members of the ROLES data set.
+     * <li> n is a natural number greater than or equal to 2 and less than or equal to the cardinality of the DSD role set.
+     * <li> The DSD constraint for the new role set is satisfied.
+     * </ul>
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link us.jts.fortress.rbac.SDSet} entity</li>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} required parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#name} - contains the name of existing SSD role set to be modified</li>
+     * </ul>
+     * <h5>{@link us.jts.fortress.rbac.SDSet} optional parameters</h5>
+     * <ul>
+     * <li>{@link us.jts.fortress.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link us.jts.fortress.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link us.jts.fortress.rbac.SDSet#description} - contains any safe text</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link us.jts.fortress.rbac.SDSet}
+     */
+    public FortResponse updateDsdSet(FortRequest request);
 
     /**
      * This command adds a role to a named DSD set of roles. The cardinality associated with the role set remains unchanged.

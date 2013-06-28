@@ -738,6 +738,27 @@ class AdminMgrImpl
         return response;
     }
 
+    FortResponse updateSsdSet(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance(request.getContextId());
+            adminMgr.setAdmin(request.getSession());
+            SDSet inSet = (SDSet) request.getEntity();
+            SDSet outSet = adminMgr.updateSsdSet(inSet);
+            response.setEntity(outSet);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
+        }
+        return response;
+    }
+
     FortResponse addSsdRoleMember(FortRequest request)
     {
         FortResponse response = new FortResponse();
@@ -833,6 +854,27 @@ class AdminMgrImpl
             adminMgr.setAdmin(request.getSession());
             SDSet inSet = (SDSet) request.getEntity();
             SDSet outSet = adminMgr.createDsdSet(inSet);
+            response.setEntity(outSet);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
+        }
+        return response;
+    }
+
+    FortResponse updateDsdSet(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance(request.getContextId());
+            adminMgr.setAdmin(request.getSession());
+            SDSet inSet = (SDSet) request.getEntity();
+            SDSet outSet = adminMgr.updateDsdSet(inSet);
             response.setEntity(outSet);
             response.setErrorCode(0);
         }
