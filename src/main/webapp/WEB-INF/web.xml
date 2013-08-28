@@ -21,6 +21,15 @@
 <web-app>
     <display-name>EnMasse Policy Server</display-name>
 
+
+    <!--
+        <error-page>
+            <exception-type>java.lang.Throwable</exception-type>
+            <location>/myErrorPage.html</location>
+        </error-page>
+    -->
+
+
     <!-- Add for Spring support -->
     <context-param>
         <param-name>contextConfigLocation</param-name>

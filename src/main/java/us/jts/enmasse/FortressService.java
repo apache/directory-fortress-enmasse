@@ -1565,6 +1565,7 @@ public interface FortressService
      * <h4>optional parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
@@ -2845,8 +2846,34 @@ public interface FortressService
      */
     public FortResponse sessionAdminRoles(FortRequest request);
 
-    // PswdPolicyMgr
+    /**
+     * This function returns the ARBAC (administrative) permissions of the session, i.e., the admin permissions assigned
+     * to its authorized admin roles. The function is valid if and only if the session is a valid Fortress session.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to User's ARBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link us.jts.fortress.rbac.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
+     */
+    public FortResponse sessionAdminPermissions(FortRequest request);
 
+    /**
+     * This function returns the authorized ARBAC (administrative) roles associated with a session based on hierarchical relationships. The function is valid if
+     * and only if the session is a valid Fortress session.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to User's ARBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#valueSet} containing a Set of type String containing role names authorized for User.  Updated {@link FortResponse#session} will be included in response as well.
+     */
+    public FortResponse authorizedSessionAdminRoles(FortRequest request);
+
+
+    // PswdPolicyMgr
 
     /**
      * This method will add a new policy entry to the POLICIES data set.  This command is valid

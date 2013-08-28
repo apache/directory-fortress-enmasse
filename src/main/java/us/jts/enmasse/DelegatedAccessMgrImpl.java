@@ -18,6 +18,7 @@ import us.jts.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Utility for EnMasse Server.  This class is thread safe.
@@ -197,6 +198,48 @@ class DelegatedAccessMgrImpl
             DelAccessMgr accessMgr = DelAccessMgrFactory.createInstance(request.getContextId());
             List<UserAdminRole> roles = accessMgr.sessionAdminRoles(session);
             response.setEntities(roles);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
+        }
+        return response;
+    }
+
+    FortResponse sessionAdminPermissions(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            DelAccessMgr accessMgr = DelAccessMgrFactory.createInstance(request.getContextId());
+            Session session = request.getSession();
+            List<Permission> perms = accessMgr.sessionPermissions(session);
+            response.setSession(session);
+            response.setEntities(perms);
+            response.setErrorCode(0);
+        }
+        catch (SecurityException se)
+        {
+            log.info(CLS_NM + " caught " + se);
+            response.setErrorCode(se.getErrorId());
+            response.setErrorMessage(se.getMessage());
+        }
+        return response;
+    }
+
+    FortResponse authorizedSessionRoles(FortRequest request)
+    {
+        FortResponse response = new FortResponse();
+        try
+        {
+            DelAccessMgr accessMgr = DelAccessMgrFactory.createInstance(request.getContextId());
+            Session session = request.getSession();
+            Set<String> roles = accessMgr.authorizedAdminRoles(session);
+            response.setValueSet(roles);
+            response.setSession(session);
             response.setErrorCode(0);
         }
         catch (SecurityException se)

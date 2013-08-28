@@ -2,16 +2,20 @@ Copyright © 2011-2013. JoshuaTree. All Rights Reserved.
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
-RC20 (BETA RELEASE CANDIDATE)
-Last updated: December 31, 2012
+RC28 (BETA RELEASE CANDIDATE)
+Last updated: August 24, 2013
 ___________________________________________________________________________________
 ###################################################################################
-# Guidelines & Tips for first-time users of EnMasse Web Application
+# Prerequisites
 ###################################################################################
+1. Internet access to retrieve dependencies from online Maven repo.
 
-1. The source code for this project is located under openldap-fortress-enmasse/src folder.
+NOTE: The EnMasse maven may run without connection to Internet iff:
+- The binary dependencies are already present in M2_HOME
 
-2. For EnMasse Services-level documentation, jump to SECTION 6.
+2. Java SDK Version 7 or beyond installed to target environment
+3. Maven 3 installed to target environment
+4. Fortress/OpenLDAP are installed to target system.
 ___________________________________________________________________________________
 ###################################################################################
 # Important Notes about EnMasse Web Application
@@ -89,10 +93,10 @@ ________________________________________________________________________________
 1. Open a command prompt on target machine in the root folder of the enmasse-dist package
 
 2. Set java home:
->export JAVA_HOME=/opt/jdk1.6.0_27/
+>export JAVA_HOME=/opt/jdk1.7.0_10
 
 3. Set maven home:
->export M2_HOME=/usr/share/maven2
+>export M2_HOME=/usr/share/maven
 
 4. Run maven install:
 >mvn install

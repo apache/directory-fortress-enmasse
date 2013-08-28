@@ -1,5 +1,5 @@
 #!/bin/sh
 export JAVA_HOME=/opt/jdk1.7.0_10
-export ANT_HOME=./apache-ant
-export M2_HOME=/usr/share/maven2
+export ANT_HOME=/home/smckinn/JavaTools/apache-ant-1.8.2
+export M2_HOME=/usr/share/maven
 mvn deploy -DperformRelease=true -Dgpg.passphrase=$1

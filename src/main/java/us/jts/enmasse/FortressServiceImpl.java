@@ -3659,6 +3659,47 @@ public class FortressServiceImpl implements FortressService
     }
 
     /**
+     * This function returns the ARBAC (administrative) permissions of the session, i.e., the admin permissions assigned
+     * to its authorized admin roles. The function is valid if and only if the session is a valid Fortress session.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to User's ARBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link us.jts.fortress.rbac.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
+     */
+    @POST
+    @Path("/" + HttpIds.ADMIN_PERMS + "/")
+    @RolesAllowed({ENMASSE_SUPER_USER, DELEGATED_ACCESS_MGR_USER})
+    @Override
+    public FortResponse sessionAdminPermissions(FortRequest request)
+    {
+        return delegatedAccessMgrImpl.sessionAdminPermissions( request );
+    }
+
+    /**
+     * This function returns the authorized ARBAC (administrative) roles associated with a session based on hierarchical relationships. The function is valid if
+     * and only if the session is a valid Fortress session.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to User's ARBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#valueSet} containing a Set of type String containing role names authorized for User.  Updated {@link FortResponse#session} will be included in response as well.
+     */
+    @POST
+    @Path("/" + HttpIds.ADMIN_AUTHZ_ROLES + "/")
+    @RolesAllowed({ENMASSE_SUPER_USER, DELEGATED_ACCESS_MGR_USER})
+    @Override
+    public FortResponse authorizedSessionAdminRoles(FortRequest request)
+    {
+        return delegatedAccessMgrImpl.authorizedSessionRoles( request );
+    }
+
+
+    /**
      * ************************************************************************************************************************************
      * BEGIN PSWDPOLICYMGR
      * **************************************************************************************************************************************

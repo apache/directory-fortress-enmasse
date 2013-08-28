@@ -15,28 +15,32 @@
    limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
    http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC27</version>
+    <version>1.0-RC29</version>
     <name>fortress-enmasse</name>
     <url>http://jts.us</url>
-    <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP. En Masse was built using established Open Source technologies including Apache CXF (web services stack), Spring Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant Java Servlets container. En Masse’s service access decisions are made using declarative Java EE and Spring security policy hooks that are wired to connect back to the Fortress RBAC component itself.  There is a one-to-one correspondence between a Fortress API and an En Masse service. The Fortress APIs are organized into 'Managers' each implementing a specific area of functionality within the Identity and Access Management lifecycle.</description>
+    <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP.
+        EnMasse was built using established Open Source technologies including Apache CXF (web services stack), Spring
+        Framework (glue), Maven (dependencies) and JAXB (data binding layer) and runs inside any reasonably compliant
+        Java Servlets container.
+    </description>
     <licenses>
-      <license>
-        <name>BSD</name>
-        <url>http://jts.us/License</url>
-        <distribution>repo</distribution>
-      </license>
+        <license>
+            <name>BSD</name>
+            <url>http://jts.us/License</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
 
     <scm>
-      <url>http://www.openldap.org/software/repo/openldap-fortress-enmasse.git/</url>
-      <connection>git://git.openldap.org/openldap-fortress-enmasse.git</connection>
+        <url>http://www.openldap.org/software/repo/openldap-fortress-enmasse.git/</url>
+        <connection>git://git.openldap.org/openldap-fortress-enmasse.git</connection>
     </scm>
 
     <parent>
@@ -46,17 +50,13 @@
     </parent>
 
     <issueManagement>
-        <system>OpenLDAP Issue Tracking System</system>
-        <url>https://bugzilla.wakaleo.com/</url>
+        <system>EnMasse JIRA</system>
+        <url>https://fortress.atlassian.net/browse/EN/</url>
     </issueManagement>
 
     <mailingLists>
         <mailingList>
             <name>openldap-fortress -- OpenLDAP Fortress Discussion list</name>
-            <!--
-                <subscribe>dev-subscribe@wakaleo.com</subscribe>
-                <unsubscribe>dev-unsubscribe@wakaleo.com</unsubscribe>
-            -->
             <post>openldap-fortress@openldap.org</post>
             <archive>http://www.openldap.org/lists/openldap-fortress/</archive>
         </mailingList>
@@ -71,15 +71,18 @@
                 <role>Developer</role>
             </roles>
             <organization>jts.us</organization>
-            <timezone>-6</timezone>
+            <timezone>-5</timezone>
         </developer>
     </developers>
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC27</version>
+        <version>1.0-RC29</version>
+        <!--        <spring.version>3.2.3.RELEASE</spring.version>-->
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.6</java.version>
+        <javadoc.version>2.9.1</javadoc.version>
         <servlet-api.version>2.5.0</servlet-api.version>
         <httpclient.version>3.1</httpclient.version>
         <aspectj.version>1.5.4</aspectj.version>
@@ -89,21 +92,24 @@
         <test>us.jts.enmasse.EmTest</test>
         <javadoc.stylesheet>${basedir}/src/main/java/us/jts/enmasse/fortress-javadoc.css</javadoc.stylesheet>
         <title>${name} ${version}</title>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
         <!-- Fortress -->
         <dependency>
-          <groupId>us.joshuatreesoftware</groupId>
-          <artifactId>fortress</artifactId>
-          <version>${version}</version>
+            <groupId>us.joshuatreesoftware</groupId>
+            <artifactId>fortress</artifactId>
+            <version>${version}</version>
         </dependency>
         <!-- EnMasse Dependencies -->
         <dependency>
-           <groupId>org.apache.cxf</groupId>
-           <artifactId>cxf-bundle</artifactId>
-           <version>2.5.0</version>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-bundle</artifactId>
+            <version>2.5.0</version>
         </dependency>
+
+        <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -124,28 +130,22 @@
             <artifactId>spring-oxm</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-          <version>1.2.17</version>
-        </dependency>
-
 
         <!-- Spring Security Dependencies -->
         <dependency>
-           <groupId>org.springframework.security</groupId>
-           <artifactId>spring-security-acl</artifactId>
-           <version>3.0.7.RELEASE</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-acl</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
-           <groupId>org.springframework.security</groupId>
-           <artifactId>spring-security-config</artifactId>
-           <version>3.0.7.RELEASE</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
-           <groupId>org.springframework.security</groupId>
-           <artifactId>spring-security-web</artifactId>
-           <version>3.0.7.RELEASE</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -158,21 +158,26 @@
             <version>${aspectj.version}</version>
         </dependency>
         <dependency>
-           <groupId>org.springframework</groupId>
-           <artifactId>spring-dao</artifactId>
-           <version>2.0.8</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-dao</artifactId>
+            <version>2.0.8</version>
         </dependency>
 
         <!-- General Dependencies -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>${httpclient.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-jaxrs</artifactId>
-          <version>1.9.0</version>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>1.9.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -192,16 +197,16 @@
         <plugins>
 
             <plugin>
-    			<groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-jar-plugin</artifactId>
-		    	<version>2.4</version>
-	    	</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
 
-    		<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-		    	<artifactId>maven-war-plugin</artifactId>
-	    		<version>2.2</version>
-    		</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -247,7 +252,7 @@
                 <version>1.0-beta-1</version>
                 <configuration>
                     <server>local-tomcat</server>
-			        <url>http://localhost:8080/manager/html</url>
+                    <url>http://localhost:8080/manager/html</url>
                     <path>/enmasse-${version}</path>
                     <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
                     <username>tcmanager</username>
@@ -256,29 +261,22 @@
             </plugin>
 
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.version}</version>
                 <configuration>
                     <stylesheet>java</stylesheet>
-                    <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2013 Joshua Tree Software, LLC. All Rights Reserved.  Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
-                    <!--stylesheetfile>${javadoc.stylesheet}</stylesheetfile-->
+                    <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2013 Joshua Tree Software, LLC. All Rights Reserved.
+                        Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
                     <overview>src/main/java/us/jts/enmasse/overview.html</overview>
                     <version>true</version>
                     <author>true</author>
                     <doctitle>${title}</doctitle>
                     <windowtitle>${title}</windowtitle>
-                    <!-- pull in source if needed for en masse javadoc generation -->
-                    <!--
-                                        <includeDependencySources>true</includeDependencySources>
-                                        <dependencySourceIncludes>
-                                            <dependencySourceInclude>fortress:*</dependencySourceInclude>
-                                        </dependencySourceIncludes>
-                    -->
                 </configuration>
-
             </plugin>
 
+            <!-- unit test (change to integration test) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -297,16 +295,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
+                <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
 
-              <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -319,22 +318,23 @@
             </plugin>
 
             <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <executions>
-				    <execution>
-					    <id>attach-javadocs</id>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
                         <phase>package</phase>
-					    <goals>
-						    <goal>jar</goal>
-					    </goals>
-				    </execution>
-			    </executions>
-		    </plugin>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-4</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <id>user_distribution</id>
@@ -344,6 +344,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>src/main/assembly/distsrc.xml</descriptor>
                             </descriptors>
@@ -358,46 +359,46 @@
 
     <reporting>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-              <!--aggregate>true</aggregate-->
-              <quiet>true</quiet>
-            </configuration>
-          </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.version}</version>
+                <configuration>
+                    <!--aggregate>true</aggregate-->
+                    <quiet>true</quiet>
+                </configuration>
+            </plugin>
         </plugins>
-      </reporting>
+    </reporting>
 
     <profiles>
-      <profile>
-        <id>release-sign-artifacts</id>
-        <activation>
-          <property>
-            <name>performRelease</name>
-            <value>true</value>
-          </property>
-        </activation>
-        <build>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <version>1.1</version>
-              <executions>
-                <execution>
-                  <id>sign-artifacts</id>
-                  <phase>verify</phase>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
