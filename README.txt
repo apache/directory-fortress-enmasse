@@ -2,8 +2,8 @@ Copyright © 2011-2013. JoshuaTree. All Rights Reserved.
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
-RC28 (BETA RELEASE CANDIDATE)
-Last updated: August 24, 2013
+RC29 (BETA RELEASE CANDIDATE)
+Last updated: August 28, 2013
 ___________________________________________________________________________________
 ###################################################################################
 # Prerequisites
