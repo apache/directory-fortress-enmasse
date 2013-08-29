@@ -3,7 +3,7 @@ ________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
 RC29 (BETA RELEASE CANDIDATE)
-Last updated: August 28, 2013
+Last updated: August 29, 2013
 ___________________________________________________________________________________
 ###################################################################################
 # Prerequisites
@@ -60,7 +60,7 @@ Before you can successfully complete the steps to install and run EnMasse, the f
 http://maven.apache.org/download.html
 http://www.sonatype.com/books/mvnref-book/reference/installation-sect-maven-install.html
 
-3. Java SDK Version 6 or beyond installed:
+3. Java SDK Version 7 or beyond installed:
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 4. Fortress/OpenLDAP QUICKSTART installed:
@@ -71,11 +71,11 @@ binaries: https://iamfortress.org/projects
 http://tomcat.apache.org
 
 6. Fortress Sentry package (a.k.a Realm) installed:
-instructions: http://www.joshuatreesoftware.us/iamfortress/javadocs/api-sentry/com/jts/fortress/sentry/tomcat/package-summary.html
-binaries: https://iamfortress.org/projects
+instructions: http://www.jts.us/iamfortress/javadocs/api-sentry/us/jts/sentry/tomcat/package-summary.html
+binaries: http://iamfortress.org/download
 
 Note: There is a complete EnMasse demo that handles these prereqs for you located here:
-https://iamfortress.org/EnMasse
+http://iamfortress.org/EnMasse
 
 _________________________________________________________________________________
 ###################################################################################
