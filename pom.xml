@@ -22,7 +22,7 @@
     <groupId>us.joshuatreesoftware</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC30</version>
+    <version>1.0-RC31</version>
     <name>fortress-enmasse</name>
     <url>http://jts.us</url>
     <description>EnMasse is a web application that implements RESTful Web services to interface with Fortress/OpenLDAP.
@@ -77,7 +77,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC30</version>
+        <version>1.0-RC31</version>
         <!--        <spring.version>3.2.3.RELEASE</spring.version>-->
         <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.0.4.RELEASE</spring.version>
