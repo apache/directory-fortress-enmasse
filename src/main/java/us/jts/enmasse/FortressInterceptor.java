@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2013, JoshuaTree. All Rights Reserved.
+ * Copyright (c) 2011-2014, JoshuaTree. All Rights Reserved.
  */
 package us.jts.enmasse;
 

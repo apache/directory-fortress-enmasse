@@ -266,7 +266,7 @@
                 <version>${javadoc.version}</version>
                 <configuration>
                     <stylesheet>java</stylesheet>
-                    <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2013 Joshua Tree Software, LLC. All Rights Reserved.
+                    <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2014 Joshua Tree Software, LLC. All Rights Reserved.
                         Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
                     <overview>src/main/java/us/jts/enmasse/overview.html</overview>
                     <version>true</version>
