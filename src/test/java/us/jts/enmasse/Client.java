@@ -616,7 +616,7 @@ public final class Client
             Collection<? extends PermObj> collection = wc.getCollection(PermObj.class);
             for (PermObj permObj : collection)
             {
-                System.out.println("Object Name: " + permObj.getObjectName() + " description:" + permObj.getDescription());
+                System.out.println("Object Name: " + permObj.getObjName() + " description:" + permObj.getDescription());
             }
         }
         catch (Exception e)
@@ -645,7 +645,7 @@ public final class Client
             Collection<? extends Permission> collection = wc.getCollection(Permission.class);
             for (Permission perm : collection)
             {
-                System.out.println("Permission ObjectName: " + perm.getObjectName() + " opName: " + perm.getOpName());
+                System.out.println("Permission ObjectName: " + perm.getObjName() + " opName: " + perm.getOpName());
             }
         }
         catch (Exception e)
