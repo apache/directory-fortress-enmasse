@@ -1,14 +1,25 @@
 /*
- * Copyright (c) 2009-2014, JoshuaTree. All Rights Reserved.
+ * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *
+ * Copyright 1998-2014 The OpenLDAP Foundation.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only as authorized by the OpenLDAP
+ * Public License.
+ *
+ * A copy of this license is available in the file LICENSE in the
+ * top-level directory of the distribution or, alternatively, at
+ * <http://www.OpenLDAP.org/license.html>.
  */
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
-import us.jts.fortress.PwPolicyMgr;
-import us.jts.fortress.PwPolicyMgrFactory;
-import us.jts.fortress.SecurityException;
-import us.jts.fortress.rbac.PwPolicy;
-import us.jts.fortress.rest.FortRequest;
-import us.jts.fortress.rest.FortResponse;
+import org.openldap.fortress.PwPolicyMgr;
+import org.openldap.fortress.PwPolicyMgrFactory;
+import org.openldap.fortress.SecurityException;
+import org.openldap.fortress.rbac.PwPolicy;
+import org.openldap.fortress.rest.FortRequest;
+import org.openldap.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -40,7 +51,7 @@ class PswdPolicyMgrImpl
             response.setEntity(inPolicy);
             response.setErrorCode(0);
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());

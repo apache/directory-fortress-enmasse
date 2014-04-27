@@ -1,14 +1,25 @@
 /*
- * Copyright (c) 2009-2014, JoshuaTree. All Rights Reserved.
+ * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *
+ * Copyright 1998-2014 The OpenLDAP Foundation.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only as authorized by the OpenLDAP
+ * Public License.
+ *
+ * A copy of this license is available in the file LICENSE in the
+ * top-level directory of the distribution or, alternatively, at
+ * <http://www.OpenLDAP.org/license.html>.
  */
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
-import us.jts.fortress.cfg.ConfigMgr;
-import us.jts.fortress.cfg.ConfigMgrFactory;
-import us.jts.fortress.rbac.Props;
-import us.jts.fortress.rest.FortRequest;
-import us.jts.fortress.rest.FortResponse;
-import us.jts.fortress.rest.RestUtils;
+import org.openldap.fortress.cfg.ConfigMgr;
+import org.openldap.fortress.cfg.ConfigMgrFactory;
+import org.openldap.fortress.rbac.Props;
+import org.openldap.fortress.rest.FortRequest;
+import org.openldap.fortress.rest.FortResponse;
+import org.openldap.fortress.rest.RestUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Properties;
@@ -43,7 +54,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
@@ -72,7 +83,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
@@ -104,7 +115,7 @@ class ConfigMgrImpl
             }
             response.setErrorCode(0);
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());
@@ -132,7 +143,7 @@ class ConfigMgrImpl
                 response.setErrorCode(0);
             }
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());

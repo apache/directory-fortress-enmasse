@@ -21,7 +21,7 @@
         </layout>
     </appender>
 
-    <category name="us.jts.enmasse.FortressInterceptor" class="org.apache.log4j.Logger" additivity="false">
+    <category name="org.openldap.enmasse.FortressInterceptor" class="org.apache.log4j.Logger" additivity="false">
         <priority value="INFO" class="org.apache.log4j.Level"/>
         <appender-ref ref="console"/>
     </category>

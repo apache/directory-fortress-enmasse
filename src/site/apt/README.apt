@@ -1,9 +1,24 @@
-Copyright © 2011-2012. Joshua Tree Software, LLC.  All Rights Reserved.
+#
+# This work is part of OpenLDAP Software <http://www.openldap.org/>.
+#
+# Copyright 1998-2014 The OpenLDAP Foundation.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted only as authorized by the OpenLDAP
+# Public License.
+#
+# A copy of this license is available in the file LICENSE in the
+# top-level directory of the distribution or, alternatively, at
+# <http://www.OpenLDAP.org/license.html>.
+#
+# Fortress slapd.conf default settings.
+# Note: Directives that begin with '@' are substitution parms for Fortress' build.xml 'init-slapd' target.
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress EnMasse Web Application Installation
-RC18 (BETA RELEASE CANDIDATE)
-Last updated: December 8, 2012
+RC36 (BETA RELEASE CANDIDATE)
+Last updated: April 27, 2014
 ___________________________________________________________________________________
 ###################################################################################
 # Guidelines & Tips for first-time users of EnMasse Web Application
@@ -37,7 +52,7 @@ ________________________________________________________________________________
   - Spring Security - Role-Based Access Control Interceptor
     - Service-level Authorization uses Spring Security.
     - To find out what Roles required to which Services, view the Spring annotations inside this file:
-        enmasse-dist-[version]/src//main/java/com/jts/enmasse/FortressServiceImpl.java
+        enmasse-dist-[version]/src//main/java/org/openldap/enmasse/FortressServiceImpl.java
 
   - Fortress Sentry - Java EE security plugin for Identity, Coarse-grained Authorization, and Audit Trail
 
@@ -63,22 +78,22 @@ http://www.sonatype.com/books/mvnref-book/reference/installation-sect-maven-inst
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 4. Fortress/OpenLDAP QUICKSTART installed:
-instructions: http://www.joshuatreesoftware.us/iamfortress/guides/README-QUICKSTART.html
-binaries: https://iamfortress.org/projects
+instructions: http://jts.us/iamfortress/guides/README-QUICKSTART.html
+binaries: http://iamfortress.org/projects
 
 5. Tomcat 7 installed:
 http://tomcat.apache.org/download-70.cgi
 
 6. Fortress Sentry package (a.k.a Realm) installed:
-instructions: http://www.joshuatreesoftware.us/iamfortress/javadocs/api-sentry/com/jts/fortress/sentry/tomcat/package-summary.html
-binaries: https://iamfortress.org/projects
+instructions: http://jts.us/iamfortress/javadocs/api-sentry/org/openldap/fortress/sentry/tomcat/package-summary.html
+binaries: http://iamfortress.org/projects
 _________________________________________________________________________________
 ###################################################################################
 # SECTION 2:  Instructions for EnMasse installation using distribution package
 ###################################################################################
 
 1. Retrieve Fortress EnMasse source code bundle which is referred to below as 'enmasse-dist':
-https://iamfortress.org/projects
+http://iamfortress.org/projects
 
 2. Extract contents of enmasse-dist-[version].zip to target env.
 ___________________________________________________________________________________
@@ -89,7 +104,7 @@ ________________________________________________________________________________
 1. open a command prompt on target machine in the root folder of the enmasse-dist package
 
 2. set java home:
->export JAVA_HOME=/opt/jdk1.6.0_27/
+>export JAVA_HOME=/opt/jdk1.7.0_27/
 
 3. set maven home:
 >export M2_HOME=/usr/share/maven2
@@ -178,4 +193,4 @@ enmasse-dist-[version]/target/site/apidocs
 
 3. To view Service-level documentation, go here:
 
-enmasse-dist-[version]/target/site/apidocs/com/jts/enmasse/FortressServiceImpl.html
+enmasse-dist-[version]/target/site/apidocs/org/openldap/enmasse/FortressServiceImpl.html

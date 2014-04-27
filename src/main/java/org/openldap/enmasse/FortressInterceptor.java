@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2014, JoshuaTree. All Rights Reserved.
  */
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;

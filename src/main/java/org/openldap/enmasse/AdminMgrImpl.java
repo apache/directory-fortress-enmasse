@@ -1,26 +1,37 @@
 /*
- * Copyright (c) 2009-2014, JoshuaTree. All Rights Reserved.
+ * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *
+ * Copyright 1998-2014 The OpenLDAP Foundation.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only as authorized by the OpenLDAP
+ * Public License.
+ *
+ * A copy of this license is available in the file LICENSE in the
+ * top-level directory of the distribution or, alternatively, at
+ * <http://www.OpenLDAP.org/license.html>.
  */
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
-import us.jts.fortress.AdminMgr;
-import us.jts.fortress.AdminMgrFactory;
-import us.jts.fortress.DelAdminMgr;
-import us.jts.fortress.DelAdminMgrFactory;
-import us.jts.fortress.ReviewMgr;
-import us.jts.fortress.ReviewMgrFactory;
-import us.jts.fortress.SecurityException;
-import us.jts.fortress.rbac.AdminRole;
-import us.jts.fortress.rbac.PermGrant;
-import us.jts.fortress.rbac.PermObj;
-import us.jts.fortress.rbac.Permission;
-import us.jts.fortress.rbac.Role;
-import us.jts.fortress.rbac.RoleRelationship;
-import us.jts.fortress.rbac.SDSet;
-import us.jts.fortress.rbac.User;
-import us.jts.fortress.rbac.UserRole;
-import us.jts.fortress.rest.FortRequest;
-import us.jts.fortress.rest.FortResponse;
+import org.openldap.fortress.AdminMgr;
+import org.openldap.fortress.AdminMgrFactory;
+import org.openldap.fortress.DelAdminMgr;
+import org.openldap.fortress.DelAdminMgrFactory;
+import org.openldap.fortress.ReviewMgr;
+import org.openldap.fortress.ReviewMgrFactory;
+import org.openldap.fortress.SecurityException;
+import org.openldap.fortress.rbac.AdminRole;
+import org.openldap.fortress.rbac.PermGrant;
+import org.openldap.fortress.rbac.PermObj;
+import org.openldap.fortress.rbac.Permission;
+import org.openldap.fortress.rbac.Role;
+import org.openldap.fortress.rbac.RoleRelationship;
+import org.openldap.fortress.rbac.SDSet;
+import org.openldap.fortress.rbac.User;
+import org.openldap.fortress.rbac.UserRole;
+import org.openldap.fortress.rest.FortRequest;
+import org.openldap.fortress.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 /**
@@ -45,7 +56,7 @@ class AdminMgrImpl
             response.setEntity(outUser);
             response.setErrorCode(0);
         }
-        catch (us.jts.fortress.SecurityException se)
+        catch (org.openldap.fortress.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());

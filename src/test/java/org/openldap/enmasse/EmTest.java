@@ -1,19 +1,30 @@
 /*
- * Copyright (c) 2009-2014, JoshuaTree. All Rights Reserved.
+ * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *
+ * Copyright 1998-2014 The OpenLDAP Foundation.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only as authorized by the OpenLDAP
+ * Public License.
+ *
+ * A copy of this license is available in the file LICENSE in the
+ * top-level directory of the distribution or, alternatively, at
+ * <http://www.OpenLDAP.org/license.html>.
  */
 
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import us.jts.fortress.RestException;
-import us.jts.fortress.GlobalErrIds;
-import us.jts.fortress.rest.FortResponse;
-import us.jts.fortress.rest.HttpIds;
-import us.jts.fortress.rest.RestUtils;
+import org.openldap.fortress.RestException;
+import org.openldap.fortress.GlobalErrIds;
+import org.openldap.fortress.rest.FortResponse;
+import org.openldap.fortress.rest.HttpIds;
+import org.openldap.fortress.rest.RestUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;

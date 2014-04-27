@@ -1,7 +1,18 @@
 /*
- * Copyright (c) 2009-2014, JoshuaTree. All Rights Reserved.
+ * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *
+ * Copyright 1998-2014 The OpenLDAP Foundation.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only as authorized by the OpenLDAP
+ * Public License.
+ *
+ * A copy of this license is available in the file LICENSE in the
+ * top-level directory of the distribution or, alternatively, at
+ * <http://www.OpenLDAP.org/license.html>.
  */
-package us.jts.enmasse;
+package org.openldap.enmasse;
 
 import java.io.File;
 import java.io.InputStream;
@@ -10,11 +21,11 @@ import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
 
-import us.jts.fortress.rest.HttpIds;
-import us.jts.fortress.rbac.OrgUnit;
-import us.jts.fortress.rbac.PermObj;
-import us.jts.fortress.rbac.Permission;
-import us.jts.fortress.rbac.Session;
+import org.openldap.fortress.rest.HttpIds;
+import org.openldap.fortress.rbac.OrgUnit;
+import org.openldap.fortress.rbac.PermObj;
+import org.openldap.fortress.rbac.Permission;
+import org.openldap.fortress.rbac.Session;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;
@@ -470,10 +481,10 @@ public final class Client
             wc.header("Authorization", authorizationHeader);
             //wc.accept("application/json");
             wc.accept("application/xml");
-            Collection<? extends us.jts.fortress.rbac.User> collection = wc.getCollection(us.jts.fortress.rbac.User.class);
+            Collection<? extends org.openldap.fortress.rbac.User> collection = wc.getCollection(org.openldap.fortress.rbac.User.class);
 
             int i = 1;
-            for (us.jts.fortress.rbac.User user : collection)
+            for (org.openldap.fortress.rbac.User user : collection)
             {
                 System.out.println("User[" + i++ + "]");
                 System.out.println("    userId: " + user.getUserId());
@@ -496,7 +507,7 @@ public final class Client
                 if(user.getRoles() != null)
                 {
                     int j = 1;
-                    for(us.jts.fortress.rbac.UserRole userRole : user.getRoles())
+                    for(org.openldap.fortress.rbac.UserRole userRole : user.getRoles())
                     {
                         System.out.println("--------------------------------------------------------------------------");
                         System.out.println("User[" + user.getUserId() + "] UserRole[" + j++ + "]");
@@ -545,8 +556,8 @@ public final class Client
                 + org.apache.cxf.common.util.Base64Utility.encode(new String(userId + ":" + password).getBytes());
             wc.header("Authorization", authorizationHeader);
             wc.accept("application/xml");
-            Collection<? extends us.jts.fortress.rbac.Role> collection = wc.getCollection(us.jts.fortress.rbac.Role.class);
-            for (us.jts.fortress.rbac.Role role : collection)
+            Collection<? extends org.openldap.fortress.rbac.Role> collection = wc.getCollection(org.openldap.fortress.rbac.Role.class);
+            for (org.openldap.fortress.rbac.Role role : collection)
             {
                 System.out.println("Role: " + role.getName() + " description:" + role.getDescription());
                 System.out.println("    parents: " + role.getParents());

@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/util/spring-util-3.0.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
-    <context:component-scan base-package="us.jts" />
+    <context:component-scan base-package="org.openldap" />
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
@@ -28,15 +28,15 @@
         </jaxrs:inInterceptors>
 
         <jaxrs:outFaultInterceptors>
-            <bean class="us.jts.enmasse.SecurityOutFaultInterceptor"/>
+            <bean class="org.openldap.enmasse.SecurityOutFaultInterceptor"/>
         </jaxrs:outFaultInterceptors>
 
     </jaxrs:server>
 
-    <bean id="annotationsInterceptor" class="us.jts.enmasse.FortressInterceptor">
+    <bean id="annotationsInterceptor" class="org.openldap.enmasse.FortressInterceptor">
          <property name="securedObject" ref="securedObject"/>
     </bean>
 
-  <bean id="securedObject" class="us.jts.enmasse.FortressServiceImpl"/>
+  <bean id="securedObject" class="org.openldap.enmasse.FortressServiceImpl"/>
 
 </beans>
