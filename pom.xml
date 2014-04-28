@@ -1,35 +1,33 @@
 <!--
-  Copyright (C) 20011-2013, JoshuaTree. All Rights Reserved.
-  Licensed to Joshua Tree Software, LLC under New BSD license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  JTS licenses this file to You under the New BSD License
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-       http://jts.us/License
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
+  ~ This work is part of OpenLDAP Software <http://www.openldap.org/>.
+  ~
+  ~ Copyright 1998-2014 The OpenLDAP Foundation.
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without
+  ~ modification, are permitted only as authorized by the OpenLDAP
+  ~ Public License.
+  ~
+  ~ A copy of this license is available in the file LICENSE in the
+  ~ top-level directory of the distribution or, alternatively, at
+  ~ <http://www.OpenLDAP.org/license.html>.
+  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
    http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>us.joshuatreesoftware</groupId>
+    <groupId>org.openldap</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC35</version>
-    <name>Fortress- EnMasse</name>
-    <url>http://jts.us</url>
+    <version>1.0-RC36</version>
+    <name>Fortress EnMasse</name>
+    <url>http://www.openldap.org/fortress/</url>
     <description>EnMasse is a Web application that provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine.</description>
     <licenses>
         <license>
-            <name>BSD</name>
-            <url>http://jts.us/License</url>
+            <name>OpenLDAP Public License</name>
+            <url>http://www.OpenLDAP.org/license.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -62,7 +60,7 @@
         <developer>
             <id>smckinney</id>
             <name>Shawn McKinney</name>
-            <email>shawn.mckinney@jts.us</email>
+            <email>smckinney@symas.com</email>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -73,8 +71,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC35</version>
-        <!--        <spring.version>3.2.3.RELEASE</spring.version>-->
+        <version>1.0-RC36</version>
         <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.7</java.version>
@@ -85,8 +82,8 @@
         <base.dir>.</base.dir>
         <src.java.dir>${base.dir}/src/main/java</src.java.dir>
         <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
-        <test>us.jts.enmasse.EmTest</test>
-        <javadoc.stylesheet>${basedir}/src/main/java/us/jts/enmasse/fortress-javadoc.css</javadoc.stylesheet>
+        <test>org.openldap.enmasse.EmTest</test>
+        <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
         <title>${name} ${version}</title>
         <skipTests>true</skipTests>
     </properties>
@@ -94,7 +91,7 @@
     <dependencies>
         <!-- Fortress -->
         <dependency>
-            <groupId>us.joshuatreesoftware</groupId>
+            <groupId>org.openldap</groupId>
             <artifactId>fortress</artifactId>
             <version>${version}</version>
         </dependency>
@@ -262,9 +259,9 @@
                 <version>${javadoc.version}</version>
                 <configuration>
                     <stylesheet>java</stylesheet>
-                    <bottom>&lt;small&gt;Copyright &amp;copy; 2011-2014 Joshua Tree Software, LLC. All Rights Reserved.
+                    <bottom>&lt;small&gt;Copyright &amp;copy; 1998-2014 The OpenLDAP Foundation. All Rights Reserved.
                         Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
-                    <overview>src/main/java/us/jts/enmasse/overview.html</overview>
+                    <overview>src/main/java/org/openldap/enmasse/overview.html</overview>
                     <version>true</version>
                     <author>true</author>
                     <doctitle>${title}</doctitle>
