@@ -20,7 +20,7 @@
     <groupId>org.openldap</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC36</version>
+    <version>1.0-RC37</version>
     <name>Fortress EnMasse</name>
     <url>http://www.openldap.org/fortress/</url>
     <description>EnMasse is a Web application that provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine.</description>
@@ -71,7 +71,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC36</version>
+        <version>1.0-RC37</version>
         <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.7</java.version>
@@ -92,7 +92,7 @@
         <!-- Fortress -->
         <dependency>
             <groupId>org.openldap</groupId>
-            <artifactId>fortress</artifactId>
+            <artifactId>sentry</artifactId>
             <version>${version}</version>
         </dependency>
         <!-- EnMasse Dependencies -->
@@ -199,6 +199,24 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
+                <!-- this is needed to pickup the context.xml in META-INF: -->
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                    <archive>
+                        <manifest>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>${project.basedir}/src/main/resources
+                            </directory>
+
+                        </resource>
+                    </webResources>
+                </configuration>
+
             </plugin>
 
             <plugin>
@@ -244,6 +262,7 @@
                 <artifactId>tomcat-maven-plugin</artifactId>
                 <version>1.0-beta-1</version>
                 <configuration>
+                    <warFile>target/${project.artifactId}.war</warFile>
                     <server>local-tomcat</server>
                     <url>http://localhost:8080/manager/html</url>
                     <path>/enmasse-${version}</path>
