@@ -20,7 +20,7 @@
     <groupId>org.openldap</groupId>
     <artifactId>enmasse</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC38</version>
+    <version>1.0-RC39</version>
     <name>Fortress EnMasse</name>
     <url>http://www.openldap.org/fortress/</url>
     <description>EnMasse is a Web application that provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine.</description>
@@ -71,7 +71,7 @@
 
     <properties>
         <!-- leave this hardcoded, else get cyclic version error from maven -->
-        <version>1.0-RC38</version>
+        <version>1.0-RC39</version>
         <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <java.version>1.7</java.version>
@@ -93,7 +93,7 @@
         <dependency>
             <groupId>org.openldap</groupId>
             <artifactId>sentry</artifactId>
-            <version>${version}</version>
+            <version>1.0-RC39a</version>
         </dependency>
         <!-- EnMasse Dependencies -->
         <dependency>
@@ -412,5 +412,12 @@
             </build>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>maven2</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
 
 </project>
