@@ -1,18 +1,23 @@
 /*
- * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *   Licensed to the Apache Software Foundation (ASF) under one
+ *   or more contributor license agreements.  See the NOTICE file
+ *   distributed with this work for additional information
+ *   regarding copyright ownership.  The ASF licenses this file
+ *   to you under the Apache License, Version 2.0 (the
+ *   "License"); you may not use this file except in compliance
+ *   with the License.  You may obtain a copy of the License at
  *
- * Copyright 1998-2014 The OpenLDAP Foundation.
- * All rights reserved.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted only as authorized by the OpenLDAP
- * Public License.
+ *   Unless required by applicable law or agreed to in writing,
+ *   software distributed under the License is distributed on an
+ *   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *   KIND, either express or implied.  See the License for the
+ *   specific language governing permissions and limitations
+ *   under the License.
  *
- * A copy of this license is available in the file LICENSE in the
- * top-level directory of the distribution or, alternatively, at
- * <http://www.OpenLDAP.org/license.html>.
  */
-package org.openldap.enmasse;
+package org.apache.directory.fortress.rest;
 
 import java.io.File;
 import java.io.InputStream;
@@ -21,11 +26,11 @@ import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.openldap.fortress.rest.HttpIds;
-import org.openldap.fortress.rbac.OrgUnit;
-import org.openldap.fortress.rbac.PermObj;
-import org.openldap.fortress.rbac.Permission;
-import org.openldap.fortress.rbac.Session;
+import org.apache.directory.fortress.core.rest.HttpIds;
+import org.apache.directory.fortress.core.rbac.OrgUnit;
+import org.apache.directory.fortress.core.rbac.PermObj;
+import org.apache.directory.fortress.core.rbac.Permission;
+import org.apache.directory.fortress.core.rbac.Session;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;
@@ -481,10 +486,10 @@ public final class Client
             wc.header("Authorization", authorizationHeader);
             //wc.accept("application/json");
             wc.accept("application/xml");
-            Collection<? extends org.openldap.fortress.rbac.User> collection = wc.getCollection(org.openldap.fortress.rbac.User.class);
+            Collection<? extends org.apache.directory.fortress.core.rbac.User> collection = wc.getCollection(org.apache.directory.fortress.core.rbac.User.class);
 
             int i = 1;
-            for (org.openldap.fortress.rbac.User user : collection)
+            for (org.apache.directory.fortress.core.rbac.User user : collection)
             {
                 System.out.println("User[" + i++ + "]");
                 System.out.println("    userId: " + user.getUserId());
@@ -507,7 +512,7 @@ public final class Client
                 if(user.getRoles() != null)
                 {
                     int j = 1;
-                    for(org.openldap.fortress.rbac.UserRole userRole : user.getRoles())
+                    for(org.apache.directory.fortress.core.rbac.UserRole userRole : user.getRoles())
                     {
                         System.out.println("--------------------------------------------------------------------------");
                         System.out.println("User[" + user.getUserId() + "] UserRole[" + j++ + "]");
@@ -556,8 +561,8 @@ public final class Client
                 + org.apache.cxf.common.util.Base64Utility.encode(new String(userId + ":" + password).getBytes());
             wc.header("Authorization", authorizationHeader);
             wc.accept("application/xml");
-            Collection<? extends org.openldap.fortress.rbac.Role> collection = wc.getCollection(org.openldap.fortress.rbac.Role.class);
-            for (org.openldap.fortress.rbac.Role role : collection)
+            Collection<? extends org.apache.directory.fortress.core.rbac.Role> collection = wc.getCollection(org.apache.directory.fortress.core.rbac.Role.class);
+            for (org.apache.directory.fortress.core.rbac.Role role : collection)
             {
                 System.out.println("Role: " + role.getName() + " description:" + role.getDescription());
                 System.out.println("    parents: " + role.getParents());

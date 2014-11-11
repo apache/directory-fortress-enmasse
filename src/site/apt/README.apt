@@ -85,7 +85,7 @@ binaries: http://iamfortress.org/projects
 http://tomcat.apache.org/download-70.cgi
 
 6. Fortress Sentry package (a.k.a Realm) installed:
-instructions: http://jts.us/iamfortress/javadocs/api-sentry/org/openldap/fortress/sentry/tomcat/package-summary.html
+instructions: http://jts.us/iamfortress/javadocs/api-sentry/org.apache.directory.fortress.core/sentry/tomcat/package-summary.html
 binaries: http://iamfortress.org/projects
 _________________________________________________________________________________
 ###################################################################################

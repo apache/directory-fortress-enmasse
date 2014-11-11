@@ -1,32 +1,37 @@
 /*
- * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *   Licensed to the Apache Software Foundation (ASF) under one
+ *   or more contributor license agreements.  See the NOTICE file
+ *   distributed with this work for additional information
+ *   regarding copyright ownership.  The ASF licenses this file
+ *   to you under the Apache License, Version 2.0 (the
+ *   "License"); you may not use this file except in compliance
+ *   with the License.  You may obtain a copy of the License at
  *
- * Copyright 1998-2014 The OpenLDAP Foundation.
- * All rights reserved.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted only as authorized by the OpenLDAP
- * Public License.
+ *   Unless required by applicable law or agreed to in writing,
+ *   software distributed under the License is distributed on an
+ *   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *   KIND, either express or implied.  See the License for the
+ *   specific language governing permissions and limitations
+ *   under the License.
  *
- * A copy of this license is available in the file LICENSE in the
- * top-level directory of the distribution or, alternatively, at
- * <http://www.OpenLDAP.org/license.html>.
  */
-package org.openldap.enmasse;
+package org.apache.directory.fortress.rest;
 
-import org.openldap.fortress.ReviewMgr;
-import org.openldap.fortress.ReviewMgrFactory;
-import org.openldap.fortress.SecurityException;
-import org.openldap.fortress.rbac.OrgUnit;
-import org.openldap.fortress.rbac.PermObj;
-import org.openldap.fortress.rbac.Permission;
-import org.openldap.fortress.rbac.Role;
-import org.openldap.fortress.rbac.SDSet;
-import org.openldap.fortress.rbac.User;
-import org.openldap.fortress.rbac.UserRole;
-import org.openldap.fortress.rest.FortRequest;
-import org.openldap.fortress.rest.FortResponse;
-import org.openldap.fortress.util.attr.VUtil;
+import org.apache.directory.fortress.core.ReviewMgr;
+import org.apache.directory.fortress.core.ReviewMgrFactory;
+import org.apache.directory.fortress.core.SecurityException;
+import org.apache.directory.fortress.core.rbac.OrgUnit;
+import org.apache.directory.fortress.core.rbac.PermObj;
+import org.apache.directory.fortress.core.rbac.Permission;
+import org.apache.directory.fortress.core.rbac.Role;
+import org.apache.directory.fortress.core.rbac.SDSet;
+import org.apache.directory.fortress.core.rbac.User;
+import org.apache.directory.fortress.core.rbac.UserRole;
+import org.apache.directory.fortress.core.rest.FortRequest;
+import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.util.attr.VUtil;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -54,7 +59,7 @@ class ReviewMgrImpl
             response.setEntity(retPerm);
             response.setErrorCode(0);
         }
-        catch (org.openldap.fortress.SecurityException se)
+        catch (org.apache.directory.fortress.core.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());

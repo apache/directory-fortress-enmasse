@@ -1,30 +1,35 @@
 /*
- * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *   Licensed to the Apache Software Foundation (ASF) under one
+ *   or more contributor license agreements.  See the NOTICE file
+ *   distributed with this work for additional information
+ *   regarding copyright ownership.  The ASF licenses this file
+ *   to you under the Apache License, Version 2.0 (the
+ *   "License"); you may not use this file except in compliance
+ *   with the License.  You may obtain a copy of the License at
  *
- * Copyright 1998-2014 The OpenLDAP Foundation.
- * All rights reserved.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted only as authorized by the OpenLDAP
- * Public License.
+ *   Unless required by applicable law or agreed to in writing,
+ *   software distributed under the License is distributed on an
+ *   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *   KIND, either express or implied.  See the License for the
+ *   specific language governing permissions and limitations
+ *   under the License.
  *
- * A copy of this license is available in the file LICENSE in the
- * top-level directory of the distribution or, alternatively, at
- * <http://www.OpenLDAP.org/license.html>.
  */
 
-package org.openldap.enmasse;
+package org.apache.directory.fortress.rest;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.openldap.fortress.RestException;
-import org.openldap.fortress.GlobalErrIds;
-import org.openldap.fortress.rest.FortResponse;
-import org.openldap.fortress.rest.HttpIds;
-import org.openldap.fortress.rest.RestUtils;
+import org.apache.directory.fortress.core.RestException;
+import org.apache.directory.fortress.core.GlobalErrIds;
+import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.rest.HttpIds;
+import org.apache.directory.fortress.core.rest.RestUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;
@@ -48,7 +53,8 @@ public final class EmTest
     private static final String HOST = "localhost";
     private static final String PORT = "8080";
     private static final String VERSION = System.getProperty("version");
-    private static final String SERVICE = "enmasse-" + VERSION;
+    private static final String SERVICE = "fortress-rest-" + VERSION;
+    //private static final String SERVICE = "enmasse-" + VERSION;
     private static final String URI = "http://" + HOST + ":" + PORT + "/" + SERVICE + "/";
     private static final String USER_ID = "demouser4";
     private static final String PASSWORD = "password";

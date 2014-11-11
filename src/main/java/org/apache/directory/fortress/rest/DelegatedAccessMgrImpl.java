@@ -1,31 +1,36 @@
 /*
- * This work is part of OpenLDAP Software <http://www.openldap.org/>.
+ *   Licensed to the Apache Software Foundation (ASF) under one
+ *   or more contributor license agreements.  See the NOTICE file
+ *   distributed with this work for additional information
+ *   regarding copyright ownership.  The ASF licenses this file
+ *   to you under the Apache License, Version 2.0 (the
+ *   "License"); you may not use this file except in compliance
+ *   with the License.  You may obtain a copy of the License at
  *
- * Copyright 1998-2014 The OpenLDAP Foundation.
- * All rights reserved.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted only as authorized by the OpenLDAP
- * Public License.
+ *   Unless required by applicable law or agreed to in writing,
+ *   software distributed under the License is distributed on an
+ *   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *   KIND, either express or implied.  See the License for the
+ *   specific language governing permissions and limitations
+ *   under the License.
  *
- * A copy of this license is available in the file LICENSE in the
- * top-level directory of the distribution or, alternatively, at
- * <http://www.OpenLDAP.org/license.html>.
  */
-package org.openldap.enmasse;
+package org.apache.directory.fortress.rest;
 
-import org.openldap.fortress.DelAccessMgr;
-import org.openldap.fortress.DelAccessMgrFactory;
-import org.openldap.fortress.SecurityException;
-import org.openldap.fortress.rbac.RolePerm;
-import org.openldap.fortress.rbac.UserAdminRole;
-import org.openldap.fortress.rbac.Permission;
-import org.openldap.fortress.rbac.Role;
-import org.openldap.fortress.rbac.Session;
-import org.openldap.fortress.rbac.User;
-import org.openldap.fortress.rbac.UserRole;
-import org.openldap.fortress.rest.FortRequest;
-import org.openldap.fortress.rest.FortResponse;
+import org.apache.directory.fortress.core.DelAccessMgr;
+import org.apache.directory.fortress.core.DelAccessMgrFactory;
+import org.apache.directory.fortress.core.SecurityException;
+import org.apache.directory.fortress.core.rbac.RolePerm;
+import org.apache.directory.fortress.core.rbac.UserAdminRole;
+import org.apache.directory.fortress.core.rbac.Permission;
+import org.apache.directory.fortress.core.rbac.Role;
+import org.apache.directory.fortress.core.rbac.Session;
+import org.apache.directory.fortress.core.rbac.User;
+import org.apache.directory.fortress.core.rbac.UserRole;
+import org.apache.directory.fortress.core.rest.FortRequest;
+import org.apache.directory.fortress.core.rest.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -60,7 +65,7 @@ class DelegatedAccessMgrImpl
             response.setAuthorized(result);
             response.setErrorCode(0);
         }
-        catch (org.openldap.fortress.SecurityException se)
+        catch (org.apache.directory.fortress.core.SecurityException se)
         {
             log.info(CLS_NM + " caught " + se);
             response.setErrorCode(se.getErrorId());

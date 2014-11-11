@@ -1,30 +1,27 @@
 <!--
-  ~ This work is part of OpenLDAP Software <http://www.openldap.org/>.
-  ~
-  ~ Copyright 1998-2014 The OpenLDAP Foundation.
-  ~ All rights reserved.
-  ~
-  ~ Redistribution and use in source and binary forms, with or without
-  ~ modification, are permitted only as authorized by the OpenLDAP
-  ~ Public License.
-  ~
-  ~ A copy of this license is available in the file LICENSE in the
-  ~ top-level directory of the distribution or, alternatively, at
-  ~ <http://www.OpenLDAP.org/license.html>.
-  -->
+   Licensed to the Apache Software Foundation (ASF) under one
+   or more contributor license agreements.  See the NOTICE file
+   distributed with this work for additional information
+   regarding copyright ownership.  The ASF licenses this file
+   to you under the Apache License, Version 2.0 (the
+   "License"); you may not use this file except in compliance
+   with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>EnMasse Policy Server</display-name>
-
-    <!--
-        <error-page>
-            <exception-type>java.lang.Throwable</exception-type>
-            <location>/myErrorPage.html</location>
-        </error-page>
-    -->
+    <display-name>Fortress Rest Server</display-name>
 
     <!-- Add for Spring support -->
     <context-param>
@@ -46,43 +43,8 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
-    <!--filter>
-     <filter-name>springSecurityFilterChain</filter-name>
-     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter-->
-
-    <!--filter-mapping>
-     <filter-name>springSecurityFilterChain</filter-name>
-     <url-pattern>/*</url-pattern>
-    </filter-mapping-->
-
-    <!--security-constraint>
-       <display-name>EnMasse Security Constraint</display-name>
-       <web-resource-collection>
-          <web-resource-name>Protected Area</web-resource-name>
-          <url-pattern>/*</url-pattern>
-          <http-method>DELETE</http-method>
-          <http-method>GET</http-method>
-          <http-method>POST</http-method>
-          <http-method>PUT</http-method>
-       </web-resource-collection>
-       <auth-constraint>
-          <role-name>role1</role-name>
-       </auth-constraint>
-     </security-constraint-->
-
-    <!--filter>
-     <filter-name>springSecurityFilterChain</filter-name>
-     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-
-    <filter-mapping>
-     <filter-name>springSecurityFilterChain</filter-name>
-     <url-pattern>/*</url-pattern>
-    </filter-mapping-->
-
     <security-constraint>
-       <display-name>En Masse Security Constraint</display-name>
+       <display-name>Fortress Rest Security Constraint</display-name>
        <web-resource-collection>
           <web-resource-name>Protected Area</web-resource-name>
           <!-- Define the context-relative URL(s) to be protected -->
@@ -92,19 +54,19 @@
        </web-resource-collection>
        <auth-constraint>
           <!-- Anyone with one of the listed roles may access this area -->
-          <role-name>role1</role-name>
+          <role-name>fortress-rest-user</role-name>
        </auth-constraint>
      </security-constraint>
 
      <!-- Default login configuration uses form-based authentication -->
      <login-config>
        <auth-method>BASIC</auth-method>
-       <realm-name>Java Sentry Realm Authentication Area</realm-name>
+       <realm-name>Fortress Rest Realm Authentication Area</realm-name>
      </login-config>
 
      <!-- Security roles referenced by this web application -->
      <security-role>
-       <role-name>role1</role-name>
+       <role-name>fortress-rest</role-name>
      </security-role>
 
 </web-app>
