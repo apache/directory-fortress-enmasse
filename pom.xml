@@ -25,7 +25,7 @@
     <groupId>org.apache.directory</groupId>
     <artifactId>fortress-rest</artifactId>
     <packaging>war</packaging>
-    <version>1.0-RC40</version>
+    <version>1.0-RC40-SNAPSHOT</version>
     <name>Apache Fortress Web</name>
     <url>http://directory.apache.org/foress/</url>
     <description>Fortress Rest provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine</description>
