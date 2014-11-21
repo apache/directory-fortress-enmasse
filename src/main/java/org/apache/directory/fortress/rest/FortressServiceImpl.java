@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 /**
  * Implementation for EnMasse Service methods forwards to delegate.  This class is thread safe.
  *
- * @author Shawn McKinney
+ * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
 @Service("fortressService")
 public class FortressServiceImpl implements FortressService

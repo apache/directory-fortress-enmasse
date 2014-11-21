@@ -25,7 +25,7 @@ import org.apache.directory.fortress.core.rest.FortResponse;
 /**
  * Interface for EnMasse Service methods.
  *
- * @author Shawn McKinney
+ * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
 public interface FortressService
 {

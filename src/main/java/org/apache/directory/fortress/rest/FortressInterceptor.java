@@ -36,7 +36,7 @@ import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
 /**
  * Security Utility for EnMasse Server.
  *
- * @author Shawn McKinney
+ * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
 public class FortressInterceptor extends SimpleAuthorizingInterceptor
 {
