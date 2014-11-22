@@ -31,6 +31,7 @@ import java.util.Set;
 import org.apache.cxf.common.classloader.ClassLoaderUtils;
 import org.apache.cxf.common.util.ClassHelper;
 import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -40,18 +41,20 @@ import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
  */
 public class FortressInterceptor extends SimpleAuthorizingInterceptor
 {
-    private static final String CLS_NM = FortressInterceptor.class.getName();
-    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger(FortressInterceptor.class.getName());
 
     private static final String DEFAULT_ANNOTATION_CLASS_NAME = "javax.annotation.security.RolesAllowed";
+    
+    /** The list of methods we want to skip */
     private static final Set<String> SKIP_METHODS;
 
     static
     {
         SKIP_METHODS = new HashSet<String>();
-        SKIP_METHODS.addAll(Arrays.asList(
-            new String[]{"wait", "notify", "notifyAll",
-                "equals", "toString", "hashCode"}));
+        SKIP_METHODS.addAll( Arrays.asList(
+            new String[]{ "wait", "notify", "notifyAll",
+                "equals", "toString", "hashCode" } ) );
     }
 
     private String annotationClassName = DEFAULT_ANNOTATION_CLASS_NAME;
@@ -60,132 +63,160 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
      *
      * @param name
      */
-    public void setAnnotationClassName(String name)
+    public void setAnnotationClassName( String name )
     {
         try
         {
-            log.info(CLS_NM + ".setAnnotationClassName:" + name);
-            ClassLoaderUtils.loadClass(name, FortressInterceptor.class);
+            LOG.info( "FortressInterceptor.setAnnotationClassName:" + name );
+            ClassLoaderUtils.loadClass( name, FortressInterceptor.class );
             annotationClassName = name;
         }
-        catch (ClassNotFoundException ex)
+        catch ( ClassNotFoundException ex )
         {
-            String warning = CLS_NM + ".setAnnotationClassName caught ClassNotFoundException-" + ex;
-            log.info((warning));
+            LOG.info( "FortressInterceptor.setAnnotationClassName caught ClassNotFoundException-" + ex );
         }
     }
+    
 
     /**
      *
      * @param object
      */
-    public void setSecuredObject(Object object)
+    public void setSecuredObject( Object object )
     {
-        log.info(CLS_NM + ".setSecuredObject:" + object);
-        Class<?> cls = ClassHelper.getRealClass(object);
+        LOG.info( "FortressInterceptor.setSecuredObject:" + object );
+        Class<?> cls = ClassHelper.getRealClass( object );
         Map<String, String> rolesMap = new HashMap<String, String>();
-        findRoles(cls, rolesMap);
-        if (rolesMap.isEmpty())
+        findRoles( cls, rolesMap );
+        
+        if ( rolesMap.isEmpty() )
         {
-            log.info(CLS_NM + ".setSecuredObject The roles map is empty, the service object is not protected");
+            LOG.info( "FortressInterceptor.setSecuredObject The roles map is empty, the service object is not protected" );
         }
-        else if (log.isDebugEnabled())
+        else if ( LOG.isDebugEnabled() )
         {
-            for (Map.Entry<String, String> entry : rolesMap.entrySet())
+            for ( Map.Entry<String, String> entry : rolesMap.entrySet() )
             {
-                log.debug(CLS_NM + ".setSecuredObject Method: " + entry.getKey() + ", roles: " + entry.getValue());
+                LOG.debug( "FortressInterceptor.setSecuredObject Method: " + entry.getKey() + ", roles: " + entry.getValue() );
             }
         }
-        super.setMethodRolesMap(rolesMap);
+        
+        super.setMethodRolesMap( rolesMap );
     }
+    
 
     /**
-     *
+     * Find the list of 
      * @param cls
      * @param rolesMap
      */
-    protected void findRoles(Class<?> cls, Map<String, String> rolesMap)
+    protected void findRoles( Class<?> cls, Map<String, String> rolesMap )
     {
-        log.info(CLS_NM + ".findRoles:" + rolesMap);
-        if (cls == null || cls == Object.class)
+        LOG.info( "FortressInterceptor.findRoles:" + rolesMap );
+        
+        if ( ( cls == null ) || ( cls == Object.class ) )
         {
             return;
         }
-        String classRolesAllowed = getRoles(cls.getAnnotations(), annotationClassName);
-        for (Method m : cls.getMethods())
+        
+        String classRolesAllowed = getRoles( cls.getAnnotations(), annotationClassName );
+        
+        // Process all the methods for the given class itself
+        for ( Method m : cls.getMethods() )
         {
-            if (SKIP_METHODS.contains(m.getName()))
+            if ( SKIP_METHODS.contains( m.getName() ) )
             {
                 continue;
             }
-            String methodRolesAllowed = getRoles(m.getAnnotations(), annotationClassName);
-            String theRoles = methodRolesAllowed != null ? methodRolesAllowed : classRolesAllowed;
-            if (theRoles != null)
+            
+            String methodRolesAllowed = getRoles( m.getAnnotations(), annotationClassName );
+            
+            if ( methodRolesAllowed != null )
             {
-                rolesMap.put(m.getName(), theRoles);
+                rolesMap.put( m.getName(), methodRolesAllowed );
+            }
+            else if ( classRolesAllowed != null )
+            {
+                rolesMap.put( m.getName(), classRolesAllowed );
             }
         }
-        if (!rolesMap.isEmpty())
+        
+        // We have found roles in the current class, get out
+        if ( !rolesMap.isEmpty() )
         {
             return;
         }
 
-        findRoles(cls.getSuperclass(), rolesMap);
+        // Chekc the super class now
+        findRoles( cls.getSuperclass(), rolesMap );
 
-        if (!rolesMap.isEmpty())
+        // Get out if we have some roles
+        if ( !rolesMap.isEmpty() )
         {
             return;
         }
 
-        for (Class<?> interfaceCls : cls.getInterfaces())
+        // Still nothing ? let's check the interfaces
+        for ( Class<?> interfaceCls : cls.getInterfaces() )
         {
-            findRoles(interfaceCls, rolesMap);
+            findRoles( interfaceCls, rolesMap );
         }
     }
 
+    
     /**
      *
      * @param anns
      * @param annName
      * @return String roles
      */
-    private String getRoles(Annotation[] anns, String annName)
+    private String getRoles( Annotation[] anns, String annName )
     {
-        log.debug(CLS_NM + ".getRoles:" + annName);
-        for (Annotation ann : anns)
+        LOG.debug( "FortressInterceptor.getRoles:" + annName );
+        
+        for ( Annotation ann : anns )
         {
-            if (ann.annotationType().getName().equals(annName))
+            if ( ann.annotationType().getName().equals( annName ) )
             {
                 try
                 {
-                    Method valueMethod = ann.annotationType().getMethod("value", new Class[]{});
-                    String[] roles = (String[]) valueMethod.invoke(ann, new Object[]{});
+                    Method valueMethod = ann.annotationType().getMethod( "value", new Class[]{} );
+                    String[] roles = (String[]) valueMethod.invoke( ann, new Object[]{} );
                     StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < roles.length; i++)
+                    boolean isFirst = false;
+                    
+                    for ( String role : roles )
                     {
-                        sb.append(roles[i]);
-                        if (i + 1 < roles.length)
+                        if ( isFirst )
                         {
-                            sb.append(" ");
+                            isFirst = false;
                         }
+                        else
+                        {
+                            sb.append( " " );
+                        }
+                        
+                        sb.append( role );
                     }
+                    
                     return sb.toString();
                 }
-                catch (java.lang.NoSuchMethodException ex)
+                catch ( NoSuchMethodException ex )
                 {
-                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught NoSuchMethodException=" + ex);
+                    LOG.info( "FortressInterceptor.getRoles annName=" + annName + ", caught NoSuchMethodException=" + ex );
                 }
-                catch (java.lang.IllegalAccessException ex)
+                catch ( IllegalAccessException ex )
                 {
-                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught IllegalAccessException=" + ex);
+                    LOG.info( "FortressInterceptor.getRoles annName=" + annName + ", caught IllegalAccessException=" + ex );
                 }
-                catch (InvocationTargetException ex)
+                catch ( InvocationTargetException ex )
                 {
-                    log.info(CLS_NM + ".getRoles annName=" + annName + ", caught InvocationTargetException=" + ex);
+                    LOG.info( "FortressInterceptor.getRoles annName=" + annName + ", caught InvocationTargetException=" + ex );
                 }
                 break;
             }
         }
+        
         return null;
     }
 }
