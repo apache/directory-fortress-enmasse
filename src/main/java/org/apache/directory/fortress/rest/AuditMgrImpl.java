@@ -37,10 +37,10 @@ import java.util.List;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class AuditMgrImpl
+class AuditMgrImpl extends AbstractImpl
 {
-    private static final String CLS_NM = AuditMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger log = Logger.getLogger( AuditMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************
@@ -48,129 +48,128 @@ class AuditMgrImpl
      * **************************************************************************************************************************************
      */
 
-    FortResponse searchBinds(FortRequest request)
+    /* No qualifier */ FortResponse searchBinds(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAudit inAudit = (UserAudit) request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<Bind> outAudit = auditMgr.searchBinds(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<Bind> outAudit = auditMgr.searchBinds( inAudit );
+            response.setEntities( outAudit );
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+        
         return response;
     }
 
-    FortResponse getUserAuthZs(FortRequest request)
+    
+    /* No qualifier */ FortResponse getUserAuthZs(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAudit inAudit = (UserAudit)request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<AuthZ> outAudit = auditMgr.getUserAuthZs(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<AuthZ> outAudit = auditMgr.getUserAuthZs( inAudit );
+            response.setEntities( outAudit );
         }
         catch (SecurityException se)
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+        
         return response;
     }
 
-    FortResponse searchAuthZs(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchAuthZs(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAudit inAudit = (UserAudit)request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<AuthZ> outAudit = auditMgr.searchAuthZs(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<AuthZ> outAudit = auditMgr.searchAuthZs( inAudit );
+            response.setEntities( outAudit );
         }
         catch (SecurityException se)
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+
         return response;
     }
 
-    FortResponse searchUserSessions(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchUserSessions(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAudit inAudit = (UserAudit)request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<Mod> outAudit = auditMgr.searchUserSessions(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<Mod> outAudit = auditMgr.searchUserSessions( inAudit );
+            response.setEntities( outAudit );
         }
         catch (SecurityException se)
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+
         return response;
     }
 
-    FortResponse searchAdminMods(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchAdminMods(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAudit inAudit = (UserAudit)request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<Mod> outAudit = auditMgr.searchAdminMods(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<Mod> outAudit = auditMgr.searchAdminMods( inAudit );
+            response.setEntities( outAudit );
         }
         catch (SecurityException se)
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+        
         return response;
     }
 
-    FortResponse searchInvalidUsers(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchInvalidUsers(FortRequest request)
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+
         try
         {
             UserAudit inAudit = (UserAudit)request.getEntity();
-            AuditMgr auditMgr = AuditMgrFactory.createInstance(request.getContextId());
-            auditMgr.setAdmin(request.getSession());
-            List<AuthZ> outAudit = auditMgr.searchInvalidUsers(inAudit);
-            response.setEntities(outAudit);
-            response.setErrorCode(0);
+            AuditMgr auditMgr = AuditMgrFactory.createInstance( request.getContextId() );
+            auditMgr.setAdmin( request.getSession() );
+            List<AuthZ> outAudit = auditMgr.searchInvalidUsers( inAudit );
+            response.setEntities( outAudit );
         }
         catch (SecurityException se)
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, log, se );
         }
+        
         return response;
     }
 }

@@ -21,6 +21,7 @@ package org.apache.directory.fortress.rest;
 
 import org.apache.directory.fortress.core.AccessMgr;
 import org.apache.directory.fortress.core.AccessMgrFactory;
+import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.rbac.Permission;
 import org.apache.directory.fortress.core.rbac.Session;
@@ -38,245 +39,267 @@ import java.util.Set;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class AccessMgrImpl
+class AccessMgrImpl extends AbstractImpl
 {
-    private static final String CLS_NM = AccessMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger( AccessMgrImpl.class.getName() );
+    
+    /** A flag for trusted sessions */
+    private static final boolean TRUSTED = true;
+    
+    /** A flag for untrusted sessions */
+    private static final boolean UNTRUSTED = false;
 
     /**
      * ************************************************************************************************************************************
      * BEGIN ACCESSMGR
      * **************************************************************************************************************************************
      */
-
-    FortResponse authenticate(FortRequest request)
+    /* No qualifier */ FortResponse authenticate( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             User inUser = (User) request.getEntity();
-            Session outSession = accessMgr.authenticate(inUser.getUserId(), inUser.getPassword());
-            response.setSession(outSession);
-            response.setErrorCode(0);
+            Session outSession = accessMgr.authenticate( inUser.getUserId(), inUser.getPassword() );
+            response.setSession( outSession );
+            response.setErrorCode( GlobalErrIds.NO_ERROR );
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse createSession(FortRequest request)
+    
+    /**
+     * Creates an untrusted session
+     * 
+     * @param request The request We want to create a session for
+     * @return The created response
+     */
+    /* no qualifier*/ FortResponse createSession( FortRequest request )
     {
-        FortResponse response = new FortResponse();
-        try
-        {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
-            User inUser = (User) request.getEntity();
-            Session outSession = accessMgr.createSession(inUser, false);
-            response.setSession(outSession);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
+        return createSession( request, UNTRUSTED );
     }
 
-    FortResponse createSessionTrusted(FortRequest request)
+    
+    /**
+     * Creates a trusted session
+     * 
+     * @param request The request We want to create a session for
+     * @return The created response
+     */
+    /* no qualifier*/ FortResponse createSessionTrusted( FortRequest request )
     {
-        FortResponse response = new FortResponse();
-        try
-        {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
-            User inUser = (User) request.getEntity();
-            Session outSession = accessMgr.createSession(inUser, true);
-            response.setSession(outSession);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
+        return createSession( request, TRUSTED );
     }
 
-    FortResponse checkAccess(FortRequest request)
+    
+    /**
+     * Creates a session, trusted or untrested
+     * 
+     * @param request The request We want to create a session for
+     * @param trusted Is the session trusted or not
+     * @return The created response
+     */
+    private FortResponse createSession( FortRequest request, boolean trusted )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
+            User inUser = (User) request.getEntity();
+            Session outSession = accessMgr.createSession( inUser, trusted );
+            response.setSession( outSession );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+    
+    
+    /**
+     * Perform user RBAC authorization.
+     *
+     * @param request The {@link FortressRequest} we have to check
+     * @return a {@link FortressResponse} containing the response
+     */
+    /* no qualifier*/ FortResponse checkAccess( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Permission perm = (Permission)request.getEntity();
-            perm.setAdmin(false);
+            perm.setAdmin( false );
             Session session = request.getSession();
-            boolean result = accessMgr.checkAccess(session, perm);
-            response.setSession(session);
-            response.setAuthorized(result);
-            response.setErrorCode(0);
+            boolean result = accessMgr.checkAccess( session, perm );
+            response.setSession( session );
+            response.setAuthorized( result );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse sessionPermissions(FortRequest request)
+    
+    /* No qualifier */ FortResponse sessionPermissions( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Session session = request.getSession();
-            List<Permission> perms = accessMgr.sessionPermissions(session);
-            response.setSession(session);
-            response.setEntities(perms);
-            response.setErrorCode(0);
+            List<Permission> perms = accessMgr.sessionPermissions( session );
+            response.setSession( session );
+            response.setEntities( perms );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse sessionRoles(FortRequest request)
+    
+    /* No qualifier */ FortResponse sessionRoles( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Session session = request.getSession();
-            List<UserRole> roles = accessMgr.sessionRoles(session);
-            response.setEntities(roles);
-            response.setSession(session);
-            response.setErrorCode(0);
+            List<UserRole> roles = accessMgr.sessionRoles( session );
+            response.setEntities( roles );
+            response.setSession( session );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse authorizedSessionRoles(FortRequest request)
+    
+    /* No qualifier */ FortResponse authorizedSessionRoles( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Session session = request.getSession();
-            Set<String> roles = accessMgr.authorizedRoles(session);
-            response.setValueSet(roles);
-            response.setSession(session);
-            response.setErrorCode(0);
+            Set<String> roles = accessMgr.authorizedRoles( session );
+            response.setValueSet( roles );
+            response.setSession( session );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
+    
 
-    FortResponse addActiveRole(FortRequest request)
+    /* No qualifier */ FortResponse addActiveRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             UserRole uRole = (UserRole)request.getEntity();
             Session session = request.getSession();
-            accessMgr.addActiveRole(session, uRole);
-            response.setSession(session);
-            response.setErrorCode(0);
+            accessMgr.addActiveRole( session, uRole );
+            response.setSession( session );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse dropActiveRole(FortRequest request)
+    
+    /* No qualifier */ FortResponse dropActiveRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             UserRole uRole = (UserRole)request.getEntity();
             Session session = request.getSession();
-            accessMgr.dropActiveRole(session, uRole);
-            response.setSession(session);
-            response.setErrorCode(0);
+            accessMgr.dropActiveRole( session, uRole );
+            response.setSession( session );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
+        return response;
+    }
+    
+
+    /* No qualifier */ FortResponse getUserId( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
+            Session session = request.getSession();
+            String userId = accessMgr.getUserId( session );
+            User outUser = new User( userId );
+            response.setSession( session );
+            response.setEntity( outUser );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
         return response;
     }
 
-    FortResponse getUserId(FortRequest request)
+    
+    /* No qualifier */ FortResponse getUser( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Session session = request.getSession();
-            String userId = accessMgr.getUserId(session);
-            User outUser = new User(userId);
-            response.setSession(session);
-            response.setEntity(outUser);
-            response.setErrorCode(0);
+            User outUser = accessMgr.getUser( session );
+            response.setSession( session );
+            response.setEntity( outUser );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
-        return response;
-    }
-
-    FortResponse getUser(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            AccessMgr accessMgr = AccessMgrFactory.createInstance(request.getContextId());
-            Session session = request.getSession();
-            User outUser = accessMgr.getUser(session);
-            response.setSession(session);
-            response.setEntity(outUser);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
+        
         return response;
     }
 }
