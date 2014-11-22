@@ -44,7 +44,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class AdminMgrImpl extends AbstractImpl
+class AdminMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
     private static final Logger log = Logger.getLogger( AdminMgrImpl.class.getName() );

@@ -37,10 +37,10 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class DelegatedAdminMgrImpl
+class DelegatedAdminMgrImpl extends AbstractMgrImpl
 {
-    private static final String CLS_NM = DelegatedAdminMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger( DelegatedAdminMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************
@@ -48,339 +48,342 @@ class DelegatedAdminMgrImpl
      * **************************************************************************************************************************************
      */
 
-    FortResponse addAdminRole(FortRequest request)
+    /* No qualifier */ FortResponse addAdminRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRole inRole = (AdminRole) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            AdminRole retRole = delegatedAdminMgr.addRole(inRole);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            AdminRole retRole = delegatedAdminMgr.addRole( inRole );
             response.setEntity(retRole);
-            response.setErrorCode(0);
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se + " warnId=" + se.getErrorId());
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            LOG.info( "Caught " + se + " warnId=" + se.getErrorId() );
+            response.setErrorCode( se.getErrorId() );
+            response.setErrorMessage( se.getMessage() );
         }
+        
         return response;
     }
 
-    FortResponse deleteAdminRole(FortRequest request)
+    
+    /* No qualifier */ FortResponse deleteAdminRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRole inRole = (AdminRole) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.deleteRole(inRole);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.deleteRole( inRole );
             response.setEntity(inRole);
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse updateAdminRole(FortRequest request)
+    
+    /* No qualifier */ FortResponse updateAdminRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRole inRole = (AdminRole) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            AdminRole retRole = delegatedAdminMgr.updateRole(inRole);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            AdminRole retRole = delegatedAdminMgr.updateRole( inRole );
             response.setEntity(retRole);
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se + " errorId=" + se.getErrorId());
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            LOG.info( "Caught " + se + " errorId=" + se.getErrorId() );
+            response.setErrorCode( se.getErrorId() );
+            response.setErrorMessage( se.getMessage() );
         }
+        
         return response;
     }
 
-    FortResponse assignAdminUser(FortRequest request)
+    
+    /* No qualifier */ FortResponse assignAdminUser( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAdminRole inRole = (UserAdminRole) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.assignUser(inRole);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.assignUser( inRole );
             response.setEntity(inRole);
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse deassignAdminUser(FortRequest request)
+    
+    /* No qualifier */ FortResponse deassignAdminUser( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             UserAdminRole inRole = (UserAdminRole) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.deassignUser(inRole);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.deassignUser( inRole );
             response.setEntity(inRole);
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+
         return response;
     }
 
-    FortResponse addAdminDescendant(FortRequest request)
+    
+    /* No qualifier */ FortResponse addAdminDescendant( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRoleRelationship relationship = (AdminRoleRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.addDescendant(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.addDescendant( relationship.getParent(), relationship.getChild() );
+            response.setEntity( relationship );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse addAdminAscendant(FortRequest request)
+    
+    /* No qualifier */ FortResponse addAdminAscendant( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRoleRelationship relationship = (AdminRoleRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.addAscendant(relationship.getChild(), relationship.getParent());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.addAscendant( relationship.getChild(), relationship.getParent() );
+            response.setEntity( relationship );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+
         return response;
     }
 
-    FortResponse addAdminInheritance(FortRequest request)
+    
+    /* No qualifier */ FortResponse addAdminInheritance( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRoleRelationship relationship = (AdminRoleRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.addInheritance( relationship.getParent(), relationship.getChild() );
+            response.setEntity( relationship );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse deleteAdminInheritance( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            AdminRoleRelationship relationship = (AdminRoleRelationship) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.deleteInheritance( relationship.getParent(), relationship.getChild() );
+            response.setEntity( relationship );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse addOrg( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnit inOrg = (OrgUnit) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            OrgUnit retOrg = delegatedAdminMgr.add( inOrg );
+            response.setEntity(retOrg);
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse updateOrg( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnit inOrg = (OrgUnit) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            OrgUnit retOrg = delegatedAdminMgr.update( inOrg );
+            response.setEntity(retOrg);
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse deleteOrg( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnit inOrg = (OrgUnit) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            OrgUnit retOrg = delegatedAdminMgr.delete( inOrg );
+            response.setEntity(retOrg);
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse addOrgDescendant( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.addDescendant( relationship.getParent(), relationship.getChild() );
+            response.setEntity( relationship );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse addOrgAscendant( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.addAscendant( relationship.getChild(), relationship.getParent() );
+            response.setEntity( relationship );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+        
+        return response;
+    }
+
+    
+    /* No qualifier */ FortResponse addOrgInheritance( FortRequest request )
+    {
+        FortResponse response = createResponse();
+        
+        try
+        {
+            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
             delegatedAdminMgr.addInheritance(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
+            response.setEntity( relationship );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+            
         return response;
     }
 
-    FortResponse deleteAdminInheritance(FortRequest request)
+    
+    /* No qualifier */ FortResponse deleteOrgInheritance( FortRequest request )
     {
-        FortResponse response = new FortResponse();
-        try
-        {
-            AdminRoleRelationship relationship = (AdminRoleRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.deleteInheritance(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse addOrg(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnit inOrg = (OrgUnit) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            OrgUnit retOrg = delegatedAdminMgr.add(inOrg);
-            response.setEntity(retOrg);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse updateOrg(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnit inOrg = (OrgUnit) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            OrgUnit retOrg = delegatedAdminMgr.update(inOrg);
-            response.setEntity(retOrg);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse deleteOrg(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnit inOrg = (OrgUnit) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            OrgUnit retOrg = delegatedAdminMgr.delete(inOrg);
-            response.setEntity(retOrg);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse addOrgDescendant(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.addDescendant(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
+            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance( request.getContextId() );
+            delegatedAdminMgr.setAdmin( request.getSession() );
+            delegatedAdminMgr.deleteInheritance( relationship.getParent(), relationship.getChild() );
+            response.setEntity( relationship );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
-        return response;
-    }
-
-    FortResponse addOrgAscendant(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.addAscendant(relationship.getChild(), relationship.getParent());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse addOrgInheritance(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.addInheritance(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
-        return response;
-    }
-
-    FortResponse deleteOrgInheritance(FortRequest request)
-    {
-        FortResponse response = new FortResponse();
-        try
-        {
-            OrgUnitRelationship relationship = (OrgUnitRelationship) request.getEntity();
-            DelAdminMgr delegatedAdminMgr = DelAdminMgrFactory.createInstance(request.getContextId());
-            delegatedAdminMgr.setAdmin(request.getSession());
-            delegatedAdminMgr.deleteInheritance(relationship.getParent(), relationship.getChild());
-            response.setEntity(relationship);
-            response.setErrorCode(0);
-        }
-        catch (SecurityException se)
-        {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
-        }
+        
         return response;
     }
 }

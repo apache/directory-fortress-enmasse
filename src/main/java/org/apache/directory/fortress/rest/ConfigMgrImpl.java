@@ -35,7 +35,7 @@ import java.util.Properties;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class ConfigMgrImpl extends AbstractImpl
+class ConfigMgrImpl extends AbstractMgrImpl
 {
     private static final Logger log = Logger.getLogger( ConfigMgrImpl.class.getName() );
 

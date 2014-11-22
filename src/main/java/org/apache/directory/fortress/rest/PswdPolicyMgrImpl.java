@@ -34,159 +34,162 @@ import java.util.List;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class PswdPolicyMgrImpl
+class PswdPolicyMgrImpl extends AbstractMgrImpl
 {
-    private static final String CLS_NM = PswdPolicyMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger( PswdPolicyMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************
      * BEGIN PSWDPOLICYMGR
      * **************************************************************************************************************************************
      */
-    FortResponse addPolicy(FortRequest request)
+    /* No qualifier */ FortResponse addPolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
-            policyMgr.add(inPolicy);
-            response.setEntity(inPolicy);
-            response.setErrorCode(0);
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
+            policyMgr.add( inPolicy );
+            response.setEntity( inPolicy );
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse updatePolicy(FortRequest request)
+    
+    /* No qualifier */ FortResponse updatePolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
-            policyMgr.update(inPolicy);
-            response.setEntity(inPolicy);
-            response.setErrorCode(0);
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
+            policyMgr.update( inPolicy );
+            response.setEntity( inPolicy );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse deletePolicy(FortRequest request)
+    
+    /* No qualifier */ FortResponse deletePolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
-            policyMgr.delete(inPolicy);
-            response.setEntity(inPolicy);
-            response.setErrorCode(0);
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
+            policyMgr.delete( inPolicy );
+            response.setEntity( inPolicy );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse readPolicy(FortRequest request)
+    
+    /* No qualifier */ FortResponse readPolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
         PwPolicy outPolicy;
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
-            outPolicy = policyMgr.read(inPolicy.getName());
-            response.setEntity(outPolicy);
-            response.setErrorCode(0);
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
+            outPolicy = policyMgr.read( inPolicy.getName() );
+            response.setEntity( outPolicy );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            response.setErrorCode( se.getErrorId() );
+            response.setErrorMessage( se.getMessage() );
         }
+        
         return response;
     }
 
-    FortResponse searchPolicy(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchPolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
         List<PwPolicy> policyList;
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
-            policyList = policyMgr.search(inPolicy.getName());
-            response.setEntities(policyList);
-            response.setErrorCode(0);
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
+            policyList = policyMgr.search( inPolicy.getName() );
+            response.setEntities( policyList );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            response.setErrorCode( se.getErrorId() );
+            response.setErrorMessage( se.getMessage() );
         }
+        
         return response;
     }
-
-    FortResponse updateUserPolicy(FortRequest request)
+    
+    
+    /* No qualifier */ FortResponse updateUserPolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             PwPolicy inPolicy = (PwPolicy) request.getEntity();
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
             String userId = request.getValue();
-            policyMgr.updateUserPolicy(userId, inPolicy.getName());
-            response.setErrorCode(0);
+            policyMgr.updateUserPolicy( userId, inPolicy.getName() );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse deleteUserPolicy(FortRequest request)
+    
+    /* No qualifier */ FortResponse deleteUserPolicy( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance(request.getContextId());
-            policyMgr.setAdmin(request.getSession());
+            PwPolicyMgr policyMgr = PwPolicyMgrFactory.createInstance( request.getContextId() );
+            policyMgr.setAdmin( request.getSession() );
             String userId = request.getValue();
-            policyMgr.deletePasswordPolicy(userId);
-            response.setErrorCode(0);
+            policyMgr.deletePasswordPolicy( userId );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 }

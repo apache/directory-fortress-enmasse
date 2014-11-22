@@ -41,7 +41,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class DelegatedAccessMgrImpl extends AbstractImpl
+class DelegatedAccessMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
     private static final Logger LOG = Logger.getLogger( DelegatedAccessMgrImpl.class.getName() );

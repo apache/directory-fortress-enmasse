@@ -37,7 +37,7 @@ import java.util.List;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class AuditMgrImpl extends AbstractImpl
+class AuditMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
     private static final Logger log = Logger.getLogger( AuditMgrImpl.class.getName() );

@@ -42,638 +42,649 @@ import java.util.Set;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class ReviewMgrImpl
+class ReviewMgrImpl extends AbstractMgrImpl
 {
-    private static final String CLS_NM = ReviewMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger( ReviewMgrImpl.class.getName() );
 
-    FortResponse readPermission(FortRequest request)
+    /* No qualifier */  FortResponse readPermission( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             Permission inPerm = (Permission) request.getEntity();
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
-            Permission retPerm = reviewMgr.readPermission(inPerm);
-            response.setEntity(retPerm);
-            response.setErrorCode(0);
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            Permission retPerm = reviewMgr.readPermission( inPerm );
+            response.setEntity( retPerm );
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse readPermObj(FortRequest request)
+    
+    /* No qualifier */  FortResponse readPermObj( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             PermObj inObj = (PermObj) request.getEntity();
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
-            PermObj retObj = reviewMgr.readPermObj(inObj);
-            response.setEntity(retObj);
-            response.setErrorCode(0);
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            PermObj retObj = reviewMgr.readPermObj( inObj );
+            response.setEntity( retObj );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse findPermissions(FortRequest request)
+    
+    /* No qualifier */  FortResponse findPermissions( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Permission inPerm = (Permission) request.getEntity();
-            List<Permission> perms = reviewMgr.findPermissions(inPerm);
-            response.setEntities(perms);
-            response.setErrorCode(0);
+            List<Permission> perms = reviewMgr.findPermissions( inPerm );
+            response.setEntities( perms );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse findPermObjs(FortRequest request)
+    
+    /* No qualifier */  FortResponse findPermObjs( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             PermObj inObj = (PermObj) request.getEntity();
             List<PermObj> objs = null;
-            if (VUtil.isNotNullOrEmpty(inObj.getOu()))
+            
+            if ( VUtil.isNotNullOrEmpty( inObj.getOu() ) )
             {
-                objs = reviewMgr.findPermObjs(new OrgUnit(inObj.getOu(), OrgUnit.Type.PERM));
+                objs = reviewMgr.findPermObjs( new OrgUnit( inObj.getOu(), OrgUnit.Type.PERM ) );
             }
             else
             {
-                objs = reviewMgr.findPermObjs(inObj);
+                objs = reviewMgr.findPermObjs( inObj );
             }
+            
             response.setEntities(objs);
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse readRole(FortRequest request)
+    
+    /* No qualifier */  FortResponse readRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            Role outRole = reviewMgr.readRole(inRole);
-            response.setEntity(outRole);
-            response.setErrorCode(0);
+            Role outRole = reviewMgr.readRole( inRole );
+            response.setEntity( outRole );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse findRoles(FortRequest request)
+    
+    /* No qualifier */  FortResponse findRoles( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             String searchValue = request.getValue();
-            if (request.getLimit() != null)
+            
+            if ( request.getLimit() != null )
             {
-                List<String> retRoles = reviewMgr.findRoles(searchValue, request.getLimit());
-                response.setValues(retRoles);
+                List<String> retRoles = reviewMgr.findRoles( searchValue, request.getLimit() );
+                response.setValues( retRoles );
             }
             else
             {
-                List<Role> roles = reviewMgr.findRoles(searchValue);
-                response.setEntities(roles);
+                List<Role> roles = reviewMgr.findRoles( searchValue );
+                response.setEntities( roles );
             }
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse readUserM(FortRequest request)
+    
+    /* No qualifier */  FortResponse readUserM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            User outUser = reviewMgr.readUser(inUser);
-            response.setEntity(outUser);
-            response.setErrorCode(0);
+            User outUser = reviewMgr.readUser( inUser );
+            response.setEntity( outUser );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse findUsersM(FortRequest request)
+    
+    /* No qualifier */  FortResponse findUsersM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            if (request.getLimit() != null)
+            
+            if ( request.getLimit() != null )
             {
-                List<String> retUsers = reviewMgr.findUsers(inUser, request.getLimit());
-                response.setValues(retUsers);
+                List<String> retUsers = reviewMgr.findUsers( inUser, request.getLimit() );
+                response.setValues( retUsers );
             }
             else
             {
                 List<User> retUsers;
-                if (VUtil.isNotNullOrEmpty(inUser.getOu()))
+                
+                if ( VUtil.isNotNullOrEmpty( inUser.getOu() ) )
                 {
-                    retUsers = reviewMgr.findUsers(new OrgUnit(inUser.getOu(), OrgUnit.Type.USER));
+                    retUsers = reviewMgr.findUsers( new OrgUnit( inUser.getOu(), OrgUnit.Type.USER ) );
                 }
                 else
                 {
-                    retUsers = reviewMgr.findUsers(inUser);
+                    retUsers = reviewMgr.findUsers( inUser );
                 }
-                response.setEntities(retUsers);
+                
+                response.setEntities( retUsers );
             }
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse assignedUsersM(FortRequest request)
+    
+    /* No qualifier */  FortResponse assignedUsersM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            if (request.getLimit() != null)
+            
+            if ( request.getLimit() != null )
             {
-                List<String> retUsers = reviewMgr.assignedUsers(inRole, request.getLimit());
-                response.setValues(retUsers);
+                List<String> retUsers = reviewMgr.assignedUsers( inRole, request.getLimit() );
+                response.setValues( retUsers );
             }
             else
             {
-                List<User> users = reviewMgr.assignedUsers(inRole);
-                response.setEntities(users);
-                response.setEntities(users);
+                List<User> users = reviewMgr.assignedUsers( inRole );
+                response.setEntities( users );
+                response.setEntities( users );
             }
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse assignedRolesM(FortRequest request)
+    
+    /* No qualifier */  FortResponse assignedRolesM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
-            if (VUtil.isNotNullOrEmpty(request.getValue()))
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            
+            if ( VUtil.isNotNullOrEmpty( request.getValue() ) )
             {
                 String userId = request.getValue();
-                List<String> retRoles = reviewMgr.assignedRoles(userId);
-                response.setValues(retRoles);
+                List<String> retRoles = reviewMgr.assignedRoles( userId );
+                response.setValues( retRoles );
             }
             else
             {
                 User inUser = (User) request.getEntity();
-                List<UserRole> uRoles = reviewMgr.assignedRoles(inUser);
-                response.setEntities(uRoles);
+                List<UserRole> uRoles = reviewMgr.assignedRoles( inUser );
+                response.setEntities( uRoles );
             }
-            response.setErrorCode(0);
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse authorizedUsersM(FortRequest request)
+    
+    /* No qualifier */  FortResponse authorizedUsersM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            List<User> users = reviewMgr.authorizedUsers(inRole);
-            response.setEntities(users);
-            response.setErrorCode(0);
+            List<User> users = reviewMgr.authorizedUsers( inRole );
+            response.setEntities( users );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse authorizedRoleM(FortRequest request)
+    
+    /* No qualifier */  FortResponse authorizedRoleM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            Set<String> outSet = reviewMgr.authorizedRoles(inUser);
-            response.setValueSet(outSet);
-            response.setErrorCode(0);
+            Set<String> outSet = reviewMgr.authorizedRoles( inUser );
+            response.setValueSet( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse permissionRolesM(FortRequest request)
+    
+    /* No qualifier */  FortResponse permissionRolesM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Permission inPerm = (Permission) request.getEntity();
-            List<String> outList = reviewMgr.permissionRoles(inPerm);
-            response.setValues(outList);
-            response.setErrorCode(0);
+            List<String> outList = reviewMgr.permissionRoles( inPerm );
+            response.setValues( outList );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse authorizedPermissionRolesM(FortRequest request)
+    
+    /* No qualifier */  FortResponse authorizedPermissionRolesM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Permission inPerm = (Permission) request.getEntity();
-            Set<String> outSet = reviewMgr.authorizedPermissionRoles(inPerm);
-            response.setValueSet(outSet);
-            response.setErrorCode(0);
+            Set<String> outSet = reviewMgr.authorizedPermissionRoles( inPerm );
+            response.setValueSet( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse permissionUsersM(FortRequest request)
+    
+    /* No qualifier */  FortResponse permissionUsersM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             Permission inPerm = (Permission) request.getEntity();
-            List<String> outList = reviewMgr.permissionUsers(inPerm);
-            response.setValues(outList);
-            response.setErrorCode(0);
+            List<String> outList = reviewMgr.permissionUsers( inPerm );
+            response.setValues( outList );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse authorizedPermissionUsersM(FortRequest request)
+    
+    /* No qualifier */  FortResponse authorizedPermissionUsersM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             Permission inPerm = (Permission) request.getEntity();
-            Set<String> outSet = reviewMgr.authorizedPermissionUsers(inPerm);
-            response.setValueSet(outSet);
-            response.setErrorCode(0);
+            Set<String> outSet = reviewMgr.authorizedPermissionUsers( inPerm );
+            response.setValueSet( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse userPermissionsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse userPermissionsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            List<Permission> perms = reviewMgr.userPermissions(inUser);
-            response.setEntities(perms);
-            response.setErrorCode(0);
+            List<Permission> perms = reviewMgr.userPermissions( inUser );
+            response.setEntities( perms );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse rolePermissionsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse rolePermissionsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            List<Permission> perms = reviewMgr.rolePermissions(inRole);
-            response.setEntities(perms);
-            response.setErrorCode(0);
+            List<Permission> perms = reviewMgr.rolePermissions( inRole );
+            response.setEntities( perms );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse ssdRoleSetsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse ssdRoleSetsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            List<SDSet> outSets = reviewMgr.ssdRoleSets(inRole);
-            response.setEntities(outSets);
-            response.setErrorCode(0);
+            List<SDSet> outSets = reviewMgr.ssdRoleSets( inRole );
+            response.setEntities( outSets );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse ssdRoleSetM(FortRequest request)
+    
+    /* No qualifier */  FortResponse ssdRoleSetM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             SDSet inSet = (SDSet) request.getEntity();
-            SDSet outSet = reviewMgr.ssdRoleSet(inSet);
-            response.setEntity(outSet);
-            response.setErrorCode(0);
+            SDSet outSet = reviewMgr.ssdRoleSet( inSet );
+            response.setEntity( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse ssdRoleSetRolesM(FortRequest request)
+    
+    /* No qualifier */  FortResponse ssdRoleSetRolesM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             SDSet inSet = (SDSet) request.getEntity();
-            Set<String> outSet = reviewMgr.ssdRoleSetRoles(inSet);
-            response.setValueSet(outSet);
-            response.setErrorCode(0);
+            Set<String> outSet = reviewMgr.ssdRoleSetRoles( inSet );
+            response.setValueSet( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse ssdRoleSetCardinalityM(FortRequest request)
+    
+    /* No qualifier */  FortResponse ssdRoleSetCardinalityM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             SDSet inSet = (SDSet) request.getEntity();
-            int cardinality = reviewMgr.ssdRoleSetCardinality(inSet);
-            inSet.setCardinality(cardinality);
-            response.setEntity(inSet);
-            response.setErrorCode(0);
+            int cardinality = reviewMgr.ssdRoleSetCardinality( inSet );
+            inSet.setCardinality( cardinality );
+            response.setEntity( inSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
+            LOG.info( "Caught " + se );
         }
+        
         return response;
     }
 
-    FortResponse ssdSetsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse ssdSetsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             SDSet inSdSet = (SDSet) request.getEntity();
-            List<SDSet> outSets = reviewMgr.ssdSets(inSdSet);
-            response.setEntities(outSets);
-            response.setErrorCode(0);
+            List<SDSet> outSets = reviewMgr.ssdSets( inSdSet );
+            response.setEntities( outSets );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse dsdRoleSetsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse dsdRoleSetsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            List<SDSet> outSets = reviewMgr.dsdRoleSets(inRole);
-            response.setEntities(outSets);
-            response.setErrorCode(0);
+            List<SDSet> outSets = reviewMgr.dsdRoleSets( inRole );
+            response.setEntities( outSets );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse dsdRoleSetM(FortRequest request)
+    
+    /* No qualifier */  FortResponse dsdRoleSetM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             SDSet inSet = (SDSet) request.getEntity();
-            SDSet outSet = reviewMgr.dsdRoleSet(inSet);
-            response.setEntity(outSet);
-            response.setErrorCode(0);
+            SDSet outSet = reviewMgr.dsdRoleSet( inSet );
+            response.setEntity( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse dsdRoleSetRolesM(FortRequest request)
+    
+    /* No qualifier */  FortResponse dsdRoleSetRolesM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             SDSet inSet = (SDSet) request.getEntity();
-            Set<String> outSet = reviewMgr.dsdRoleSetRoles(inSet);
-            response.setValueSet(outSet);
-            response.setErrorCode(0);
+            Set<String> outSet = reviewMgr.dsdRoleSetRoles( inSet );
+            response.setValueSet( outSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse dsdRoleSetCardinalityM(FortRequest request)
+    
+    /* No qualifier */  FortResponse dsdRoleSetCardinalityM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             SDSet inSet = (SDSet) request.getEntity();
-            int cardinality = reviewMgr.dsdRoleSetCardinality(inSet);
-            inSet.setCardinality(cardinality);
-            response.setEntity(inSet);
-            response.setErrorCode(0);
+            int cardinality = reviewMgr.dsdRoleSetCardinality( inSet );
+            inSet.setCardinality( cardinality );
+            response.setEntity( inSet );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
+            LOG.info( "Caught " + se );
         }
+        
         return response;
     }
 
-    FortResponse dsdSetsM(FortRequest request)
+    
+    /* No qualifier */  FortResponse dsdSetsM( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+
         try
         {
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance(request.getContextId());
-            reviewMgr.setAdmin(request.getSession());
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
             SDSet inSdSet = (SDSet) request.getEntity();
-            List<SDSet> outSets = reviewMgr.dsdSets(inSdSet);
-            response.setEntities(outSets);
-            response.setErrorCode(0);
+            List<SDSet> outSets = reviewMgr.dsdSets( inSdSet );
+            response.setEntities( outSets );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 }

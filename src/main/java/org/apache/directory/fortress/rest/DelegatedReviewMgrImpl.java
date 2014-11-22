@@ -37,10 +37,10 @@ import java.util.List;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class DelegatedReviewMgrImpl
+class DelegatedReviewMgrImpl extends AbstractMgrImpl
 {
-    private static final String CLS_NM = DelegatedReviewMgrImpl.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    /** A logger for this class */
+    private static final Logger LOG = Logger.getLogger( DelegatedReviewMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************
@@ -48,129 +48,127 @@ class DelegatedReviewMgrImpl
      * **************************************************************************************************************************************
      */
 
-    FortResponse readAdminRole(FortRequest request)
+    /* No qualifier */ FortResponse readAdminRole( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRole inRole = (AdminRole) request.getEntity();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            AdminRole outRole = delegatedReviewMgr.readRole(inRole);
-            response.setEntity(outRole);
-            response.setErrorCode(0);
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            AdminRole outRole = delegatedReviewMgr.readRole( inRole );
+            response.setEntity( outRole );
         }
-        catch (org.apache.directory.fortress.core.SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse findAdminRoles(FortRequest request)
+    
+    /* No qualifier */ FortResponse findAdminRoles( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             String searchVal = request.getValue();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            delegatedReviewMgr.setAdmin(request.getSession());
-            List<AdminRole> outRoles = delegatedReviewMgr.findRoles(searchVal);
-            response.setEntities(outRoles);
-            response.setErrorCode(0);
-
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            delegatedReviewMgr.setAdmin( request.getSession() );
+            List<AdminRole> outRoles = delegatedReviewMgr.findRoles( searchVal );
+            response.setEntities( outRoles );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse assignedAdminRoles(FortRequest request)
+    
+    /* No qualifier */ FortResponse assignedAdminRoles( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             User inUser = (User)request.getEntity();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            delegatedReviewMgr.setAdmin(request.getSession());
-            List<UserAdminRole> uRoles = delegatedReviewMgr.assignedRoles(inUser);
-            response.setEntities(uRoles);
-            response.setErrorCode(0);
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            delegatedReviewMgr.setAdmin( request.getSession() );
+            List<UserAdminRole> uRoles = delegatedReviewMgr.assignedRoles( inUser );
+            response.setEntities( uRoles );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse assignedAdminUsers(FortRequest request)
+    
+    /* No qualifier */ FortResponse assignedAdminUsers( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             AdminRole inRole = (AdminRole) request.getEntity();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            delegatedReviewMgr.setAdmin(request.getSession());
-            List<User> users = delegatedReviewMgr.assignedUsers(inRole);
-            response.setEntities(users);
-            response.setErrorCode(0);
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            delegatedReviewMgr.setAdmin( request.getSession() );
+            List<User> users = delegatedReviewMgr.assignedUsers( inRole );
+            response.setEntities( users );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse readOrg(FortRequest request)
+    
+    /* No qualifier */ FortResponse readOrg( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             OrgUnit inOrg = (OrgUnit) request.getEntity();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            delegatedReviewMgr.setAdmin(request.getSession());
-            OrgUnit returnOrg = delegatedReviewMgr.read(inOrg);
-            response.setEntity(returnOrg);
-            response.setErrorCode(0);
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            delegatedReviewMgr.setAdmin( request.getSession() );
+            OrgUnit returnOrg = delegatedReviewMgr.read( inOrg );
+            response.setEntity( returnOrg );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 
-    FortResponse searchOrg(FortRequest request)
+    
+    /* No qualifier */ FortResponse searchOrg( FortRequest request )
     {
-        FortResponse response = new FortResponse();
+        FortResponse response = createResponse();
+        
         try
         {
             OrgUnit inOrg = (OrgUnit) request.getEntity();
-            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance(request.getContextId());
-            delegatedReviewMgr.setAdmin(request.getSession());
-            List<OrgUnit> orgs = delegatedReviewMgr.search(inOrg.getType(), inOrg.getName());
-            response.setEntities(orgs);
-            response.setErrorCode(0);
+            DelReviewMgr delegatedReviewMgr = DelReviewMgrFactory.createInstance( request.getContextId() );
+            delegatedReviewMgr.setAdmin( request.getSession() );
+            List<OrgUnit> orgs = delegatedReviewMgr.search( inOrg.getType(), inOrg.getName() );
+            response.setEntities( orgs );
         }
-        catch (SecurityException se)
+        catch ( SecurityException se )
         {
-            log.info(CLS_NM + " caught " + se);
-            response.setErrorCode(se.getErrorId());
-            response.setErrorMessage(se.getMessage());
+            createError( response, LOG, se );
         }
+        
         return response;
     }
 }

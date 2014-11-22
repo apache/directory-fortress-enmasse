@@ -39,7 +39,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-class AccessMgrImpl extends AbstractImpl
+class AccessMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
     private static final Logger LOG = Logger.getLogger( AccessMgrImpl.class.getName() );
