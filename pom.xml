@@ -8,7 +8,7 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
@@ -18,483 +18,492 @@
    under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
    http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.apache.directory</groupId>
-    <artifactId>fortress-rest</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-RC40-SNAPSHOT</version>
-    <name>Apache Fortress Web</name>
-    <url>http://directory.apache.org/foress/</url>
-    <description>Fortress Rest provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine</description>
-    <licenses>
-        <license>
-            <name>Apache License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.apache.directory</groupId>
+  <artifactId>fortress-rest</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-RC40-SNAPSHOT</version>
+  <name>Apache Fortress Web</name>
+  <url>http://directory.apache.org/fortress/</url>
+  <description>Fortress Rest provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine</description>
 
-    <scm>
-        <connection>scm:git:http://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
-        <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git
-        </developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
 
-    <issueManagement>
-        <system>jira</system>
-        <url>https://issues.apache.org/jira/browse/DIRFORTRESS</url>
-    </issueManagement>
+  <scm>
+    <connection>scm:git:http://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
+    <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git
+    </developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 
-    <!-- ====================================================== -->
-    <!-- The list of current developers                        -->
-    <!-- ====================================================== -->
-    <developers>
-        <developer>
-            <id>smckinney</id>
-            <name>Shawn McKinney</name>
-            <email>smckinney@apache.org</email>
-        </developer>
-    </developers>
+  <issueManagement>
+    <system>jira</system>
+    <url>https://issues.apache.org/jira/browse/DIRFORTRESS</url>
+  </issueManagement>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
+  <!-- ====================================================== -->
+  <!-- The list of current developers                         -->
+  <!-- ====================================================== -->
+  <developers>
+    <developer>
+      <id>smckinney</id>
+      <name>Shawn McKinney</name>
+      <email>smckinney@apache.org</email>
+    </developer>
 
-    <mailingLists>
-        <mailingList>
-            <name>openldap-fortress -- OpenLDAP Fortress Discussion list</name>
-            <post>openldap-fortress@openldap.org</post>
-            <archive>http://www.openldap.org/lists/openldap-fortress/</archive>
-        </mailingList>
-    </mailingLists>
+    <developer>
+      <id>elecharny</id>
+      <name>Emmanuel Lecharny</name>
+      <email>elecharny@apache.org</email>
+    </developer>
+  </developers>
 
-    <properties>
-        <title>${project.name} ${project.version}</title>
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>15</version>
+  </parent>
 
-        <!-- leave this hardcoded, else get cyclic version error from maven -->
-<!--        <version>1.0-RC39</version>-->
-        <spring.security.version>3.1.4.RELEASE</spring.security.version>
-        <spring.version>3.0.4.RELEASE</spring.version>
-        <version.log4j>1.2.17</version.log4j>
-        <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
-        <java.version>1.7</java.version>
-        <javadoc.version>2.9.1</javadoc.version>
-        <servlet-api.version>2.5.0</servlet-api.version>
-        <httpclient.version>3.1</httpclient.version>
-        <aspectj.version>1.5.4</aspectj.version>
-        <base.dir>.</base.dir>
-        <src.java.dir>${base.dir}/src/main/java</src.java.dir>
-        <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
-        <test>org.apache.directory.fortress.rest.EmTest</test>
-        <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
-        <title>${name} ${version}</title>
-        <skipTests>true</skipTests>
-    </properties>
+  <mailingLists>
+    <mailingList>
+      <name>Apache Directory -- Fortress List</name>
+      <post>fortress@directory.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/directory-fortress/</archive>
+    </mailingList>
+  </mailingLists>
 
-    <dependencies>
-        <!-- Fortress Realm pulls in Fortress Core for RBAC 'CRUD' & policy enforcement apis. -->
-        <dependency>
-            <groupId>org.apache.directory</groupId>
-            <artifactId>fortress-realm-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+  <properties>
+    <title>${project.name} ${project.version}</title>
 
-        <!-- EnMasse Dependencies -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-bundle</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${version.log4j}</version>
-        </dependency>
+    <!-- leave this hardcoded, else get cyclic version error from maven -->
+    <!-- Dependencies version -->
+    <version.aspectj>1.8.4</version.aspectj>
+    <version.commons.beanutils>1.9.2</version.commons.beanutils>
+    <version.cxf.bundle>2.5.0</version.cxf.bundle>
+    <version.httpclient>3.1</version.httpclient>
+    <version.java>1.7</version.java>
+    <version.javadoc>2.9.1</version.javadoc>
+    <version.junit>4.11</version.junit>
+    <version.log4j>1.2.17</version.log4j>
+    <version.servlet-api>2.5.0</version.servlet-api>
+    <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
+    <version.spring.dao>2.0.8</version.spring.dao>
+    <version.spring.security>3.1.4.RELEASE</version.spring.security>
+    <version.spring>3.0.4.RELEASE</version.spring>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${version.slf4j.log4j12}</version>
-        </dependency>
+    <!-- Plugins versions -->
+    <version.maven.gpg.plugin>1.5</version.maven.gpg.plugin>
+    <version.tomcat.maven.plugin>1.1</version.tomcat.maven.plugin>
+    <version.maven.war.plugin>2.4</version.maven.war.plugin>
+    
+    <!--  Other properties -->
+    <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
+    <base.dir>.</base.dir>
+    <src.java.dir>${base.dir}/src/main/java</src.java.dir>
+    <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
+    <test>org.apache.directory.fortress.rest.EmTest</test>
+    <title>${project.name} ${project.version}</title>
+    <skipTests>true</skipTests>
+  </properties>
 
-        <!-- Spring Dependencies -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+  <dependencies>
+    <!-- Fortress Realm pulls in Fortress Core for RBAC 'CRUD' & policy enforcement apis. -->
+    <dependency>
+      <groupId>org.apache.directory</groupId>
+      <artifactId>fortress-realm-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
-        <!-- Spring Security Dependencies -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-acl</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-dao</artifactId>
-            <version>2.0.8</version>
-        </dependency>
+    <!-- EnMasse Dependencies -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-bundle</artifactId>
+      <version>${version.cxf.bundle}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${version.log4j}</version>
+    </dependency>
 
-        <!-- General Dependencies -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
-            <version>1.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${version.slf4j.log4j12}</version>
+    </dependency>
 
-    <build>
-        <finalName>${artifactId}-${version}</finalName>
-<!--        <finalName>enmasse-${version}</finalName>-->
+    <!-- Spring Dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${version.spring}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${version.spring}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${version.spring}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>${version.spring}</version>
+    </dependency>
+
+    <!-- Spring Security Dependencies -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-acl</artifactId>
+      <version>${version.spring.security}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${version.spring.security}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${version.spring.security}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>${version.aspectj}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${version.aspectj}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-dao</artifactId>
+      <version>${version.spring.dao}</version>
+    </dependency>
+
+    <!-- General Dependencies -->
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>${version.httpclient}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-jaxrs</artifactId>
+      <version>1.9.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>${version.commons.beanutils}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+<!--    <finalName>enmasse-${version}</finalName>-->
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${version.maven.war.plugin}</version>
+        <!-- this is needed to pickup the context.xml in META-INF: -->
+        <configuration>
+          <warName>${project.artifactId}</warName>
+          <archive>
+            <manifest>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+          </archive>
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>${project.basedir}/src/main/resources
+              </directory>
+
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>maven-staging-repository-id</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy-file</goal>
+            </goals>
+
+            <configuration>
+              <file>
+                ${basedir}/target/${project.artifactId}-${project.version}.jar
+              </file>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>${project.artifactId}</artifactId>
+              <version>${project.version}</version>
+              <pomFile>${basedir}/pom.xml</pomFile>
+              <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+              <repositoryId>sonatype-nexus-staging</repositoryId>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>tomcat-maven-plugin</artifactId>
+        <version>${version.tomcat.maven.plugin}</version>
+        <configuration>
+          <warFile>target/${project.artifactId}.war</warFile>
+          <server>local-tomcat</server>
+          <url>http://localhost:8080/manager/html</url>
+          <path>/${project.artifactId}-${project.version}</path>
+<!--          <path>/enmasse-${version}</path>-->
+          <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
+          <username>tcmanager</username>
+          <password>m@nager123</password>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <stylesheet>java</stylesheet>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 1998-2014 The OpenLDAP Foundation. All Rights Reserved.
+            Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
+          <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
+          <version>true</version>
+          <author>true</author>
+          <doctitle>${title}</doctitle>
+          <windowtitle>${title}</windowtitle>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- unit test (change to integration test) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>false</skipTests>
+          <systemProperties>
+            <property>
+              <name>version</name>
+              <value>${project.version}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>user_distribution</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attached</goal>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assembly/distsrc.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <configuration>
+              <target name="fortress-load"
+                  unless="noload"
+                  description="Loads fortress rest rbac policy into ldap">
+                <echo message="###############  Run Fortress Ant script to load policy  ###############"/>
+                <java
+                    classname="org.apache.tools.ant.launch.Launcher"
+                    fork="true"
+                    failonerror="true"
+                    dir="${basedir}"
+                    timeout="4000000"
+                    taskname="startAnt">
+                  <classpath>
+                    <pathelement location="./src/main/resources"/>
+                    <pathelement location="${org.apache.ant:ant-launcher:jar}"/>
+                    <pathelement location="${org.apache.ant:ant:jar}"/>
+                    <pathelement location="${org.apache.directory:fortress-core:jar}"/>
+                    <pathelement location="${org.openldap:accelerator-api:jar}"/>
+                    <pathelement location="${org.openldap:accelerator-impl:jar}"/>
+                    <pathelement location="${log4j:log4j:jar}"/>
+                    <pathelement location="${org.apache.directory.api:api-all:jar}"/>
+                    <pathelement location="${org.apache.mina:mina-core:jar}"/>
+                    <pathelement location="${org.jgrapht:jgrapht-jdk1.5:jar}"/>
+                    <pathelement location="${org.jasypt:jasypt:jar}"/>
+                    <pathelement location="${commons-configuration:commons-configuration:jar}"/>
+                    <pathelement location="${commons-lang:commons-lang:jar}"/>
+                    <pathelement location="${commons-collections:commons-collections:jar}"/>
+                    <pathelement location="${commons-logging:commons-logging:jar}"/>
+                    <pathelement location="${commons-io:commons-io:jar}"/>
+                    <pathelement location="${commons-pool:commons-pool:jar}"/>
+                    <pathelement location="${net.sf.ehcache:ehcache-core:jar}"/>
+                    <pathelement location="${org.slf4j:slf4j-api:jar}"/>
+                    <pathelement location="${org.slf4j:slf4j-log4j12:jar}"/>
+                    <pathelement location="${antlr:antlr:jar}"/>
+                  </classpath>
+                  <sysproperty key="version" value="${project.version}"/>
+                  <sysproperty key="tenant" value="HOME"/>
+                  <arg value="-buildfile"/>
+                  <arg file="./src/main/resources/FortressRestServerRoles.xml"/>
+                </java>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.javadoc}</version>
+        <configuration>
+          <!--aggregate>true</aggregate-->
+          <quiet>true</quiet>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <!-- this is needed to pickup the context.xml in META-INF: -->
-                <configuration>
-                    <warName>${project.artifactId}</warName>
-                    <archive>
-                        <manifest>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                    </archive>
-                    <webResources>
-                        <resource>
-                            <!-- this is relative to the pom.xml directory -->
-                            <directory>${project.basedir}/src/main/resources
-                            </directory>
-
-                        </resource>
-                    </webResources>
-                </configuration>
-
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
-
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>maven-staging-repository-id</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy-file</goal>
-                        </goals>
-
-                        <configuration>
-                            <file>
-                                ${basedir}/target/${artifactId}-${version}.jar
-                            </file>
-                            <groupId>${groupId}</groupId>
-                            <artifactId>${artifactId}</artifactId>
-                            <version>${version}</version>
-                            <pomFile>${basedir}/pom.xml</pomFile>
-                            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-                            <repositoryId>sonatype-nexus-staging</repositoryId>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.0-beta-1</version>
-                <configuration>
-                    <warFile>target/${project.artifactId}.war</warFile>
-                    <server>local-tomcat</server>
-                    <url>http://localhost:8080/manager/html</url>
-                    <path>/${artifactId}-${version}</path>
-<!--                    <path>/enmasse-${version}</path>-->
-                    <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
-                    <username>tcmanager</username>
-                    <password>m@nager123</password>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.version}</version>
-                <configuration>
-                    <stylesheet>java</stylesheet>
-                    <bottom>&lt;small&gt;Copyright &amp;copy; 1998-2014 The OpenLDAP Foundation. All Rights Reserved.
-                        Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
-                    <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
-                    <version>true</version>
-                    <author>true</author>
-                    <doctitle>${title}</doctitle>
-                    <windowtitle>${title}</windowtitle>
-                </configuration>
-            </plugin>
-
-            <!-- unit test (change to integration test) -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <skipTests>false</skipTests>
-                    <systemProperties>
-                        <property>
-                            <name>version</name>
-                            <value>${version}</value>
-                        </property>
-                    </systemProperties>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>user_distribution</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attached</goal>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <descriptors>
-                                <descriptor>src/main/assembly/distsrc.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <configuration>
-                            <target name="fortress-load"
-                                    unless="noload"
-                                    description="Loads fortress rest rbac policy into ldap">
-                                <echo message="###############  Run Fortress Ant script to load policy  ###############"/>
-                                <java
-                                        classname="org.apache.tools.ant.launch.Launcher"
-                                        fork="true"
-                                        failonerror="true"
-                                        dir="${basedir}"
-                                        timeout="4000000"
-                                        taskname="startAnt">
-                                    <classpath>
-                                        <pathelement location="./src/main/resources"/>
-                                        <pathelement location="${org.apache.ant:ant-launcher:jar}"/>
-                                        <pathelement location="${org.apache.ant:ant:jar}"/>
-                                        <pathelement location="${org.apache.directory:fortress-core:jar}"/>
-                                        <pathelement location="${org.openldap:accelerator-api:jar}"/>
-                                        <pathelement location="${org.openldap:accelerator-impl:jar}"/>
-                                        <pathelement location="${log4j:log4j:jar}"/>
-                                        <pathelement location="${org.apache.directory.api:api-all:jar}"/>
-                                        <pathelement location="${org.apache.mina:mina-core:jar}"/>
-                                        <pathelement location="${org.jgrapht:jgrapht-jdk1.5:jar}"/>
-                                        <pathelement location="${org.jasypt:jasypt:jar}"/>
-                                        <pathelement location="${commons-configuration:commons-configuration:jar}"/>
-                                        <pathelement location="${commons-lang:commons-lang:jar}"/>
-                                        <pathelement location="${commons-collections:commons-collections:jar}"/>
-                                        <pathelement location="${commons-logging:commons-logging:jar}"/>
-                                        <pathelement location="${commons-io:commons-io:jar}"/>
-                                        <pathelement location="${commons-pool:commons-pool:jar}"/>
-                                        <pathelement location="${net.sf.ehcache:ehcache-core:jar}"/>
-                                        <pathelement location="${org.slf4j:slf4j-api:jar}"/>
-                                        <pathelement location="${org.slf4j:slf4j-log4j12:jar}"/>
-                                        <pathelement location="${antlr:antlr:jar}"/>
-                                    </classpath>
-                                    <sysproperty key="version" value="${project.version}"/>
-                                    <sysproperty key="tenant" value="HOME"/>
-                                    <arg value="-buildfile"/>
-                                    <arg file="./src/main/resources/FortressRestServerRoles.xml"/>
-                                </java>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${version.maven.gpg.plugin}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
-    </build>
+      </build>
+    </profile>
+  </profiles>
 
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.version}</version>
-                <configuration>
-                    <!--aggregate>true</aggregate-->
-                    <quiet>true</quiet>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <repositories>
-        <repository>
-            <id>maven2</id>
-            <url>http://repo1.maven.org/maven2</url>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>maven2</id>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+  </repositories>
 
 </project>
