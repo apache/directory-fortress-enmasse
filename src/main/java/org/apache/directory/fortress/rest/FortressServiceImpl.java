@@ -114,11 +114,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addUser(FortRequest request)
+    public FortResponse addUser( FortRequest request )
     {
-        return adminMgrImpl.addUser(request);
+        return adminMgrImpl.addUser( request );
     }
 
+    
     /**
      * This command deletes an existing user from the RBAC database. The command is valid
      * if and only if the user to be deleted is a member of the USERS data set. The USERS and
@@ -146,11 +147,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteUser(FortRequest request)
+    public FortResponse deleteUser( FortRequest request )
     {
-        return adminMgrImpl.deleteUser(request);
+        return adminMgrImpl.deleteUser( request );
     }
 
+    
     /**
      * This command deletes an existing user from the RBAC database. The command is valid
      * if and only if the user to be deleted is a member of the USERS data set. The USERS and
@@ -181,10 +183,11 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_DISABLE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse disableUser(FortRequest request)
+    public FortResponse disableUser( FortRequest request )
     {
-        return adminMgrImpl.disableUser(request);
+        return adminMgrImpl.disableUser( request );
     }
+    
 
     /**
      * This method performs an update on User entity in directory.  Prior to making this call the entity must exist in
@@ -234,11 +237,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updateUser(FortRequest request)
+    public FortResponse updateUser( FortRequest request )
     {
-        return adminMgrImpl.updateUser(request);
+        return adminMgrImpl.updateUser( request );
     }
 
+    
     /**
      * Method will change user's password.  This method will evaluate user's password policies.
      * <p/>
@@ -264,11 +268,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_CHGPW + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse changePassword(FortRequest request)
+    public FortResponse changePassword( FortRequest request )
     {
-        return adminMgrImpl.changePassword(request);
+        return adminMgrImpl.changePassword( request );
     }
 
+    
     /**
      * Method will lock user's password which will prevent the user from authenticating with directory.
      * <p/>
@@ -292,11 +297,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_LOCK + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse lockUserAccount(FortRequest request)
+    public FortResponse lockUserAccount( FortRequest request )
     {
-        return adminMgrImpl.lockUserAccount(request);
+        return adminMgrImpl.lockUserAccount( request );
     }
 
+    
     /**
      * Method will unlock user's password which will enable user to authenticate with directory.
      * <p/>
@@ -320,11 +326,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_UNLOCK + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse unlockUserAccount(FortRequest request)
+    public FortResponse unlockUserAccount( FortRequest request )
     {
-        return adminMgrImpl.unlockUserAccount(request);
+        return adminMgrImpl.unlockUserAccount( request );
     }
 
+    
     /**
      * Method will reset user's password which will require user to change password before successful authentication with directory.
      * This method will not evaluate password policies on the new user password as it must be changed before use.
@@ -350,11 +357,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_RESET + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse resetPassword(FortRequest request)
+    public FortResponse resetPassword( FortRequest request )
     {
-        return adminMgrImpl.resetPassword(request);
+        return adminMgrImpl.resetPassword( request );
     }
 
+    
     /**
      * This command creates a new role. The command is valid if and only if the new role is not
      * already a member of the ROLES data set. The ROLES data set is updated.
@@ -391,11 +399,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addRole(FortRequest request)
+    public FortResponse addRole( FortRequest request )
     {
-        return adminMgrImpl.addRole(request);
+        return adminMgrImpl.addRole( request );
     }
 
+    
     /**
      * This command deletes an existing role from the RBAC database. The command is valid
      * if and only if the role to be deleted is a member of the ROLES data set.  This command will
@@ -421,11 +430,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteRole(FortRequest request)
+    public FortResponse deleteRole( FortRequest request )
     {
-        return adminMgrImpl.deleteRole(request);
+        return adminMgrImpl.deleteRole( request );
     }
 
+    
     /**
      * Method will update a Role entity in the directory.  The role must exist in role container prior to this call.     *
      * <h4>required parameters</h4>
@@ -459,11 +469,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updateRole(FortRequest request)
+    public FortResponse updateRole( FortRequest request )
     {
-        return adminMgrImpl.updateRole(request);
+        return adminMgrImpl.updateRole( request );
     }
 
+    
     /**
      * This command assigns a user to a role.
      * <p>
@@ -524,11 +535,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_ASGN + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse assignUser(FortRequest request)
+    public FortResponse assignUser( FortRequest request )
     {
-        return adminMgrImpl.assignUser(request);
+        return adminMgrImpl.assignUser( request );
     }
 
+    
     /**
      * This command deletes the assignment of the User from the Role entities. The command is
      * valid if and only if the user is a member of the USERS data set, the role is a member of
@@ -559,11 +571,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_DEASGN + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deassignUser(FortRequest request)
+    public FortResponse deassignUser( FortRequest request )
     {
-        return adminMgrImpl.deassignUser(request);
+        return adminMgrImpl.deassignUser( request );
     }
 
+    
     /**
      * This method will add permission operation to an existing permission object which resides under {@code ou=Permissions,ou=RBAC,dc=yourHostName,dc=com} container in directory information tree.
      * The perm operation entity may have {@link org.apache.directory.fortress.core.rbac.Role} or {@link org.apache.directory.fortress.core.rbac.User} associations.  The target {@link org.apache.directory.fortress.core.rbac.Permission} must not exist prior to calling.
@@ -596,11 +609,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addPermission(FortRequest request)
+    public FortResponse addPermission( FortRequest request )
     {
-        return adminMgrImpl.addPermission(request);
+        return adminMgrImpl.addPermission( request );
     }
 
+    
     /**
      * This method will update permission operation pre-existing in target directory under {@code ou=Permissions,ou=RBAC,dc=yourHostName,dc=com} container in directory information tree.
      * The perm operation entity may also contain {@link org.apache.directory.fortress.core.rbac.Role} or {@link org.apache.directory.fortress.core.rbac.User} associations to add or remove using this function.
@@ -633,11 +647,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updatePermission(FortRequest request)
+    public FortResponse updatePermission( FortRequest request )
     {
-        return adminMgrImpl.updatePermission(request);
+        return adminMgrImpl.updatePermission( request );
     }
 
+    
     /**
      * This method will remove permission operation entity from permission object. A Fortress permission is (object->operation).
      * The perm operation must exist before making this call.
@@ -662,11 +677,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deletePermission(FortRequest request)
+    public FortResponse deletePermission( FortRequest request )
     {
-        return adminMgrImpl.deletePermission(request);
+        return adminMgrImpl.deletePermission( request );
     }
 
+    
     /**
      * This method will add permission object to perms container in directory. The perm object must not exist before making this call.
      * A {@link org.apache.directory.fortress.core.rbac.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.rbac.PermObj}*->{@link org.apache.directory.fortress.core.rbac.Permission}).
@@ -697,11 +713,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.OBJ_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addPermObj(FortRequest request)
+    public FortResponse addPermObj( FortRequest request )
     {
-        return adminMgrImpl.addPermObj(request);
+        return adminMgrImpl.addPermObj( request );
     }
 
+    
     /**
      * This method will update permission object in perms container in directory.  The perm object must exist before making this call.
      * A {@link org.apache.directory.fortress.core.rbac.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.rbac.PermObj}*->{@link org.apache.directory.fortress.core.rbac.Permission}).
@@ -732,11 +749,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.OBJ_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updatePermObj(FortRequest request)
+    public FortResponse updatePermObj( FortRequest request )
     {
-        return adminMgrImpl.updatePermObj(request);
+        return adminMgrImpl.updatePermObj( request );
     }
 
+    
     /**
      * This method will remove permission object to perms container in directory.  This method will also remove
      * in associated permission objects that are attached to this object.
@@ -760,11 +778,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.OBJ_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deletePermObj(FortRequest request)
+    public FortResponse deletePermObj( FortRequest request )
     {
-        return adminMgrImpl.deletePermObj(request);
+        return adminMgrImpl.deletePermObj( request );
     }
 
+    
     /**
      * This command grants a role the permission to perform an operation on an object to a role.
      * The command is implemented by granting permission by setting the access control list of
@@ -797,11 +816,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_GRANT + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse grant(FortRequest request)
+    public FortResponse grant( FortRequest request )
     {
         return adminMgrImpl.grant(request, this);
     }
 
+    
     /**
      * This command revokes the permission to perform an operation on an object from the set
      * of permissions assigned to a role. The command is implemented by setting the access control
@@ -834,11 +854,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_REVOKE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse revoke(FortRequest request)
+    public FortResponse revoke( FortRequest request )
     {
         return adminMgrImpl.revoke(request, this);
     }
 
+    
     /**
      * This command grants a user the permission to perform an operation on an object to a role.
      * The command is implemented by granting permission by setting the access control list of
@@ -871,11 +892,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_GRANT + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse grantUser(FortRequest request)
+    public FortResponse grantUser( FortRequest request )
     {
         return adminMgrImpl.grantUser(request, this);
     }
 
+    
     /**
      * This command revokes the permission to perform an operation on an object from the set
      * of permissions assigned to a user. The command is implemented by setting the access control
@@ -908,11 +930,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_REVOKE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse revokeUser(FortRequest request)
+    public FortResponse revokeUser( FortRequest request )
     {
         return adminMgrImpl.revokeUser(request, this);
     }
 
+    
     /**
      * This commands creates a new role childRole, and inserts it in the role hierarchy as an immediate descendant of
      * the existing role parentRole.
@@ -960,11 +983,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_DESC + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addDescendant(FortRequest request)
+    public FortResponse addDescendant( FortRequest request )
     {
-        return adminMgrImpl.addDescendant(request);
+        return adminMgrImpl.addDescendant( request );
     }
 
+    
     /**
      * This commands creates a new role parentRole, and inserts it in the role hierarchy as an immediate ascendant of
      * the existing role childRole.
@@ -1012,11 +1036,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_ASC + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addAscendant(FortRequest request)
+    public FortResponse addAscendant( FortRequest request )
     {
-        return adminMgrImpl.addAscendant(request);
+        return adminMgrImpl.addAscendant( request );
     }
 
+    
     /**
      * This commands establishes a new immediate inheritance relationship parentRole <<-- childRole between existing
      * roles parentRole, childRole.
@@ -1048,11 +1073,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_ADDINHERIT + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addInheritance(FortRequest request)
+    public FortResponse addInheritance( FortRequest request )
     {
-        return adminMgrImpl.addInheritance(request);
+        return adminMgrImpl.addInheritance( request );
     }
 
+    
     /**
      * This command deletes an existing immediate inheritance relationship parentRole <<-- childRole.
      * <p/>
@@ -1084,11 +1110,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_DELINHERIT + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteInheritance(FortRequest request)
+    public FortResponse deleteInheritance( FortRequest request )
     {
-        return adminMgrImpl.deleteInheritance(request);
+        return adminMgrImpl.deleteInheritance( request );
     }
 
+    
     /**
      * This command creates a named SSD set of roles and sets the cardinality n of its subsets
      * that cannot have common users.
@@ -1126,11 +1153,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse createSsdSet(FortRequest request)
+    public FortResponse createSsdSet( FortRequest request )
     {
-        return adminMgrImpl.createSsdSet(request);
+        return adminMgrImpl.createSsdSet( request );
     }
 
+    
     /**
      * This command updates existing SSD set of roles and sets the cardinality n of its subsets
      * that cannot have common users.
@@ -1168,9 +1196,9 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updateSsdSet(FortRequest request)
+    public FortResponse updateSsdSet( FortRequest request )
     {
-        return adminMgrImpl.updateSsdSet(request);
+        return adminMgrImpl.updateSsdSet( request );
     }
 
 
@@ -1204,11 +1232,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_ADD_MEMBER + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addSsdRoleMember(FortRequest request)
+    public FortResponse addSsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.addSsdRoleMember(request);
+        return adminMgrImpl.addSsdRoleMember( request );
     }
 
+    
     /**
      * This command removes a role from a named SSD set of roles. The cardinality associated with the role set remains unchanged.
      * <p/>
@@ -1240,11 +1269,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_DEL_MEMBER + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteSsdRoleMember(FortRequest request)
+    public FortResponse deleteSsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.deleteSsdRoleMember(request);
+        return adminMgrImpl.deleteSsdRoleMember( request );
     }
 
+    
     /**
      * This command deletes a SSD role set completely. The command is valid if and only if the SSD role set exists.
      * <h4>required parameters</h4>
@@ -1267,11 +1297,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteSsdSet(FortRequest request)
+    public FortResponse deleteSsdSet( FortRequest request )
     {
-        return adminMgrImpl.deleteSsdSet(request);
+        return adminMgrImpl.deleteSsdSet( request );
     }
 
+    
     /**
      * This command sets the cardinality associated with a given SSD role set.
      * <p/>
@@ -1302,11 +1333,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_CARD_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse setSsdSetCardinality(FortRequest request)
+    public FortResponse setSsdSetCardinality( FortRequest request )
     {
-        return adminMgrImpl.setSsdSetCardinality(request);
+        return adminMgrImpl.setSsdSetCardinality( request );
     }
 
+    
     /**
      * This command creates a named DSD set of roles and sets the cardinality n of its subsets
      * that cannot have common users.
@@ -1344,11 +1376,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_ADD + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse createDsdSet(FortRequest request)
+    public FortResponse createDsdSet( FortRequest request )
     {
-        return adminMgrImpl.createDsdSet(request);
+        return adminMgrImpl.createDsdSet( request );
     }
 
+    
     /**
      * This command updates existing DSD set of roles and sets the cardinality n of its subsets
      * that cannot have common users.
@@ -1386,11 +1419,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse updateDsdSet(FortRequest request)
+    public FortResponse updateDsdSet( FortRequest request )
     {
-        return adminMgrImpl.updateDsdSet(request);
+        return adminMgrImpl.updateDsdSet( request );
     }
 
+    
     /**
      * This command adds a role to a named DSD set of roles. The cardinality associated with the role set remains unchanged.
      * <p/>
@@ -1421,11 +1455,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_ADD_MEMBER + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse addDsdRoleMember(FortRequest request)
+    public FortResponse addDsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.addDsdRoleMember(request);
+        return adminMgrImpl.addDsdRoleMember( request );
     }
 
+    
     /**
      * This command removes a role from a named DSD set of roles. The cardinality associated with the role set remains unchanged.
      * <p/>
@@ -1457,11 +1492,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_DEL_MEMBER + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteDsdRoleMember(FortRequest request)
+    public FortResponse deleteDsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.deleteDsdRoleMember(request);
+        return adminMgrImpl.deleteDsdRoleMember( request );
     }
 
+    
     /**
      * This command deletes a DSD role set completely. The command is valid if and only if the DSD role set exists.
      * <h4>required parameters</h4>
@@ -1484,11 +1520,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_DELETE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteDsdSet(FortRequest request)
+    public FortResponse deleteDsdSet( FortRequest request )
     {
-        return adminMgrImpl.deleteDsdSet(request);
+        return adminMgrImpl.deleteDsdSet( request );
     }
 
+    
     /**
      * This command sets the cardinality associated with a given DSD role set.
      * <p/>
@@ -1519,17 +1556,17 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_CARD_UPDATE + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
-    public FortResponse setDsdSetCardinality(FortRequest request)
+    public FortResponse setDsdSetCardinality( FortRequest request )
     {
-        return adminMgrImpl.setDsdSetCardinality(request);
+        return adminMgrImpl.setDsdSetCardinality( request );
     }
 
+    
     /**
      * ************************************************************************************************************************************
      * BEGIN REVIEWMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * This method returns a matching permission entity to caller.
      * <h4>required parameters</h4>
@@ -1553,11 +1590,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse readPermission(FortRequest request)
+    public FortResponse readPermission( FortRequest request )
     {
-        return reviewMgrImpl.readPermission(request);
+        return reviewMgrImpl.readPermission( request );
     }
 
+    
     /**
      * Method reads permission object from perm container in directory.
      * <h4>required parameters</h4>
@@ -1580,9 +1618,9 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.OBJ_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse readPermObj(FortRequest request)
+    public FortResponse readPermObj( FortRequest request )
     {
-        return reviewMgrImpl.readPermObj(request);
+        return reviewMgrImpl.readPermObj( request );
     }
 
     /**
@@ -1608,11 +1646,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_SEARCH + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse findPermissions(FortRequest request)
+    public FortResponse findPermissions( FortRequest request )
     {
-        return reviewMgrImpl.findPermissions(request);
+        return reviewMgrImpl.findPermissions( request );
     }
 
+    
     /**
      * Method returns a list of type Permission that match the perm object search string.
      * <h4>required parameters</h4>
@@ -1635,11 +1674,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.OBJ_SEARCH + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse findPermObjs(FortRequest request)
+    public FortResponse findPermObjs( FortRequest request )
     {
-        return reviewMgrImpl.findPermObjs(request);
+        return reviewMgrImpl.findPermObjs( request );
     }
 
+    
     /**
      * Method reads Role entity from the role container in directory.
      * <h4>required parameters</h4>
@@ -1662,11 +1702,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse readRole(FortRequest request)
+    public FortResponse readRole( FortRequest request )
     {
-        return reviewMgrImpl.readRole(request);
+        return reviewMgrImpl.readRole( request );
     }
 
+    
     /**
      * Method will return a list of type Role matching all or part of {@link org.apache.directory.fortress.core.rbac.Role#name}.
      * <h4>required parameters</h4>
@@ -1685,11 +1726,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_SEARCH + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse findRoles(FortRequest request)
+    public FortResponse findRoles( FortRequest request )
     {
-        return reviewMgrImpl.findRoles(request);
+        return reviewMgrImpl.findRoles( request );
     }
 
+    
     /**
      * Method returns matching User entity that is contained within the people container in the directory.
      * <h4>required parameters</h4>
@@ -1712,11 +1754,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse readUser(FortRequest request)
+    public FortResponse readUser( FortRequest request )
     {
-        return reviewMgrImpl.readUserM(request);
+        return reviewMgrImpl.readUserM( request );
     }
 
+    
     /**
      * Return a list of type User of all users in the people container that match all or part of the {@link org.apache.directory.fortress.core.rbac.User#userId} or {@link org.apache.directory.fortress.core.rbac.User#ou} fields passed in User entity.
      * <h4>required parameters</h4>
@@ -1740,11 +1783,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_SEARCH + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse findUsers(FortRequest request)
+    public FortResponse findUsers( FortRequest request )
     {
-        return reviewMgrImpl.findUsersM(request);
+        return reviewMgrImpl.findUsersM( request );
     }
 
+    
     /**
      * This method returns the data set of all users who are assigned the given role.  This searches the User data set for
      * Role relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
@@ -1768,11 +1812,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_ASGNED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse assignedUsers(FortRequest request)
+    public FortResponse assignedUsers( FortRequest request )
     {
-        return reviewMgrImpl.assignedUsersM(request);
+        return reviewMgrImpl.assignedUsersM( request );
     }
 
+    
     /**
      * This function returns the set of roles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
@@ -1796,11 +1841,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_ASGNED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse assignedRoles(FortRequest request)
+    public FortResponse assignedRoles( FortRequest request )
     {
-        return reviewMgrImpl.assignedRolesM(request);
+        return reviewMgrImpl.assignedRolesM( request );
     }
 
+    
     /**
      * This function returns the set of users authorized to a given role, i.e., the users that are assigned to a role that
      * inherits the given role. The function is valid if and only if the given role is a member of the ROLES data set.
@@ -1824,11 +1870,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse authorizedUsers(FortRequest request)
+    public FortResponse authorizedUsers( FortRequest request )
     {
-        return reviewMgrImpl.authorizedUsersM(request);
+        return reviewMgrImpl.authorizedUsersM( request );
     }
 
+    
     /**
      * This function returns the set of roles authorized for a given user. The function is valid if
      * and only if the user is a member of the USERS data set.
@@ -1852,11 +1899,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse authorizedRoles(FortRequest request)
+    public FortResponse authorizedRoles( FortRequest request )
     {
-        return reviewMgrImpl.authorizedRoleM(request);
+        return reviewMgrImpl.authorizedRoleM( request );
     }
 
+    
     /**
      * Return a list of type String of all roles that have granted a particular permission.
      * <h4>required parameters</h4>
@@ -1880,11 +1928,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_ROLES + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse permissionRoles(FortRequest request)
+    public FortResponse permissionRoles( FortRequest request )
     {
-        return reviewMgrImpl.permissionRolesM(request);
+        return reviewMgrImpl.permissionRolesM( request );
     }
 
+    
     /**
      * This function returns the set of all permissions (op, obj), granted to or inherited by a
      * given role. The function is valid if and only if the role is a member of the ROLES data
@@ -1909,11 +1958,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ROLE_PERMS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse rolePermissions(FortRequest request)
+    public FortResponse rolePermissions( FortRequest request )
     {
-        return reviewMgrImpl.rolePermissionsM(request);
+        return reviewMgrImpl.rolePermissionsM( request );
     }
 
+    
     /**
      * This function returns the set of permissions a given user gets through his/her authorized
      * roles. The function is valid if and only if the user is a member of the USERS data set.
@@ -1937,11 +1987,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_PERMS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse userPermissions(FortRequest request)
+    public FortResponse userPermissions( FortRequest request )
     {
-        return reviewMgrImpl.userPermissionsM(request);
+        return reviewMgrImpl.userPermissionsM( request );
     }
 
+    
     /**
      * Return all role names that have been authorized for a given permission.  This will process role hierarchies to determine set of all Roles who have access to a given permission.
      * <h4>required parameters</h4>
@@ -1965,11 +2016,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_ROLES_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse authorizedPermissionRoles(FortRequest request)
+    public FortResponse authorizedPermissionRoles( FortRequest request )
     {
-        return reviewMgrImpl.authorizedPermissionRolesM(request);
+        return reviewMgrImpl.authorizedPermissionRolesM( request );
     }
 
+    
     /**
      * Return all userIds that have been granted (directly) a particular permission.  This will not consider assigned or authorized Roles.
      * <h4>required parameters</h4>
@@ -1993,11 +2045,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_USERS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse permissionUsers(FortRequest request)
+    public FortResponse permissionUsers( FortRequest request )
     {
-        return reviewMgrImpl.permissionUsersM(request);
+        return reviewMgrImpl.permissionUsersM( request );
     }
 
+    
     /**
      * Return all userIds that have been authorized for a given permission.  This will process role hierarchies to determine set of all Users who have access to a given permission.
      * <h4>required parameters</h4>
@@ -2021,11 +2074,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_USERS_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse authorizedPermissionUsers(FortRequest request)
+    public FortResponse authorizedPermissionUsers( FortRequest request )
     {
-        return reviewMgrImpl.authorizedPermissionUsersM(request);
+        return reviewMgrImpl.authorizedPermissionUsersM( request );
     }
 
+    
     /**
      * This function returns the list of all SSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all SSD role sets.
@@ -2049,11 +2103,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_ROLE_SETS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse ssdRoleSets(FortRequest request)
+    public FortResponse ssdRoleSets( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetsM(request);
+        return reviewMgrImpl.ssdRoleSetsM( request );
     }
 
+    
     /**
      * This function returns the SSD data set that matches a particular set name.
      * <h4>required parameters</h4>
@@ -2076,11 +2131,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse ssdRoleSet(FortRequest request)
+    public FortResponse ssdRoleSet( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetM(request);
+        return reviewMgrImpl.ssdRoleSetM( request );
     }
 
+    
     /**
      * This function returns the set of roles of a SSD role set. The function is valid if and only if the
      * role set exists.
@@ -2104,11 +2160,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_ROLES + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse ssdRoleSetRoles(FortRequest request)
+    public FortResponse ssdRoleSetRoles( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetRolesM(request);
+        return reviewMgrImpl.ssdRoleSetRolesM( request );
     }
 
+    
     /**
      * This function returns the cardinality associated with a SSD role set. The function is valid if and only if the
      * role set exists.
@@ -2124,11 +2181,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_CARD + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse ssdRoleSetCardinality(FortRequest request)
+    public FortResponse ssdRoleSetCardinality( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetCardinalityM(request);
+        return reviewMgrImpl.ssdRoleSetCardinalityM( request );
     }
 
+    
     /**
      * This function returns the list of all SSD sets that have a particular SSD set name.
      * If the parameter is left blank, function will return all SSD sets.
@@ -2152,11 +2210,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.SSD_SETS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse ssdSets(FortRequest request)
+    public FortResponse ssdSets( FortRequest request )
     {
-        return reviewMgrImpl.ssdSetsM(request);
+        return reviewMgrImpl.ssdSetsM( request );
     }
 
+    
     /**
      * This function returns the list of all DSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all DSD role sets.
@@ -2180,11 +2239,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_ROLE_SETS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse dsdRoleSets(FortRequest request)
+    public FortResponse dsdRoleSets( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetsM(request);
+        return reviewMgrImpl.dsdRoleSetsM( request );
     }
 
+    
     /**
      * This function returns the DSD data set that matches a particular set name.
      * <h4>required parameters</h4>
@@ -2207,11 +2267,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse dsdRoleSet(FortRequest request)
+    public FortResponse dsdRoleSet( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetM(request);
+        return reviewMgrImpl.dsdRoleSetM( request );
     }
 
+    
     /**
      * This function returns the set of roles of a DSD role set. The function is valid if and only if the
      * role set exists.
@@ -2235,11 +2296,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_ROLES + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse dsdRoleSetRoles(FortRequest request)
+    public FortResponse dsdRoleSetRoles( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetRolesM(request);
+        return reviewMgrImpl.dsdRoleSetRolesM( request );
     }
 
+    
     /**
      * This function returns the cardinality associated with a DSD role set. The function is valid if and only if the
      * role set exists.
@@ -2255,11 +2317,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_CARD + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse dsdRoleSetCardinality(FortRequest request)
+    public FortResponse dsdRoleSetCardinality( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetCardinalityM(request);
+        return reviewMgrImpl.dsdRoleSetCardinalityM( request );
     }
 
+    
     /**
      * This function returns the list of all DSD sets that have a particular DSD set name.
      * If the parameter is left blank, function will return all DSD sets.
@@ -2283,17 +2346,17 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.DSD_SETS + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse dsdSets(FortRequest request)
+    public FortResponse dsdSets( FortRequest request )
     {
-        return reviewMgrImpl.dsdSetsM(request);
+        return reviewMgrImpl.dsdSetsM( request );
     }
 
+    
     /**
      * ************************************************************************************************************************************
      * BEGIN ACCESSMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * Perform user authentication only.  It does not activate RBAC roles in session but will evaluate
      * password policies.
@@ -2314,11 +2377,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_AUTHN + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse authenticate(FortRequest request)
+    public FortResponse authenticate( FortRequest request )
     {
-        return accessMgrImpl.authenticate(request);
+        return accessMgrImpl.authenticate( request );
     }
 
+    
     /**
      * Perform user authentication {@link org.apache.directory.fortress.core.rbac.User#password} and role activations.<br />
      * This method must be called once per user prior to calling other methods within this class.
@@ -2372,11 +2436,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_CREATE + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse createSession(FortRequest request)
+    public FortResponse createSession( FortRequest request )
     {
-        return accessMgrImpl.createSession(request);
+        return accessMgrImpl.createSession( request );
     }
 
+    
     /**
      * This service accepts userId for validation and returns RBAC session.  This service will not check the password nor perform password policy validations.<br />
      * The successful result is {@link org.apache.directory.fortress.core.rbac.Session} that contains target user's RBAC {@link org.apache.directory.fortress.core.rbac.User#roles} and Admin role {@link org.apache.directory.fortress.core.rbac.User#adminRoles}.<br />
@@ -2423,11 +2488,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_CREATE_TRUSTED + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse createSessionTrusted(FortRequest request)
+    public FortResponse createSessionTrusted( FortRequest request )
     {
-        return accessMgrImpl.createSessionTrusted(request);
+        return accessMgrImpl.createSessionTrusted( request );
     }
 
+    
     /**
      * Perform user RBAC authorization.  This function returns a Boolean value meaning whether the subject of a given session is
      * allowed or not to perform a given operation on a given object. The function is valid if and
@@ -2454,11 +2520,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_AUTHZ + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse checkAccess(FortRequest request)
+    public FortResponse checkAccess( FortRequest request )
     {
-        return accessMgrImpl.checkAccess(request);
+        return accessMgrImpl.checkAccess( request );
     }
 
+    
     /**
      * This function returns the permissions of the session, i.e., the permissions assigned
      * to its authorized roles. The function is valid if and only if the session is a valid Fortress session.
@@ -2474,11 +2541,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_PERMS + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse sessionPermissions(FortRequest request)
+    public FortResponse sessionPermissions( FortRequest request )
     {
-        return accessMgrImpl.sessionPermissions(request);
+        return accessMgrImpl.sessionPermissions( request );
     }
 
+    
     /**
      * This function returns the active roles associated with a session. The function is valid if
      * and only if the session is a valid Fortress session.
@@ -2494,11 +2562,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_ROLES + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse sessionRoles(FortRequest request)
+    public FortResponse sessionRoles( FortRequest request )
     {
-        return accessMgrImpl.sessionRoles(request);
+        return accessMgrImpl.sessionRoles( request );
     }
 
+    
     /**
      * This function returns the authorized roles associated with a session based on hierarchical relationships. The function is valid if
      * and only if the session is a valid Fortress session.
@@ -2514,11 +2583,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_AUTHZ_ROLES + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse authorizedSessionRoles(FortRequest request)
+    public FortResponse authorizedSessionRoles( FortRequest request )
     {
-        return accessMgrImpl.authorizedSessionRoles(request);
+        return accessMgrImpl.authorizedSessionRoles( request );
     }
 
+    
     /**
      * This function adds a role as an active role of a session whose owner is a given user.
      * <h4>required parameters</h4>
@@ -2548,11 +2618,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_ADD + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse addActiveRole(FortRequest request)
+    public FortResponse addActiveRole( FortRequest request )
     {
-        return accessMgrImpl.addActiveRole(request);
+        return accessMgrImpl.addActiveRole( request );
     }
 
+    
     /**
      * This function deletes a role from the active role set of a session owned by a given user.
      * The function is valid if and only if the user is a member of the USERS data set, the
@@ -2575,11 +2646,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_DROP + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse dropActiveRole(FortRequest request)
+    public FortResponse dropActiveRole( FortRequest request )
     {
-        return accessMgrImpl.dropActiveRole(request);
+        return accessMgrImpl.dropActiveRole( request );
     }
 
+    
     /**
      * This function returns the userId value that is contained within the session object.
      * The function is valid if and only if the session object contains a valid Fortress session.
@@ -2595,11 +2667,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_USERID + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse getUserId(FortRequest request)
+    public FortResponse getUserId( FortRequest request )
     {
-        return accessMgrImpl.getUserId(request);
+        return accessMgrImpl.getUserId( request );
     }
 
+    
     /**
      * This function returns the user object that is contained within the session object.
      * The function is valid if and only if the session object contains a valid Fortress session.
@@ -2615,9 +2688,9 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.RBAC_USER + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse getUser(FortRequest request)
+    public FortResponse getUser( FortRequest request )
     {
-        return accessMgrImpl.getUser(request);
+        return accessMgrImpl.getUser( request );
     }
 
 
@@ -2626,7 +2699,6 @@ public class FortressServiceImpl implements FortressService
      * BEGIN DELEGATEDADMINMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * This command creates a new admin role. The command is valid if and only if the new admin role is not
      * already a member of the ADMIN ROLES data set. The ADMIN ROLES data set is updated.
@@ -2670,11 +2742,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_ADD + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addAdminRole(FortRequest request)
+    public FortResponse addAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminRole(request);
+        return delegatedAdminMgrImpl.addAdminRole( request );
     }
 
+    
     /**
      * This command deletes an existing admin role from the ARBAC database. The command is valid
      * if and only if the role to be deleted is a member of the ADMIN ROLES data set.  This command will
@@ -2699,11 +2772,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_DELETE + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteAdminRole(FortRequest request)
+    public FortResponse deleteAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteAdminRole(request);
+        return delegatedAdminMgrImpl.deleteAdminRole( request );
     }
 
+    
     /**
      * Method will update an AdminRole entity in the directory.  The role must exist in directory prior to this call.     *
      * <h4>required parameters</h4>
@@ -2743,11 +2817,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_UPDATE + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse updateAdminRole(FortRequest request)
+    public FortResponse updateAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.updateAdminRole(request);
+        return delegatedAdminMgrImpl.updateAdminRole( request );
     }
 
+    
     /**
      * This command assigns a user to an administrative role.
      * <p>
@@ -2807,11 +2882,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_ASGN + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse assignAdminUser(FortRequest request)
+    public FortResponse assignAdminUser( FortRequest request )
     {
-        return delegatedAdminMgrImpl.assignAdminUser(request);
+        return delegatedAdminMgrImpl.assignAdminUser( request );
     }
 
+    
     /**
      * This method removes assigned admin role from user entity.  Both user and admin role entities must exist and have role relationship
      * before calling this method.
@@ -2840,11 +2916,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_DEASGN + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse deassignAdminUser(FortRequest request)
+    public FortResponse deassignAdminUser( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deassignAdminUser(request);
+        return delegatedAdminMgrImpl.deassignAdminUser( request );
     }
 
+    
     /**
      * This commands creates a new role childRole, and inserts it in the role hierarchy as an immediate descendant of
      * the existing role parentRole. The command is valid if and only if childRole is not a member of the ADMINROLES data set,
@@ -2892,11 +2969,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_DESC + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addAdminDescendant(FortRequest request)
+    public FortResponse addAdminDescendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminDescendant(request);
+        return delegatedAdminMgrImpl.addAdminDescendant( request );
     }
 
+    
     /**
      * This commands creates a new role parentRole, and inserts it in the role hierarchy as an immediate ascendant of
      * the existing role childRole. The command is valid if and only if parentRole is not a member of the ADMINROLES data set,
@@ -2944,11 +3022,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_ASC + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addAdminAscendant(FortRequest request)
+    public FortResponse addAdminAscendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminAscendant(request);
+        return delegatedAdminMgrImpl.addAdminAscendant( request );
     }
 
+    
     /**
      * This commands establishes a new immediate inheritance relationship parentRole <<-- childRole between existing
      * roles parentRole, childRole. The command is valid if and only if parentRole and childRole are members of the ADMINROLES data
@@ -2981,11 +3060,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_ADDINHERIT + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addAdminInheritance(FortRequest request)
+    public FortResponse addAdminInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminInheritance(request);
+        return delegatedAdminMgrImpl.addAdminInheritance( request );
     }
 
+    
     /**
      * This command deletes an existing immediate inheritance relationship parentRole <<-- childRole. The command is
      * valid if and only if the adminRoles parentRole and childRole are members of the ADMINROLES data set, and parentRole is an
@@ -3019,11 +3099,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_DELINHERIT + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteAdminInheritance(FortRequest request)
+    public FortResponse deleteAdminInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteAdminInheritance(request);
+        return delegatedAdminMgrImpl.deleteAdminInheritance( request );
     }
 
+    
     /**
      * Commands adds a new OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
@@ -3052,11 +3133,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_ADD + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addOrg(FortRequest request)
+    public FortResponse addOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrg(request);
+        return delegatedAdminMgrImpl.addOrg( request );
     }
 
+    
     /**
      * Commands updates existing OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
@@ -3085,11 +3167,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_UPDATE + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse updateOrg(FortRequest request)
+    public FortResponse updateOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.updateOrg(request);
+        return delegatedAdminMgrImpl.updateOrg( request );
     }
 
+    
     /**
      * Commands deletes existing OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
@@ -3114,11 +3197,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_DELETE + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteOrg(FortRequest request)
+    public FortResponse deleteOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteOrg(request);
+        return delegatedAdminMgrImpl.deleteOrg( request );
     }
 
+    
     /**
      * This commands creates a new orgunit child, and inserts it in the orgunit hierarchy as an immediate descendant of
      * the existing orgunit parent.
@@ -3159,11 +3243,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_DESC + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addOrgDescendant(FortRequest request)
+    public FortResponse addOrgDescendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgDescendant(request);
+        return delegatedAdminMgrImpl.addOrgDescendant( request );
     }
 
+    
     /**
      * This commands creates a new orgunit parent, and inserts it in the orgunit hierarchy as an immediate ascendant of
      * the existing child orgunit.
@@ -3204,11 +3289,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_ASC + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addOrgAscendant(FortRequest request)
+    public FortResponse addOrgAscendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgAscendant(request);
+        return delegatedAdminMgrImpl.addOrgAscendant( request );
     }
 
+    
     /**
      * This commands establishes a new immediate inheritance relationship with parent orgunit <<-- child orgunit
      * <h4>required parameters</h4>
@@ -3239,11 +3325,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_ADDINHERIT + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse addOrgInheritance(FortRequest request)
+    public FortResponse addOrgInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgInheritance(request);
+        return delegatedAdminMgrImpl.addOrgInheritance( request );
     }
 
+    
     /**
      * This command deletes an existing immediate inheritance relationship parent <<-- child.
      * <h4>required parameters</h4>
@@ -3275,9 +3362,9 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_DELINHERIT + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ADMIN_MGR_USER})
     @Override
-    public FortResponse deleteOrgInheritance(FortRequest request)
+    public FortResponse deleteOrgInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteOrgInheritance(request);
+        return delegatedAdminMgrImpl.deleteOrgInheritance( request );
     }
 
 
@@ -3286,7 +3373,6 @@ public class FortressServiceImpl implements FortressService
      * BEGIN DELEGATEDREVIEWMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * Method reads Admin Role entity from the admin role container in directory.
      * <h4>required parameters</h4>
@@ -3309,11 +3395,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_READ + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse readAdminRole(FortRequest request)
+    public FortResponse readAdminRole( FortRequest request )
     {
-        return delegatedReviewMgrImpl.readAdminRole(request);
+        return delegatedReviewMgrImpl.readAdminRole( request );
     }
 
+    
     /**
      * Method will return a list of type AdminRole matching all or part of {@link org.apache.directory.fortress.core.rbac.AdminRole#name}.
      * <h4>required parameters</h4>
@@ -3332,11 +3419,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_SEARCH + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse findAdminRoles(FortRequest request)
+    public FortResponse findAdminRoles( FortRequest request )
     {
-        return delegatedReviewMgrImpl.findAdminRoles(request);
+        return delegatedReviewMgrImpl.findAdminRoles( request );
     }
 
+    
     /**
      * This function returns the set of adminRoles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
@@ -3360,11 +3448,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ARLE_ASGNED + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse assignedAdminRoles(FortRequest request)
+    public FortResponse assignedAdminRoles( FortRequest request )
     {
-        return delegatedReviewMgrImpl.assignedAdminRoles(request);
+        return delegatedReviewMgrImpl.assignedAdminRoles( request );
     }
 
+    
     /**
      * This method returns the data set of all users who are assigned the given admin role.  This searches the User data set for
      * AdminRole relationship.  This method does NOT search for hierarchical AdminRoles relationships.
@@ -3388,11 +3477,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.USER_ASGNED_ADMIN + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse assignedAdminUsers(FortRequest request)
+    public FortResponse assignedAdminUsers( FortRequest request )
     {
-        return delegatedReviewMgrImpl.assignedAdminUsers(request);
+        return delegatedReviewMgrImpl.assignedAdminUsers( request );
     }
 
+    
     /**
      * Commands reads existing OrgUnit entity from OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
@@ -3417,11 +3507,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_READ + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse readOrg(FortRequest request)
+    public FortResponse readOrg( FortRequest request )
     {
-        return delegatedReviewMgrImpl.readOrg(request);
+        return delegatedReviewMgrImpl.readOrg( request );
     }
 
+    
     /**
      * Commands searches existing OrgUnit entities from OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type parameter on API.
@@ -3446,17 +3537,17 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ORG_SEARCH + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_REVIEW_MGR_USER})
     @Override
-    public FortResponse searchOrg(FortRequest request)
+    public FortResponse searchOrg( FortRequest request )
     {
-        return delegatedReviewMgrImpl.searchOrg(request);
+        return delegatedReviewMgrImpl.searchOrg( request );
     }
 
+    
     /**
      * ************************************************************************************************************************************
      * BEGIN DELEGATEDACCESSMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * This function will determine if the user contains an AdminRole that is authorized assignment control over
      * User-Role Assignment (URA).  This adheres to the ARBAC02 functional specification for can-assign URA.
@@ -3478,11 +3569,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_ASSIGN + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse canAssign(FortRequest request)
+    public FortResponse canAssign( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canAssign(request);
+        return delegatedAccessMgrImpl.canAssign( request );
     }
 
+    
     /**
      * This function will determine if the user contains an AdminRole that is authorized revoke control over
      * User-Role Assignment (URA).  This adheres to the ARBAC02 functional specification for can-revoke URA.
@@ -3504,11 +3596,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_DEASSIGN + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse canDeassign(FortRequest request)
+    public FortResponse canDeassign( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canDeassign(request);
+        return delegatedAccessMgrImpl.canDeassign( request );
     }
 
+    
     /**
      * This function will determine if the user contains an AdminRole that is authorized assignment control over
      * Permission-Role Assignment (PRA).  This adheres to the ARBAC02 functional specification for can-assign-p PRA.
@@ -3531,11 +3624,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_GRANT + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse canGrant(FortRequest request)
+    public FortResponse canGrant( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canGrant(request);
+        return delegatedAccessMgrImpl.canGrant( request );
     }
 
+    
     /**
      * This function will determine if the user contains an AdminRole that is authorized revoke control over
      * Permission-Role Assignment (PRA).  This adheres to the ARBAC02 functional specification for can-revoke-p PRA.
@@ -3558,11 +3652,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_REVOKE + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse canRevoke(FortRequest request)
+    public FortResponse canRevoke( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canRevoke(request);
+        return delegatedAccessMgrImpl.canRevoke( request );
     }
 
+    
     /**
      * This function returns a Boolean value meaning whether the subject of a given session is
      * allowed or not to perform a given operation on a given object. The function is valid if and
@@ -3589,11 +3684,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_AUTHZ + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse checkAdminAccess(FortRequest request)
+    public FortResponse checkAdminAccess( FortRequest request )
     {
-        return delegatedAccessMgrImpl.checkAdminAccess(request);
+        return delegatedAccessMgrImpl.checkAdminAccess( request );
     }
 
+    
     /**
      * This function adds an AdminRole as an active role of a session whose owner is a given user.
      * <h4>required parameters</h4>
@@ -3622,11 +3718,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_ADD + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse addActiveAdminRole(FortRequest request)
+    public FortResponse addActiveAdminRole( FortRequest request )
     {
-        return delegatedAccessMgrImpl.addActiveAdminRole(request);
+        return delegatedAccessMgrImpl.addActiveAdminRole( request );
     }
 
+    
     /**
      * This function deletes an AdminRole from the active role set of a session owned by a given user.
      * The function is valid if and only if the user is a member of the USERS data set, the
@@ -3649,11 +3746,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_DROP + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse dropActiveAdminRole(FortRequest request)
+    public FortResponse dropActiveAdminRole( FortRequest request )
     {
-        return delegatedAccessMgrImpl.dropActiveAdminRole(request);
+        return delegatedAccessMgrImpl.dropActiveAdminRole( request );
     }
 
+    
     /**
      * This function returns the active admin roles associated with a session. The function is valid if
      * and only if the session is a valid Fortress session.
@@ -3669,11 +3767,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_ROLES + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse sessionAdminRoles(FortRequest request)
+    public FortResponse sessionAdminRoles( FortRequest request )
     {
-        return delegatedAccessMgrImpl.sessionAdminRoles(request);
+        return delegatedAccessMgrImpl.sessionAdminRoles( request );
     }
 
+    
     /**
      * This function returns the ARBAC (administrative) permissions of the session, i.e., the admin permissions assigned
      * to its authorized admin roles. The function is valid if and only if the session is a valid Fortress session.
@@ -3689,11 +3788,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_PERMS + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse sessionAdminPermissions(FortRequest request)
+    public FortResponse sessionAdminPermissions( FortRequest request )
     {
         return delegatedAccessMgrImpl.sessionAdminPermissions( request );
     }
 
+    
     /**
      * This function returns the authorized ARBAC (administrative) roles associated with a session based on hierarchical relationships. The function is valid if
      * and only if the session is a valid Fortress session.
@@ -3709,7 +3809,7 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.ADMIN_AUTHZ_ROLES + "/")
     @RolesAllowed({SUPER_USER, DELEGATED_ACCESS_MGR_USER})
     @Override
-    public FortResponse authorizedSessionAdminRoles(FortRequest request)
+    public FortResponse authorizedSessionAdminRoles( FortRequest request )
     {
         return delegatedAccessMgrImpl.authorizedSessionRoles( request );
     }
@@ -3720,7 +3820,6 @@ public class FortressServiceImpl implements FortressService
      * BEGIN PSWDPOLICYMGR
      * **************************************************************************************************************************************
      */
-
     /**
      * This method will add a new policy entry to the POLICIES data set.  This command is valid
      * if and only if the policy entry is not already present in the POLICIES data set.
@@ -3818,11 +3917,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_ADD + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse addPolicy(FortRequest request)
+    public FortResponse addPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.addPolicy(request);
+        return pswdPolicyMgrImpl.addPolicy( request );
     }
 
+    
     /**
      * This method will update an exiting policy entry to the POLICIES data set.  This command is valid
      * if and only if the policy entry is already present in the POLICIES data set.
@@ -3920,11 +4020,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_UPDATE + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse updatePolicy(FortRequest request)
+    public FortResponse updatePolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.updatePolicy(request);
+        return pswdPolicyMgrImpl.updatePolicy( request );
     }
 
+    
     /**
      * This method will delete exiting policy entry from the POLICIES data set.  This command is valid
      * if and only if the policy entry is already present in the POLICIES data set.  Existing users that
@@ -3949,11 +4050,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_DELETE + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse deletePolicy(FortRequest request)
+    public FortResponse deletePolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.deletePolicy(request);
+        return pswdPolicyMgrImpl.deletePolicy( request );
     }
 
+    
     /**
      * This method will return the password policy entity to the caller.  This command is valid
      * if and only if the policy entry is present in the POLICIES data set.
@@ -3977,11 +4079,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_READ + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse readPolicy(FortRequest request)
+    public FortResponse readPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.readPolicy(request);
+        return pswdPolicyMgrImpl.readPolicy( request );
     }
 
+    
     /**
      * This method will return a list of all password policy entities that match a particular search string.
      * This command will return an empty list of no matching entries are found.
@@ -4005,11 +4108,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_SEARCH + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse searchPolicy(FortRequest request)
+    public FortResponse searchPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.searchPolicy(request);
+        return pswdPolicyMgrImpl.searchPolicy( request );
     }
 
+    
     /**
      * This method will associate a user entity with a password policy entity.  This function is valid
      * if and only if the user is a member of the USERS data set and the policyName refers to a
@@ -4035,11 +4139,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_USER_ADD + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse updateUserPolicy(FortRequest request)
+    public FortResponse updateUserPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.updateUserPolicy(request);
+        return pswdPolicyMgrImpl.updateUserPolicy( request );
     }
 
+    
     /**
      * This method will remove the pw policy assignment from a user entity.  This function is valid
      * if and only if the user is a member of the USERS data set and the policy attribute is assigned.
@@ -4061,17 +4166,17 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PSWD_USER_DELETE + "/")
     @RolesAllowed({SUPER_USER, PASSWORD_MGR_USER})
     @Override
-    public FortResponse deleteUserPolicy(FortRequest request)
+    public FortResponse deleteUserPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.deleteUserPolicy(request);
+        return pswdPolicyMgrImpl.deleteUserPolicy( request );
     }
 
+    
     /**
      * ************************************************************************************************************************************
      * BEGIN AUDIT
      * **************************************************************************************************************************************
      */
-
     /**
      * This method returns a list of authentication audit events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
      * and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
@@ -4097,11 +4202,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_BINDS + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse searchBinds(FortRequest request)
+    public FortResponse searchBinds( FortRequest request )
     {
-        return auditMgrImpl.searchBinds(request);
+        return auditMgrImpl.searchBinds( request );
     }
 
+    
     /**
      * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId}
      * and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.
@@ -4128,11 +4234,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_UAUTHZS + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse getUserAuthZs(FortRequest request)
+    public FortResponse getUserAuthZs( FortRequest request )
     {
-        return auditMgrImpl.getUserAuthZs(request);
+        return auditMgrImpl.getUserAuthZs( request );
     }
 
+    
     /**
      * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
      * object {@link org.apache.directory.fortress.core.rbac.UserAudit#objName}, and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
@@ -4158,11 +4265,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_AUTHZS + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse searchAuthZs(FortRequest request)
+    public FortResponse searchAuthZs( FortRequest request )
     {
-        return auditMgrImpl.searchAuthZs(request);
+        return auditMgrImpl.searchAuthZs( request );
     }
 
+    
     /**
      * This method returns a list of sessions created for a given user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
      * and timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
@@ -4190,11 +4298,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_SESSIONS + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse searchUserSessions(FortRequest request)
+    public FortResponse searchUserSessions( FortRequest request )
     {
-        return auditMgrImpl.searchUserSessions(request);
+        return auditMgrImpl.searchUserSessions( request );
     }
 
+    
     /**
      * This method returns a list of admin operations events for a particular entity {@link org.apache.directory.fortress.core.rbac.UserAudit#dn},
      * object {@link org.apache.directory.fortress.core.rbac.UserAudit#objName} and timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.  If the internal
@@ -4225,11 +4334,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_MODS + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse searchAdminMods(FortRequest request)
+    public FortResponse searchAdminMods( FortRequest request )
     {
-        return auditMgrImpl.searchAdminMods(request);
+        return auditMgrImpl.searchAdminMods( request );
     }
 
+    
     /**
      * This method returns a list of failed authentication attempts on behalf of an invalid identity {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
      * and given timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.  If the {@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly} is true it will
@@ -4259,11 +4369,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.AUDIT_INVLD + "/")
     @RolesAllowed({SUPER_USER, AUDIT_MGR_USER})
     @Override
-    public FortResponse searchInvalidUsers(FortRequest request)
+    public FortResponse searchInvalidUsers( FortRequest request )
     {
-        return auditMgrImpl.searchInvalidUsers(request);
+        return auditMgrImpl.searchInvalidUsers( request );
     }
 
+    
     /**
      * ************************************************************************************************************************************
      * BEGIN CONFIGMGR
@@ -4289,11 +4400,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.CFG_ADD + "/")
     @RolesAllowed({SUPER_USER, CONFIG_MGR_USER})
     @Override
-    public FortResponse addConfig(FortRequest request)
+    public FortResponse addConfig( FortRequest request )
     {
-        return configMgrImpl.addConfig(request);
+        return configMgrImpl.addConfig( request );
     }
 
+    
     /**
      * Update existing configuration node with additional properties, or, replace existing properties.  The name is required.  If node does not exist,
      * a {@link org.apache.directory.fortress.core.SecurityException} with error {@link org.apache.directory.fortress.core.GlobalErrIds#FT_CONFIG_NOT_FOUND} will be thrown.
@@ -4314,11 +4426,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.CFG_UPDATE + "/")
     @RolesAllowed({SUPER_USER, CONFIG_MGR_USER})
     @Override
-    public FortResponse updateConfig(FortRequest request)
+    public FortResponse updateConfig( FortRequest request )
     {
-        return configMgrImpl.updateConfig(request);
+        return configMgrImpl.updateConfig( request );
     }
 
+    
     /**
      * This service will either completely remove named configuration node from the directory or specified properties depending on the arguments passed in.
      * <p/>
@@ -4344,11 +4457,12 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.CFG_DELETE + "/")
     @RolesAllowed({SUPER_USER, CONFIG_MGR_USER})
     @Override
-    public FortResponse deleteConfig(FortRequest request)
+    public FortResponse deleteConfig( FortRequest request )
     {
-        return configMgrImpl.deleteConfig(request);
+        return configMgrImpl.deleteConfig( request );
     }
 
+    
     /**
      * Read an existing configuration node with given name and return to caller.  The name is required.  If node doesn't exist,
      * a {@link org.apache.directory.fortress.core.SecurityException} with error {@link org.apache.directory.fortress.core.GlobalErrIds#FT_CONFIG_NOT_FOUND} will be thrown.
@@ -4368,8 +4482,8 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.CFG_READ + "/")
     @RolesAllowed({SUPER_USER, CONFIG_MGR_USER})
     @Override
-    public FortResponse readConfig(FortRequest request)
+    public FortResponse readConfig( FortRequest request )
     {
-        return configMgrImpl.readConfig(request);
+        return configMgrImpl.readConfig( request );
     }
 }

@@ -34,39 +34,40 @@ import java.io.IOException;
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
-
 public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Message>
 {
     public SecurityOutFaultInterceptor()
     {
-        super(Phase.PRE_STREAM);
+        super( Phase.PRE_STREAM );
 
     }
 
-    public void handleMessage(Message message) throws Fault
+    
+    public void handleMessage( Message message ) throws Fault
     {
-        Fault fault = (Fault) message.getContent(Exception.class);
+        Fault fault = (Fault) message.getContent( Exception.class );
         Throwable ex = fault.getCause();
-        if (!(ex instanceof SecurityException))
+        
+        if ( !(ex instanceof SecurityException) )
         {
-            throw new RuntimeException("Security Exception is expected:" + ex);
+            throw new RuntimeException( "Security Exception is expected:" + ex );
         }
 
         HttpServletResponse response = (HttpServletResponse) message.getExchange().getInMessage()
-            .get(AbstractHTTPDestination.HTTP_RESPONSE);
+            .get( AbstractHTTPDestination.HTTP_RESPONSE );
         int status = ex instanceof AccessDeniedException ? 403 : 401;
-        response.setStatus(status);
+        response.setStatus( status );
+        
         try
         {
-            response.getOutputStream().write(ex.getMessage().getBytes());
+            response.getOutputStream().write( ex.getMessage().getBytes() );
             response.getOutputStream().flush();
         }
-        catch (IOException iex)
+        catch ( IOException iex )
         {
             // ignore
         }
 
         message.getInterceptorChain().abort();
     }
-
 }
