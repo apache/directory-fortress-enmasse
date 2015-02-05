@@ -28,7 +28,7 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 0.  Prerequisites for Fortress Rest installation and usage
 ###################################################################################
-a. Internet access to retrieve source code from Apache Fortress Web GIT and binary dependencies from online Maven repo.
+a. Internet access to retrieve source code from Apache Fortress Rest GIT and binary dependencies from online Maven repo.
 
 b. Java SDK Version 7 or beyond installed to target environment
 
@@ -42,26 +42,17 @@ ________________________________________________________________________________
 # SECTION 1:  Instructions to clone source from Fortress Rest Git Repo:
 ###################################################################################
 
-a. Clone the directory-fortress-web from apache git repo:
-# git clone https://git-wip-us.apache.org/repos/asf/directory-fortress-web.git
+a. Clone the directory-fortress-enmasse from apache git repo:
+# git clone https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
 
 b. Change directory to package home:
-# cd directory-fortress-web/
-
-d. Set JAVA_HOME
-# export JAVA_HOME=...
-
-d. Set Maven Home:
-# export M2_HOME=...
-
-e. Build the Fortress Web source:
-# $M2_HOME/bin/mvn clean install -DskipTests
+# cd directory-fortress-enmasse/
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 2:  Instructions to build Fortress Rest
 ###################################################################################
 
-a. Open a command prompt on target machine in the root folder of the enmasse-dist package
+a. Open a command prompt on target machine in the root folder of the directory-fortress-enmasse package
 
 b. Set java home:
 # export JAVA_HOME=...
@@ -78,7 +69,7 @@ e. Build the javadoc:
 f. To view Service-level documentation, point your web browser here:
 file:///[package home]/target/site/apidocs/org/apache/directory/fortress/rest/FortressServiceImpl.html
 
-(where [package_home] is location of directory-fortress-rest base package)
+(where [package_home] is location of directory-fortress-enmasse base package)
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 3:  Obtain the fortress.properties
@@ -113,7 +104,7 @@ Add to file:
       <password>m@nager123</password>
 </server>
 
-note: If you followed the installation steps of Fortress QUICKSTART your Tomcat Manager creds would be as above.
+note: If you followed the installation steps of Fortress Ten Minute Guide your Tomcat Manager creds would be as above.
 
 b. Enter maven command to deploy to Tomcat:
 # $M2_HOME/bin/mvn tomcat:deploy
