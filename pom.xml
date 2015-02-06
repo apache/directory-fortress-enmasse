@@ -306,7 +306,7 @@
         <configuration>
           <warFile>target/${project.artifactId}.war</warFile>
           <server>local-tomcat</server>
-          <url>http://localhost:8080/manager/html</url>
+          <url>http://localhost:8080/manager/text</url>
           <path>/${project.artifactId}-${project.version}</path>
 <!--          <path>/enmasse-${version}</path>-->
           <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
