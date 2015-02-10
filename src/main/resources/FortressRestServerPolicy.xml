@@ -74,6 +74,11 @@
                 <relationship child="fortress-web-power-user" parent="fortress-rest-config-user"/>
             </addroleinheritance>
 
+            <!-- Begin ARBAC Delegated Admin Data: -->
+            <addorgunit>
+                <orgunit name="demousrs1" typeName="USER" description="Test User Org 1 for User on Tomcat Calendar App"/>
+            </addorgunit>
+
         </FortressAdmin>
     </target>
 </project>
