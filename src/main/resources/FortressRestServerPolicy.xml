@@ -25,6 +25,17 @@
     <target name="all">
         <FortressAdmin>
 
+
+            <!-- Begin RBAC Admin Data: -->
+            <adduser>
+                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="JoeUser4" sn="User4"  pwPolicy="Test1" beginTime="0000" endTime="0000" beginDate="20090101" endDate="20990101" beginLockDate="" endLockDate="" dayMask="1234567" timeout="60" photo="p4.jpeg"/>
+            </adduser>
+
+            <adduserrole>
+                <userrole userId="demoUser4" name="fortress-rest-user"  beginTime="0000" endTime="0000" beginDate="" endDate="" beginLockDate="" endLockDate="" dayMask="" timeout="0"/>
+                <userrole userId="demoUser4" name="fortress-rest-super-user"  beginTime="0000" endTime="0000" beginDate="" endDate="" beginLockDate="" endLockDate="" dayMask="" timeout="0"/>
+            </adduserrole>
+
             <addrole>
                 <!-- This role is checked by the servlet container using JavaEE security.  All callers must be assigned this role
                 plus at least one more of the interceptor roles from below -->

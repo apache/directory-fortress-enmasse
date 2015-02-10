@@ -441,7 +441,7 @@
                   <sysproperty key="version" value="${project.version}"/>
                   <sysproperty key="tenant" value="HOME"/>
                   <arg value="-buildfile"/>
-                  <arg file="./src/main/resources/FortressRestServerRoles.xml"/>
+                  <arg file="./src/main/resources/FortressRestServerPolicy.xml"/>
                 </java>
               </target>
             </configuration>
