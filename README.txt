@@ -21,7 +21,7 @@
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress Rest Application Installation
-Last updated: February 5, 2015
+Last updated: February 10, 2015
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 0.  Prerequisites for Fortress Rest installation and usage
@@ -34,17 +34,21 @@ c. Java SDK Version 7 or beyond installed to target machine.
 
 d. Apache Maven 3 installed to target machine.
 
-e. LDAP server installed to target environment.  (as described in README.txt located in the Apache Fortress Core package)
+e. Fortress Core installed to target machine.
+(as described in README.txt located in the Apache Fortress Core package)
 
-f. Apache Tomcat 7 or greater installed to target environment.
+f. Fortress Realm installed to target machine.
+(as described in README.txt located in the Apache Fortress Realm package)
 
-g. directory-fortress-realm proxy jar loaded into Apache Tomcat server's /lib folder -
-    The README.txt located in the Apache Fortress Realm package describes instructions to build.
+g. Fortress enabled LDAP server installed to target environment.
+(as described in README.txt located in the Apache Fortress Core package)
+
+h. Apache Tomcat 7 or greater installed to target environment and Realm enabled.
+(as described in REALM_CONTEXT_SETUP.txt or REALM_HOST_SETUP.txt located in the Apache Fortress Realm package).
 _________________________________________________________________________________
 ###################################################################################
 # SECTION 1:  Instructions to clone source from Fortress Rest Git Repo:
 ###################################################################################
-
 a. Clone the directory-fortress-enmasse from apache git repo:
 # git clone https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
 
@@ -54,7 +58,6 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 2:  Instructions to build Fortress Rest
 ###################################################################################
-
 a. Open a command prompt on target machine in the root folder of the directory-fortress-enmasse package
 
 b. Set java home:
@@ -77,8 +80,7 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 3:  Obtain the fortress.properties
 ###################################################################################
-
-Copy the fortress.properties, created during [directory-fortress-core] setup, to this package's resource folder.
+Copy the fortress.properties, created during Fortress Core setup, to this package's resource folder.
 
 # cp [directory-fortress-core]/config/fortress.properties [directory-fortress-enmasse]/src/main/resources
 
@@ -87,14 +89,12 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 4:  Load Test Users
 ###################################################################################
-
 Run maven install with load file:
 # $M2_HOME/bin/mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml -DskipTests=true
 
 ###################################################################################
 # SECTION 5:  Instructions to Deploy Fortress Rest application to Tomcat
 ###################################################################################
-
 a. If Tomcat has global security enabled you must add credentials to pom.xml:
 
       <plugin>
@@ -131,7 +131,6 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 6:  Instructions to test Fortress Rest application
 ###################################################################################
-
 Run maven test
 # $M2_HOME/bin/mvn test
 
@@ -154,7 +153,6 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 7:  Alternate testing procedures
 ###################################################################################
-
 Another way to test Fortress Rest is using the Fortress Core APIs which can be configured to communicate via HTTP/REST.
 To enable Fortress Core test client to route requests through Fortres Rest server, add these properties to fortress.properties in your Fortress Core client's /config folder:
 
