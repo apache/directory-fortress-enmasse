@@ -28,16 +28,18 @@ ________________________________________________________________________________
 ###################################################################################
 a. Internet access to retrieve source code from Apache Fortress Rest GIT and binary dependencies from online Maven repo.
 
-b. Java SDK Version 7 or beyond installed to target environment
+b. Git installed to target machine.
 
-c. Apache Maven installed to target environment
+c. Java SDK Version 7 or beyond installed to target machine.
 
-d. LDAP server installed.  (see README in Apache Fortress Core)
+d. Apache Maven 3 installed to target machine.
 
-e. Apache Tomcat 7 or greater installed to local machine.
+e. LDAP server installed to target environment.  (as described in README.txt located in the Apache Fortress Core package)
 
-f. directory-fortress-realm proxy jar loaded into Tomcat server's /lib folder -
-    The README.txt from directory-fortress-realm package provides instructions for obtaining.
+f. Apache Tomcat 7 or greater installed to target environment.
+
+g. directory-fortress-realm proxy jar loaded into Apache Tomcat server's /lib folder -
+    The README.txt located in the Apache Fortress Realm package describes instructions to build.
 _________________________________________________________________________________
 ###################################################################################
 # SECTION 1:  Instructions to clone source from Fortress Rest Git Repo:
