@@ -132,13 +132,14 @@ ________________________________________________________________________________
 # SECTION 6:  Instructions to test Fortress Rest application
 ###################################################################################
 Run maven test
-# $M2_HOME/bin/mvn test
+# $M2_HOME/bin/mvn verify -Dnoload
 
-note1: the Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
- is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
-note2:  For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
-note3:  The tests depend on user, 'demoUser4', already provisioned into LDAP assigned necessary role, during section 3.
-note4:  If for any reason these tests should not be run during maven processing, adjust the following setting in project's pom.xml (set to 'true'):
+notes
+    - The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
+      is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
+    - For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
+    - The tests depend on user, 'demoUser4', already provisioned into LDAP assigned necessary role, during section 3.
+    - If for any reason these tests should not be run during maven processing, adjust the following setting in project's pom.xml (set to 'true'):
 
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
