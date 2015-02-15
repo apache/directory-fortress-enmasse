@@ -82,7 +82,7 @@ ________________________________________________________________________________
 ###################################################################################
 Copy the fortress.properties, created during Fortress Core setup, to this package's resource folder.
 
-# cp [directory-fortress-core]/config/fortress.properties [directory-fortress-enmasse]/src/main/resources
+# cp [directory-fortress-core]/src/test/resources/fortress.properties [directory-fortress-enmasse]/src/main/resources
 
 Where [directory-fortress-core] is base folder of the fortress core source package and [directory-fortress-enmasse] is the current package's home folder.
 ___________________________________________________________________________________
@@ -134,7 +134,7 @@ ________________________________________________________________________________
 Run maven test
 # $M2_HOME/bin/mvn verify -Dnoload
 
-notes
+notes:
     - The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
       is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
     - For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
