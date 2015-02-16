@@ -60,29 +60,25 @@ ________________________________________________________________________________
 ###################################################################################
 a. Open a command prompt on target machine in the root folder of the directory-fortress-enmasse package
 
-b. Set java home:
-# export JAVA_HOME=...
+b. Set java home and maven home
 
-c. Set maven home:
-# export M2_HOME=...
+c. Run maven install:
+# mvn clean install -DskipTests
 
-d. Run maven install:
-# $M2_HOME/bin/mvn clean install -DskipTests
-
-e. Build the javadoc:
-# $M2_HOME/bin/mvn javadoc:javadoc
+d. Build the javadoc:
+# mvn javadoc:javadoc
 
 f. To view Service-level documentation, point your web browser here:
-file:///[package home]/target/site/apidocs/org/apache/directory/fortress/rest/FortressServiceImpl.html
+file:///[directory-fortress-enmasse]/target/site/apidocs/org/apache/directory/fortress/rest/FortressServiceImpl.html
 
-(where [package_home] is location of directory-fortress-enmasse base package)
+(where [directory-fortress-enmasse] is location of this source package)
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 3:  Obtain the fortress.properties
 ###################################################################################
 Copy the fortress.properties, created during Fortress Core setup, to this package's resource folder.
 
-# cp [directory-fortress-core]/src/test/resources/fortress.properties [directory-fortress-enmasse]/src/main/resources
+# cp [directory-fortress-core]/config/fortress.properties [directory-fortress-enmasse]/src/main/resources
 
 Where [directory-fortress-core] is base folder of the fortress core source package and [directory-fortress-enmasse] is the current package's home folder.
 ___________________________________________________________________________________
@@ -90,7 +86,7 @@ ________________________________________________________________________________
 # SECTION 4:  Load Test Users
 ###################################################################################
 Run maven install with load file:
-# $M2_HOME/bin/mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml -DskipTests=true
+# mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml -DskipTests=true
 
 ###################################################################################
 # SECTION 5:  Instructions to Deploy Fortress Rest application to Tomcat
@@ -120,19 +116,19 @@ c. Restart Tomcat server.
 Note: REALM_CONTEXT_SETUP.txt and REALM_HOST_SETUP.txt, located in directory-fortress-realm package describes the Tomcat setup in more detail.
 
 d. Enter maven command to deploy to Tomcat:
-# $M2_HOME/bin/mvn tomcat:deploy
+# mvn tomcat:deploy
 
 e. To deploy:
-# $M2_HOME/bin/mvn tomcat:deploy
+# mvn tomcat:deploy
 
 f. To redeploy:
-# $M2_HOME/bin/mvn tomcat:redeploy
+# mvn tomcat:redeploy
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 6:  Instructions to test Fortress Rest application
 ###################################################################################
 Run maven test
-# $M2_HOME/bin/mvn verify -Dnoload
+# mvn verify -Dnoload
 
 notes:
     - The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
