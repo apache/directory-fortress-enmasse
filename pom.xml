@@ -26,7 +26,7 @@
   <artifactId>fortress-rest</artifactId>
   <packaging>war</packaging>
   <version>1.0-RC40-SNAPSHOT</version>
-  <name>Apache Fortress Web</name>
+  <name>Apache Fortress Rest</name>
   <url>http://directory.apache.org/fortress/</url>
   <description>Fortress Rest provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine</description>
 
@@ -110,7 +110,7 @@
     <src.java.dir>${base.dir}/src/main/java</src.java.dir>
     <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
     <test>org.apache.directory.fortress.rest.EmTest</test>
-    <title>${project.name} ${project.version}</title>
+    <!--<title>${project.name} ${project.version}</title>-->
     <skipTests>true</skipTests>
   </properties>
 
@@ -325,8 +325,9 @@
           <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
           <version>true</version>
           <author>true</author>
-          <doctitle>${title}</doctitle>
-          <windowtitle>${title}</windowtitle>
+          <doctitle>${project.name} Javadoc ${project.version}</doctitle>
+          <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
+          <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
         <executions>
           <execution>
