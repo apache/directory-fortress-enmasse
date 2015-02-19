@@ -320,8 +320,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
           <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 1998-2014 The OpenLDAP Foundation. All Rights Reserved.
-            Generated ${maven.build.timestamp}.&lt;/small&gt;</bottom>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2015, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
           <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
           <version>true</version>
           <author>true</author>
