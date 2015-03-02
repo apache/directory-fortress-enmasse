@@ -68,6 +68,16 @@ c. Run maven install:
 d. Build the javadoc:
 # mvn javadoc:javadoc
 
+javadoc note: if using java 8, add this param to the pom.xml:
+<plugin>
+    ...
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <configuration>
+        <additionalparam>-Xdoclint:none</additionalparam>
+        ...
+    </configuration>
+</plugin>
+
 f. To view Service-level documentation, point your web browser here:
 file:///[directory-fortress-enmasse]/target/site/apidocs/org/apache/directory/fortress/rest/FortressServiceImpl.html
 
