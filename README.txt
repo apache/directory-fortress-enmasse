@@ -138,7 +138,7 @@ ________________________________________________________________________________
 # SECTION 6:  Instructions to test Fortress Rest application
 ###################################################################################
 Run unit test:
-# mvn -Dtest=EmTest test
+# mvn test -Dtest=EmTest
 
 notes:
     - The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
