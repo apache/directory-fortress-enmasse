@@ -90,7 +90,7 @@
     <version.httpclient>3.1</version.httpclient>
     <version.java>1.7</version.java>
     <version.javadoc>2.9.1</version.javadoc>
-    <version.junit>4.11</version.junit>
+    <version.junit>4.12</version.junit>
     <version.log4j>1.2.17</version.log4j>
     <version.servlet-api>2.5.0</version.servlet-api>
     <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
@@ -107,10 +107,6 @@
     <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
     <base.dir>.</base.dir>
     <src.java.dir>${base.dir}/src/main/java</src.java.dir>
-    <!--cxf.surefire.fork.mode>pertest</cxf.surefire.fork.mode-->
-    <test>org.apache.directory.fortress.rest.EmTest</test>
-    <!--<title>${project.name} ${project.version}</title>-->
-    <skipTests>true</skipTests>
   </properties>
 
   <dependencies>
@@ -121,7 +117,7 @@
       <version>${project.version}</version>
     </dependency>
 
-    <!-- EnMasse Dependencies -->
+    <!-- CXF Dependencies -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-bundle</artifactId>
@@ -202,7 +198,7 @@
       <version>${version.spring.dao}</version>
     </dependency>
 
-    <!-- General Dependencies -->
+    <!-- General Rest Test Dependencies -->
     <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
@@ -338,18 +334,23 @@
         </executions>
       </plugin>
 
-      <!-- unit test (change to integration test) -->
+      <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
+      <!-- mvn -Dtest=EmTest -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <skipTests>false</skipTests>
-          <systemProperties>
-            <property>
-              <name>version</name>
-              <value>${project.version}</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables>
+            <version>${project.version}</version>
+          </systemPropertyVariables>
+          <excludes>
+            <exclude>${exclude.tests}</exclude>
+          </excludes>
+          <includes>
+            <include>${include.tests}</include>
+          </includes>
+          <groups>${testcase.groups}</groups>
+          <runOrder>random</runOrder>
         </configuration>
       </plugin>
 
@@ -403,10 +404,9 @@
           <execution>
             <phase>test</phase>
             <configuration>
-              <target name="fortress-load"
-                  unless="noload"
-                  description="Loads fortress rest rbac policy into ldap">
-                <echo message="###############  Run Fortress Ant script to load policy  ###############"/>
+              <target name="fortress-load"  if="load.file"
+                  description="Loads fortress rbac policy files into ldap">
+                <echo message="###############  Run Fortress Policy Load  ###############"/>
                 <java
                     classname="org.apache.tools.ant.launch.Launcher"
                     fork="true"
@@ -440,7 +440,8 @@
                   <sysproperty key="version" value="${project.version}"/>
                   <sysproperty key="tenant" value="HOME"/>
                   <arg value="-buildfile"/>
-                  <arg file="./src/main/resources/FortressRestServerPolicy.xml"/>
+                  <arg file="./${load.file}" />
+<!--                  <arg file="./src/main/resources/FortressRestServerPolicy.xml"/>-->
                 </java>
               </target>
             </configuration>
@@ -469,6 +470,7 @@
   </reporting>
 
   <profiles>
+
     <profile>
       <id>release-sign-artifacts</id>
       <activation>
