@@ -21,7 +21,7 @@
 ___________________________________________________________________________________
 ###################################################################################
 README for Fortress Rest Application Installation
-Last updated: February 16, 2015
+Last updated: March 31, 2015
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 0.  Prerequisites for Fortress Rest installation and usage
@@ -63,7 +63,7 @@ a. Open a command prompt on target machine in the root folder of the directory-f
 b. Set java home and maven home
 
 c. Run maven install:
-# mvn clean install -DskipTests
+# mvn clean install
 
 d. Build the javadoc:
 # mvn javadoc:javadoc
@@ -96,7 +96,7 @@ ________________________________________________________________________________
 # SECTION 4:  Load Test Users
 ###################################################################################
 Run maven install with load file:
-# mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml -DskipTests=true
+# mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml
 
 ###################################################################################
 # SECTION 5:  Instructions to Deploy Fortress Rest application to Tomcat
@@ -137,25 +137,14 @@ ________________________________________________________________________________
 ###################################################################################
 # SECTION 6:  Instructions to test Fortress Rest application
 ###################################################################################
-Run maven test
-# mvn verify -Dnoload
+Run unit test:
+# mvn test -Dtest=EmTest
 
 notes:
     - The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
       is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
     - For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
     - The tests depend on user, 'demoUser4', already provisioned into LDAP assigned necessary role, during section 3.
-    - If for any reason these tests should not be run during maven processing, adjust the following setting in project's pom.xml (set to 'true'):
-
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.12</version>
-        <configuration>
-            <skipTests>true</skipTests>
-        </configuration>
-    </plugin>
-
 ___________________________________________________________________________________
 ###################################################################################
 # SECTION 7:  Alternate testing procedures
