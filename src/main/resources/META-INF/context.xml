@@ -20,8 +20,6 @@
 <Context reloadable="true">
 
     <Realm className="org.apache.directory.fortress.realm.tomcat.Tc7AccessMgrProxy"
-           debug="0"
-           resourceName="UserDatabase"
            defaultRoles=""
            containerType="TomcatContext"
            realmClasspath=""
