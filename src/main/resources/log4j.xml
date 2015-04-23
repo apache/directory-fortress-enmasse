@@ -23,7 +23,7 @@
 
 
     <appender name="file" class="org.apache.log4j.FileAppender">
-        <param name="File" value="/home/smckinn/tmp/oamTest.log"/>
+        <param name="File" value="fortress-rest.log"/>
         <param name="Append" value="true"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%t %-5p %c{2} - %m%n"/>
@@ -40,6 +40,13 @@
         <priority value="INFO" class="org.apache.log4j.Level"/>
         <appender-ref ref="console"/>
     </category>
+
+<!--
+    <category name="org.apache.directory.fortress" class="org.apache.log4j.Logger" additivity="false">
+        <priority value="INFO" class="org.apache.log4j.Level"/>
+        <appender-ref ref="console"/>
+    </category>
+-->
 
     <root>
         <priority value="INFO" class="org.apache.log4j.Level"/>
