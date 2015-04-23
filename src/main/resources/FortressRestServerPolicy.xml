@@ -28,7 +28,7 @@
 
             <!-- Begin RBAC Admin Data: -->
             <adduser>
-                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="JoeUser4" sn="User4"  pwPolicy="Test1" beginTime="0000" endTime="0000" beginDate="20090101" endDate="20990101" beginLockDate="" endLockDate="" dayMask="1234567" timeout="60" photo="p4.jpeg"/>
+                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="JoeUser4" sn="User4"  beginTime="0000" endTime="0000" beginDate="20090101" endDate="20990101" beginLockDate="" endLockDate="" dayMask="1234567" timeout="60" photo="p4.jpeg"/>
             </adduser>
 
             <adduserrole>

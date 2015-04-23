@@ -96,7 +96,7 @@ ________________________________________________________________________________
 # SECTION 4:  Load Test Users
 ###################################################################################
 Run maven install with load file:
-# mvn install -Dload.file=./src/main/resources/FortressRestServerRoles.xml
+# mvn install -Dload.file=./src/main/resources/FortressRestServerPolicy.xml
 
 ###################################################################################
 # SECTION 5:  Instructions to Deploy Fortress Rest application to Tomcat
