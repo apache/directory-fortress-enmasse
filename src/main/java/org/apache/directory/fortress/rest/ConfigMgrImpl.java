@@ -19,11 +19,11 @@
  */
 package org.apache.directory.fortress.rest;
 
-import org.apache.directory.fortress.core.cfg.ConfigMgr;
-import org.apache.directory.fortress.core.cfg.ConfigMgrFactory;
-import org.apache.directory.fortress.core.rbac.Props;
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.ConfigMgr;
+import org.apache.directory.fortress.core.ConfigMgrFactory;
+import org.apache.directory.fortress.core.model.Props;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.directory.fortress.core.rest.RestUtils;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.log4j.Logger;

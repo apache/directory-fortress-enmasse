@@ -27,7 +27,7 @@ import java.net.URL;
 
 import org.apache.directory.fortress.core.RestException;
 import org.apache.directory.fortress.core.GlobalErrIds;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.directory.fortress.core.rest.HttpIds;
 import org.apache.directory.fortress.core.rest.RestUtils;
 import org.apache.commons.httpclient.HttpClient;

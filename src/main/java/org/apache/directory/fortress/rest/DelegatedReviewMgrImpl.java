@@ -22,12 +22,12 @@ package org.apache.directory.fortress.rest;
 import org.apache.directory.fortress.core.DelReviewMgr;
 import org.apache.directory.fortress.core.DelReviewMgrFactory;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.rbac.AdminRole;
-import org.apache.directory.fortress.core.rbac.OrgUnit;
-import org.apache.directory.fortress.core.rbac.UserAdminRole;
-import org.apache.directory.fortress.core.rbac.User;
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.model.AdminRole;
+import org.apache.directory.fortress.core.model.OrgUnit;
+import org.apache.directory.fortress.core.model.UserAdminRole;
+import org.apache.directory.fortress.core.model.User;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;

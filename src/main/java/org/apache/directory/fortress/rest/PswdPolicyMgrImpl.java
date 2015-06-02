@@ -22,9 +22,9 @@ package org.apache.directory.fortress.rest;
 import org.apache.directory.fortress.core.PwPolicyMgr;
 import org.apache.directory.fortress.core.PwPolicyMgrFactory;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.rbac.PwPolicy;
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.model.PwPolicy;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;

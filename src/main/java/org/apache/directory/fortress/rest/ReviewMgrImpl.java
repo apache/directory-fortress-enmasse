@@ -19,19 +19,19 @@
  */
 package org.apache.directory.fortress.rest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.directory.fortress.core.ReviewMgr;
 import org.apache.directory.fortress.core.ReviewMgrFactory;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.rbac.OrgUnit;
-import org.apache.directory.fortress.core.rbac.PermObj;
-import org.apache.directory.fortress.core.rbac.Permission;
-import org.apache.directory.fortress.core.rbac.Role;
-import org.apache.directory.fortress.core.rbac.SDSet;
-import org.apache.directory.fortress.core.rbac.User;
-import org.apache.directory.fortress.core.rbac.UserRole;
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
-import org.apache.directory.fortress.core.util.attr.VUtil;
+import org.apache.directory.fortress.core.model.OrgUnit;
+import org.apache.directory.fortress.core.model.PermObj;
+import org.apache.directory.fortress.core.model.Permission;
+import org.apache.directory.fortress.core.model.Role;
+import org.apache.directory.fortress.core.model.SDSet;
+import org.apache.directory.fortress.core.model.User;
+import org.apache.directory.fortress.core.model.UserRole;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -121,7 +121,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
             PermObj inObj = (PermObj) request.getEntity();
             List<PermObj> objs = null;
             
-            if ( VUtil.isNotNullOrEmpty( inObj.getOu() ) )
+            if ( StringUtils.isNotEmpty( inObj.getOu() ) )
             {
                 objs = reviewMgr.findPermObjs( new OrgUnit( inObj.getOu(), OrgUnit.Type.PERM ) );
             }
@@ -232,7 +232,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
             {
                 List<User> retUsers;
                 
-                if ( VUtil.isNotNullOrEmpty( inUser.getOu() ) )
+                if ( StringUtils.isNotEmpty( inUser.getOu() ) )
                 {
                     retUsers = reviewMgr.findUsers( new OrgUnit( inUser.getOu(), OrgUnit.Type.USER ) );
                 }
@@ -293,7 +293,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
             ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             reviewMgr.setAdmin( request.getSession() );
             
-            if ( VUtil.isNotNullOrEmpty( request.getValue() ) )
+            if ( StringUtils.isNotEmpty( request.getValue() ) )
             {
                 String userId = request.getValue();
                 List<String> retRoles = reviewMgr.assignedRoles( userId );

@@ -19,8 +19,8 @@
  */
 package org.apache.directory.fortress.rest;
 
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 
 /**
  * Interface for EnMasse Service methods.
@@ -37,34 +37,34 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#password} - used to authenticate the User</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#ou} - contains the name of an already existing User OU node</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#password} - used to authenticate the User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#ou} - contains the name of an already existing User OU node</li>
      * </ul>
      * <h5>User optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#pwPolicy} - contains the name of an already existing OpenLDAP password policy node</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#cn} - maps to INetOrgPerson common name attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#sn} - maps to INetOrgPerson surname attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#description} - maps to INetOrgPerson description attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#phones} * - multi-occurring attribute maps to organizationalPerson telephoneNumber  attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#mobiles} * - multi-occurring attribute maps to INetOrgPerson mobile attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#emails} * - multi-occurring attribute maps to INetOrgPerson mail attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#address} * - multi-occurring attribute maps to organizationalPerson postalAddress, st, l, postalCode, postOfficeBox attributes</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginTime} - HHMM - determines begin hour user may activate session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endTime} - HHMM - determines end hour user may activate session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginDate} - YYYYMMDD - determines date when user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endDate} - YYYYMMDD - indicates latest date user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day of user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#timeout} - number in seconds of session inactivity time allowed</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#props} * - multi-occurring attribute contains property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#roles} * - multi-occurring attribute contains the name of already existing role to assign to user</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#adminRoles} * - multi-occurring attribute contains the name of already existing adminRole to assign to user</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#pwPolicy} - contains the name of an already existing OpenLDAP password policy node</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#cn} - maps to INetOrgPerson common name attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#sn} - maps to INetOrgPerson surname attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#description} - maps to INetOrgPerson description attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#phones} * - multi-occurring attribute maps to organizationalPerson telephoneNumber  attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#mobiles} * - multi-occurring attribute maps to INetOrgPerson mobile attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#emails} * - multi-occurring attribute maps to INetOrgPerson mail attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#address} * - multi-occurring attribute maps to organizationalPerson postalAddress, st, l, postalCode, postOfficeBox attributes</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginTime} - HHMM - determines begin hour user may activate session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endTime} - HHMM - determines end hour user may activate session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginDate} - YYYYMMDD - determines date when user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endDate} - YYYYMMDD - indicates latest date user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day of user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#timeout} - number in seconds of session inactivity time allowed</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#props} * - multi-occurring attribute contains property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#roles} * - multi-occurring attribute contains the name of already existing role to assign to user</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#adminRoles} * - multi-occurring attribute contains the name of already existing adminRole to assign to user</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -87,10 +87,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -116,10 +116,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -139,34 +139,34 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * <h5>User optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#password} - used to authenticate the User</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#ou} - contains the name of an already existing User OU node</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#pwPolicy} - contains the name of an already existing OpenLDAP password policy node</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#cn} - maps to INetOrgPerson common name attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#sn} - maps to INetOrgPerson surname attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#description} - maps to INetOrgPerson description attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#phones} * - multi-occurring attribute maps to organizationalPerson telephoneNumber  attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#mobiles} * - multi-occurring attribute maps to INetOrgPerson mobile attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#emails} * - multi-occurring attribute maps to INetOrgPerson mail attribute</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#address} * - multi-occurring attribute maps to organizationalPerson postalAddress, st, l, postalCode, postOfficeBox attributes</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginTime} - HHMM - determines begin hour user may activate session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endTime} - HHMM - determines end hour user may activate session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginDate} - YYYYMMDD - determines date when user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endDate} - YYYYMMDD - indicates latest date user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day of user may sign on</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#timeout} - number in seconds of session inactivity time allowed</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#props} * - multi-occurring attribute contains property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#roles} * - multi-occurring attribute contains the name of already existing role to assign to user</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#adminRoles} * - multi-occurring attribute contains the name of already existing adminRole to assign to user</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#password} - used to authenticate the User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#ou} - contains the name of an already existing User OU node</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#pwPolicy} - contains the name of an already existing OpenLDAP password policy node</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#cn} - maps to INetOrgPerson common name attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#sn} - maps to INetOrgPerson surname attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#description} - maps to INetOrgPerson description attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#phones} * - multi-occurring attribute maps to organizationalPerson telephoneNumber  attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#mobiles} * - multi-occurring attribute maps to INetOrgPerson mobile attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#emails} * - multi-occurring attribute maps to INetOrgPerson mail attribute</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#address} * - multi-occurring attribute maps to organizationalPerson postalAddress, st, l, postalCode, postOfficeBox attributes</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginTime} - HHMM - determines begin hour user may activate session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endTime} - HHMM - determines end hour user may activate session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginDate} - YYYYMMDD - determines date when user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endDate} - YYYYMMDD - indicates latest date user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day of user may sign on</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#timeout} - number in seconds of session inactivity time allowed</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#props} * - multi-occurring attribute contains property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#roles} * - multi-occurring attribute contains the name of already existing role to assign to user</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#adminRoles} * - multi-occurring attribute contains the name of already existing adminRole to assign to user</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -185,11 +185,11 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#password} - contains the User's old password</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#password} - contains the User's old password</li>
      * <li>newPassword - contains the User's new password</li>
      * </ul>
      * </ul>
@@ -209,10 +209,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -231,10 +231,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -254,10 +254,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} object</li>
      * <h5>User required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * <li>newPassword - contains the User's new password</li>
      * </ul>
      * </ul>
@@ -279,22 +279,22 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} object</li>
      * <h4>Role required parameters</h4>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role to be created.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to be created.</li>
      * </ul>
      * </ul>
      * <h4>Role optional parameters</h4>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#description} - maps to description attribute on organizationalRole object class</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#description} - maps to description attribute on organizationalRole object class</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
      * </ul>
      * <h4>optional parameters</h4>
      * <ul>
@@ -314,10 +314,10 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} object</li>
      * <h4>Role required parameters</h4>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role to be removed.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to be removed.</li>
      * </ul>
      * <ul>
      * <h4>Role optional parameters</h4>
@@ -335,21 +335,21 @@ public interface FortressService
      * Method will update a Role entity in the directory.  The role must exist in role container prior to this call.     *
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} object</li>
      * <h4>Role required parameters</h4>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role to be updated.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to be updated.</li>
      * </ul>
      * <h4>Role optional parameters</h4>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#description} - maps to description attribute on organizationalRole object class</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#description} - maps to description attribute on organizationalRole object class</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -394,21 +394,21 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} object</li>
      * <h5>UserRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the name for already existing Role to be assigned</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the name for already existing Role to be assigned</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the userId for existing User</li>
      * </ul>
      * <h5>UserRole optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#endTime} - HHMM - determines end hour role may be activated into user's RBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -433,11 +433,11 @@ public interface FortressService
      * (optional) Temporal constraints will be removed from user aux object if set prior to call.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} object</li>
      * <h5>UserRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the name for already existing Role to be deassigned</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the name for already existing Role to be deassigned</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the userId for existing User</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -453,22 +453,22 @@ public interface FortressService
     
     /**
      * This method will add permission operation to an existing permission object which resides under {@code ou=Permissions,ou=RBAC,dc=yourHostName,dc=com} container in directory information tree.
-     * The perm operation entity may have {@link org.apache.directory.fortress.core.rbac.Role} or {@link org.apache.directory.fortress.core.rbac.User} associations.  The target {@link org.apache.directory.fortress.core.rbac.Permission} must not exist prior to calling.
-     * A Fortress Permission instance exists in a hierarchical, one-many relationship between its parent and itself as stored in ldap tree: ({@link org.apache.directory.fortress.core.rbac.PermObj}*->{@link org.apache.directory.fortress.core.rbac.Permission}).
+     * The perm operation entity may have {@link org.apache.directory.fortress.core.model.Role} or {@link org.apache.directory.fortress.core.model.User} associations.  The target {@link org.apache.directory.fortress.core.model.Permission} must not exist prior to calling.
+     * A Fortress Permission instance exists in a hierarchical, one-many relationship between its parent and itself as stored in ldap tree: ({@link org.apache.directory.fortress.core.model.PermObj}*->{@link org.apache.directory.fortress.core.model.Permission}).
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted for the permission add</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of new permission operation being added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission add</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being added</li>
      * </ul>
      * <h5>Permission optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#roles} * - multi occurring attribute contains RBAC Roles that permission operation is being granted to</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#users} * - multi occurring attribute contains Users that permission operation is being granted to</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#type} - any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#roles} * - multi occurring attribute contains RBAC Roles that permission operation is being granted to</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#users} * - multi occurring attribute contains Users that permission operation is being granted to</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#type} - any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -484,22 +484,22 @@ public interface FortressService
     
     /**
      * This method will update permission operation pre-existing in target directory under {@code ou=Permissions,ou=RBAC,dc=yourHostName,dc=com} container in directory information tree.
-     * The perm operation entity may also contain {@link org.apache.directory.fortress.core.rbac.Role} or {@link org.apache.directory.fortress.core.rbac.User} associations to add or remove using this function.
+     * The perm operation entity may also contain {@link org.apache.directory.fortress.core.model.Role} or {@link org.apache.directory.fortress.core.model.User} associations to add or remove using this function.
      * The perm operation must exist before making this call.  Only non-null attributes will be updated.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted for the permission update</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of new permission operation being updated</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being updated</li>
      * </ul>
      * <h5>Permission optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#roles} * - multi occurring attribute contains RBAC Roles that permission operation is being granted to</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#users} * - multi occurring attribute contains Users that permission operation is being granted to</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#type} - any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#roles} * - multi occurring attribute contains RBAC Roles that permission operation is being granted to</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#users} * - multi occurring attribute contains Users that permission operation is being granted to</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#type} - any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -518,11 +518,11 @@ public interface FortressService
      * The perm operation must exist before making this call.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted for the permission removal</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of new permission operation being deleted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission removal</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being deleted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -538,20 +538,20 @@ public interface FortressService
     
     /**
      * This method will add permission object to perms container in directory. The perm object must not exist before making this call.
-     * A {@link org.apache.directory.fortress.core.rbac.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.rbac.PermObj}*->{@link org.apache.directory.fortress.core.rbac.Permission}).
+     * A {@link org.apache.directory.fortress.core.model.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.model.PermObj}*->{@link org.apache.directory.fortress.core.model.Permission}).
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#objectName} - contains the name of new object being added</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#ou} - contains the name of an existing PERMS OrgUnit this object is associated with</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#ou} - contains the name of an existing PERMS OrgUnit this object is associated with</li>
      * </ul>
      * <h5>PermObj optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#description} - any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#type} - contains any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#description} - any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#type} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -567,20 +567,20 @@ public interface FortressService
     
     /**
      * This method will update permission object in perms container in directory.  The perm object must exist before making this call.
-     * A {@link org.apache.directory.fortress.core.rbac.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.rbac.PermObj}*->{@link org.apache.directory.fortress.core.rbac.Permission}).
+     * A {@link org.apache.directory.fortress.core.model.PermObj} instance exists in a hierarchical, one-many relationship between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.model.PermObj}*->{@link org.apache.directory.fortress.core.model.Permission}).
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#objectName} - contains the name of new object being updated</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being updated</li>
      * </ul>
      * <h5>PermObj optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#ou} - contains the name of an existing PERMS OrgUnit this object is associated with</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#description} - any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#type} - contains any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#ou} - contains the name of an existing PERMS OrgUnit this object is associated with</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#description} - any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#type} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#props} * - multi-occurring property key and values are separated with a ':'.  e.g. mykey1:myvalue1</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -599,10 +599,10 @@ public interface FortressService
      * in associated permission objects that are attached to this object.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#objectName} - contains the name of new object being removed</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being removed</li>
      * </ul>
      * </ul>
      * <h5>optional parameters</h5>
@@ -624,16 +624,16 @@ public interface FortressService
      * and the role is a member of the ROLES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermGrant} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermGrant} entity</li>
      * <h5>PermGrant required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objName} - contains the object name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#opName} - contains the operation name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#roleNm} - contains the role name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objName} - contains the object name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#opName} - contains the operation name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#roleNm} - contains the role name</li>
      * </ul>
      * <h5>PermGrant optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objId} - contains the object id</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objId} - contains the object id</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -655,16 +655,16 @@ public interface FortressService
      * the role is a member of the ROLES data set, and the permission is assigned to that role.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermGrant} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermGrant} entity</li>
      * <h5>PermGrant required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objName} - contains the object name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#opName} - contains the operation name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#roleNm} - contains the role name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objName} - contains the object name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#opName} - contains the operation name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#roleNm} - contains the role name</li>
      * </ul>
      * <h5>PermGrant optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objId} - contains the object id</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objId} - contains the object id</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -686,16 +686,16 @@ public interface FortressService
      * and the user is a member of the USERS data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermGrant} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermGrant} entity</li>
      * <h5>PermGrant required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objName} - contains the object name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#opName} - contains the operation name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objName} - contains the object name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#opName} - contains the operation name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#userId} - contains the userId for existing User</li>
      * </ul>
      * <h5>PermGrant optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objId} - contains the object id</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objId} - contains the object id</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -717,16 +717,16 @@ public interface FortressService
      * the user is a member of the USERS data set, and the permission is assigned to that user.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermGrant} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermGrant} entity</li>
      * <h5>PermGrant required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objName} - contains the object name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#opName} - contains the operation name</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objName} - contains the object name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#opName} - contains the operation name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#userId} - contains the userId for existing User</li>
      * </ul>
      * <h5>PermGrant optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermGrant#objId} - contains the object id</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermGrant#objId} - contains the object id</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -757,22 +757,22 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing parent role</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of new child role</li>
      * </ul>
-     * <h5>optional parameters {@link org.apache.directory.fortress.core.rbac.RoleRelationship#child}</h5>
+     * <h5>optional parameters {@link org.apache.directory.fortress.core.model.RoleRelationship#child}</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -803,22 +803,22 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>childRole - {@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing child Role</li>
-     * <li>parentRole - {@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of new Role to be parent</li>
+     * <li>childRole - {@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing child Role</li>
+     * <li>parentRole - {@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of new Role to be parent</li>
      * </ul>
-     * <h5>optional parameters {@link org.apache.directory.fortress.core.rbac.RoleRelationship#parent}</h5>
+     * <h5>optional parameters {@link org.apache.directory.fortress.core.model.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -844,11 +844,11 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing role to be parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing role to be child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing role to be parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing role to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -874,11 +874,11 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -905,16 +905,16 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of new SSD role set to be added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of new SSD role set to be added</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -923,7 +923,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse createSsdSet( FortRequest request );
 
@@ -941,16 +941,16 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set to be modified</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set to be modified</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -959,7 +959,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse updateSsdSet( FortRequest request );
 
@@ -976,10 +976,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the Role name to add as member to SSD set</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -988,7 +988,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse addSsdRoleMember( FortRequest request );
 
@@ -1006,10 +1006,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the Role name to remove as member to SSD set</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1018,7 +1018,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse deleteSsdRoleMember( FortRequest request );
 
@@ -1027,10 +1027,10 @@ public interface FortressService
      * This command deletes a SSD role set completely. The command is valid if and only if the SSD role set exists.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set targeted for removal</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set targeted for removal</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1039,7 +1039,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse deleteSsdSet( FortRequest request );
 
@@ -1055,11 +1055,11 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - contains new cardinality setting for SSD</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - contains new cardinality setting for SSD</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1068,7 +1068,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse setSsdSetCardinality( FortRequest request );
 
@@ -1086,16 +1086,16 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of new DSD role set to be added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of new DSD role set to be added</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1104,7 +1104,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse createDsdSet( FortRequest request );
 
@@ -1122,16 +1122,16 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing SSD role set to be modified</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing SSD role set to be modified</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#members} * - multi-occurring attribute contains the RBAC Role names to be added to this set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - default is 2 which is one more than maximum number of Roles that may be assigned to User from a particular set</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1140,7 +1140,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse updateDsdSet( FortRequest request );
 
@@ -1157,10 +1157,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the Role name to add as member to DSD set</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1169,7 +1169,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse addDsdRoleMember( FortRequest request );
 
@@ -1187,10 +1187,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the Role name to remove as member to DSD set</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1199,7 +1199,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse deleteDsdRoleMember( FortRequest request );
 
@@ -1208,10 +1208,10 @@ public interface FortressService
      * This command deletes a DSD role set completely. The command is valid if and only if the DSD role set exists.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing DSD role set targeted for removal</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing DSD role set targeted for removal</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1220,7 +1220,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse deleteDsdSet( FortRequest request );
 
@@ -1236,11 +1236,11 @@ public interface FortressService
      * </ul>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#cardinality} - contains new cardinality setting for DSD</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing DSD role set targeted for update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#cardinality} - contains new cardinality setting for DSD</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1249,7 +1249,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.SDSet}
      */
     FortResponse setDsdSetCardinality( FortRequest request );
 
@@ -1259,11 +1259,11 @@ public interface FortressService
      * This method returns a matching permission entity to caller.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1272,7 +1272,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.Permission}
      */
     FortResponse readPermission( FortRequest request );
 
@@ -1281,10 +1281,10 @@ public interface FortressService
      * Method reads permission object from perm container in directory.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PermObj} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PermObj} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1293,7 +1293,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.PermObj}
      */
     FortResponse readPermObj( FortRequest request );
 
@@ -1302,11 +1302,11 @@ public interface FortressService
      * Method returns a list of type Permission that match the perm object search string.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains one or more characters of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains one or more characters of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains one or more characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more characters of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1315,7 +1315,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.Permission}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission}
      */
     FortResponse findPermissions( FortRequest request );
 
@@ -1324,10 +1324,10 @@ public interface FortressService
      * Method returns a list of type Permission that match the perm object search string.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PermObj} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PermObj} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PermObj} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PermObj#objectName} - contains one or more characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains one or more characters of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1336,7 +1336,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.PermObj}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.PermObj}
      */
     FortResponse findPermObjs( FortRequest request );
 
@@ -1345,10 +1345,10 @@ public interface FortressService
      * Method reads Role entity from the role container in directory.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role to read.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to read.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1357,13 +1357,13 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.Role}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.Role}
      */
     FortResponse readRole( FortRequest request );
 
     
     /**
-     * Method will return a list of type Role matching all or part of {@link org.apache.directory.fortress.core.rbac.Role#name}.
+     * Method will return a list of type Role matching all or part of {@link org.apache.directory.fortress.core.model.Role#name}.
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains all or some of the chars corresponding to role entities stored in directory.</li>
@@ -1374,7 +1374,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.Role}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Role}
      */
     FortResponse findRoles( FortRequest request );
 
@@ -1383,10 +1383,10 @@ public interface FortressService
      * Method returns matching User entity that is contained within the people container in the directory.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains the userId associated with the User object targeted for read.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the userId associated with the User object targeted for read.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1395,20 +1395,20 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.User}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.User}
      */
     FortResponse readUser( FortRequest request );
 
     
     /**
-     * Return a list of type User of all users in the people container that match all or part of the {@link org.apache.directory.fortress.core.rbac.User#userId} or {@link org.apache.directory.fortress.core.rbac.User#ou} fields passed in User entity.
+     * Return a list of type User of all users in the people container that match all or part of the {@link org.apache.directory.fortress.core.model.User#userId} or {@link org.apache.directory.fortress.core.model.User#ou} fields passed in User entity.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains all or some leading chars that match userId(s) stored in the directory.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#ou} - contains one or more characters of org unit associated with existing object(s) being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains all or some leading chars that match userId(s) stored in the directory.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#ou} - contains one or more characters of org unit associated with existing object(s) being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1417,7 +1417,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.User}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.User}
      */
     FortResponse findUsers( FortRequest request );
 
@@ -1427,10 +1427,10 @@ public interface FortressService
      * Role relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1439,7 +1439,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.User}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.User}
      */
     FortResponse assignedUsers( FortRequest request );
 
@@ -1449,10 +1449,10 @@ public interface FortressService
      * only if the user is a member of the USERS data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains the userId associated with the User object targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the userId associated with the User object targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1461,7 +1461,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.UserRole}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.UserRole}
      */
     FortResponse assignedRoles( FortRequest request );
 
@@ -1471,10 +1471,10 @@ public interface FortressService
      * inherits the given role. The function is valid if and only if the given role is a member of the ROLES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1483,7 +1483,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.User}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.User}
      */
     FortResponse authorizedUsers( FortRequest request );
 
@@ -1493,10 +1493,10 @@ public interface FortressService
      * and only if the user is a member of the USERS data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains the userId associated with the User object targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the userId associated with the User object targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1514,11 +1514,11 @@ public interface FortressService
      * Return a list of type String of all roles that have granted a particular permission.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1538,10 +1538,10 @@ public interface FortressService
      * set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1550,7 +1550,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.Permission} containing permissions for role.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission} containing permissions for role.
      */
     FortResponse rolePermissions( FortRequest request );
 
@@ -1560,10 +1560,10 @@ public interface FortressService
      * roles. The function is valid if and only if the user is a member of the USERS data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains the userId associated with the User object targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the userId associated with the User object targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1572,7 +1572,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.Permission} containing permissions for user.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission} containing permissions for user.
      */
     FortResponse userPermissions( FortRequest request );
 
@@ -1581,11 +1581,11 @@ public interface FortressService
      * Return all role names that have been authorized for a given permission.  This will process role hierarchies to determine set of all Roles who have access to a given permission.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1603,11 +1603,11 @@ public interface FortressService
      * Return all userIds that have been granted (directly) a particular permission.  This will not consider assigned or authorized Roles.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1625,11 +1625,11 @@ public interface FortressService
      * Return all userIds that have been authorized for a given permission.  This will process role hierarchies to determine set of all Users who have access to a given permission.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1649,10 +1649,10 @@ public interface FortressService
      * parent as a member.  If the Role parameter is left blank, function will return all SSD role sets.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1661,7 +1661,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing all matching SSD sets.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.SDSet} containing all matching SSD sets.
      */
     FortResponse ssdRoleSets( FortRequest request );
 
@@ -1670,10 +1670,10 @@ public interface FortressService
      * This function returns the SSD data set that matches a particular set name.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1682,7 +1682,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to an object of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing matching SSD set.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to an object of type {@link org.apache.directory.fortress.core.model.SDSet} containing matching SSD set.
      */
     FortResponse ssdRoleSet( FortRequest request );
 
@@ -1692,10 +1692,10 @@ public interface FortressService
      * role set exists.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1728,10 +1728,10 @@ public interface FortressService
      * If the parameter is left blank, function will return all SSD sets.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name to use for the search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1740,7 +1740,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing all matching SSD sets.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.SDSet} containing all matching SSD sets.
      */
     FortResponse ssdSets( FortRequest request );
 
@@ -1750,10 +1750,10 @@ public interface FortressService
      * parent as a member.  If the Role parameter is left blank, function will return all DSD role sets.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Role} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Role} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1762,7 +1762,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing all matching DSD sets.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.SDSet} containing all matching DSD sets.
      */
     FortResponse dsdRoleSets( FortRequest request );
 
@@ -1771,10 +1771,10 @@ public interface FortressService
      * This function returns the DSD data set that matches a particular set name.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1783,7 +1783,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to an object of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing matching DSD set.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to an object of type {@link org.apache.directory.fortress.core.model.SDSet} containing matching DSD set.
      */
     FortResponse dsdRoleSet( FortRequest request );
 
@@ -1793,10 +1793,10 @@ public interface FortressService
      * role set exists.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1829,10 +1829,10 @@ public interface FortressService
      * If the parameter is left blank, function will return all DSD sets.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.SDSet} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.SDSet} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.SDSet} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.SDSet} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.SDSet#name} - contains the name to use for the search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.SDSet#name} - contains the name to use for the search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1841,7 +1841,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.SDSet} containing all matching DSD sets.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.SDSet} containing all matching DSD sets.
      */
     FortResponse dsdSets( FortRequest request );
 
@@ -1853,11 +1853,11 @@ public interface FortressService
      * password policies.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#password} - used to authenticate the User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#password} - used to authenticate the User</li>
      * </ul>
      * </ul>
      *
@@ -1868,35 +1868,35 @@ public interface FortressService
 
     
     /**
-     * Perform user authentication {@link org.apache.directory.fortress.core.rbac.User#password} and role activations.<br />
+     * Perform user authentication {@link org.apache.directory.fortress.core.model.User#password} and role activations.<br />
      * This method must be called once per user prior to calling other methods within this class.
-     * The successful result is {@link org.apache.directory.fortress.core.rbac.Session} that contains target user's RBAC {@link org.apache.directory.fortress.core.rbac.User#roles} and Admin role {@link org.apache.directory.fortress.core.rbac.User#adminRoles}.<br />
-     * In addition to checking user password validity it will apply configured password policy checks {@link org.apache.directory.fortress.core.rbac.User#pwPolicy}..<br />
+     * The successful result is {@link org.apache.directory.fortress.core.model.Session} that contains target user's RBAC {@link org.apache.directory.fortress.core.model.User#roles} and Admin role {@link org.apache.directory.fortress.core.model.User#adminRoles}.<br />
+     * In addition to checking user password validity it will apply configured password policy checks {@link org.apache.directory.fortress.core.model.User#pwPolicy}..<br />
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#password} - used to authenticate the User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#password} - used to authenticate the User</li>
      * </ul>
      * <h5>User optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#roles} * - multi-occurring attribute contains the names of assigned RBAC roles targeted for activation into Session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#adminRoles} * - multi-occurring attribute contains the names of assigned ARBAC roles targeted for activation into Session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#props} collection of name value pairs collected on behalf of User during signon.  For example hostname:myservername or ip:192.168.1.99
+     * <li>{@link org.apache.directory.fortress.core.model.User#roles} * - multi-occurring attribute contains the names of assigned RBAC roles targeted for activation into Session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#adminRoles} * - multi-occurring attribute contains the names of assigned ARBAC roles targeted for activation into Session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#props} collection of name value pairs collected on behalf of User during signon.  For example hostname:myservername or ip:192.168.1.99
      * </ul>
      * </ul>
      * <h4> This API will...</h4>
      * <ul>
      * <li> authenticate user password.
      * <li> perform <a href="http://www.openldap.org/">OpenLDAP</a> <a href="http://tools.ietf.org/html/draft-behera-ldap-password-policy-10">password policy evaluation</a>.
-     * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.rbac.User#isLocked()}.
-     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.rbac.User}, {@link org.apache.directory.fortress.core.rbac.UserRole} and {@link org.apache.directory.fortress.core.rbac.UserAdminRole} entities.
-     * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.rbac.User#roles}.
-     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.rbac.DSDChecker#validate(org.apache.directory.fortress.core.rbac.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.rbac.User#roles}.
-     * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.rbac.User#adminRoles}.
-     * <li> return a {@link org.apache.directory.fortress.core.rbac.Session} containing {@link org.apache.directory.fortress.core.rbac.Session#getUser()}, {@link org.apache.directory.fortress.core.rbac.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.rbac.Session#getAdminRoles()} if everything checks out good.
+     * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.model.User#isLocked()}.
+     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
+     * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.model.DSDChecker#validate(org.apache.directory.fortress.core.model.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.model.User#adminRoles}.
+     * <li> return a {@link org.apache.directory.fortress.core.model.Session} containing {@link org.apache.directory.fortress.core.model.Session#getUser()}, {@link org.apache.directory.fortress.core.model.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()} if everything checks out good.
      * <li> return a checked exception that will be {@link org.apache.directory.fortress.core.SecurityException} or its derivation.
      * <li> return a {@link org.apache.directory.fortress.core.SecurityException} for system failures.
      * <li> return a {@link org.apache.directory.fortress.core.PasswordException} for authentication and password policy violations.
@@ -1914,36 +1914,36 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.rbac.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.rbac.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.rbac.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.rbac.Session#warningId}, {@link org.apache.directory.fortress.core.rbac.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.rbac.Session#graceLogins} and more.
+     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warningId}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
      */
     FortResponse createSession( FortRequest request );
 
     
     /**
      * This service accepts userId for validation and returns RBAC session.  This service will not check the password nor perform password policy validations.<br />
-     * The successful result is {@link org.apache.directory.fortress.core.rbac.Session} that contains target user's RBAC {@link org.apache.directory.fortress.core.rbac.User#roles} and Admin role {@link org.apache.directory.fortress.core.rbac.User#adminRoles}.<br />
+     * The successful result is {@link org.apache.directory.fortress.core.model.Session} that contains target user's RBAC {@link org.apache.directory.fortress.core.model.User#roles} and Admin role {@link org.apache.directory.fortress.core.model.User#adminRoles}.<br />
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - maps to INetOrgPerson uid</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - maps to INetOrgPerson uid</li>
      * </ul>
      * <h5>User optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#roles} * - multi-occurring attribute contains the names of assigned RBAC roles targeted for activation into Session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#adminRoles} * - multi-occurring attribute contains the names of assigned ARBAC roles targeted for activation into Session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#props} collection of name value pairs collected on behalf of User during signon.  For example hostname:myservername or ip:192.168.1.99
+     * <li>{@link org.apache.directory.fortress.core.model.User#roles} * - multi-occurring attribute contains the names of assigned RBAC roles targeted for activation into Session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#adminRoles} * - multi-occurring attribute contains the names of assigned ARBAC roles targeted for activation into Session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#props} collection of name value pairs collected on behalf of User during signon.  For example hostname:myservername or ip:192.168.1.99
      * </ul>
      * </ul>
      * <h4> This API will...</h4>
      * <ul>
-     * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.rbac.User#isLocked()}.
-     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.rbac.User}, {@link org.apache.directory.fortress.core.rbac.UserRole} and {@link org.apache.directory.fortress.core.rbac.UserAdminRole} entities.
-     * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.rbac.User#roles}.
-     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.rbac.DSDChecker#validate(org.apache.directory.fortress.core.rbac.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.rbac.User#roles}.
-     * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.rbac.User#adminRoles}.
-     * <li> return a {@link org.apache.directory.fortress.core.rbac.Session} containing {@link org.apache.directory.fortress.core.rbac.Session#getUser()}, {@link org.apache.directory.fortress.core.rbac.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.rbac.Session#getAdminRoles()} if everything checks out good.
+     * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.model.User#isLocked()}.
+     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
+     * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.model.DSDChecker#validate(org.apache.directory.fortress.core.model.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.model.User#adminRoles}.
+     * <li> return a {@link org.apache.directory.fortress.core.model.Session} containing {@link org.apache.directory.fortress.core.model.Session#getUser()}, {@link org.apache.directory.fortress.core.model.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()} if everything checks out good.
      * <li> return a checked exception that will be {@link org.apache.directory.fortress.core.SecurityException} or its derivation.
      * <li> return a {@link org.apache.directory.fortress.core.SecurityException} for system failures.
      * <li> return a {@link org.apache.directory.fortress.core.ValidationException} for data validation errors.
@@ -1959,7 +1959,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.rbac.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.rbac.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.rbac.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.rbac.Session#warningId}, {@link org.apache.directory.fortress.core.rbac.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.rbac.Session#graceLogins} and more.
+     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warningId}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
      */
     FortResponse createSessionTrusted( FortRequest request );
 
@@ -1974,12 +1974,12 @@ public interface FortressService
      * to the subject's active roles are registered in the object's access control list.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
      *
@@ -1998,7 +1998,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.rbac.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.model.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
      */
     FortResponse sessionPermissions( FortRequest request );
 
@@ -2012,7 +2012,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.rbac.UserRole}.  Updated {@link FortResponse#session} will be included in response as well.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.model.UserRole}.  Updated {@link FortResponse#session} will be included in response as well.
      */
     FortResponse sessionRoles( FortRequest request );
 
@@ -2036,10 +2036,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the Role name targeted for activation into User's session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the Role name targeted for activation into User's session</li>
      * </ul>
      * </ul>
      * The function is valid if and only if:
@@ -2067,10 +2067,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the Role name targeted for removal from User's session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the Role name targeted for removal from User's session</li>
      * </ul>
      * </ul>
      *
@@ -2089,7 +2089,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains reference to {@link org.apache.directory.fortress.core.rbac.User#userId} only.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains reference to {@link org.apache.directory.fortress.core.model.User#userId} only.
      */
     FortResponse getUserId( FortRequest request );
 
@@ -2103,7 +2103,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains reference to {@link org.apache.directory.fortress.core.rbac.User}.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains reference to {@link org.apache.directory.fortress.core.model.User}.
      */
     FortResponse getUser( FortRequest request );
 
@@ -2116,27 +2116,27 @@ public interface FortressService
      * <p/>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole} object</li>
      * <h5>AdminRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#name} - contains the name of the new AdminRole being targeted for addition to LDAP</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#name} - contains the name of the new AdminRole being targeted for addition to LDAP</li>
      * </ul>
      * <h5>AdminRole optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#description} - contains any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#osPs} * - multi-occurring attribute used to set associations to existing PERMS OrgUnits</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#osUs} * - multi-occurring attribute used to set associations to existing USERS OrgUnits</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginRange} - contains the name of an existing RBAC Role that represents the lowest role in hierarchy that administrator (whoever has this AdminRole activated) controls</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endRange} - contains the name of an existing RBAC Role that represents that highest role in hierarchy that administrator may control</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginInclusive} - if 'true' the RBAC Role specified in beginRange is also controlled by the posessor of this AdminRole</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endInclusive} - if 'true' the RBAC Role specified in endRange is also controlled by the administratrator</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginTime} - HHMM - determines begin hour adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endTime} - HHMM - determines end hour adminRole may be activated into user's ARBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginDate} - YYYYMMDD - determines date when adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endDate} - YYYYMMDD - indicates latest date adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#osPs} * - multi-occurring attribute used to set associations to existing PERMS OrgUnits</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#osUs} * - multi-occurring attribute used to set associations to existing USERS OrgUnits</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginRange} - contains the name of an existing RBAC Role that represents the lowest role in hierarchy that administrator (whoever has this AdminRole activated) controls</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endRange} - contains the name of an existing RBAC Role that represents that highest role in hierarchy that administrator may control</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginInclusive} - if 'true' the RBAC Role specified in beginRange is also controlled by the posessor of this AdminRole</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endInclusive} - if 'true' the RBAC Role specified in endRange is also controlled by the administratrator</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginTime} - HHMM - determines begin hour adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endTime} - HHMM - determines end hour adminRole may be activated into user's ARBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginDate} - YYYYMMDD - determines date when adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endDate} - YYYYMMDD - indicates latest date adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
      * </ul>
      * </ul>
      * <p/>
@@ -2146,7 +2146,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.rbac.AdminRole}.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.model.AdminRole}.
      */
     FortResponse addAdminRole( FortRequest request );
 
@@ -2157,10 +2157,10 @@ public interface FortressService
      * also deassign role from all users.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole} object</li>
      * <h5>AdminRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#name} - contains the name of the new AdminRole being targeted for removal from LDAP</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#name} - contains the name of the new AdminRole being targeted for removal from LDAP</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2169,7 +2169,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.rbac.AdminRole}.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.model.AdminRole}.
      */
     FortResponse deleteAdminRole( FortRequest request );
 
@@ -2178,27 +2178,27 @@ public interface FortressService
      * Method will update an AdminRole entity in the directory.  The role must exist in directory prior to this call.     *
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole} object</li>
      * <h5>AdminRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#name} - contains the name of the new AdminRole being targeted for update to LDAP</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#name} - contains the name of the new AdminRole being targeted for update to LDAP</li>
      * </ul>
      * <h5>AdminRole optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#description} - contains any safe text</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#osPs} * - multi-occurring attribute used to set associations to existing PERMS OrgUnits</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#osUs} * - multi-occurring attribute used to set associations to existing USERS OrgUnits</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginRange} - contains the name of an existing RBAC Role that represents the lowest role in hierarchy that administrator (whoever has this AdminRole activated) controls</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endRange} - contains the name of an existing RBAC Role that represents that highest role in hierarchy that administrator may control</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginInclusive} - if 'true' the RBAC Role specified in beginRange is also controlled by the posessor of this AdminRole</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endInclusive} - if 'true' the RBAC Role specified in endRange is also controlled by the administratrator</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginTime} - HHMM - determines begin hour adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endTime} - HHMM - determines end hour adminRole may be activated into user's ARBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginDate} - YYYYMMDD - determines date when adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endDate} - YYYYMMDD - indicates latest date adminRole may be activated into user's ARBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#osPs} * - multi-occurring attribute used to set associations to existing PERMS OrgUnits</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#osUs} * - multi-occurring attribute used to set associations to existing USERS OrgUnits</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginRange} - contains the name of an existing RBAC Role that represents the lowest role in hierarchy that administrator (whoever has this AdminRole activated) controls</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endRange} - contains the name of an existing RBAC Role that represents that highest role in hierarchy that administrator may control</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginInclusive} - if 'true' the RBAC Role specified in beginRange is also controlled by the posessor of this AdminRole</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endInclusive} - if 'true' the RBAC Role specified in endRange is also controlled by the administratrator</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginTime} - HHMM - determines begin hour adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endTime} - HHMM - determines end hour adminRole may be activated into user's ARBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginDate} - YYYYMMDD - determines date when adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endDate} - YYYYMMDD - indicates latest date adminRole may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2207,7 +2207,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.rbac.AdminRole}.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to a {@link org.apache.directory.fortress.core.model.AdminRole}.
      */
     FortResponse updateAdminRole( FortRequest request );
 
@@ -2224,21 +2224,21 @@ public interface FortressService
      * </p>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAdminRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAdminRole} object</li>
      * <h5>UserAdminRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#name} - contains the name for already existing AdminRole to be assigned</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#name} - contains the name for already existing AdminRole to be assigned</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#userId} - contains the userId for existing User</li>
      * </ul>
      * <h5>UserAdminRole optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#beginTime} - HHMM - determines begin hour AdminRole may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#endTime} - HHMM - determines end hour AdminRole may be activated into user's RBAC session.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#beginDate} - YYYYMMDD - determines date when AdminRole may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#endDate} - YYYYMMDD - indicates latest date AdminRole may be activated into user's RBAC session</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#beginTime} - HHMM - determines begin hour AdminRole may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#endTime} - HHMM - determines end hour AdminRole may be activated into user's RBAC session.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#beginDate} - YYYYMMDD - determines date when AdminRole may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#endDate} - YYYYMMDD - indicates latest date AdminRole may be activated into user's RBAC session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#endLockDate} - YYYYMMDD - determines end of enforced inactive status</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's ARBAC session</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2279,11 +2279,11 @@ public interface FortressService
      * User to Role assignment in Admin Role data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAdminRole} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAdminRole} object</li>
      * <h5>UserAdminRole required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#name} - contains the name for already existing AdminRole to be deassigned</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#userId} - contains the userId for existing User</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#name} - contains the name for already existing AdminRole to be deassigned</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#userId} - contains the userId for existing User</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2303,22 +2303,22 @@ public interface FortressService
      * and parentRole is a member of the ADMINROLES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing parent role</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of new child role</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing parent role</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of new child role</li>
      * </ul>
-     * <h5>optional parameters {@code org.apache.directory.fortress.core.rbac.RoleRelationship#child}</h5>
+     * <h5>optional parameters {@code org.apache.directory.fortress.core.model.RoleRelationship#child}</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#description} - maps to description attribute on organizationalRole object class for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2349,22 +2349,22 @@ public interface FortressService
      * and childRole is a member of the ADMINROLES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>childRole - {@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing child AdminRole</li>
-     * <li>parentRole - {@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of new AdminRole to be parent</li>
+     * <li>childRole - {@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing child AdminRole</li>
+     * <li>parentRole - {@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of new AdminRole to be parent</li>
      * </ul>
-     * <h5>optional parameters {@link org.apache.directory.fortress.core.rbac.RoleRelationship#parent}</h5>
+     * <h5>optional parameters {@link org.apache.directory.fortress.core.model.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#description} - maps to description attribute on organizationalRole object class for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginTime} - HHMM - determines begin hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endTime} - HHMM - determines end hour role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginDate} - YYYYMMDD - determines date when role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endDate} - YYYYMMDD - indicates latest date role may be activated into user's RBAC session for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#beginLockDate} - YYYYMMDD - determines beginning of enforced inactive status for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#endLockDate} - YYYYMMDD - determines end of enforced inactive status for new parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#dayMask} - 1234567, 1 = Sunday, 2 = Monday, etc - specifies which day role may be activated into user's RBAC session for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2396,11 +2396,11 @@ public interface FortressService
      * avoid cycle creation).
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing AdminRole to be parent</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing AdminRole to be child</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing AdminRole to be parent</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing AdminRole to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2427,11 +2427,11 @@ public interface FortressService
      * closure of the immediate inheritance relation resulted after deleting the relationship parentRole <<-- childRole.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RoleRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleRelationship} entity</li>
      * <h5>RoleRelationship required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#parent#name} - contains the name of existing Role to remove parent relationship</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RoleRelationship#child#name} - contains the name of existing Role to remove child relationship</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2457,15 +2457,15 @@ public interface FortressService
      * set by setting type attribute.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit} object</li>
      * <h5>OrgUnit required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#name} - contains the name of new USERS or PERMS OrgUnit to be added</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#name} - contains the name of new USERS or PERMS OrgUnit to be added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
      * </ul>
      * <h5>OrgUnit optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2484,15 +2484,15 @@ public interface FortressService
      * set by setting type attribute.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit} object</li>
      * <h5>OrgUnit required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#name} - contains the name of USERS or PERMS OrgUnit to be updated</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#name} - contains the name of USERS or PERMS OrgUnit to be updated</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
      * </ul>
      * <h5>OrgUnit optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#description} - contains any safe text</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#description} - contains any safe text</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2511,11 +2511,11 @@ public interface FortressService
      * set by setting type attribute.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit} object</li>
      * <h5>OrgUnit required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#name} - contains the name of USERS or PERMS OrgUnit to be removed</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#name} - contains the name of USERS or PERMS OrgUnit to be removed</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2534,16 +2534,16 @@ public interface FortressService
      * the existing orgunit parent.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnitRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
      * </ul>
-     * <h5>optional parameters {@code org.apache.directory.fortress.core.rbac.RoleRelationship#child}</h5>
+     * <h5>optional parameters {@code org.apache.directory.fortress.core.model.RoleRelationship#child}</h5>
      * <ul>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#description} - maps to description attribute on organizationalUnit object class for new child</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#description} - maps to description attribute on organizationalUnit object class for new child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2573,16 +2573,16 @@ public interface FortressService
      * the existing child orgunit.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnitRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#name} - contains the name of existing OrgUnit to be child</li>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#name} - contains the name of new OrgUnit to be parent</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#name} - contains the name of existing OrgUnit to be child</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#name} - contains the name of new OrgUnit to be parent</li>
      * </ul>
-     * <h5>optional parameters {@link org.apache.directory.fortress.core.rbac.RoleRelationship#parent}</h5>
+     * <h5>optional parameters {@link org.apache.directory.fortress.core.model.RoleRelationship#parent}</h5>
      * <ul>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#description} - maps to description attribute on organizationalUnit object class for new parent</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#description} - maps to description attribute on organizationalUnit object class for new parent</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2611,12 +2611,12 @@ public interface FortressService
      * This commands establishes a new immediate inheritance relationship with parent orgunit <<-- child orgunit
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnitRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to be parent</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to be child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2640,12 +2640,12 @@ public interface FortressService
      * This command deletes an existing immediate inheritance relationship parent <<-- child.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnitRelationship} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnitRelationship} entity</li>
      * <h5>OrgUnitRelationship required parameters</h5>
      * <ul>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to remove as parent</li>
-     * <li>parent - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
-     * <li>child - {@code org.apache.directory.fortress.core.rbac.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to remove as child</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#name} - contains the name of existing OrgUnit to remove as parent</li>
+     * <li>parent - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#parent#type} - contains the type of OrgUnit targeted: {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
+     * <li>child - {@code org.apache.directory.fortress.core.model.OrgUnitRelationship#child#name} - contains the name of new OrgUnit to remove as child</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2671,10 +2671,10 @@ public interface FortressService
      * Method reads Admin Role entity from the admin role container in directory.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.AdminRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.AdminRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#name} - contains the name of the AdminRole being targeted for read</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#name} - contains the name of the AdminRole being targeted for read</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2683,13 +2683,13 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole}
      */
     FortResponse readAdminRole( FortRequest request );
 
     
     /**
-     * Method will return a list of type AdminRole matching all or part of {@link org.apache.directory.fortress.core.rbac.AdminRole#name}.
+     * Method will return a list of type AdminRole matching all or part of {@link org.apache.directory.fortress.core.model.AdminRole#name}.
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains all or some of the chars corresponding to adminRole entities stored in directory.</li>
@@ -2700,7 +2700,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.AdminRole}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.AdminRole}
      */
     FortResponse findAdminRoles( FortRequest request );
 
@@ -2710,10 +2710,10 @@ public interface FortressService
      * only if the user is a member of the USERS data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.User} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.User} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.User} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.User} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.User#userId} - contains the userId associated with the User object targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the userId associated with the User object targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2722,7 +2722,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.UserAdminRole}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.UserAdminRole}
      */
     FortResponse assignedAdminRoles( FortRequest request );
 
@@ -2732,10 +2732,10 @@ public interface FortressService
      * AdminRole relationship.  This method does NOT search for hierarchical AdminRoles relationships.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.AdminRole} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.AdminRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.AdminRole} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.AdminRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.AdminRole#name} - contains the name to use for the AdminRole targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.AdminRole#name} - contains the name to use for the AdminRole targeted for search.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2744,7 +2744,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.User}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.User}
      */
     FortResponse assignedAdminUsers( FortRequest request );
 
@@ -2754,11 +2754,11 @@ public interface FortressService
      * set by setting type attribute.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.OrgUnit} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.OrgUnit} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#name} - contains the name associated with the OrgUnit object targeted for search.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#name} - contains the name associated with the OrgUnit object targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2767,7 +2767,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit}
      */
     FortResponse readOrg( FortRequest request );
 
@@ -2777,11 +2777,11 @@ public interface FortressService
      * set by setting type parameter on API.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.OrgUnit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.OrgUnit} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.OrgUnit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.OrgUnit} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#name} - contains some or all of the chars associated with the OrgUnit objects targeted for search.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.rbac.OrgUnit.Type#PERM}</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#name} - contains some or all of the chars associated with the OrgUnit objects targeted for search.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.OrgUnit#type} - contains the type of OU:  {@link org.apache.directory.fortress.core.model.OrgUnit.Type#USER} or {@link org.apache.directory.fortress.core.model.OrgUnit.Type#PERM}</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -2790,7 +2790,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.rbac.OrgUnit}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.OrgUnit}
      */
     FortResponse searchOrg( FortRequest request );
 
@@ -2802,11 +2802,11 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#userId} - contains the userId targeted for operation</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the Role name targeted for operation.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the userId targeted for operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -2822,11 +2822,11 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#userId} - contains the userId targeted for operation</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserRole#name} - contains the Role name targeted for operation.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the userId targeted for operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserRole#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -2842,12 +2842,12 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RolePerm} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.RolePerm} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RolePerm} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.RolePerm} required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#perm#opName} - contains the permission operation name targeted</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#role#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -2863,12 +2863,12 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.RolePerm} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.RolePerm} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RolePerm} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.RolePerm} required parameters</h5>
      * <ul>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#perm#opName} - contains the permission operation name targeted</li>
-     * <li>{@code org.apache.directory.fortress.core.rbac.RolePerm#role#name} - contains the Role name targeted for operation.</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#perm#objectName} - contains the permission object name targeted for operation</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#perm#opName} - contains the permission operation name targeted</li>
+     * <li>{@code org.apache.directory.fortress.core.model.RolePerm#role#name} - contains the Role name targeted for operation.</li>
      * </ul>
      * </ul>
      *
@@ -2888,12 +2888,12 @@ public interface FortressService
      * to the subject's active roles are registered in the object's access control list.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to admin {@link org.apache.directory.fortress.core.rbac.Permission} entity</li>
+     * <li>{@link FortRequest#entity} - contains a reference to admin {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.Permission} required parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#objectName} - contains the name of existing admin object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.Permission#opName} - contains the name of existing admin permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing admin object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing admin permission operation</li>
      * </ul>
      * </ul>
      *
@@ -2908,10 +2908,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAdminRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAdminRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAdminRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAdminRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole} - contains the AdminRole name targeted for activation into User's session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole} - contains the AdminRole name targeted for activation into User's session</li>
      * </ul>
      * </ul>
      * The function is valid if and only if:
@@ -2938,10 +2938,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAdminRole} entity.</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserRole} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAdminRole} entity.</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserRole} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAdminRole#name} - contains the AdminRole name targeted for removal from User's session</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAdminRole#name} - contains the AdminRole name targeted for removal from User's session</li>
      * </ul>
      * </ul>
      *
@@ -2960,7 +2960,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.rbac.UserAdminRole}.  Updated {@link FortResponse#session} will be included in response as well.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.model.UserAdminRole}.  Updated {@link FortResponse#session} will be included in response as well.
      */
     FortResponse sessionAdminRoles( FortRequest request );
 
@@ -2974,7 +2974,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.rbac.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} containing a List of type {@link org.apache.directory.fortress.core.model.Permission}.  Updated {@link FortResponse#session} will be included in response as well.
      */
     FortResponse sessionAdminPermissions( FortRequest request );
 
@@ -2999,59 +2999,59 @@ public interface FortressService
      * if and only if the policy entry is not already present in the POLICIES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} object</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} object</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being added.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being added.</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#minAge} - This attribute holds the number of seconds that must elapse between
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#minAge} - This attribute holds the number of seconds that must elapse between
      * modifications to the password.  If this attribute is not present, 0
      * seconds is assumed.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#maxAge} - This attribute holds the number of seconds after which a modified
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#maxAge} - This attribute holds the number of seconds after which a modified
      * password will expire. If this attribute is not present, or if the value is 0 the password
      * does not expire.  If not 0, the value must be greater than or equal
      * to the value of the pwdMinAge.
      * </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#inHistory} - This attribute specifies the maximum number of used passwords stored
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#inHistory} - This attribute specifies the maximum number of used passwords stored
      * in the pwdHistory attribute. If this attribute is not present, or if the value is 0, used
      * passwords are not stored in the pwdHistory attribute and thus may be reused.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#minLength} - When quality checking is enabled, this attribute holds the minimum
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#minLength} - When quality checking is enabled, this attribute holds the minimum
      * number of characters that must be used in a password.  If this
      * attribute is not present, no minimum password length will be
      * enforced.  If the server is unable to check the length (due to a
      * hashed password or otherwise), the server will, depending on the
      * value of the pwdCheckQuality attribute, either accept the password
      * without checking it ('0' or '1') or refuse it ('2').</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#expireWarning} - This attribute specifies the maximum number of seconds before a
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#expireWarning} - This attribute specifies the maximum number of seconds before a
      * password is due to expire that expiration warning messages will be
      * returned to an authenticating user.  If this attribute is not present, or if the value is 0 no warnings
      * will be returned.  If not 0, the value must be smaller than the value
      * of the pwdMaxAge attribute.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#graceLoginLimit} - This attribute specifies the number of times an expired password can
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#graceLoginLimit} - This attribute specifies the number of times an expired password can
      * be used to authenticate.  If this attribute is not present or if the
      * value is 0, authentication will fail. </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#lockout} - This attribute indicates, when its value is "TRUE", that the password
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#lockout} - This attribute indicates, when its value is "TRUE", that the password
      * may not be used to authenticate after a specified number of
      * consecutive failed bind attempts.  The maximum number of consecutive
      * failed bind attempts is specified in pwdMaxFailure.  If this attribute is not present, or if the
      * value is "FALSE", the password may be used to authenticate when the number of failed bind
      * attempts has been reached.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#lockoutDuration} - This attribute holds the number of seconds that the password cannot
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#lockoutDuration} - This attribute holds the number of seconds that the password cannot
      * be used to authenticate due to too many failed bind attempts.  If
      * this attribute is not present, or if the value is 0 the password
      * cannot be used to authenticate until reset by a password
      * administrator.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#maxFailure} - This attribute specifies the number of consecutive failed bind
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#maxFailure} - This attribute specifies the number of consecutive failed bind
      * attempts after which the password may not be used to authenticate.
      * If this attribute is not present, or if the value is 0, this policy
      * is not checked, and the value of pwdLockout will be ignored.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#failureCountInterval} - This attribute holds the number of seconds after which the password
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#failureCountInterval} - This attribute holds the number of seconds after which the password
      * failures are purged from the failure counter, even though no
      * successful authentication occurred.  If this attribute is not present, or if its value is 0, the failure
      * counter is only reset by a successful authentication.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#mustChange} - This attribute specifies with a value of "TRUE" that users must
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#mustChange} - This attribute specifies with a value of "TRUE" that users must
      * change their passwords when they first bind to the directory after a
      * password is set or reset by a password administrator.  If this
      * attribute is not present, or if the value is "FALSE", users are not
@@ -3059,14 +3059,14 @@ public interface FortressService
      * administrator sets or resets the password.  This attribute is not set
      * due to any actions specified by this document, it is typically set by
      * a password administrator after resetting a user's password.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#allowUserChange} - This attribute indicates whether users can change their own
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#allowUserChange} - This attribute indicates whether users can change their own
      * passwords, although the change operation is still subject to access
      * control.  If this attribute is not present, a value of "TRUE" is
      * assumed.  This attribute is intended to be used in the absence of an access control mechanism.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#safeModify} - This attribute specifies whether or not the existing password must be
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#safeModify} - This attribute specifies whether or not the existing password must be
      * sent along with the new password when being changed.  If this
      * attribute is not present, a "FALSE" value is assumed.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#checkQuality} - This attribute indicates how the password quality will be verified
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#checkQuality} - This attribute indicates how the password quality will be verified
      * while being modified or added.  If this attribute is not present, or
      * if the value is '0', quality checking will not be enforced.  A value
      * of '1' indicates that the server will check the quality, and if the
@@ -3074,7 +3074,7 @@ public interface FortressService
      * reasons) it will be accepted.  A value of '2' indicates that the
      * server will check the quality, and if the server is unable to verify
      * it, it will return an error refusing the password. </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#attribute} - This holds the name of the attribute to which the password policy is
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#attribute} - This holds the name of the attribute to which the password policy is
      * applied.  For example, the password policy may be applied to the
      * userPassword attribute </li>
      * </ul>
@@ -3095,59 +3095,59 @@ public interface FortressService
      * if and only if the policy entry is already present in the POLICIES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} object</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} object</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being updated.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being updated.</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#minAge} - This attribute holds the number of seconds that must elapse between
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#minAge} - This attribute holds the number of seconds that must elapse between
      * modifications to the password.  If this attribute is not present, 0
      * seconds is assumed.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#maxAge} - This attribute holds the number of seconds after which a modified
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#maxAge} - This attribute holds the number of seconds after which a modified
      * password will expire. If this attribute is not present, or if the value is 0 the password
      * does not expire.  If not 0, the value must be greater than or equal
      * to the value of the pwdMinAge.
      * </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#inHistory} - This attribute specifies the maximum number of used passwords stored
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#inHistory} - This attribute specifies the maximum number of used passwords stored
      * in the pwdHistory attribute. If this attribute is not present, or if the value is 0, used
      * passwords are not stored in the pwdHistory attribute and thus may be reused.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#minLength} - When quality checking is enabled, this attribute holds the minimum
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#minLength} - When quality checking is enabled, this attribute holds the minimum
      * number of characters that must be used in a password.  If this
      * attribute is not present, no minimum password length will be
      * enforced.  If the server is unable to check the length (due to a
      * hashed password or otherwise), the server will, depending on the
      * value of the pwdCheckQuality attribute, either accept the password
      * without checking it ('0' or '1') or refuse it ('2').</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#expireWarning} - This attribute specifies the maximum number of seconds before a
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#expireWarning} - This attribute specifies the maximum number of seconds before a
      * password is due to expire that expiration warning messages will be
      * returned to an authenticating user.  If this attribute is not present, or if the value is 0 no warnings
      * will be returned.  If not 0, the value must be smaller than the value
      * of the pwdMaxAge attribute.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#graceLoginLimit} - This attribute specifies the number of times an expired password can
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#graceLoginLimit} - This attribute specifies the number of times an expired password can
      * be used to authenticate.  If this attribute is not present or if the
      * value is 0, authentication will fail. </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#lockout} - This attribute indicates, when its value is "TRUE", that the password
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#lockout} - This attribute indicates, when its value is "TRUE", that the password
      * may not be used to authenticate after a specified number of
      * consecutive failed bind attempts.  The maximum number of consecutive
      * failed bind attempts is specified in pwdMaxFailure.  If this attribute is not present, or if the
      * value is "FALSE", the password may be used to authenticate when the number of failed bind
      * attempts has been reached.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#lockoutDuration} - This attribute holds the number of seconds that the password cannot
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#lockoutDuration} - This attribute holds the number of seconds that the password cannot
      * be used to authenticate due to too many failed bind attempts.  If
      * this attribute is not present, or if the value is 0 the password
      * cannot be used to authenticate until reset by a password
      * administrator.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#maxFailure} - This attribute specifies the number of consecutive failed bind
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#maxFailure} - This attribute specifies the number of consecutive failed bind
      * attempts after which the password may not be used to authenticate.
      * If this attribute is not present, or if the value is 0, this policy
      * is not checked, and the value of pwdLockout will be ignored.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#failureCountInterval} - This attribute holds the number of seconds after which the password
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#failureCountInterval} - This attribute holds the number of seconds after which the password
      * failures are purged from the failure counter, even though no
      * successful authentication occurred.  If this attribute is not present, or if its value is 0, the failure
      * counter is only reset by a successful authentication.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#mustChange} - This attribute specifies with a value of "TRUE" that users must
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#mustChange} - This attribute specifies with a value of "TRUE" that users must
      * change their passwords when they first bind to the directory after a
      * password is set or reset by a password administrator.  If this
      * attribute is not present, or if the value is "FALSE", users are not
@@ -3155,14 +3155,14 @@ public interface FortressService
      * administrator sets or resets the password.  This attribute is not set
      * due to any actions specified by this document, it is typically set by
      * a password administrator after resetting a user's password.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#allowUserChange} - This attribute indicates whether users can change their own
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#allowUserChange} - This attribute indicates whether users can change their own
      * passwords, although the change operation is still subject to access
      * control.  If this attribute is not present, a value of "TRUE" is
      * assumed.  This attribute is intended to be used in the absence of an access control mechanism.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#safeModify} - This attribute specifies whether or not the existing password must be
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#safeModify} - This attribute specifies whether or not the existing password must be
      * sent along with the new password when being changed.  If this
      * attribute is not present, a "FALSE" value is assumed.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#checkQuality} - This attribute indicates how the password quality will be verified
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#checkQuality} - This attribute indicates how the password quality will be verified
      * while being modified or added.  If this attribute is not present, or
      * if the value is '0', quality checking will not be enforced.  A value
      * of '1' indicates that the server will check the quality, and if the
@@ -3170,7 +3170,7 @@ public interface FortressService
      * reasons) it will be accepted.  A value of '2' indicates that the
      * server will check the quality, and if the server is unable to verify
      * it, it will return an error refusing the password. </li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#attribute} - This holds the name of the attribute to which the password policy is
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#attribute} - This holds the name of the attribute to which the password policy is
      * applied.  For example, the password policy may be applied to the
      * userPassword attribute </li>
      * </ul>
@@ -3192,10 +3192,10 @@ public interface FortressService
      * are assigned this policy will be removed from association.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} object</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} object</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being removed.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - Maps to name attribute of pwdPolicy object class being removed.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3214,10 +3214,10 @@ public interface FortressService
      * if and only if the policy entry is present in the POLICIES data set.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3226,7 +3226,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy}
      */
     FortResponse readPolicy( FortRequest request );
 
@@ -3236,10 +3236,10 @@ public interface FortressService
      * This command will return an empty list of no matching entries are found.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3248,7 +3248,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.PwPolicy}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.PwPolicy}
      */
     FortResponse searchPolicy( FortRequest request );
 
@@ -3260,10 +3260,10 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the userId targeted for update</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.PwPolicy} object</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.PwPolicy} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PwPolicy} object</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.PwPolicy} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.PwPolicy#name} - Maps to name attribute of pwdPolicy object class targeted for assignment.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PwPolicy#name} - Maps to name attribute of pwdPolicy object class targeted for assignment.</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3299,16 +3299,16 @@ public interface FortressService
     
     //------------ AuditMg ------------------------------------------------------------------------------------------------
     /**
-     * This method returns a list of authentication audit events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
-     * and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
+     * This method returns a list of authentication audit events for a particular user {@link org.apache.directory.fortress.core.model.UserAudit#userId},
+     * and given timestamp field {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#userId} - contains the target userId<</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate} - contains the date in which to begin search</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#userId} - contains the target userId<</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#beginDate} - contains the date in which to begin search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3317,23 +3317,23 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.Bind}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.Bind}
      */
     FortResponse searchBinds( FortRequest request );
     
 
     /**
-     * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId}
-     * and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
-     * Method also can discriminate between all events or failed only by setting {@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly}.
+     * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.model.UserAudit#userId}
+     * and given timestamp field {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
+     * Method also can discriminate between all events or failed only by setting {@link org.apache.directory.fortress.core.model.UserAudit#failedOnly}.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#userId} - contains the target userId</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate} - contains the date in which to begin search</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#userId} - contains the target userId</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#beginDate} - contains the date in which to begin search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3342,22 +3342,22 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.AuthZ}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.AuthZ}
      */
     FortResponse getUserAuthZs( FortRequest request );
     
 
     /**
-     * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
-     * object {@link org.apache.directory.fortress.core.rbac.UserAudit#objName}, and given timestamp field {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
-     * Method also can discriminate between all events or failed only by setting flag {@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly}..
+     * This method returns a list of authorization events for a particular user {@link org.apache.directory.fortress.core.model.UserAudit#userId},
+     * object {@link org.apache.directory.fortress.core.model.UserAudit#objName}, and given timestamp field {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
+     * Method also can discriminate between all events or failed only by setting flag {@link org.apache.directory.fortress.core.model.UserAudit#failedOnly}..
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#userId} - contains the target userId<</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#objName} - contains the object (authorization resource) name</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#userId} - contains the target userId<</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#objName} - contains the object (authorization resource) name</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3366,24 +3366,24 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.AuthZ}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.AuthZ}
      */
     FortResponse searchAuthZs( FortRequest request );
     
 
     /**
-     * This method returns a list of sessions created for a given user {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
-     * and timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.<BR>
+     * This method returns a list of sessions created for a given user {@link org.apache.directory.fortress.core.model.UserAudit#userId},
+     * and timestamp {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} required parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#userId} - contains the target userId<</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#userId} - contains the target userId<</li>
      * </ul>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate} - contains the date in which to begin search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#beginDate} - contains the date in which to begin search</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3392,27 +3392,27 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.Mod}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.Mod}
      */
     FortResponse searchUserSessions( FortRequest request );
     
 
     /**
-     * This method returns a list of admin operations events for a particular entity {@link org.apache.directory.fortress.core.rbac.UserAudit#dn},
-     * object {@link org.apache.directory.fortress.core.rbac.UserAudit#objName} and timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.  If the internal
-     * userId {@link org.apache.directory.fortress.core.rbac.UserAudit#internalUserId} is set it will limit search by that field.
+     * This method returns a list of admin operations events for a particular entity {@link org.apache.directory.fortress.core.model.UserAudit#dn},
+     * object {@link org.apache.directory.fortress.core.model.UserAudit#objName} and timestamp {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.  If the internal
+     * userId {@link org.apache.directory.fortress.core.model.UserAudit#internalUserId} is set it will limit search by that field.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#dn} - contains the LDAP distinguished name for the updated object.  For example if caller
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#dn} - contains the LDAP distinguished name for the updated object.  For example if caller
      * wants to find out what changes were made to John Doe's user object this would be 'uid=jdoe,ou=People,dc=example,dc=com'</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#objName} - contains the object (authorization resource) name corresponding to the event.  For example if caller
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#objName} - contains the object (authorization resource) name corresponding to the event.  For example if caller
      * wants to return events where User object was modified, this would be 'updateUser'</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#internalUserId} - maps to the internalUserId of user who changed the record in LDAP.  This maps to {@link org.apache.directory.fortress.core.rbac.User#internalId}.</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate} - contains the date in which to begin search</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#endDate} - contains the date in which to end search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#internalUserId} - maps to the internalUserId of user who changed the record in LDAP.  This maps to {@link org.apache.directory.fortress.core.model.User#internalId}.</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#beginDate} - contains the date in which to begin search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#endDate} - contains the date in which to end search</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3421,26 +3421,26 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.Mod}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.Mod}
      */
     FortResponse searchAdminMods( FortRequest request );
     
 
     /**
-     * This method returns a list of failed authentication attempts on behalf of an invalid identity {@link org.apache.directory.fortress.core.rbac.UserAudit#userId},
-     * and given timestamp {@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate}.  If the {@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly} is true it will
+     * This method returns a list of failed authentication attempts on behalf of an invalid identity {@link org.apache.directory.fortress.core.model.UserAudit#userId},
+     * and given timestamp {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.  If the {@link org.apache.directory.fortress.core.model.UserAudit#failedOnly} is true it will
      * return only authentication attempts made with invalid userId.  This event represents either User incorrectly entering userId during signon or
      * possible fraudulent logon attempt by hostile agent.
      * </p>
      * This event is generated when Fortress looks up User record prior to LDAP bind operation.
      * <h4>required parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.UserAudit} entity</li>
-     * <h5>{@link org.apache.directory.fortress.core.rbac.UserAudit} optional parameters</h5>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserAudit} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.UserAudit} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#userId} - contains the target userId</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#beginDate} - contains the date in which to begin search</li>
-     * <li>{@link org.apache.directory.fortress.core.rbac.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#userId} - contains the target userId</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#beginDate} - contains the date in which to begin search</li>
+     * <li>{@link org.apache.directory.fortress.core.model.UserAudit#failedOnly} - if set to 'true', return only failed authorization events</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -3449,7 +3449,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.AuthZ}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.AuthZ}
      */
     FortResponse searchInvalidUsers( FortRequest request );
 
@@ -3461,7 +3461,7 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the name to call the new configuration node</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Props} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Props} object</li>
      * </ul>
      * <h4>optional parameters</h4>
      * <ul>
@@ -3480,7 +3480,7 @@ public interface FortressService
      * <h4>required parameters</h4>
      * <ul>
      * <li>{@link FortRequest#value} - contains the name of existing configuration node targeted for update</li>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Props} object</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Props} object</li>
      * </ul>
      * <h4>optional parameters</h4>
      * <ul>
@@ -3507,7 +3507,7 @@ public interface FortressService
      * </ul>
      * <h4>optional parameters</h4>
      * <ul>
-     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.rbac.Props} object. If this argument is passed service will remove only the properties listed</li>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Props} object. If this argument is passed service will remove only the properties listed</li>
      * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
      * </ul>
      *
@@ -3530,7 +3530,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.rbac.Props}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to List of type {@link org.apache.directory.fortress.core.model.Props}
      */
     FortResponse readConfig( FortRequest request );
 }

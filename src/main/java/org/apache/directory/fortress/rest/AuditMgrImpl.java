@@ -22,12 +22,12 @@ package org.apache.directory.fortress.rest;
 import org.apache.directory.fortress.core.AuditMgr;
 import org.apache.directory.fortress.core.AuditMgrFactory;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.rbac.AuthZ;
-import org.apache.directory.fortress.core.rbac.Bind;
-import org.apache.directory.fortress.core.rbac.Mod;
-import org.apache.directory.fortress.core.rbac.UserAudit;
-import org.apache.directory.fortress.core.rest.FortRequest;
-import org.apache.directory.fortress.core.rest.FortResponse;
+import org.apache.directory.fortress.core.model.AuthZ;
+import org.apache.directory.fortress.core.model.Bind;
+import org.apache.directory.fortress.core.model.Mod;
+import org.apache.directory.fortress.core.model.UserAudit;
+import org.apache.directory.fortress.core.model.FortRequest;
+import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.log4j.Logger;
 
 import java.util.List;
