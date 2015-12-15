@@ -1630,8 +1630,8 @@ public class FortressServiceImpl implements FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more characters of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more characters of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more leading characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more leading characters of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1652,6 +1652,36 @@ public class FortressServiceImpl implements FortressService
     }
 
     
+    /**
+     * Method returns a list of type Permission that match any part of either {@link org.apache.directory.fortress.core.model.Permission#objName} or {@link org.apache.directory.fortress.core.model.Permission#opName} search strings.
+     * This method differs from findPermissions in that any permission that matches any part of the perm obj or any part of the perm op will be returned in result set (uses substring string matching).
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} optional parameters</h5>
+     * <ul>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more substring characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more substring characters of existing permission operation</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_SEARCH_ANY + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse findAnyPermissions( FortRequest request )
+    {
+        return reviewMgrImpl.findAnyPermissions( request );
+    }
+
+
     /**
      * Method returns a list of type Permission that match the perm object search string.
      * <h4>required parameters</h4>

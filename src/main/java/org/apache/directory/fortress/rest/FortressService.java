@@ -460,7 +460,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission add</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted for the permission add</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being added</li>
      * </ul>
      * <h5>Permission optional parameters</h5>
@@ -491,7 +491,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission update</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted for the permission update</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being updated</li>
      * </ul>
      * <h5>Permission optional parameters</h5>
@@ -521,7 +521,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} object</li>
      * <h5>Permission required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted for the permission removal</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted for the permission removal</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of new permission operation being deleted</li>
      * </ul>
      * </ul>
@@ -544,7 +544,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being added</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objName} - contains the name of new object being added</li>
      * <li>{@link org.apache.directory.fortress.core.model.PermObj#ou} - contains the name of an existing PERMS OrgUnit this object is associated with</li>
      * </ul>
      * <h5>PermObj optional parameters</h5>
@@ -573,7 +573,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being updated</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objName} - contains the name of new object being updated</li>
      * </ul>
      * <h5>PermObj optional parameters</h5>
      * <ul>
@@ -602,7 +602,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>PermObj required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of new object being removed</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objName} - contains the name of new object being removed</li>
      * </ul>
      * </ul>
      * <h5>optional parameters</h5>
@@ -1262,7 +1262,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -1284,7 +1284,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.PermObj} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objName} - contains the name of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1305,8 +1305,8 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains one or more characters of existing object being targeted</li>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more characters of existing permission operation</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more leading characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more leading characters of existing permission operation</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1319,7 +1319,30 @@ public interface FortressService
      */
     FortResponse findPermissions( FortRequest request );
 
-    
+
+    /**
+     * Method returns a list of type Permission that match any part of either {@link org.apache.directory.fortress.core.model.Permission#objName} or {@link org.apache.directory.fortress.core.model.Permission#opName} search strings.
+     * This method differs from findPermissions in that any permission that matches any part of the perm obj or any part of the perm op will be returned in result set (uses substring string matching).
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} optional parameters</h5>
+     * <ul>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more substring characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains one or more substring characters of existing permission operation</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission}
+     */
+    FortResponse findAnyPermissions( FortRequest request );
+
+
     /**
      * Method returns a list of type Permission that match the perm object search string.
      * <h4>required parameters</h4>
@@ -1327,7 +1350,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.PermObj} optional parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objectName} - contains one or more characters of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.PermObj#objName} - contains one or more characters of existing object being targeted</li>
      * </ul>
      * </ul>
      * <h4>optional parameters</h4>
@@ -1517,7 +1540,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -1584,7 +1607,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -1606,7 +1629,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -1628,7 +1651,7 @@ public interface FortressService
      * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission} entity</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -1892,9 +1915,9 @@ public interface FortressService
      * <li> authenticate user password.
      * <li> perform <a href="http://www.openldap.org/">OpenLDAP</a> <a href="http://tools.ietf.org/html/draft-behera-ldap-password-policy-10">password policy evaluation</a>.
      * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.model.User#isLocked()}.
-     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
+     * <li> evaluate temporal {@link org.apache.directory.fortress.core.model.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
      * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.model.User#roles}.
-     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.model.DSDChecker#validate(org.apache.directory.fortress.core.model.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.impl.DSDChecker#validate} on {@link org.apache.directory.fortress.core.model.User#roles}.
      * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.model.User#adminRoles}.
      * <li> return a {@link org.apache.directory.fortress.core.model.Session} containing {@link org.apache.directory.fortress.core.model.Session#getUser()}, {@link org.apache.directory.fortress.core.model.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()} if everything checks out good.
      * <li> return a checked exception that will be {@link org.apache.directory.fortress.core.SecurityException} or its derivation.
@@ -1914,7 +1937,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warningId}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
+     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warnings}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
      */
     FortResponse createSession( FortRequest request );
 
@@ -1939,9 +1962,9 @@ public interface FortressService
      * <h4> This API will...</h4>
      * <ul>
      * <li> fail for any user who is locked by OpenLDAP's policies {@link org.apache.directory.fortress.core.model.User#isLocked()}.
-     * <li> evaluate temporal {@link org.apache.directory.fortress.core.util.time.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
+     * <li> evaluate temporal {@link org.apache.directory.fortress.core.model.Constraint}(s) on {@link org.apache.directory.fortress.core.model.User}, {@link org.apache.directory.fortress.core.model.UserRole} and {@link org.apache.directory.fortress.core.model.UserAdminRole} entities.
      * <li> process selective role activations into User RBAC Session {@link org.apache.directory.fortress.core.model.User#roles}.
-     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.model.DSDChecker#validate(org.apache.directory.fortress.core.model.Session, org.apache.directory.fortress.core.util.time.Constraint, org.apache.directory.fortress.core.util.time.Time)} on {@link org.apache.directory.fortress.core.model.User#roles}.
+     * <li> check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.impl.DSDChecker#validate} on {@link org.apache.directory.fortress.core.model.User#roles}.
      * <li> process selective administrative role activations {@link org.apache.directory.fortress.core.model.User#adminRoles}.
      * <li> return a {@link org.apache.directory.fortress.core.model.Session} containing {@link org.apache.directory.fortress.core.model.Session#getUser()}, {@link org.apache.directory.fortress.core.model.Session#getRoles()} and (if admin user) {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()} if everything checks out good.
      * <li> return a checked exception that will be {@link org.apache.directory.fortress.core.SecurityException} or its derivation.
@@ -1959,7 +1982,7 @@ public interface FortressService
      * </ul>
      *
      * @param request contains a reference to {@code FortRequest}
-     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warningId}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
+     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result code {@link org.apache.directory.fortress.core.model.Session#errorId}, RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()}, Admin Role activations {@link org.apache.directory.fortress.core.model.Session#getAdminRoles()},OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warnings}, {@link org.apache.directory.fortress.core.model.Session#expirationSeconds}, {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
      */
     FortResponse createSessionTrusted( FortRequest request );
 
@@ -1978,7 +2001,7 @@ public interface FortressService
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing permission operation</li>
      * </ul>
      * </ul>
@@ -2892,7 +2915,7 @@ public interface FortressService
      * <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling {@link FortressServiceImpl#createSession} method before use in this service.</li>
      * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
      * <ul>
-     * <li>{@link org.apache.directory.fortress.core.model.Permission#objectName} - contains the name of existing admin object being targeted</li>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing admin object being targeted</li>
      * <li>{@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing admin permission operation</li>
      * </ul>
      * </ul>
