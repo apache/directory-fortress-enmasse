@@ -1321,6 +1321,27 @@ public interface FortressService
 
 
     /**
+     * Method returns Permision operations for the provided permission object.
+     * <h4>required parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.PermObj} entity</li>
+     * <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
+     * <ul>
+     * <li>{@link org.apache.directory.fortress.core.model.Permission#objName} - contains one or more leading characters of existing object being targeted</li>
+     * </ul>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     * <li>{@link FortRequest#session} - contains a reference to administrative session and if included service will enforce ARBAC constraints</li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type {@link org.apache.directory.fortress.core.model.Permission}
+     */
+    FortResponse findObjPermissions( FortRequest request );
+
+
+    /**
      * Method returns a list of type Permission that match any part of either {@link org.apache.directory.fortress.core.model.Permission#objName} or {@link org.apache.directory.fortress.core.model.Permission#opName} search strings.
      * This method differs from findPermissions in that any permission that matches any part of the perm obj or any part of the perm op will be returned in result set (uses substring string matching).
      * <h4>required parameters</h4>

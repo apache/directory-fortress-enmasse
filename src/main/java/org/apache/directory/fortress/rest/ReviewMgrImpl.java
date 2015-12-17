@@ -110,6 +110,27 @@ class ReviewMgrImpl extends AbstractMgrImpl
     }
 
 
+    /* No qualifier */  FortResponse findObjPermissions( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            PermObj inObj = (PermObj) request.getEntity();
+            List<Permission> perms = reviewMgr.findPermissions( inObj );
+            response.setEntities( perms );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
     /* No qualifier */  FortResponse findAnyPermissions( FortRequest request )
     {
         FortResponse response = createResponse();
