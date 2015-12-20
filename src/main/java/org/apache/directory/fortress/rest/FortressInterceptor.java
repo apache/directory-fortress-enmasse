@@ -80,7 +80,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     /**
      *
-     * @param object
+     * @param object The Object to secure
      */
     public void setSecuredObject( Object object )
     {
@@ -107,8 +107,8 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     /**
      * Find the list of 
-     * @param cls
-     * @param rolesMap
+     * @param cls The class for which we want to find roles
+     * @param rolesMap The Map containing the roles
      */
     protected void findRoles( Class<?> cls, Map<String, String> rolesMap )
     {
