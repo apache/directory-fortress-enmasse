@@ -61,7 +61,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     /**
      *
-     * @param name
+     * @param name The annotation class name
      */
     public void setAnnotationClassName( String name )
     {
