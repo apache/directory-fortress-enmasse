@@ -325,6 +325,7 @@
           <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
           <!--<additionalparam>-Xdoclint:none</additionalparam>-->
         </configuration>
+<!--
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -334,6 +335,7 @@
             </goals>
           </execution>
         </executions>
+-->
       </plugin>
 
       <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
@@ -440,7 +442,7 @@
                     <pathelement location="${antlr:antlr:jar}"/>
                   </classpath>
                   <sysproperty key="version" value="${project.version}"/>
-                  <sysproperty key="tenant" value="HOME"/>
+                  <sysproperty key="tenant" value="${tenant}" />
                   <arg value="-buildfile"/>
                   <arg file="./${load.file}" />
 <!--                  <arg file="./src/main/resources/FortressRestServerPolicy.xml"/>-->
