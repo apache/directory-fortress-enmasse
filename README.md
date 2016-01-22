@@ -77,6 +77,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
  ```
 
 3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
+
 ___________________________________________________________________________________
 ## SECTION 3. Get the fortress.properties
 
@@ -87,6 +88,7 @@ cp [directory-fortress-core]/config/fortress.properties [directory-fortress-enma
 ```
 
 Where [directory-fortress-core] is base folder of the fortress core source package and [directory-fortress-enmasse] is the current package's home folder.
+
 ___________________________________________________________________________________
 ## SECTION 4. Load Sample Security Policy
 
@@ -129,6 +131,7 @@ ________________________________________________________________________________
  ```
  mvn tomcat:redeploy
  ```
+
 ___________________________________________________________________________________
 ## SECTION 6. Unit Test
 
@@ -137,11 +140,12 @@ Run unit test:
  mvn test -Dtest=EmTest
  ```
 
-Test Notes:
+ Test Notes:
  * The Fortress Rest application must be deployed and running within your servlet container before the unit tests will complete successfully.  If your app server
   is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
  * For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
  * The tests depend on sample security policy being loaded.
+
 ___________________________________________________________________________________
 ## SECTION 7: Alternate testing procedures
 
@@ -172,5 +176,6 @@ To enable Fortress Core test client to route requests through Fortress Rest serv
  ```
 
  All operations should now route through Fortress Rest server.
+
 ___________________________________________________________________________________
 #### END OF README
