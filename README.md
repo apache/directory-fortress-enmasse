@@ -63,7 +63,7 @@ Minimum software requirements:
  * Apache Maven3++
  * Apache Tomcat7++
  * Apache Fortress Core and LDAP server installed per README located in **FORTRESS_CORE_HOME** package.
- * Apache Fortress Realm installed per README located in **FORTRESS_REALM_HOME** package.
+ * Apache Fortress Realm install per README located in **FORTRESS_REALM_HOME** package.
 
 Everything else covered in steps that follow.  Tested on Debian, Centos & Windows systems.
 
