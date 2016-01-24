@@ -101,11 +101,46 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 ___________________________________________________________________________________
 ## SECTION 3. Get the fortress.properties
 
-Copy the fortress.properties, created during **FORTRESS_CORE_HOME** setup, to this package's resource folder.
+These contain the coordinates to the target LDAP server.
 
-```
-cp FORTRESS_CORE_HOME/config/fortress.properties FORTRESS_REST_HOME/src/main/resources
-```
+1. Copy the **fortress.properties**, created during **FORTRESS_CORE_HOME** **README.md**, to this package's resource folder.
+
+ ```
+ cp $FORTRESS_CORE_HOME/config/fortress.properties $FORTRESS_REST_HOME/src/main/resources
+ ```
+
+2. Verify they match your target LDAP server.
+ ```
+ # This param tells fortress what type of ldap server in use:
+ ldap.server.type=apacheds
+
+ # ldap host name
+ host=localhost
+
+ # if ApacheDS is listening on
+ port=10389
+
+ # If ApacheDS, these credentials are used for read/write to fortress DIT
+ admin.user=uid=admin,ou=system
+ admin.pw=secret
+
+ # This is min/max settings for admin pool connections:
+ min.admin.conn=1
+ max.admin.conn=10
+
+ # This node contains more fortress properties stored on behalf of connecting LDAP clients:
+ config.realm=DEFAULT
+ config.root=ou=Config,dc=example,dc=com
+
+ # Used by application security components:
+ perms.cached=true
+
+ # Fortress uses a cache:
+ ehcache.config.file=ehcache.xml
+
+ # Default for pool reconnect flag is false:
+ enable.pool.reconnect=true
+ ```
 
 ___________________________________________________________________________________
 ## SECTION 4. Load Sample Security Policy
