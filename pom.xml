@@ -26,14 +26,14 @@
   <parent>
     <groupId>org.apache.directory.project</groupId>
     <artifactId>project</artifactId>
-    <version>34</version>
+    <version>35</version>
     <relativePath />
   </parent>
 
   <groupId>org.apache.directory.fortress</groupId>
   <artifactId>fortress-rest</artifactId>
   <packaging>war</packaging>
-  <version>1.0-RC41-SNAPSHOT</version>
+  <version>1.0-RC42-SNAPSHOT</version>
   <name>Apache Fortress Rest</name>
   <url>http://directory.apache.org/fortress/</url>
   <description>Fortress Rest provides a RESTful implementation of Fortress' ANSI RBAC INCITS 359 engine</description>
@@ -47,7 +47,8 @@
 
   <scm>
     <connection>scm:git:http://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
-    <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git
+    <developerConnection>
+  scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git
     </developerConnection>
     <tag>HEAD</tag>
   </scm>
@@ -72,6 +73,18 @@
       <name>Emmanuel Lecharny</name>
       <email>elecharny@apache.org</email>
     </developer>
+
+    <developer>
+      <id>cpike</id>
+      <name>Chris Pike</name>
+      <email>cpike@apache.org</email>
+    </developer>
+
+    <developer>
+      <id>jan.sindberg</id>
+      <name>Jan Sindberg</name>
+      <email>jan.sindberg@apache.org</email>
+    </developer>
   </developers>
 
   <mailingLists>
@@ -82,29 +95,32 @@
     </mailingList>
   </mailingLists>
 
+  <!-- ====================================================== -->
+  <!-- The used properties for this project                   -->
+  <!-- ====================================================== -->
   <properties>
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <version.aspectj>1.8.4</version.aspectj>
-    <version.commons.beanutils>1.9.2</version.commons.beanutils>
-    <version.cxf.bundle>2.7.18</version.cxf.bundle>
-    <version.httpclient>3.1</version.httpclient>
-    <version.java>1.7</version.java>
-    <version.javadoc>2.9.1</version.javadoc>
-    <version.junit>4.12</version.junit>
-    <version.log4j>1.2.17</version.log4j>
-    <version.servlet-api>2.5.0</version.servlet-api>
-    <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
-    <version.spring.dao>2.0.8</version.spring.dao>
-    <version.spring.security>3.1.4.RELEASE</version.spring.security>
-    <version.spring>3.0.4.RELEASE</version.spring>
-
-    <!-- Plugins versions -->
-    <version.maven.gpg.plugin>1.5</version.maven.gpg.plugin>
-    <version.tomcat.maven.plugin>1.1</version.tomcat.maven.plugin>
-    <version.maven.war.plugin>2.4</version.maven.war.plugin>
+    <aspectj.version>1.8.8</aspectj.version>
+    <commons.beanutils.version>1.9.2</commons.beanutils.version>
+    <cxf.bundle.version>2.7.18</cxf.bundle.version>
+    <httpclient.version>3.1</httpclient.version>
+    <java.version>1.7</java.version>
+    <httpclient.version>3.1</httpclient.version>
+    <javadoc.version>2.9.1</javadoc.version>
+    <jackson.jaxrs.version>1.9.11</jackson.jaxrs.version>
+    <junit.version>4.12</junit.version>
+    <log4j.version>1.2.17</log4j.version>
+    <servlet-api.version>2.5.0</servlet-api.version>
+    <slf4j.log4j12.version>1.7.18</slf4j.log4j12.version>
+    <spring.dao.version>2.0.8</spring.dao.version>
+    <spring.security.version>4.0.4.RELEASE</spring.security.version>
+    <spring.version>4.2.5.RELEASE</spring.version>
     
+    <!-- Set versions for depending jars -->
+    <fortress.realm.version>1.0-RC42</fortress.realm.version>
+
     <!--  Other properties -->
     <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
     <base.dir>.</base.dir>
@@ -116,114 +132,114 @@
     <dependency>
       <groupId>org.apache.directory.fortress</groupId>
       <artifactId>fortress-realm-impl</artifactId>
-      <version>${project.version}</version>
+      <version>${fortress.realm.version}</version>
     </dependency>
 
     <!-- CXF Dependencies -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-bundle</artifactId>
-      <version>${version.cxf.bundle}</version>
+      <version>${cxf.bundle.version}</version>
     </dependency>
     
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>${version.log4j}</version>
+      <version>${log4j.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>${version.slf4j.log4j12}</version>
+      <version>${slf4j.log4j12.version}</version>
     </dependency>
 
     <!-- Spring Dependencies -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${version.spring}</version>
+      <version>${spring.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${version.spring}</version>
+      <version>${spring.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <version>${version.spring}</version>
+      <version>${spring.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-oxm</artifactId>
-      <version>${version.spring}</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!-- Spring Security Dependencies -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-acl</artifactId>
-      <version>${version.spring.security}</version>
+      <version>${spring.security.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
-      <version>${version.spring.security}</version>
+      <version>${spring.security.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>${version.spring.security}</version>
+      <version>${spring.security.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${version.aspectj}</version>
+      <version>${aspectj.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
-      <version>${version.aspectj}</version>
+      <version>${aspectj.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-dao</artifactId>
-      <version>${version.spring.dao}</version>
+      <version>${spring.dao.version}</version>
     </dependency>
 
     <!-- General Rest Test Dependencies -->
     <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
-      <version>${version.httpclient}</version>
+      <version>${httpclient.version}</version>
     </dependency>
     
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-jaxrs</artifactId>
-      <version>1.9.0</version>
+      <version>${jackson.jaxrs.version}</version>
     </dependency>
     
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>${version.commons.beanutils}</version>
+      <version>${commons.beanutils.version}</version>
     </dependency>
   </dependencies>
 
@@ -240,7 +256,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>${version.maven.war.plugin}</version>
         <!-- this is needed to pickup the context.xml in META-INF: -->
         <configuration>
           <warName>${project.artifactId}</warName>
@@ -299,7 +314,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>tomcat-maven-plugin</artifactId>
-        <version>${version.tomcat.maven.plugin}</version>
         <configuration>
           <warFile>target/${project.artifactId}.war</warFile>
           <server>local-tomcat</server>
@@ -464,7 +478,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${version.javadoc}</version>
         <configuration>
           <!--aggregate>true</aggregate-->
           <quiet>true</quiet>
@@ -488,7 +501,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>${version.maven.gpg.plugin}</version>
+            <version>1.6</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
