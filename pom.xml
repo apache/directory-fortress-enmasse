@@ -109,17 +109,17 @@
     <java.version>1.7</java.version>
     <httpclient.version>3.1</httpclient.version>
     <javadoc.version>2.9.1</javadoc.version>
-    <jackson.jaxrs.version>1.9.11</jackson.jaxrs.version>
+    <jackson.jaxrs.version>1.9.13</jackson.jaxrs.version>
     <junit.version>4.12</junit.version>
     <log4j.version>1.2.17</log4j.version>
     <servlet-api.version>2.5.0</servlet-api.version>
     <slf4j.log4j12.version>1.7.18</slf4j.log4j12.version>
     <spring.dao.version>2.0.8</spring.dao.version>
-    <spring.security.version>4.0.4.RELEASE</spring.security.version>
-    <spring.version>4.2.5.RELEASE</spring.version>
-    
+    <spring.security.version>4.0.0.RELEASE</spring.security.version>
+    <spring.version>4.0.0.RELEASE</spring.version>
+
     <!-- Set versions for depending jars -->
-    <fortress.realm.version>1.0-RC42</fortress.realm.version>
+    <fortress.realm.version>1.0-RC42-SNAPSHOT</fortress.realm.version>
 
     <!--  Other properties -->
     <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
@@ -138,10 +138,22 @@
     <!-- CXF Dependencies -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-bundle</artifactId>
+      <artifactId>cxf-bundle-jaxrs</artifactId>
       <version>${cxf.bundle.version}</version>
+      <exclusions>
+        <exclusion>
+        <artifactId>geronimo-servlet_3.0_spec</artifactId>
+        <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
+        </exclusions>
     </dependency>
-    
+
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-jaxrs</artifactId>
+      <version>${jackson.jaxrs.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -199,18 +211,6 @@
     </dependency>
     
     <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjrt</artifactId>
-      <version>${aspectj.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjweaver</artifactId>
-      <version>${aspectj.version}</version>
-    </dependency>
-    
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-dao</artifactId>
       <version>${spring.dao.version}</version>
@@ -221,12 +221,6 @@
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
       <version>${httpclient.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-jaxrs</artifactId>
-      <version>${jackson.jaxrs.version}</version>
     </dependency>
     
     <dependency>
@@ -245,7 +239,6 @@
 
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
-<!--    <finalName>enmasse-${version}</finalName>-->
     <plugins>
 
       <plugin>
@@ -253,9 +246,11 @@
         <artifactId>maven-jar-plugin</artifactId>
       </plugin>
 
+      <!-- War the commander app -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
         <!-- this is needed to pickup the context.xml in META-INF: -->
         <configuration>
           <warName>${project.artifactId}</warName>
@@ -269,46 +264,73 @@
               <!-- this is relative to the pom.xml directory -->
               <directory>${project.basedir}/src/main/resources
               </directory>
-
             </resource>
           </webResources>
+          <!--<archiveClasses>true</archiveClasses>-->
+          <attachClasses>true</attachClasses>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
+        <inherited>true</inherited>
+      </plugin>
 
-        <configuration>
-          <skip>true</skip>
-        </configuration>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+      </plugin>
 
-        <executions>
-          <execution>
-            <id>maven-staging-repository-id</id>
-            <phase>deploy</phase>
-            <goals>
-              <goal>deploy-file</goal>
-            </goals>
-
-            <configuration>
-              <file>
-                ${basedir}/target/${project.artifactId}-${project.version}.jar
-              </file>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>${project.artifactId}</artifactId>
-              <version>${project.version}</version>
-              <pomFile>${basedir}/pom.xml</pomFile>
-              <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-              <repositoryId>sonatype-nexus-staging</repositoryId>
-            </configuration>
-          </execution>
-        </executions>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <configuration>
+          <excludeSubProjects>false</excludeSubProjects>
+          <excludes>
+            <!-- MAVEN_DEFAULT_EXCLUDES -->
+            <exclude>**/target/**/*</exclude>
+            <exclude>**/cobertura.ser</exclude>
+            <!-- ECLIPSE_DEFAULT_EXCLUDES -->
+            <exclude>**/.classpath</exclude>
+            <exclude>**/.project</exclude>
+            <exclude>**/.settings/**/*</exclude>
+            <!-- IDEA_DEFAULT_EXCLUDES -->
+            <exclude>**/*.iml</exclude>
+            <exclude>**/*.ipr</exclude>
+            <exclude>**/*.iws</exclude>
+            <!-- MANIFEST_MF_EXCLUDES -->
+            <exclude>**/MANIFEST.MF</exclude>
+            <!-- GIT_EXCLUDES -->
+            <exclude>**/.git/**/*</exclude>
+            <!-- CERT_EXCLUDES -->
+            <exclude>**/*.pem</exclude>
+            <!-- EXTERNAL_CODE_EXCLUDES -->
+            <exclude>**/CmdLineParser.java</exclude>
+            <!-- Exclude logs -->
+            <exclude>**/*.log/**</exclude>
+          </excludes>
+        </configuration>
       </plugin>
 
       <plugin>
@@ -331,7 +353,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
           <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2015, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2016, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
           <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
           <version>true</version>
           <author>true</author>
@@ -339,17 +361,6 @@
           <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
           <!--<additionalparam>-Xdoclint:none</additionalparam>-->
         </configuration>
-<!--
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
--->
       </plugin>
 
       <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
@@ -394,27 +405,6 @@
           </execution>
         </executions>
       </plugin>
-
-      <!-- plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>user_distribution</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attached</goal>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
-              <descriptors>
-                <descriptor>src/main/assembly/distsrc.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-        </executions>
-      </plugin -->
 
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -485,37 +475,6 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <profiles>
-
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
   <repositories>
     <repository>

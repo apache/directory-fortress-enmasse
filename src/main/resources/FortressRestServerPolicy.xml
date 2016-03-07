@@ -63,15 +63,15 @@
 
             <addroleinheritance>
                 <!-- Users assigned fortress-web-power-user role will inherit each of the following roles. -->
-                <relationship child="fortress-web-power-user" parent="fortress-rest-access-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-admin-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-review-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-delaccess-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-deladmin-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-delreview-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-pwmgr-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-audit-user"/>
-                <relationship child="fortress-web-power-user" parent="fortress-rest-config-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-access-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-admin-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-review-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-delaccess-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-deladmin-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-delreview-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-pwmgr-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-audit-user"/>
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-config-user"/>
             </addroleinheritance>
 
             <!-- Begin ARBAC Delegated Admin Data: -->
