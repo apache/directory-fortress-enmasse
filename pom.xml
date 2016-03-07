@@ -81,9 +81,9 @@
     </developer>
 
     <developer>
-      <id>jan.sindberg</id>
+      <id>sindberg</id>
       <name>Jan Sindberg</name>
-      <email>jan.sindberg@apache.org</email>
+      <email>sindberg@apache.org</email>
     </developer>
   </developers>
 
@@ -102,7 +102,7 @@
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <aspectj.version>1.8.8</aspectj.version>
+    <fortress.realm.version>1.0-RC42</fortress.realm.version>
     <commons.beanutils.version>1.9.2</commons.beanutils.version>
     <cxf.bundle.version>2.7.18</cxf.bundle.version>
     <httpclient.version>3.1</httpclient.version>
@@ -117,9 +117,6 @@
     <spring.dao.version>2.0.8</spring.dao.version>
     <spring.security.version>4.0.0.RELEASE</spring.security.version>
     <spring.version>4.0.0.RELEASE</spring.version>
-
-    <!-- Set versions for depending jars -->
-    <fortress.realm.version>1.0-RC42-SNAPSHOT</fortress.realm.version>
 
     <!--  Other properties -->
     <javadoc.stylesheet>${basedir}/src/main/java/org/openldap/enmasse/fortress-javadoc.css</javadoc.stylesheet>
@@ -246,7 +243,7 @@
         <artifactId>maven-jar-plugin</artifactId>
       </plugin>
 
-      <!-- War the commander app -->
+      <!-- Create the fortress-rest web archive -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -414,7 +411,7 @@
             <configuration>
               <target name="fortress-load"  if="load.file"
                   description="Loads fortress rbac policy files into ldap">
-                <echo message="###############  Run Fortress Policy Load  ###############"/>
+                <echo message="###############  Run Fortress Rest Test Policy Load  ###############"/>
                 <java
                     classname="org.apache.tools.ant.launch.Launcher"
                     fork="true"
