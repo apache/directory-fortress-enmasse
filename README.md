@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 1.0-RC41
+ * Version 1.0-RC42
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
