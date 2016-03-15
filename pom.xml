@@ -99,7 +99,7 @@
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <fortress.realm.version>1.0-RC42</fortress.realm.version>
+    <fortress.realm.version>1.0-RC42-SNAPSHOT</fortress.realm.version>
     <commons.beanutils.version>1.9.2</commons.beanutils.version>
     <cxf.bundle.version>2.7.18</cxf.bundle.version>
     <httpclient.version>3.1</httpclient.version>
