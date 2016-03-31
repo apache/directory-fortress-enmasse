@@ -2461,7 +2461,7 @@ public interface FortressService
      * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type 
      * {@link org.apache.directory.fortress.core.model.Permission}
      */
-    FortResponse findObjPermissions( FortRequest request );
+    FortResponse findPermsByObj( FortRequest request );
 
 
     /**

@@ -622,7 +622,7 @@ public class FortressServiceImpl implements FortressService
     @Path("/" + HttpIds.PERM_OBJ_SEARCH + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse findObjPermissions( FortRequest request )
+    public FortResponse findPermsByObj( FortRequest request )
     {
         return reviewMgrImpl.findObjPermissions( request );
     }
