@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 1.0-RC42
+ * Version 1.0.0
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
@@ -41,7 +41,7 @@ This document contains instructions to download, build, and test operations usin
 ___________________________________________________________________________________
 ##  Tips for first-time users
 
- * For a tutorial on how to use Apache Fortress check out the: [10 Minute Guide](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/ten-minute-guide.html).
+ * For a tutorial on how to use Apache Fortress check out the Fortress Core quickstart guides.
  * If you see **FORTRESS_CORE_HOME**, refer to the base package of [directory-fortress-core].
  * If you see **FORTRESS_REALM_HOME**, refer to the base package of [directory-fortress-realm].
  * If you see **FORTRESS_REST_HOME**, refer to this packages base folder.
@@ -72,9 +72,20 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 ## SECTION 2. Download & Install
 
 1. Build the source.
+
+ a. from git:
  ```
- git clone https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 1.0.0 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
+ mvn clean install
+ ```
+
+ b. or download package:
+
+ ```
+ wget http://www.apache.org/dist/directory/fortress/dist/1.0.0/fortress-rest-1.0.0-source-release.zip
+ unzip fortress-rest-1.0.0-source-release.zip
+ cd fortress-rest-1.0.0
  mvn clean install
  ```
 
