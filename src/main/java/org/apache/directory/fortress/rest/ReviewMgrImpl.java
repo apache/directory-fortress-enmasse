@@ -119,7 +119,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
             ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             reviewMgr.setAdmin( request.getSession() );
             PermObj inObj = (PermObj) request.getEntity();
-            List<Permission> perms = reviewMgr.findPermissions( inObj );
+            List<Permission> perms = reviewMgr.findPermsByObj( inObj );
             response.setEntities( perms );
         }
         catch ( SecurityException se )
