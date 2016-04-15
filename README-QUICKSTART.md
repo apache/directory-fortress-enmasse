@@ -26,6 +26,7 @@
  * SECTION 2. Configure Tomcat
  * SECTION 3. Load Sample Security Policy
  * SECTION 4. Deploy to Tomcat Server
+ * SECTION 5. Test
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -94,7 +95,12 @@ ________________________________________________________________________________
 
   where *TOMCAT_HOME* matches your target env.
 
-2. Smoke test:
+2. You may need to restart Tomcat.
+
+___________________________________________________________________________________
+## SECTION 5. Test
+
+1. Smoke test:
 
  ```
  mvn test -Dtest=EmTest
