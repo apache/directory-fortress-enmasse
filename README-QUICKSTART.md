@@ -86,13 +86,13 @@ ________________________________________________________________________________
 
 1. From the fortress core package perform the following steps:
 
-a. Download the load file from git:
+ a. Download the load file from git:
 
  ```
  wget https://github.com/apache/directory-fortress-enmasse/blob/master/src/main/resources/FortressRestServerPolicy.xml -P ldap/setup
  ```
 
-b. Run maven install with load file:
+ b. Run maven install with load file:
 
  ```
  mvn install -Dload.file=ldap/setup/FortressRestServerPolicy.xml
