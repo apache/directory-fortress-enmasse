@@ -39,7 +39,9 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest i
 
 Minimum software requirements:
  * Apache Tomcat7++
- * Either OpenLDAP or ApacheDS configured for Apache Fortress
+ * Completed either:
+    * *SECTION 2. Apache Fortress Core and OpenLDAP Setup* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * *SECTION 3. Apache Fortress Core Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
 ___________________________________________________________________________________
 ## SECTION 2. Configure Tomcat
@@ -66,8 +68,10 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 4. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/1.0-RC42/fortress-realm-proxy-1.0-RC42.jar -P /usr/local/tomcat8/lib
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/1.0.0/fortress-realm-proxy-1.0.0.jar -P $TOMCAT_HOME/lib
   ```
+
+  where *TOMCAT_HOME* matches your target env.
 
 5. Restart tomcat for new settings to take effect.
 
@@ -85,13 +89,15 @@ ________________________________________________________________________________
 1. Download the fortress rest war into tomcat/webapps folder:
 
   ```
-  wget https://repository.apache.org/content/repositories/orgapachedirectory-1093/org/apache/directory/fortress/fortress-rest/1.0.0/fortress-rest-1.0.0.war
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/1.0.0/fortress-rest-1.0.0.war -P $TOMCAT_HOME/webapps
   ```
 
-3. Run the fortress junit tests
+  where *TOMCAT_HOME* matches your target env.
+
+2. Smoke test:
 
  ```
- mvn test -Dtest=FortressJUnitTest
+ mvn test -Dtest=EmTest
  ```
 
 ___________________________________________________________________________________
