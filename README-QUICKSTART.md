@@ -99,7 +99,7 @@ From the fortress core package perform the following steps:
  ```
 
  Note: This step must be completed before tests can be successfully run.
- 
+
 ___________________________________________________________________________________
 ## SECTION 4. Test
 
@@ -109,7 +109,7 @@ ________________________________________________________________________________
  mvn test -Dtest=EmTest
  ```
 
-2. Complete *SECTION 7: Alternate testing procedures* in [README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
+2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
 
 
 ___________________________________________________________________________________
