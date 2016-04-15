@@ -23,10 +23,9 @@
 
  * Document Overview
  * SECTION 1. Prerequisites
- * SECTION 2. Configure Tomcat
+ * SECTION 2. Configure Tomcat and Deploy Fortress Rest
  * SECTION 3. Load Sample Security Policy
- * SECTION 4. Deploy to Tomcat Server
- * SECTION 5. Test
+ * SECTION 4. Test
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -45,7 +44,7 @@ Minimum software requirements:
     * *SECTION 3. Apache Fortress Core Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
 ___________________________________________________________________________________
-## SECTION 2. Configure Tomcat
+## SECTION 2. Configure Tomcat and Deploy Fortress Rest
 
 Set the java system properties in tomcat with the target ldap server's coordinates.
 
@@ -74,7 +73,15 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 
   where *TOMCAT_HOME* matches your target env.
 
-5. Restart tomcat for new settings to take effect.
+5. Download the fortress rest war into tomcat/webapps folder:
+
+  ```
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/1.0.0/fortress-rest-1.0.0.war -P $TOMCAT_HOME/webapps
+  ```
+
+  where *TOMCAT_HOME* matches your target env.
+
+6. Restart Tomcat.
 
 ___________________________________________________________________________________
 ## SECTION 3. Load Sample Security Policy
@@ -85,20 +92,7 @@ mvn install -Dload.file=./src/main/resources/FortressRestServerPolicy.xml
 ```
 
 ___________________________________________________________________________________
-## SECTION 4. Deploy to Tomcat Server
-
-1. Download the fortress rest war into tomcat/webapps folder:
-
-  ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/1.0.0/fortress-rest-1.0.0.war -P $TOMCAT_HOME/webapps
-  ```
-
-  where *TOMCAT_HOME* matches your target env.
-
-2. You may need to restart Tomcat.
-
-___________________________________________________________________________________
-## SECTION 5. Test
+## SECTION 4. Test
 
 1. Smoke test:
 
