@@ -39,7 +39,7 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest i
 
 Minimum software requirements:
  * Apache Tomcat7++
- * Completed either:
+  * Completed either section in Apache Fortress Core Quickstart:
     * *SECTION 2. Apache Fortress Core and OpenLDAP Setup* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
     * *SECTION 3. Apache Fortress Core Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
@@ -99,6 +99,9 @@ ________________________________________________________________________________
  ```
  mvn test -Dtest=EmTest
  ```
+
+2. Complete *SECTION 7: Alternate testing procedures* in [README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
+
 
 ___________________________________________________________________________________
 #### END OF README-QUICKSTART
