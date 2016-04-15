@@ -111,6 +111,5 @@ ________________________________________________________________________________
 
 2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
 
-
 ___________________________________________________________________________________
 #### END OF README-QUICKSTART
