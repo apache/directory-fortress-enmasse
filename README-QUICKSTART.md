@@ -84,20 +84,22 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 ___________________________________________________________________________________
 ## SECTION 3. Load Sample Security Policy
 
-1. From the fortress core package perform the following steps:
+From the fortress core package perform the following steps:
 
- a. Download the load file from git:
+1. Download the load file from git:
 
  ```
  wget https://github.com/apache/directory-fortress-enmasse/blob/master/src/main/resources/FortressRestServerPolicy.xml -P ldap/setup
  ```
 
- b. Run maven install with load file:
+2. Run maven install with load file:
 
  ```
  mvn install -Dload.file=ldap/setup/FortressRestServerPolicy.xml
  ```
 
+ Note: This step must be completed before tests can be successfully run.
+ 
 ___________________________________________________________________________________
 ## SECTION 4. Test
 
