@@ -30,8 +30,6 @@
 ___________________________________________________________________________________
 ## Document Overview
 
-Note: This document is a *work in progress*
-
 This document contains instructions to deploy a pre-built Apache Fortress Rest instance to Tomcat and configure the server for its use.
 
 -------------------------------------------------------------------------------
@@ -40,8 +38,8 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest i
 Minimum software requirements:
  * Apache Tomcat7++
   * Completed either section in Apache Fortress Core Quickstart:
-    * *SECTION 2. Apache Fortress Core and OpenLDAP Setup* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
-    * *SECTION 3. Apache Fortress Core Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
+    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * *SECTION 4. Apache Fortress Core Integration Test* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
 ___________________________________________________________________________________
 ## SECTION 2. Configure Tomcat and Deploy Fortress Rest
@@ -86,10 +84,19 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 ___________________________________________________________________________________
 ## SECTION 3. Load Sample Security Policy
 
-Run maven install with load file:
-```
-mvn install -Dload.file=./src/main/resources/FortressRestServerPolicy.xml
-```
+1. From the fortress core package perform the following steps:
+
+a. Download the load file from git:
+
+ ```
+ wget https://github.com/apache/directory-fortress-enmasse/blob/master/src/main/resources/FortressRestServerPolicy.xml -P ldap/setup
+ ```
+
+b. Run maven install with load file:
+
+ ```
+ mvn install -Dload.file=ldap/setup/FortressRestServerPolicy.xml
+ ```
 
 ___________________________________________________________________________________
 ## SECTION 4. Test
