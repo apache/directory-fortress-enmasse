@@ -17,22 +17,26 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
-<beans default-autowire="byName"
-       xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="org.apache.directory"/>
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="securedObject" class="org.apache.directory.fortress.rest.FortressServiceImpl"/>
+
+    <bean id="annotationsInterceptor" class="org.apache.directory.fortress.rest.FortressInterceptor">
+        <property name="securedObject" ref="securedObject"/>
+    </bean>
 
     <jaxrs:server id="restContainer" address="/">
         <jaxrs:serviceBeans>
@@ -48,11 +52,5 @@ under the License.
         </jaxrs:outFaultInterceptors>
 
     </jaxrs:server>
-
-    <bean id="annotationsInterceptor" class="org.apache.directory.fortress.rest.FortressInterceptor">
-        <property name="securedObject" ref="securedObject"/>
-    </bean>
-
-    <bean id="securedObject" class="org.apache.directory.fortress.rest.FortressServiceImpl"/>
 
 </beans>
