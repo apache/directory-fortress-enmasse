@@ -103,7 +103,7 @@
     <servlet-api.version>2.5.0</servlet-api.version>
     <slf4j.log4j12.version>1.7.18</slf4j.log4j12.version>
     <spring.version>4.3.1.RELEASE</spring.version>
-    <spring.security.version>4.0.4.RELEASE</spring.security.version>
+    <spring.security.version>4.1.1.RELEASE</spring.security.version>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
