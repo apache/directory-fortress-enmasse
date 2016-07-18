@@ -47,7 +47,7 @@
     <developerConnection>
       scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
     </developerConnection>
-    <tag>1.0.0</tag>
+    <tag>1.0.1</tag>
   </scm>
 
   <issueManagement>
@@ -76,12 +76,6 @@
       <name>Chris Pike</name>
       <email>cpike@apache.org</email>
     </developer>
-
-    <developer>
-      <id>sindberg</id>
-      <name>Jan Sindberg</name>
-      <email>sindberg@apache.org</email>
-    </developer>
   </developers>
 
   <mailingLists>
@@ -99,7 +93,7 @@
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <fortress.realm.version>1.0.1-SNAPSHOT</fortress.realm.version>
+    <fortress.realm.version>1.0.1</fortress.realm.version>
     <cxf.version>3.1.6</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.7</java.version>
