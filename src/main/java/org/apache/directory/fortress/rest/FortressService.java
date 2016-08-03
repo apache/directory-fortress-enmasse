@@ -23,7 +23,7 @@ import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
 
 /**
- * Interface for EnMasse Service methods.
+ * Interface for Fortress Rest Service methods.
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */

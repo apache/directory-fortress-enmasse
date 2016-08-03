@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Utility for EnMasse Server.  This class is thread safe.
+ * Utility for Fortress Rest Server.  This class is thread safe.
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */

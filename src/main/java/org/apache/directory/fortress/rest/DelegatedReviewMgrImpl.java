@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
 import java.util.List;
 
 /**
- * Utility for EnMasse Server.  This class is thread safe.
+ * Utility for Fortress Rest Server.  This class is thread safe.
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */

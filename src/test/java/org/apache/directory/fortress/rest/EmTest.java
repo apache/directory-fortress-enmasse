@@ -42,7 +42,7 @@ import javax.ws.rs.WebApplicationException;
 
 
 /**
- * Test Client to drive EnMasse Service methods.
+ * Test Client to drive Fortress Rest Service methods.
  *
  * @author Shawn McKinney
  */

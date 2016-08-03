@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- * Security Utility for EnMasse Server.
+ * Security Utility for Fortress Rest Server.
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */

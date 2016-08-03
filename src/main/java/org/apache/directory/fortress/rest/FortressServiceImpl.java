@@ -29,7 +29,7 @@ import org.apache.directory.fortress.core.rest.HttpIds;
 import org.springframework.stereotype.Service;
 
 /**
- * Implementation for EnMasse Service methods forwards to delegate.  This class is thread safe.
+ * Implementation for Fortress Rest Service methods forwards to delegate.  This class is thread safe.
  *
  * @author <a href="mailto:dev@directory.apache.org">Apache Directory Project</a>
  */
