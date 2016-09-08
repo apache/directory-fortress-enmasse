@@ -19,24 +19,9 @@
  */
 package org.apache.directory.fortress.rest;
 
-import org.apache.directory.fortress.core.AdminMgr;
-import org.apache.directory.fortress.core.AdminMgrFactory;
-import org.apache.directory.fortress.core.DelAdminMgr;
-import org.apache.directory.fortress.core.DelAdminMgrFactory;
-import org.apache.directory.fortress.core.ReviewMgr;
-import org.apache.directory.fortress.core.ReviewMgrFactory;
+import org.apache.directory.fortress.core.*;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.model.AdminRole;
-import org.apache.directory.fortress.core.model.PermGrant;
-import org.apache.directory.fortress.core.model.PermObj;
-import org.apache.directory.fortress.core.model.Permission;
-import org.apache.directory.fortress.core.model.Role;
-import org.apache.directory.fortress.core.model.RoleRelationship;
-import org.apache.directory.fortress.core.model.SDSet;
-import org.apache.directory.fortress.core.model.User;
-import org.apache.directory.fortress.core.model.UserRole;
-import org.apache.directory.fortress.core.model.FortRequest;
-import org.apache.directory.fortress.core.model.FortResponse;
+import org.apache.directory.fortress.core.model.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -304,10 +289,21 @@ class AdminMgrImpl extends AbstractMgrImpl
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
             adminMgr.setAdmin( request.getSession() );
+            groupMgr.setAdmin( request.getSession() );
             UserRole inRole = (UserRole) request.getEntity();
-            adminMgr.assignUser( inRole );
-            response.setEntity( inRole );
+
+            if ( inRole.isGroupRole() )
+            {
+                Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
+                groupMgr.assign( inGroup, inRole.getName() );
+            }
+            else
+            {
+                adminMgr.assignUser(inRole);
+            }
+            response.setEntity(inRole);
         }
         catch ( SecurityException se )
         {
@@ -326,9 +322,20 @@ class AdminMgrImpl extends AbstractMgrImpl
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
             adminMgr.setAdmin( request.getSession() );
+            groupMgr.setAdmin( request.getSession() );
             UserRole inRole = (UserRole) request.getEntity();
-            adminMgr.deassignUser( inRole );
+
+            if ( inRole.isGroupRole() )
+            {
+                Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
+                groupMgr.deassign( inGroup, inRole.getName() );
+            }
+            else
+            {
+                adminMgr.deassignUser( inRole );
+            }
             response.setEntity( inRole );
         }
         catch ( SecurityException se )

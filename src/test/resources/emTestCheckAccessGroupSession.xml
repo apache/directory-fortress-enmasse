@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one
+   or more contributor license agreements.  See the NOTICE file
+   distributed with this work for additional information
+   regarding copyright ownership.  The ASF licenses this file
+   to you under the Apache License, Version 2.0 (the
+   "License"); you may not use this file except in compliance
+   with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+
+<FortRequest>
+    <contextId>HOME</contextId>
+    <entity xsi:type="permission" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <objName>emtestobj1</objName>
+        <opName>add</opName>
+        <admin>false</admin>
+    </entity>
+    <session>
+        <modId>90d56d72-9682-42c7-88b5-ab6b6de08077</modId>
+        <group>
+            <modId>c8df7f86-a2a2-4936-9c4c-9a707dd271e2</modId>
+            <name>emtestgroup1</name>
+            <description>enmasse testgroup1</description>
+            <members>cn=emrole1,ou=Roles,ou=RBAC,dc=example,dc=com</members>
+            <props>
+                <modId>1cea1518-71b1-42cd-87c8-5deb2fc35866</modId>
+            </props>
+            <type>ROLE</type>
+            <roles>
+                <modId>743bfe08-cde6-470a-ab88-334e176185f4</modId>
+                <name>emrole1</name>
+                <userId>emtestgroup1</userId>
+                <isGroupRole>true</isGroupRole>
+                <beginDate>20120101</beginDate>
+                <beginLockDate>none</beginLockDate>
+                <beginTime>0800</beginTime>
+                <dayMask>23456</dayMask>
+                <endDate>none</endDate>
+                <endLockDate>20130101</endLockDate>
+                <endTime>2300</endTime>
+                <timeout>0</timeout>
+            </roles>
+        </group>
+        <isAuthenticated>false</isAuthenticated>
+        <isGroupSession>true</isGroupSession>
+        <sessionId>07638412-071d-4977-a3d0-c8b92ff81784</sessionId>
+        <lastAccess>1473354158807</lastAccess>
+        <timeout>0</timeout>
+        <errorId>0</errorId>
+        <expirationSeconds>0</expirationSeconds>
+        <graceLogins>0</graceLogins>
+    </session>
+</FortRequest>

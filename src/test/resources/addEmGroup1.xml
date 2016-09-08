@@ -19,17 +19,12 @@
 -->
 
 <FortRequest>
-      <contextId>HOME</contextId>
-      <entity xsi:type="role" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-         <name>emrole1</name>
-         <description>em test role 1</description>
-          <beginDate>20120101</beginDate>
-          <endLockDate>20130101</endLockDate>
-          <beginTime>0800</beginTime>
-          <endTime>2300</endTime>
-          <dayMask>23456</dayMask>
-          <beginLockDate>none</beginLockDate>
-          <endDate>none</endDate>
-         <timeout>0</timeout>
-      </entity>
-   </FortRequest>
+   <contextId>HOME</contextId>
+   <entity xsi:type="group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <name>emtestgroup1</name>
+      <description>enmasse testgroup1</description>
+      <protocol>protocol</protocol>
+      <type>ROLE</type>
+      <members>emrole1</members>
+   </entity>
+</FortRequest>

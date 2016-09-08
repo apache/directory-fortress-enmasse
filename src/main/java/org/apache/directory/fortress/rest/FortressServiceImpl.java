@@ -46,6 +46,7 @@ public class FortressServiceImpl implements FortressService
     private final AccessMgrImpl accessMgrImpl = new AccessMgrImpl();
     private final AuditMgrImpl auditMgrImpl = new AuditMgrImpl();
     private final ConfigMgrImpl configMgrImpl = new ConfigMgrImpl();
+    private final GroupMgrImpl groupMgrImpl = new GroupMgrImpl();
 
     // These are the allowed roles for the Fortress Rest services:
     private static final String SUPER_USER = "fortress-rest-super-user";
@@ -1014,6 +1015,19 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
+    @Path("/" + HttpIds.RBAC_CREATE_GROUP_TRUSTED + "/")
+    @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
+    @Override
+    public FortResponse createGroupSessionTrusted( FortRequest request )
+    {
+        return accessMgrImpl.createGroupSessionTrusted( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
     @Path("/" + HttpIds.RBAC_AUTHZ + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
@@ -1778,5 +1792,85 @@ public class FortressServiceImpl implements FortressService
     public FortResponse readConfig( FortRequest request )
     {
         return configMgrImpl.readConfig( request );
+    }
+
+    /**
+     * ************************************************************************************************************************************
+     * BEGIN GROUPMGR
+     * **************************************************************************************************************************************
+     */
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_READ + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse readGroup( FortRequest request )
+    {
+        return groupMgrImpl.readGroup( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_ADD + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse addGroup( FortRequest request )
+    {
+        return groupMgrImpl.addGroup( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_DELETE + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse deleteGroup( FortRequest request )
+    {
+        return groupMgrImpl.deleteGroup( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_UPDATE + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse updateGroup( FortRequest request )
+    {
+        return groupMgrImpl.updateGroup( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_ROLE_ASGNED + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse assignedGroupRoles( FortRequest request )
+    {
+        return groupMgrImpl.assignedRoles( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_ASGNED + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse assignedGroups( FortRequest request )
+    {
+        return groupMgrImpl.assignedGroups( request );
     }
 }

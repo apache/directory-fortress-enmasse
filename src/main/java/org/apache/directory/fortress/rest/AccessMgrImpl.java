@@ -23,12 +23,7 @@ import org.apache.directory.fortress.core.AccessMgr;
 import org.apache.directory.fortress.core.AccessMgrFactory;
 import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.model.Permission;
-import org.apache.directory.fortress.core.model.Session;
-import org.apache.directory.fortress.core.model.User;
-import org.apache.directory.fortress.core.model.UserRole;
-import org.apache.directory.fortress.core.model.FortRequest;
-import org.apache.directory.fortress.core.model.FortResponse;
+import org.apache.directory.fortress.core.model.*;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -97,6 +92,43 @@ class AccessMgrImpl extends AbstractMgrImpl
     /* no qualifier*/ FortResponse createSessionTrusted( FortRequest request )
     {
         return createSession( request, TRUSTED );
+    }
+
+    /**
+     * Creates a group-type trusted session
+     *
+     * @param request The request We want to create a session for
+     * @return The created response
+     */
+    /* no qualifier*/ FortResponse createGroupSessionTrusted( FortRequest request )
+    {
+        return createGroupSession( request );
+    }
+
+
+    /**
+     * Creates a Group-type session
+     *
+     * @param request The request We want to create a session for
+     * @return The created response
+     */
+    private FortResponse createGroupSession( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
+            Group inGroup = (Group) request.getEntity();
+            Session outSession = accessMgr.createGroupSession( inGroup );
+            response.setSession( outSession );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
     }
 
     

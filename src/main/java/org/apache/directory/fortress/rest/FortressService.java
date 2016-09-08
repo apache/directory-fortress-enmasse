@@ -19,8 +19,17 @@
  */
 package org.apache.directory.fortress.rest;
 
+import org.apache.directory.fortress.core.FinderException;
+import org.apache.directory.fortress.core.SecurityException;
+import org.apache.directory.fortress.core.ValidationException;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
+import org.apache.directory.fortress.core.model.Group;
+import org.apache.directory.fortress.core.model.UserRole;
+
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
 /**
  * Interface for Fortress Rest Service methods.
@@ -2738,7 +2747,7 @@ public interface FortressService
      */
     FortResponse assignedUsers( FortRequest request );
 
-    
+
     /**
      * This function returns the set of roles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
@@ -2778,7 +2787,7 @@ public interface FortressService
      */
     FortResponse assignedRoles( FortRequest request );
 
-    
+
     /**
      * This function returns the set of users authorized to a given role, i.e., the users that are assigned to a role that
      * inherits the given role. The function is valid if and only if the given role is a member of the ROLES data set.
@@ -3702,6 +3711,76 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
      */
     FortResponse createSessionTrusted( FortRequest request );
+
+    /**
+     * Perform group {@link Group} role activations {@link Group#members}.<br>
+     * Group sessions are always trusted. <br>
+     * This method must be called once per group prior to calling other methods within this class.
+     * The successful result is {@link org.apache.directory.fortress.core.model.Session} that contains target group's RBAC
+     * {@link Group#members}
+     * <h4> This API will...</h4>
+     * <ul>
+     *   <li>
+     *     fail for any non-existing group
+     *   </li>
+     *   <li>
+     *     evaluate temporal {@link org.apache.directory.fortress.core.model.Constraint}(s) on member {@link UserRole} entities.
+     *   <li>process selective role activations into Group RBAC Session {@link Group#roles}.</li>
+     *   <li>
+     *     check Dynamic Separation of Duties {@link org.apache.directory.fortress.core.impl.DSDChecker#validate(
+     *          org.apache.directory.fortress.core.model.Session,
+     *          org.apache.directory.fortress.core.model.Constraint,
+     *          org.apache.directory.fortress.core.util.time.Time,
+     *          org.apache.directory.fortress.core.util.VUtil.ConstraintType)} on
+     *          {@link org.apache.directory.fortress.core.model.User#roles}.
+     *   </li>
+     *   <li>
+     *     return a {@link org.apache.directory.fortress.core.model.Session} containing
+     *     {@link org.apache.directory.fortress.core.model.Session#getGroup()},
+     *     {@link org.apache.directory.fortress.core.model.Session#getRoles()}
+     *   </li>
+     *   <li>throw a checked exception that will be {@link SecurityException} or its derivation.</li>
+     *   <li>throw a {@link SecurityException} for system failures.</li>
+     *   <li>throw a {@link ValidationException} for data validation errors.</li>
+     *   <li>throw a {@link FinderException} if Group name not found.</li>
+     * </ul>
+     * <h4>
+     * The function is valid if and only if:
+     * </h4>
+     * <ul>
+     *   <li> the group is a member of the GROUPS data set</li>
+     *   <li> the (optional) active role set is a subset of the roles authorized for that group.</li>
+     * </ul>
+     * <h4>
+     * The following attributes may be set when calling this method
+     * </h4>
+     * <ul>
+     *   <li>{@link Group#name} - required</li>
+     *   <li>
+     *     {@link org.apache.directory.fortress.core.model.Group#members} contains a list of RBAC role names authorized for group
+     *     and targeted for activation within this session.  Default is all authorized RBAC roles will be activated into this
+     *     Session.
+     *   </li>
+     * </ul>
+     * <h4>
+     * Notes:
+     * </h4>
+     * <ul>
+     * <li> roles that violate Dynamic Separation of Duty Relationships will not be activated into session.
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * (optional), optional {@link Group#type}, optional
+     * @return reference to {@code FortResponse}, {@link FortResponse#session} object will contain authentication result
+     * {@link org.apache.directory.fortress.core.model.Session#errorId},
+     * RBAC role activations {@link org.apache.directory.fortress.core.model.Session#getRoles()},
+     * OpenLDAP pw policy codes {@link org.apache.directory.fortress.core.model.Session#warnings},
+     * {@link org.apache.directory.fortress.core.model.Session#expirationSeconds},
+     * {@link org.apache.directory.fortress.core.model.Session#graceLogins} and more.
+     * @throws SecurityException
+     *          in the event of data validation failure, security policy violation or DAO error.
+     */
+    FortResponse createGroupSessionTrusted( FortRequest request );
 
     
     /**
@@ -6470,4 +6549,278 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.Props}
      */
     FortResponse readConfig( FortRequest request );
+
+
+    //----------------------- GroupMgr -----------------------------------------
+
+    /**
+     * This command creates a new group. The command is valid only if the new group is
+     * not already a member of the GROUPS data set. The GROUP data set is updated. The new group
+     * does not own any session at the time of its creation.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Group}
+     *     object
+     *   </li>
+     * </ul>
+     *
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *        <h5>Group required parameters</h5>
+     *       </li>
+     *       <li>
+     *         <ul>
+     *           <li>{@link org.apache.directory.fortress.core.model.Group#name} - group name </li>
+     *           <li>{@link org.apache.directory.fortress.core.model.Group#type} - either ROLE or USER group </li>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Group#protocol} - protocol
+     *           </li>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Group#members} - multi-occurring contains the dn(s)
+     *             of Group members, either Roles or Users
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Group optional parameters</h5>
+     *       </li>
+     *       <li>
+     *         <ul>
+
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h3>optional parameters</h3>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse addGroup( FortRequest request );
+
+    /**
+     * Method returns matching Group entity that is contained within the GROUPS container in the directory.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Group} entity
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>{@link org.apache.directory.fortress.core.model.Group} required parameters</h5>
+     *         <ul>
+     *           <li>
+     *            {@link org.apache.directory.fortress.core.model.User#name} - contains the name associated with the
+     *            Group object targeted for read.
+     *          </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity} contains a reference to
+     * {@link org.apache.directory.fortress.core.model.Group}
+     */
+    FortResponse readGroup( FortRequest request );
+
+
+    /**
+     * This command deletes an existing Group from the database. The command is valid
+     * if and only if the Group to be deleted is a member of the GROUPS data set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Group}
+     *     object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>User required parameters</h5>
+     *         <ul>
+     *           <li>{@link org.apache.directory.fortress.core.model.Group#name} - name of the Group
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse deleteGroup( FortRequest request );
+
+    /**
+     * This command update an existing Group.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Group}
+     *     object
+     *   </li>
+     * </ul>
+     *
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *        <h5>Group required parameters</h5>
+     *       </li>
+     *       <li>
+     *         <ul>
+     *           <li>{@link org.apache.directory.fortress.core.model.Group#name} - group name </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Group optional parameters</h5>
+     *       </li>
+     *       <li>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Group#members} - multi-occurring contains the dn(s)
+     *             of Group members, either Roles or Users
+     *           </li>
+     *           <li>{@link org.apache.directory.fortress.core.model.Group#type} - either ROLE or USER group </li>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Group#protocol} - protocol
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h3>optional parameters</h3>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse updateGroup( FortRequest request );
+
+    /**
+     * This method returns the data set of all groups who are assigned the given role.  This searches the Groups data set
+     * for Role relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *  <li>
+     *    {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} entity
+     *  </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>{@link org.apache.directory.fortress.core.model.Role} required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role
+     *             targeted for search.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type
+     * {@link org.apache.directory.fortress.core.model.Group}
+     */
+    FortResponse assignedGroups( FortRequest request );
+
+    /**
+     * This function returns the set of roles assigned to a given group. The function is valid if and
+     * only if the group is a member of the USERS data set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Group} entity
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>{@link org.apache.directory.fortress.core.model.Group} required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Group#name} - contains the name associated with
+     *             the Group object targeted for search.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
+     *     enforce ARBAC constraints
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of
+     * type {@link org.apache.directory.fortress.core.model.UserRole}
+     */
+    FortResponse assignedGroupRoles( FortRequest request );
 }

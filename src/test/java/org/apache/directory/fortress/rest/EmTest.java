@@ -36,6 +36,7 @@ import org.apache.commons.httpclient.methods.*;
 import org.apache.cxf.common.util.Base64Utility;
 import org.apache.cxf.helpers.IOUtils;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.ws.rs.WebApplicationException;
@@ -52,7 +53,8 @@ public final class EmTest
     private static final Logger log = Logger.getLogger(CLS_NM);
     private static final String HOST = "localhost";
     private static final String PORT = "8080";
-    private static final String VERSION = System.getProperty("version");
+//    private static final String VERSION = System.getProperty("version");
+    private static final String VERSION = "1.0.2-SNAPSHOT-G";
     private static final String SERVICE = "fortress-rest-" + VERSION;
     //private static final String SERVICE = "enmasse-" + VERSION;
     private static final String URI = "http://" + HOST + ":" + PORT + "/" + SERVICE + "/";
@@ -69,247 +71,59 @@ public final class EmTest
         log.info(CLS_NM + ".testServices STARTED");
         try
         {
-            String szResponse = post(USER_ID, PASSWORD, "addPermGrant1.xml", HttpIds.ROLE_REVOKE);
-            FortResponse response = RestUtils.unmarshall(szResponse);
-            int rc = response.getErrorCode();
-            String szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_REVOKE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Don't fail if the delete was not successful as this may be the first run:
+            testFunction("addPermGrant1.xml", HttpIds.ROLE_REVOKE, false);
+            testFunction("delEmGroup1.xml", HttpIds.GROUP_DELETE, false);
+            testFunction("addEmTestPermission.xml", HttpIds.PERM_DELETE, false);
+                    testFunction("addEmTestObj1.xml", HttpIds.OBJ_DELETE, false);
+            testFunction("emTestPermOrg1.xml", HttpIds.ORG_DELETE, false);
+            testFunction("emTestPermOrg1.xml", HttpIds.ORG_ADD, true);
+                    testFunction("assignEmUser1.xml", HttpIds.ROLE_DEASGN, false);
+            testFunction("delEmUser1.xml", HttpIds.USER_DELETE, false);
+            testFunction("emTestOrg1.xml", HttpIds.ORG_DELETE, false);
 
-            szResponse = post(USER_ID, PASSWORD, "addEmTestPermission.xml", HttpIds.PERM_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.PERM_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            testFunction("emTestOrg1.xml", HttpIds.ORG_ADD, true);
+                    testFunction("emRoleDelInheritance.xml", HttpIds.ROLE_DELINHERIT, false);
+            testFunction("addEmRole1.xml", HttpIds.ROLE_DELETE, false);
+            testFunction("delEmRole2.xml", HttpIds.ROLE_DELETE, false);
+            testFunction("addEmRole3.xml", HttpIds.ROLE_DELETE, false);
 
-            szResponse = post(USER_ID, PASSWORD, "addEmTestObj1.xml", HttpIds.OBJ_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.OBJ_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Create objects and start testing
+            testFunction("addEmRole1.xml", HttpIds.ROLE_ADD, true);
+            testFunction("addEmRole3.xml", HttpIds.ROLE_ADD, true);
+            testFunction("addEmRole2Ascendent.xml", HttpIds.ROLE_ASC, true);
+            testFunction("addEmUser1.xml", HttpIds.USER_ADD, true);
+            testFunction("assignEmUser1.xml", HttpIds.ROLE_ASGN, true);
+            testFunction("emTestAuthN.xml", HttpIds.RBAC_AUTHN, true);
+            testFunction("createSession.xml", HttpIds.RBAC_CREATE, true);
+            testFunction("addEmTestObj1.xml", HttpIds.OBJ_ADD, true);
+            testFunction("addEmTestPermission.xml", HttpIds.PERM_ADD, true);
+            testFunction("addPermGrant1.xml", HttpIds.ROLE_GRANT, true);
+            testFunction("emTestCheckAccess.xml", HttpIds.RBAC_AUTHZ, true);
 
-            szResponse = post(USER_ID, PASSWORD, "emTestPermOrg1.xml", HttpIds.ORG_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Create 'emtestgroup1' group with type 'ROLE' and role 'emrole1'
+            testFunction("addEmGroup1.xml", HttpIds.GROUP_ADD, true);
 
-            szResponse = post(USER_ID, PASSWORD, "emTestPermOrg1.xml", HttpIds.ORG_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
+            // Read 'emtestgroup1' group by its name
+            testFunction("groupRead.xml", HttpIds.GROUP_READ, true);
 
-            szResponse = post(USER_ID, PASSWORD, "assignEmUser1.xml", HttpIds.ROLE_DEASGN);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DEASGN + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Assign 'emrole3' role for group to check api
+            testFunction("assignEmGroup1.xml", HttpIds.ROLE_ASGN, true);
 
-            szResponse = post(USER_ID, PASSWORD, "delEmUser1.xml", HttpIds.USER_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.USER_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Deassign existing 'emrole3' from group
+            testFunction("assignEmGroup1.xml", HttpIds.ROLE_DEASGN, true);
 
-            szResponse = post(USER_ID, PASSWORD, "emTestOrg1.xml", HttpIds.ORG_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Read group roles
+            testFunction("groupRead.xml", HttpIds.GROUP_ROLE_ASGNED, true);
 
-            szResponse = post(USER_ID, PASSWORD, "emTestOrg1.xml", HttpIds.ORG_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ORG_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
+            // Read groups assigned to 'emrole1' role
+            testFunction("addEmRole1.xml", HttpIds.GROUP_ASGNED, true);
 
-            szResponse = post(USER_ID, PASSWORD, "emRoleDelInheritance.xml", HttpIds.ROLE_DELINHERIT);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELINHERIT + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
+            // Create trusted group-based session
+            testFunction("createGroupSession.xml", HttpIds.RBAC_CREATE_GROUP_TRUSTED, true);
 
-            szResponse = post(USER_ID, PASSWORD, "addEmRole1.xml", HttpIds.ROLE_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
-
-            szResponse = post(USER_ID, PASSWORD, "delEmRole2.xml", HttpIds.ROLE_DELETE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                // don't fail if the delete was not successful as this may be the first run:
-                String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_DELETE + " rc=" + rc + " error message=" + szErrorMsg;
-                log.info(warn);
-            }
-
-            szResponse = post(USER_ID, PASSWORD, "addEmRole1.xml", HttpIds.ROLE_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "addEmRole2Ascendent.xml", HttpIds.ROLE_ASC);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_ASC + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "addEmUser1.xml", HttpIds.USER_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.USER_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "assignEmUser1.xml", HttpIds.ROLE_ASGN);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_ASGN + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "emTestAuthN.xml", HttpIds.RBAC_AUTHN);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.RBAC_AUTHN + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "createSession.xml", HttpIds.RBAC_CREATE);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.RBAC_AUTHN + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "addEmTestObj1.xml", HttpIds.OBJ_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.OBJ_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "addEmTestPermission.xml", HttpIds.PERM_ADD);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.PERM_ADD + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "addPermGrant1.xml", HttpIds.ROLE_GRANT);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_GRANT + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
-
-            szResponse = post(USER_ID, PASSWORD, "emTestCheckAccess.xml", HttpIds.RBAC_AUTHZ);
-            response = RestUtils.unmarshall(szResponse);
-            rc = response.getErrorCode();
-            szErrorMsg = response.getErrorMessage();
-            if(rc != 0)
-            {
-                String error = CLS_NM + ".testServices failed calling " + HttpIds.RBAC_AUTHZ + " rc=" + rc + " error message=" + szErrorMsg;
-                log.error(error);
-            }
-            assert(rc == 0);
+            // Use this group session to check access (URL is the same as for user, but session has 'isGroupSession' == true)
+            testFunction("emTestCheckAccessGroupSession.xml", HttpIds.RBAC_AUTHZ, true);
 
             log.info(CLS_NM + ".testServices SUCCESS");
         }
@@ -322,6 +136,30 @@ public final class EmTest
     }
 
     /**
+     * Performs a request to a given function URL with given filename.
+     * @param xmlFile         name of the file (to be searched in resources)
+     * @param function url of the REST API function
+     * @param failOnError if 'true', will fail on error in API request
+     * @throws RestException
+     */
+    public void testFunction(String xmlFile, String function, boolean failOnError) throws RestException
+    {
+        String szResponse = post(USER_ID, PASSWORD, xmlFile, function);
+        FortResponse response = RestUtils.unmarshall(szResponse);
+        int rc = response.getErrorCode();
+        String szErrorMsg = response.getErrorMessage();
+        String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_REVOKE + " rc=" + rc + " error message=" + szErrorMsg;
+        if(rc != 0)
+        {
+            log.info(warn);
+        }
+        if (failOnError)
+        {
+            Assert.assertEquals(warn, 0, rc);
+        }
+    }
+
+    /**
      * Perform an HTTP Post to the configured server.
      *
      * @param userId
@@ -330,7 +168,7 @@ public final class EmTest
      * @param function
      * @throws RestException
      */
-    private String post(String userId, String password, String xmlFile, String function) throws RestException
+    public String post(String userId, String password, String xmlFile, String function) throws RestException
     {
         String szResponse;
         log.info(CLS_NM + ".post file:" + xmlFile + " HTTP POST request to:" + function);
