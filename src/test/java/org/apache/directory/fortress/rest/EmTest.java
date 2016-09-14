@@ -73,15 +73,15 @@ public final class EmTest
             testFunction("addPermGrant1.xml", HttpIds.ROLE_REVOKE, false);
             testFunction("delEmGroup1.xml", HttpIds.GROUP_DELETE, false);
             testFunction("addEmTestPermission.xml", HttpIds.PERM_DELETE, false);
-                    testFunction("addEmTestObj1.xml", HttpIds.OBJ_DELETE, false);
+            testFunction("addEmTestObj1.xml", HttpIds.OBJ_DELETE, false);
             testFunction("emTestPermOrg1.xml", HttpIds.ORG_DELETE, false);
             testFunction("emTestPermOrg1.xml", HttpIds.ORG_ADD, true);
-                    testFunction("assignEmUser1.xml", HttpIds.ROLE_DEASGN, false);
+            testFunction("assignEmUser1.xml", HttpIds.ROLE_DEASGN, false);
             testFunction("delEmUser1.xml", HttpIds.USER_DELETE, false);
             testFunction("emTestOrg1.xml", HttpIds.ORG_DELETE, false);
 
             testFunction("emTestOrg1.xml", HttpIds.ORG_ADD, true);
-                    testFunction("emRoleDelInheritance.xml", HttpIds.ROLE_DELINHERIT, false);
+            testFunction("emRoleDelInheritance.xml", HttpIds.ROLE_DELINHERIT, false);
             testFunction("addEmRole1.xml", HttpIds.ROLE_DELETE, false);
             testFunction("delEmRole2.xml", HttpIds.ROLE_DELETE, false);
             testFunction("addEmRole3.xml", HttpIds.ROLE_DELETE, false);
@@ -106,10 +106,10 @@ public final class EmTest
             testFunction("groupRead.xml", HttpIds.GROUP_READ, true);
 
             // Assign 'emrole3' role for group to check api
-            testFunction("assignEmGroup1.xml", HttpIds.ROLE_ASGN, true);
+            testFunction("assignEmGroup1.xml", HttpIds.GROUP_ROLE_ASGN, true);
 
             // Deassign existing 'emrole3' from group
-            testFunction("assignEmGroup1.xml", HttpIds.ROLE_DEASGN, true);
+            testFunction("assignEmGroup1.xml", HttpIds.GROUP_ROLE_DEASGN, true);
 
             // Read group roles
             testFunction("groupRead.xml", HttpIds.GROUP_ROLE_ASGNED, true);
@@ -118,7 +118,7 @@ public final class EmTest
             testFunction("addEmRole1.xml", HttpIds.GROUP_ASGNED, true);
 
             // Create trusted group-based session
-            testFunction("createGroupSession.xml", HttpIds.RBAC_CREATE_GROUP_TRUSTED, true);
+            testFunction("createGroupSession.xml", HttpIds.RBAC_CREATE_GROUP_SESSION, true);
 
             // Use this group session to check access (URL is the same as for user, but session has 'isGroupSession' == true)
             testFunction("emTestCheckAccessGroupSession.xml", HttpIds.RBAC_AUTHZ, true);
@@ -146,7 +146,7 @@ public final class EmTest
         FortResponse response = RestUtils.unmarshall(szResponse);
         int rc = response.getErrorCode();
         String szErrorMsg = response.getErrorMessage();
-        String warn = CLS_NM + ".testServices FAILED calling " + HttpIds.ROLE_REVOKE + " rc=" + rc + " error message=" + szErrorMsg;
+        String warn = CLS_NM + ".testServices FAILED calling " + function + " rc=" + rc + " error message=" + szErrorMsg;
         if(rc != 0)
         {
             log.info(warn);

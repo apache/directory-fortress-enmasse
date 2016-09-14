@@ -179,5 +179,45 @@ class GroupMgrImpl extends AbstractMgrImpl
         return response;
     }
 
+    /* No qualifier */  FortResponse assignGroupRole( FortRequest request )
+    {
+        FortResponse response = createResponse();
 
+        try
+        {
+            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
+            groupMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+
+            Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE );
+            groupMgr.assign( inGroup, inRole.getName() );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+    /* No qualifier */  FortResponse deassignGroupRole( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
+            groupMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+
+            Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
+            groupMgr.deassign( inGroup, inRole.getName() );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
 }

@@ -3780,7 +3780,7 @@ public interface FortressService
      * @throws SecurityException
      *          in the event of data validation failure, security policy violation or DAO error.
      */
-    FortResponse createGroupSessionTrusted( FortRequest request );
+    FortResponse createGroupSession(FortRequest request );
 
     
     /**
@@ -6823,4 +6823,83 @@ public interface FortressService
      * type {@link org.apache.directory.fortress.core.model.UserRole}
      */
     FortResponse assignedGroupRoles( FortRequest request );
+
+    /**
+     * This command assigns a group to a role.
+     * <ul>
+     *   <li> The command is valid if and only if:
+     *   <li> The group is a member of the GROUPS data set
+     *   <li> The role is a member of the ROLES data set
+     *   <li> The group is not already assigned to the role
+     * </ul>
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole}
+     *     object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>UserRole required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.UserRole#name} - contains the name for already existing
+     *             Role to be assigned
+     *           </li>
+     *           <li>{@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the group name for
+     *           existing Group</li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse assignGroupRole( FortRequest request );
+
+    /**
+     * This command deletes the assignment of the User from the Role entities. The command is
+     * valid if and only if the group is a member of the GROUPS data set, the role is a member of
+     * the ROLES data set, the group is assigned to the role and group have at least one role assigned.
+     * Any sessions that currently have this role activated will not be effected.
+     * Successful completion includes:
+     * Group entity in GROUP data set has role assignment removed.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.UserRole}
+     *     object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>UserRole required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.UserRole#name} - contains the name for already existing
+     *             Role to be deassigned
+     *           </li>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.UserRole#userId} - contains the group name for existing
+     *             Group
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse deassignGroupRole( FortRequest request );
 }

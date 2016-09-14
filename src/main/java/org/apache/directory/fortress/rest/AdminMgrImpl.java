@@ -279,70 +279,46 @@ class AdminMgrImpl extends AbstractMgrImpl
         
         return response;
     }
-    
-    
+
+
     /* No qualifier */ FortResponse assignUser( FortRequest request )
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
-            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
             adminMgr.setAdmin( request.getSession() );
-            groupMgr.setAdmin( request.getSession() );
             UserRole inRole = (UserRole) request.getEntity();
-
-            if ( inRole.isGroupRole() )
-            {
-                Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
-                groupMgr.assign( inGroup, inRole.getName() );
-            }
-            else
-            {
-                adminMgr.assignUser(inRole);
-            }
-            response.setEntity(inRole);
-        }
-        catch ( SecurityException se )
-        {
-            createError( response, log, se );
-        }
-        
-        return response;
-    }
-
-    
-    /* No qualifier */ FortResponse deassignUser( FortRequest request )
-    {
-        FortResponse response = createResponse();
-
-        
-        try
-        {
-            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
-            GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
-            adminMgr.setAdmin( request.getSession() );
-            groupMgr.setAdmin( request.getSession() );
-            UserRole inRole = (UserRole) request.getEntity();
-
-            if ( inRole.isGroupRole() )
-            {
-                Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
-                groupMgr.deassign( inGroup, inRole.getName() );
-            }
-            else
-            {
-                adminMgr.deassignUser( inRole );
-            }
+            adminMgr.assignUser( inRole );
             response.setEntity( inRole );
         }
         catch ( SecurityException se )
         {
             createError( response, log, se );
         }
-        
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse deassignUser( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+            adminMgr.deassignUser( inRole );
+            response.setEntity( inRole );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
         return response;
     }
 

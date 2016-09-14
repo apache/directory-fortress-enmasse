@@ -100,19 +100,7 @@ class AccessMgrImpl extends AbstractMgrImpl
      * @param request The request We want to create a session for
      * @return The created response
      */
-    /* no qualifier*/ FortResponse createGroupSessionTrusted( FortRequest request )
-    {
-        return createGroupSession( request );
-    }
-
-
-    /**
-     * Creates a Group-type session
-     *
-     * @param request The request We want to create a session for
-     * @return The created response
-     */
-    private FortResponse createGroupSession( FortRequest request )
+    /* no qualifier*/ FortResponse createGroupSession( FortRequest request )
     {
         FortResponse response = createResponse();
 

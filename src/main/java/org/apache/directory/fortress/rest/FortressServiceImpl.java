@@ -1015,12 +1015,12 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
-    @Path("/" + HttpIds.RBAC_CREATE_GROUP_TRUSTED + "/")
+    @Path("/" + HttpIds.RBAC_CREATE_GROUP_SESSION + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override
-    public FortResponse createGroupSessionTrusted( FortRequest request )
+    public FortResponse createGroupSession(FortRequest request )
     {
-        return accessMgrImpl.createGroupSessionTrusted( request );
+        return accessMgrImpl.createGroupSession( request );
     }
 
 
@@ -1872,5 +1872,29 @@ public class FortressServiceImpl implements FortressService
     public FortResponse assignedGroups( FortRequest request )
     {
         return groupMgrImpl.assignedGroups( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_ROLE_ASGN + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse assignGroupRole(FortRequest request)
+    {
+        return groupMgrImpl.assignGroupRole( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.GROUP_ROLE_DEASGN + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse deassignGroupRole(FortRequest request)
+    {
+        return groupMgrImpl.deassignGroupRole( request );
     }
 }
