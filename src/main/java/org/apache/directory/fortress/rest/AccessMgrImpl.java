@@ -108,7 +108,7 @@ class AccessMgrImpl extends AbstractMgrImpl
         {
             AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             Group inGroup = (Group) request.getEntity();
-            Session outSession = accessMgr.createGroupSession( inGroup );
+            Session outSession = accessMgr.createSession( inGroup );
             response.setSession( outSession );
         }
         catch ( SecurityException se )
