@@ -54,7 +54,7 @@ public final class EmTest
     private static final String HOST = "localhost";
     private static final String PORT = "8080";
     private static final String VERSION = System.getProperty("version");
-    private static final String SERVICE = "enmasse-" + VERSION;
+    private static final String SERVICE = "fortress-rest-" + VERSION;
     private static final String URI = "http://" + HOST + ":" + PORT + "/" + SERVICE + "/";
     private static final String USER_ID = "demouser4";
     private static final String PASSWORD = "password";
