@@ -123,7 +123,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -147,7 +146,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -171,7 +169,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -195,7 +192,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -219,7 +215,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -241,7 +236,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -263,7 +257,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -327,7 +320,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -349,7 +341,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -371,7 +362,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -393,7 +383,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -415,7 +404,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -437,7 +425,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -555,7 +542,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             PermGrant permGrant = (PermGrant) request.getEntity();
@@ -584,7 +570,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             PermGrant permGrant = (PermGrant) request.getEntity();
@@ -612,7 +597,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             PermGrant permGrant = (PermGrant) request.getEntity();
@@ -641,7 +625,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             PermGrant permGrant = (PermGrant) request.getEntity();
@@ -670,7 +653,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -693,7 +675,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -715,7 +696,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -737,7 +717,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -758,7 +737,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     /* No qualifier */ FortResponse createSsdSet( FortRequest request )
     {
         FortResponse response = createResponse();
-
         
         try
         {
@@ -781,7 +759,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -803,7 +780,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -826,7 +802,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -848,7 +823,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     /* No qualifier */ FortResponse deleteSsdSet( FortRequest request )
     {
         FortResponse response = createResponse();
-
         
         try
         {
@@ -892,7 +866,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -914,7 +887,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -936,7 +908,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -959,7 +930,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -982,7 +952,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -1004,7 +973,6 @@ class AdminMgrImpl extends AbstractMgrImpl
     {
         FortResponse response = createResponse();
 
-        
         try
         {
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
@@ -1018,6 +986,154 @@ class AdminMgrImpl extends AbstractMgrImpl
             createError( response, log, se );
         }
         
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse addRoleConstraint( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+            RoleConstraint inConstraint = (RoleConstraint) request.getEntity2();
+            RoleConstraint outRole = adminMgr.addRoleConstraint( inRole, inConstraint );
+            response.setEntity( outRole );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse removeRoleConstraint( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+            RoleConstraint inConstraint = (RoleConstraint) request.getEntity2();
+            adminMgr.removeRoleConstraint( inRole, inConstraint );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse addPermissionAttributeToSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            PermissionAttribute inAttr = (PermissionAttribute) request.getEntity();
+            String attrName = request.getValue();
+            PermissionAttribute outAttr = adminMgr.addPermissionAttributeToSet( inAttr, attrName );
+            response.setEntity( outAttr );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse updatePermissionAttributeInSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            PermissionAttribute inAttr = (PermissionAttribute) request.getEntity();
+            String attrName = request.getValue();
+            boolean isReplace = request.getIsReplace();
+            adminMgr.updatePermissionAttributeInSet( inAttr, attrName, isReplace );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse removePermissionAttributeFromSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            PermissionAttribute inAttr = (PermissionAttribute) request.getEntity();
+            String attrName = request.getValue();
+            adminMgr.removePermissionAttributeFromSet( inAttr, attrName );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+    /* No qualifier */ FortResponse addPermissionAttributeSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            PermissionAttributeSet inSet = (PermissionAttributeSet) request.getEntity();
+            PermissionAttributeSet outSet = adminMgr.addPermissionAttributeSet( inSet );
+            response.setEntity( outSet );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */ FortResponse deletePermissionAttributeSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            PermissionAttributeSet inSet = (PermissionAttributeSet) request.getEntity();
+            adminMgr.deletePermissionAttributeSet( inSet );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
         return response;
     }
 }

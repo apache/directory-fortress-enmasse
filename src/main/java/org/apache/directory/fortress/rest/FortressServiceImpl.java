@@ -322,7 +322,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse grant( FortRequest request )
     {
-        return adminMgrImpl.grant(request, this);
+        return adminMgrImpl.grant( request, this );
     }
 
 
@@ -335,7 +335,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse revoke( FortRequest request )
     {
-        return adminMgrImpl.revoke(request, this);
+        return adminMgrImpl.revoke( request, this );
     }
 
 
@@ -348,7 +348,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse grantUser( FortRequest request )
     {
-        return adminMgrImpl.grantUser(request, this);
+        return adminMgrImpl.grantUser( request, this );
     }
 
 
@@ -361,7 +361,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse revokeUser( FortRequest request )
     {
-        return adminMgrImpl.revokeUser(request, this);
+        return adminMgrImpl.revokeUser( request, this );
     }
 
 
@@ -572,7 +572,98 @@ public class FortressServiceImpl implements FortressService
         return adminMgrImpl.setDsdSetCardinality( request );
     }
 
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.ROLE_ADD_CONSTRAINT + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse addRoleConstraint( FortRequest request )
+    {
+        return adminMgrImpl.addRoleConstraint( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.ROLE_DELETE_CONSTRAINT + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse removeRoleConstraint( FortRequest request )
+    {
+        return adminMgrImpl.removeRoleConstraint( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_ADD_ATTRIBUTE_SET + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse addPermissionAttributeSet( FortRequest request )
+    {
+        return adminMgrImpl.addPermissionAttributeSet( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_DELETE_ATTRIBUTE_SET + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse deletePermissionAttributeSet( FortRequest request )
+    {
+        return adminMgrImpl.deletePermissionAttributeSet( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_ADD_PERM_ATTRIBUTE_TO_SET + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse addPermissionAttributeToSet( FortRequest request )
+    {
+        return adminMgrImpl.addPermissionAttributeToSet( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_DELETE_PERM_ATTRIBUTE_TO_SET + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse removePermissionAttributeFromSet( FortRequest request )
+    {
+        return adminMgrImpl.removePermissionAttributeFromSet( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.PERM_UPDATE_PERM_ATTRIBUTE_IN_SET + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse updatePermissionAttributeInSet( FortRequest request )
+    {
+        return adminMgrImpl.updatePermissionAttributeInSet( request );
+    }
+
+
     /**
      * ************************************************************************************************************************************
      * BEGIN REVIEWMGR
@@ -581,6 +672,7 @@ public class FortressServiceImpl implements FortressService
     /**
      * {@inheritDoc}
      */
+
     @POST
     @Path("/" + HttpIds.PERM_READ + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
@@ -772,6 +864,15 @@ public class FortressServiceImpl implements FortressService
     }
 
 
+    @POST
+    @Path("/" + HttpIds.ROLE_FIND_CONSTRAINTS + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse findRoleConstraints( FortRequest request )
+    {
+        return reviewMgrImpl.findRoleConstraints( request );
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -836,6 +937,15 @@ public class FortressServiceImpl implements FortressService
         return reviewMgrImpl.authorizedPermissionUsersM( request );
     }
 
+
+    @POST
+    @Path("/" + HttpIds.PERM_READ_PERM_ATTRIBUTE_SET + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse readPermAttributeSet( FortRequest request )
+    {
+        return reviewMgrImpl.readPermAttributeSet( request );
+    }
 
     /**
      * {@inheritDoc}
@@ -966,7 +1076,7 @@ public class FortressServiceImpl implements FortressService
         return reviewMgrImpl.dsdSetsM( request );
     }
 
-    
+
     /**
      * ************************************************************************************************************************************
      * BEGIN ACCESSMGR

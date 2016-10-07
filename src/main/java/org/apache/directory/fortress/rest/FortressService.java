@@ -6902,4 +6902,14 @@ public interface FortressService
      * @return reference to {@code FortResponse}
      */
     FortResponse deassignGroupRole( FortRequest request );
+
+    FortResponse addRoleConstraint( FortRequest request );
+    FortResponse removeRoleConstraint( FortRequest request );
+    FortResponse addPermissionAttributeToSet( FortRequest request );
+    FortResponse updatePermissionAttributeInSet( FortRequest request );
+    FortResponse removePermissionAttributeFromSet( FortRequest request );
+    FortResponse addPermissionAttributeSet( FortRequest request );
+    FortResponse deletePermissionAttributeSet( FortRequest request );
+    FortResponse findRoleConstraints( FortRequest request );
+    FortResponse readPermAttributeSet( FortRequest request );
 }

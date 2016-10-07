@@ -26,7 +26,9 @@ import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.OrgUnit;
 import org.apache.directory.fortress.core.model.PermObj;
 import org.apache.directory.fortress.core.model.Permission;
+import org.apache.directory.fortress.core.model.PermissionAttributeSet;
 import org.apache.directory.fortress.core.model.Role;
+import org.apache.directory.fortress.core.model.RoleConstraint;
 import org.apache.directory.fortress.core.model.SDSet;
 import org.apache.directory.fortress.core.model.User;
 import org.apache.directory.fortress.core.model.UserRole;
@@ -730,4 +732,49 @@ class ReviewMgrImpl extends AbstractMgrImpl
         
         return response;
     }
+
+
+    /* No qualifier */  FortResponse findRoleConstraints( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            User inUser = (User) request.getEntity();
+            Permission inPerm = (Permission) request.getEntity2();
+            RoleConstraint.RCType inType = RoleConstraint.RCType.valueOf( request.getValue() );
+            List<RoleConstraint> outConstraints = reviewMgr.findRoleConstraints( inUser, inPerm, inType );
+            response.setEntities( outConstraints );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */  FortResponse readPermAttributeSet( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            PermissionAttributeSet inSet = (PermissionAttributeSet) request.getEntity();
+            PermissionAttributeSet outSet = reviewMgr.readPermAttributeSet( inSet );
+            response.setEntity( outSet );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
 }
