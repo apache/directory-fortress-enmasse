@@ -179,7 +179,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         return response;
     }
 
-    /* No qualifier */  FortResponse assignGroupRole( FortRequest request )
+    /* No qualifier */  FortResponse assignGroup(FortRequest request)
     {
         FortResponse response = createResponse();
 
@@ -187,10 +187,9 @@ class GroupMgrImpl extends AbstractMgrImpl
         {
             GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
             groupMgr.setAdmin( request.getSession() );
-            UserRole inRole = (UserRole) request.getEntity();
-
-            Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE );
-            groupMgr.assign( inGroup, inRole.getName() );
+            Group inGroup = (Group) request.getEntity();
+            String member = request.getValue();
+            groupMgr.assign( inGroup, member );
         }
         catch ( SecurityException se )
         {
@@ -200,7 +199,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         return response;
     }
 
-    /* No qualifier */  FortResponse deassignGroupRole( FortRequest request )
+    /* No qualifier */  FortResponse deassignGroup(FortRequest request)
     {
         FortResponse response = createResponse();
 
@@ -208,10 +207,9 @@ class GroupMgrImpl extends AbstractMgrImpl
         {
             GroupMgr groupMgr = GroupMgrFactory.createInstance( request.getContextId() );
             groupMgr.setAdmin( request.getSession() );
-            UserRole inRole = (UserRole) request.getEntity();
-
-            Group inGroup = new Group( inRole.getUserId(), Group.Type.ROLE);
-            groupMgr.deassign( inGroup, inRole.getName() );
+            Group inGroup = (Group) request.getEntity();
+            String member = request.getValue();
+            groupMgr.deassign( inGroup, member );
         }
         catch ( SecurityException se )
         {

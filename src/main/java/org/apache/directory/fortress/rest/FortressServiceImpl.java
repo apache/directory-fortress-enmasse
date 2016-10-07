@@ -1988,23 +1988,23 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
-    @Path("/" + HttpIds.GROUP_ROLE_ASGN + "/")
+    @Path("/" + HttpIds.GROUP_ASGN + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse assignGroupRole(FortRequest request)
+    public FortResponse assignGroup(FortRequest request)
     {
-        return groupMgrImpl.assignGroupRole( request );
+        return groupMgrImpl.assignGroup( request );
     }
 
     /**
      * {@inheritDoc}
      */
     @POST
-    @Path("/" + HttpIds.GROUP_ROLE_DEASGN + "/")
+    @Path("/" + HttpIds.GROUP_DEASGN + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
-    public FortResponse deassignGroupRole(FortRequest request)
+    public FortResponse deassignGroup(FortRequest request)
     {
-        return groupMgrImpl.deassignGroupRole( request );
+        return groupMgrImpl.deassignGroup( request );
     }
 }

@@ -106,10 +106,10 @@ public final class EmTest
             testFunction("groupRead.xml", HttpIds.GROUP_READ, true);
 
             // Assign 'emrole3' role for group to check api
-            testFunction("assignEmGroup1.xml", HttpIds.GROUP_ROLE_ASGN, true);
+            testFunction("assignEmGroup1.xml", HttpIds.GROUP_ASGN, true);
 
             // Deassign existing 'emrole3' from group
-            testFunction("assignEmGroup1.xml", HttpIds.GROUP_ROLE_DEASGN, true);
+            testFunction("assignEmGroup1.xml", HttpIds.GROUP_DEASGN, true);
 
             // Read group roles
             testFunction("groupRead.xml", HttpIds.GROUP_ROLE_ASGNED, true);

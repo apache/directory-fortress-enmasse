@@ -6861,7 +6861,7 @@ public interface FortressService
      * @param request contains a reference to {@code FortRequest}
      * @return reference to {@code FortResponse}
      */
-    FortResponse assignGroupRole( FortRequest request );
+    FortResponse assignGroup(FortRequest request);
 
     /**
      * This command deletes the assignment of the User from the Role entities. The command is
@@ -6901,7 +6901,7 @@ public interface FortressService
      * @param request contains a reference to {@code FortRequest}
      * @return reference to {@code FortResponse}
      */
-    FortResponse deassignGroupRole( FortRequest request );
+    FortResponse deassignGroup(FortRequest request);
 
     FortResponse addRoleConstraint( FortRequest request );
     FortResponse removeRoleConstraint( FortRequest request );
