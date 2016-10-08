@@ -6903,13 +6903,161 @@ public interface FortressService
      */
     FortResponse deassignGroup(FortRequest request);
 
+    /**
+     * This method adds a roleConstraint (ftRC) to the user ldap entry. (ftRC=ROLE_NAME$type$CONSTRAINT_TYPE$CONSTRAINT_PASETNAME$CONSTRAINT_VALUE)
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link UserRole#name} - contains the name for already existing Role to be assigned</li>
+     *   <li>{@link UserRole#userId} - contains the userId for existing User</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#type} - contains the type of role constraint (filter, other)</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#value} - contains the value of the role constraint which is currently not validated in any way</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#paSetName} - contains the userId for existing User, contains the name of the permission attribute set this constraint is applicable for</li>
+     * </ul>
+     *
+     * @param uRole must contain {@link UserRole#userId} and {@link UserRole#name}
+     * @param roleConstraint must contain {@link org.apache.directory.fortress.core.model.RoleConstraint#type} and {@link org.apache.directory.fortress.core.model.RoleConstraint#value} and {@link org.apache.directory.fortress.core.model.RoleConstraint#paSetName}
+     * @return RoleConstraint that was added to user role assignment
+     * @throws SecurityException in the event of validation or system error.
+     */
     FortResponse addRoleConstraint( FortRequest request );
+
+    /**
+     * Thie method removes a roleConstraint (ftRC) from the user ldap entry.
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link UserRole#name} - contains the name for already existing Role to be assigned</li>
+     *   <li>{@link UserRole#userId} - contains the userId for existing User</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#type} - contains the type of role constraint (filter, other)</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#value} - contains the value of the role constraint which is currently not validated in any way</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.RoleConstraint#paSetName} - contains the userId for existing User, contains the name of the permission attribute set this constraint is applicable for</li>
+     * </ul>
+     *
+     * @param uRole must contain {@link UserRole#userId} and {@link UserRole#name}
+     * @param roleConstraint must contain {@link org.apache.directory.fortress.core.model.RoleConstraint#type} and {@link org.apache.directory.fortress.core.model.RoleConstraint#value} and {@link org.apache.directory.fortress.core.model.RoleConstraint#paSetName}
+     * @throws SecurityException in the event of validation or system error.
+     */
     FortResponse removeRoleConstraint( FortRequest request );
-    FortResponse addPermissionAttributeToSet( FortRequest request );
-    FortResponse updatePermissionAttributeInSet( FortRequest request );
-    FortResponse removePermissionAttributeFromSet( FortRequest request );
+
+    /**
+     * This method will create a new permission attribute set object with resides under the
+     * {@code ou=Constraints,ou=RBAC,dc=yourHostName,dc=com} container in directory information tree.
+     * The attribute set may contain 0 to many {@link org.apache.directory.fortress.core.model.PermissionAttribute}
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttributeSet#name} - contains the name of the permission attribute set</li>
+     * </ul>
+     *
+     * @param permAttributeSet must contain {@link org.apache.directory.fortress.core.model.PermissionAttributeSet#name}
+     * @return PermissionAttributeSet that was created
+     * @throws SecurityException - thrown in the event of perm attribute set data or system error.
+     */
     FortResponse addPermissionAttributeSet( FortRequest request );
+
+    /**
+     * This method will delete a permission attribute set object.
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttributeSet#name} - contains the name of the permission attribute set</li>
+     * </ul>
+     *
+     * @param permAttributeSet must contain {@link org.apache.directory.fortress.core.model.PermissionAttributeSet#name}
+     * @throws SecurityException - thrown in the event of perm attribute set data or system error.
+     */
     FortResponse deletePermissionAttributeSet( FortRequest request );
+
+    /**
+     * This method adds a permission attribute (ftPA) to a permission attribute set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName} - contains the name of existing object being targeted for the permission update</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#dataType} - contains the data type of the permission attribute values (string,int,long,float)</li>
+     *   <li>attributeSetName - contains the name of existing permission attribute set being modified</li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#required} - Flag to specify this attribute is required, defaults to false.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#operator} - Can specify an operator this attribute must use.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#validValues} - CSV of valid values. Currently up to interpreting application to understand these.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#defaultValue} - A default value for the attribute value if none is specified.</li>
+     * </ul>
+     *
+     * @param permAttribute must contain {@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName} and {@link org.apache.directory.fortress.core.model.PermissionAttribute#dataType}
+     * @param attributeSetName The name of the permission attribute set this ftPA should be added.
+     * @return PermissionAttribute entity created
+     * @throws SecurityException - thrown in the event of data or system error
+     */
+    FortResponse addPermissionAttributeToSet( FortRequest request );
+
+    /**
+     * This method updates a permission attribute (ftPA) on a permission attribute set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName} - contains the name of existing object being targeted for the permission update</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#dataType} - contains the data type of the permission attribute values (string,int,long,float)</li>
+     *   <li>attributeSetName - contains the name of existing permission attribute set being modified</li>
+     * </ul>
+     * <h4>optional parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#required} - Flag to specify this attribute is required, defaults to false.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#operator} - Can specify an operator this attribute must use.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#validValues} - CSV of valid values. Currently up to interpreting application to understand these.</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#defaultValue} - A default value for the attribute value if none is specified.</li>
+     * </ul>
+     *
+     * @param permAttribute must contain {@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName} and {@link org.apache.directory.fortress.core.model.PermissionAttribute#dataType}
+     * @param attributeSetName The name of the permission attribute set this ftPA should be updated.
+     * @return PermissionAttribute entity created
+     * @throws SecurityException - thrown in the event of data or system error
+     */
+    FortResponse updatePermissionAttributeInSet( FortRequest request );
+
+    /**
+     * This method removed a permission attribute (ftPA) from an existing permission attribute set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName} - contains the name of existing object being targeted for the permission update</li>
+     *   <li>attributeSetName - contains the name of existing permission attribute set being modified</li>
+     * </ul>
+     *
+     * @param permAttribute must contain {@link org.apache.directory.fortress.core.model.PermissionAttribute#attributeName}
+     * @param attributeSetName The name of the permission attribute set this pa should be removed from
+     * @throws SecurityException - thrown in the event of data or system error
+     */
+    FortResponse removePermissionAttributeFromSet( FortRequest request );
+
+    /**
+     * Find all of the role constraints for the given user and permission attribute set.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.User#userId} - contains the name of existing user being targeted</li>
+     *   <li>{@link org.apache.directory.fortress.core.model.PermissionAttributeSet#name} - contains the name of permission attribute set</li>
+     * </ul>
+     *
+     * @param user The user to filter role constraints
+     * @param permission Contains the permission attribute set to filter role constraints
+     * @return List of the Role Constraints for the given user and pa set.
+     * @throws SecurityException in the event of data or system error.
+     */
     FortResponse findRoleConstraints( FortRequest request );
+
+    /**
+     * This function returns all the permission attribute set (which contain 0 to many permission attributes)
+     * for a given role. The function is valid if and only if the role is a member of the ROLES data
+     * set.
+     *      * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * </ul>
+     *
+     * @param role contains role name, {@link org.apache.directory.fortress.core.model.Role#name} of Role entity Permission is granted to.
+     * @param noInheritance if true will NOT include inherited roles in the search.
+     * @return List of type PermissionAttributeSet that contains all Permission Attribute valid for the role.
+     * @throws SecurityException In the event system error occurs.
+     */
     FortResponse readPermAttributeSet( FortRequest request );
 }
