@@ -1065,7 +1065,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             adminMgr.setAdmin( request.getSession() );
             PermissionAttribute inAttr = (PermissionAttribute) request.getEntity();
             String attrName = request.getValue();
-            boolean isReplace = request.getIsReplace();
+            boolean isReplace = request.getIsFlag();
             adminMgr.updatePermissionAttributeInSet( inAttr, attrName, isReplace );
         }
         catch ( SecurityException se )
