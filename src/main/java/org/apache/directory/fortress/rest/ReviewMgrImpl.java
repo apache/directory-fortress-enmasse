@@ -513,7 +513,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
             ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             reviewMgr.setAdmin( request.getSession() );
             Role inRole = (Role) request.getEntity();
-            boolean noInheritance = Boolean.valueOf( request.getValue() );
+            boolean noInheritance = request.getIsFlag();
             List<Permission> perms = reviewMgr.rolePermissions( inRole, noInheritance );
             response.setEntities( perms );
         }
