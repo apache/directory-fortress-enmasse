@@ -734,7 +734,7 @@ class ReviewMgrImpl extends AbstractMgrImpl
     }
 
 
-    /* No qualifier */  FortResponse findRoleConstraints( FortRequest request )
+    /* No qualifier */  FortResponse findRoleConstraintsM(FortRequest request)
     {
         FortResponse response = createResponse();
 
@@ -757,7 +757,29 @@ class ReviewMgrImpl extends AbstractMgrImpl
     }
 
 
-    /* No qualifier */  FortResponse readPermAttributeSet( FortRequest request )
+    /* No qualifier */  FortResponse rolePermissionAttributeSetsM(FortRequest request)
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            Role inRole = (Role) request.getEntity();
+            boolean isReplace = request.getIsFlag();
+            List<PermissionAttributeSet> retAttrSets = reviewMgr.rolePermissionAttributeSets( inRole, isReplace );
+            response.setEntities( retAttrSets );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
+    /* No qualifier */  FortResponse readPermAttributeSetM(FortRequest request)
     {
         FortResponse response = createResponse();
 

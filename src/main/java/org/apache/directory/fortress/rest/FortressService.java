@@ -7060,4 +7060,22 @@ public interface FortressService
      * @throws SecurityException In the event system error occurs.
      */
     FortResponse readPermAttributeSet( FortRequest request );
+
+
+    /**
+     * This function returns all the permission attribute set (which contain 0 to many permission attributes)
+     * for a given role. The function is valid if and only if the role is a member of the ROLES data
+     * set.
+     *      * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>{@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role targeted for search.</li>
+     * </ul>
+     *
+     * @param role contains role name, {@link org.apache.directory.fortress.core.model.Role#name} of Role entity Permission is granted to.
+     * @param noInheritance if true will NOT include inherited roles in the search.
+     * @return List of type PermissionAttributeSet that contains all Permission Attribute valid for the role.
+     * @throws SecurityException In the event system error occurs.
+     */
+    public FortResponse rolePermissionAttributeSets( FortRequest request );
 }

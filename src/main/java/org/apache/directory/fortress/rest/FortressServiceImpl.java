@@ -870,7 +870,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findRoleConstraints( FortRequest request )
     {
-        return reviewMgrImpl.findRoleConstraints( request );
+        return reviewMgrImpl.findRoleConstraintsM( request );
     }
 
     /**
@@ -944,8 +944,19 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readPermAttributeSet( FortRequest request )
     {
-        return reviewMgrImpl.readPermAttributeSet( request );
+        return reviewMgrImpl.readPermAttributeSetM( request );
     }
+
+
+    @POST
+    @Path("/" + HttpIds.ROLE_PERM_ATTR_SETS + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse rolePermissionAttributeSets( FortRequest request )
+    {
+        return reviewMgrImpl.rolePermissionAttributeSetsM( request );
+    }
+
 
     /**
      * {@inheritDoc}
