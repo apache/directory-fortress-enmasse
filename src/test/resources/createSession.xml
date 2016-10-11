@@ -22,13 +22,6 @@
       <contextId>HOME</contextId>
       <entity xsi:type="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
          <userId>emtestuser1</userId>
-         <password>112</password>
-         <password>97</password>
-         <password>115</password>
-         <password>115</password>
-         <password>119</password>
-         <password>111</password>
-         <password>114</password>
-         <password>100</password>
-      </entity>
+         <password>password</password>
+\      </entity>
    </FortRequest>

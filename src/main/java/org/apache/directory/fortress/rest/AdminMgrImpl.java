@@ -128,7 +128,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
             adminMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            adminMgr.changePassword(inUser, inUser.getNewPassword());
+            adminMgr.changePassword( inUser, inUser.getNewPassword().toCharArray() );
             ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             User outUser = reviewMgr.readUser( inUser );
             response.setEntity( outUser );
@@ -197,7 +197,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
             adminMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
-            adminMgr.resetPassword(inUser, inUser.getNewPassword());
+            adminMgr.resetPassword( inUser, inUser.getNewPassword().toCharArray() );
             ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
             User outUser = reviewMgr.readUser( inUser );
             response.setEntity( outUser );

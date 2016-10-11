@@ -58,7 +58,7 @@ class AccessMgrImpl extends AbstractMgrImpl
         {
             AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             User inUser = (User) request.getEntity();
-            Session outSession = accessMgr.authenticate( inUser.getUserId(), inUser.getPassword() );
+            Session outSession = accessMgr.authenticate( inUser.getUserId(), inUser.getPassword().toCharArray() );
             response.setSession( outSession );
             response.setErrorCode( GlobalErrIds.NO_ERROR );
         }
@@ -150,8 +150,8 @@ class AccessMgrImpl extends AbstractMgrImpl
     /**
      * Perform user RBAC authorization.
      *
-     * @param request The {@link FortressRequest} we have to check
-     * @return a {@link FortressResponse} containing the response
+     * @param request The {@link FortRequest} we have to check
+     * @return a {@link FortResponse} containing the response
      */
     /* no qualifier*/ FortResponse checkAccess( FortRequest request )
     {
