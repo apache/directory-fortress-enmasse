@@ -58,7 +58,7 @@ class AccessMgrImpl extends AbstractMgrImpl
         {
             AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
             User inUser = (User) request.getEntity();
-            Session outSession = accessMgr.authenticate( inUser.getUserId(), inUser.getPassword().toCharArray() );
+            Session outSession = accessMgr.authenticate( inUser.getUserId(), inUser.getPassword() );
             response.setSession( outSession );
             response.setErrorCode( GlobalErrIds.NO_ERROR );
         }
