@@ -30,7 +30,7 @@
 ___________________________________________________________________________________
 ## Document Overview
 
-This document contains instructions to deploy a pre-built Apache Fortress Rest instance to Tomcat and configure the server for its use.
+This document contains instructions to deploy a pre-built Apache Fortress Rest web archive (war) to Tomcat and configure the server for its use.
 
 -------------------------------------------------------------------------------
 ## SECTION 1. Prerequisites
