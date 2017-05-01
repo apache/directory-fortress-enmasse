@@ -16,7 +16,7 @@
    under the License.
 
 # README-QUICKSTART for Apache Fortress Rest
- * version 2.0.0-RC1
+ * version 2.0.0-RC2
 
 -------------------------------------------------------------------------------
 ## Table of Contents
