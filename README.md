@@ -75,7 +75,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 
  a. from git:
  ```
- git clone --branch 2.0.0-RC1 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.0-RC2 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  mvn clean install
  ```
@@ -83,7 +83,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
  b. or download package:
 
  ```
- wget http://www.apache.org/dist/directory/fortress/dist/2.0.0-RC1/fortress-rest-2.0.0-RC1-source-release.zip
+ wget http://www.apache.org/dist/directory/fortress/dist/2.0.0-RC2/fortress-rest-2.0.0-RC2-source-release.zip
  unzip fortress-rest-2.0.1-RC1.zip
  cd fortress-rest-2.0.1-RC1
  mvn clean install
