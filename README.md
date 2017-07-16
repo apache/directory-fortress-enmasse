@@ -32,6 +32,7 @@
  * SECTION 5. Deploy to Tomcat Server.
  * SECTION 6. Unit Test.
  * SECTION 7. Alternate testing procedures.
+ * SECTION 8. Fortress rest properties
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -243,5 +244,93 @@ To enable Fortress Core test client to route requests through Fortress Rest serv
 
  All operations should now route through Fortress Rest server.
 
+___________________________________________________________________________________
+## SECTION 8. Fortress Rest properties
+
+This section describes the properties needed to control fortress web.
+
+1. LDAP Hostname coordinates.  The host name can be specified as a fully qualified domain name or IP address.
+
+ ```
+ # Host name and port of LDAP DIT:
+ host=localhost
+ port=10389
+ ```
+
+2. LDAP Server type.  Each LDAP server impl has different behavior on operations like password policies and audit.  If using a 3rd type of server that isn't formally supported, leave blank or type is other.
+
+ ```
+ # If ApacheDS server:
+ ldap.server.type=apacheds
+ ```
+
+ ```
+ # Else if OpenLDAP server:
+ ldap.server.type=slapd
+ ```
+
+ ```
+ # Else leave blank:
+ #ldap.server.type=other
+ ```
+
+3.  Set the credentials of service account.  Must have read/write privileges over the Fortress LDAP DIT:
+
+ ```
+ # If ApacheDS it will look something like this:
+ admin.user=uid=admin,ou=system
+ admin.pw=secret
+ ```
+
+ ```
+ # Else If OpenLDAP it will look something like this:
+ admin.user=cn=Manager,dc=example,dc=com
+ ```
+
+4. Define the number of LDAP connections to use in the pool  This setting will be proportional to the number of concurrent users but won't be one-to-one.  The number of required ldap connections will be much lower than concurrent users:
+
+ ```
+ # This is min/max settings for LDAP connections.  For testing and low-volume instances this will work:
+ min.admin.conn=1
+ max.admin.conn=10
+ ```
+
+5. Give coordinates to the Config node that contains all of the other Fortress properties.  This will match your LDAP's server's config node per Fortress Core setup.
+
+ ```
+ # This node contains fortress properties stored on behalf of connecting LDAP clients:
+ config.realm=DEFAULT
+ config.root=ou=Config,dc=example,dc=com
+ ```
+
+6. If using LDAPS.
+
+ ```
+ # Used for SSL Connection to LDAP Server:
+ enable.ldap.ssl=true
+ enable.ldap.ssl.debug=true
+ trust.store=/fully/qualified/path/and/file/name/to/java/truststore
+ trust.store.password=changeit
+ trust.store.set.prop=true
+ ```
+
+7. If using ApacheDS and setting password policies, point to the correction location.
+
+ ```
+ # ApacheDS stores its password policies objects here by default:
+ apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
+ ```
+
+12. Each instance of a fortress web can be scoped to one and only one tenant.  The default tenant is called HOME.
+
+ ```
+ # This is the default tenant or home context
+ contextId=HOME
+ ```
+
+ ```
+ # If you need to scope to a different tenant, supply its ID here:
+ contextId=mytenantid
+ ```
 ___________________________________________________________________________________
 #### END OF README

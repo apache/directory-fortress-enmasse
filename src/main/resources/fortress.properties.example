@@ -18,14 +18,27 @@
 #
 #
 
+# LDAP Server type.  Each LDAP server impl has different behavior on operations like password policies and audit.  If using a 3rd type of server that isn't formally supported, leave blank or type is other.
+# If ApacheDS server:
+ldap.server.type=apacheds
+# Else if OpenLDAP server:
+# ldap.server.type=slapd
+# Else leave blank:
+#ldap.server.type=other
+
 # Host name and port of LDAP DIT:
 host=localhost
 port=10389
 
-# These credentials are used for read/write access to all nodes under suffix:
+# Set the credentials of service account.  Must have read/write privileges over the Fortress LDAP DIT:
+# If ApacheDS it will look something like this:
 admin.user=uid=admin,ou=system
-# LDAP admin root pass is encrypted using 'encrypt' target in build.xml:
 admin.pw=secret
+# Else If OpenLDAP it will look something like this:
+# admin.user=cn=Manager,dc=example,dc=com
+
+# ApacheDS stores its password policies objects here by default:
+apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
 
 # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
 min.admin.conn=1
@@ -49,10 +62,8 @@ debug.ldap.pool=true
 enable.pool.reconnect=true
 
 ehcache.config.file=ehcache.xml
-role1=admin
-role2=role1
+#role1=admin
+#role2=role1
 
 # If for any reason echcache must be DISABLED for DSD, make sure this parameter is set to 'true' which is the default.  Otherwise performance penalty will be incurred during multi-role activations.
 disable.dsd.cache=false
-
-
