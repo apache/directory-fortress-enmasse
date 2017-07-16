@@ -247,7 +247,7 @@ To enable Fortress Core test client to route requests through Fortress Rest serv
 ___________________________________________________________________________________
 ## SECTION 8. Fortress Rest properties
 
-This section describes the properties needed to control fortress web.
+This section describes the properties needed to control fortress rest.
 
 1. LDAP Hostname coordinates.  The host name can be specified as a fully qualified domain name or IP address.
 
