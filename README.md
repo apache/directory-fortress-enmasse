@@ -85,8 +85,8 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 
  ```
  wget http://www.apache.org/dist/directory/fortress/dist/2.0.0/fortress-rest-2.0.0-source-release.zip
- unzip fortress-rest-2.0.1-RC1.zip
- cd fortress-rest-2.0.1-RC1
+ unzip fortress-rest-2.0.0.zip
+ cd fortress-rest-2.0.0
  mvn clean install
  ```
 
@@ -94,18 +94,6 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 
  ```
  mvn javadoc:javadoc
- ```
-
- If using java 8, add this param to the pom.xml:
- ```
- <plugin>
-    ...
-    <artifactId>maven-javadoc-plugin</artifactId>
-    <configuration>
-        <additionalparam>-Xdoclint:none</additionalparam>
-        ...
-    </configuration>
- </plugin>
  ```
 
 3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
