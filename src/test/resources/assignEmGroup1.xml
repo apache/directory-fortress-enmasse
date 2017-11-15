@@ -17,19 +17,11 @@
    specific language governing permissions and limitations
    under the License.
 -->
-
 <FortRequest>
-      <contextId>HOME</contextId>
-      <entity xsi:type="userRole" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-         <userId>emtestgroup1</userId>
-         <name>emrole3</name>
-         <isGroupRole>true</isGroupRole>   <!-- Note this flag-->
-         <beginDate>20120101</beginDate>
-         <endLockDate>20140101</endLockDate>
-         <beginTime>0100</beginTime>
-         <endTime>2359</endTime>
-         <dayMask>1234567</dayMask>
-         <beginLockDate>none</beginLockDate>
-         <endDate>none</endDate>
-      </entity>
-   </FortRequest>
+   <contextId>HOME</contextId>
+   <entity xsi:type="group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <name>emtestgroup1</name>
+      <type>ROLE</type>
+   </entity>
+   <value>emrole3</value>
+</FortRequest>
