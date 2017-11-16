@@ -56,14 +56,12 @@ config.realm=DEFAULT
 config.root=ou=Config,dc=example,dc=com
 
 # enable this to see trace statements when connection pool allocates new connections:
-debug.ldap.pool=true
+debug.ldap.pool=false
 
 # Default for pool reconnect flag is false:
 enable.pool.reconnect=true
 
 ehcache.config.file=ehcache.xml
-#role1=admin
-#role2=role1
 
 # If for any reason echcache must be DISABLED for DSD, make sure this parameter is set to 'true' which is the default.  Otherwise performance penalty will be incurred during multi-role activations.
 disable.dsd.cache=false
