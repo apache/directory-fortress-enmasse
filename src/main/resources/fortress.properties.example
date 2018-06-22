@@ -22,7 +22,7 @@
 # If ApacheDS server:
 ldap.server.type=apacheds
 # Else if OpenLDAP server:
-# ldap.server.type=slapd
+# ldap.server.type=openldap
 # Else leave blank:
 #ldap.server.type=other
 
@@ -65,3 +65,6 @@ ehcache.config.file=ehcache.xml
 
 # If for any reason echcache must be DISABLED for DSD, make sure this parameter is set to 'true' which is the default.  Otherwise performance penalty will be incurred during multi-role activations.
 disable.dsd.cache=false
+
+# These are used to enable RFC2307bis support on User and Role entities:
+#rfc2307=true
