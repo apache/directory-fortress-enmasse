@@ -33,7 +33,7 @@
   <version>2.0.1-SNAPSHOT</version>
   <name>Apache Fortress Rest</name>
   <url>http://directory.apache.org/fortress/</url>
-  <description>Fortress Rest provides a RESTful implementation of the Fortress Access Management APIs</description>
+  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 350 RBAC Specification</description>
 
   <licenses>
     <license>
@@ -94,7 +94,8 @@
     
     <!-- Dependencies version -->
     <fortress.realm.version>2.0.0</fortress.realm.version>
-    <cxf.version>3.2.1</cxf.version>
+    <!--<fortress.realm.version>2.0.1-SNAPSHOT</fortress.realm.version>-->
+    <cxf.version>3.2.5</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
     <javadoc.version>2.9.1</javadoc.version>
@@ -102,8 +103,8 @@
     <log4j.version>1.2.17</log4j.version>
     <servlet-api.version>2.5.0</servlet-api.version>
     <slf4j.log4j12.version>1.7.21</slf4j.log4j12.version>
-    <spring.version>4.3.3.RELEASE</spring.version>
-    <spring.security.version>4.1.3.RELEASE</spring.security.version>
+    <spring.version>5.0.7.RELEASE</spring.version>
+    <spring.security.version>5.0.5.RELEASE</spring.security.version>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
