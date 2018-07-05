@@ -36,6 +36,11 @@ admin.user=uid=admin,ou=system
 admin.pw=secret
 # Else If OpenLDAP it will look something like this:
 # admin.user=cn=Manager,dc=example,dc=com
+# These credentials are used for read/write access to all nodes under slapd access log suffix:
+#log.admin.user=cn=Manager,cn=log
+# For corresponding log user:
+#log.admin.pw=secret
+
 
 # ApacheDS stores its password policies objects here by default:
 apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
