@@ -71,5 +71,5 @@ ehcache.config.file=ehcache.xml
 # If for any reason echcache must be DISABLED for DSD, make sure this parameter is set to 'true' which is the default.  Otherwise performance penalty will be incurred during multi-role activations.
 disable.dsd.cache=false
 
-# These are used to enable RFC2307bis support on User and Role entities:
-#rfc2307=true
+# Boolean value. If true, requires rfc2307bis schema because posixUser and posixGroup must be auxiliary object classes to work with ftRls which is structural..
+rfc2307=false
