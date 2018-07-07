@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 2.0.0
+ * Version 2.0.1
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
@@ -76,7 +76,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 
  a. from git:
  ```
- git clone --branch 2.0.0 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.1 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  mvn clean install
  ```
@@ -84,9 +84,9 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
  b. or download package:
 
  ```
- wget http://www.apache.org/dist/directory/fortress/dist/2.0.0/fortress-rest-2.0.0-source-release.zip
- unzip fortress-rest-2.0.0.zip
- cd fortress-rest-2.0.0
+ wget http://www.apache.org/dist/directory/fortress/dist/2.0.1/fortress-rest-2.0.1-source-release.zip
+ unzip fortress-rest-2.0.1.zip
+ cd fortress-rest-2.0.1
  mvn clean install
  ```
 
