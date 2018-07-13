@@ -22,7 +22,7 @@
 # If ApacheDS server:
 ldap.server.type=apacheds
 # Else if OpenLDAP server:
-# ldap.server.type=openldap
+#ldap.server.type=openldap
 # Else leave blank:
 #ldap.server.type=other
 
@@ -35,15 +35,10 @@ port=10389
 admin.user=uid=admin,ou=system
 admin.pw=secret
 # Else If OpenLDAP it will look something like this:
-# admin.user=cn=Manager,dc=example,dc=com
-# These credentials are used for read/write access to all nodes under slapd access log suffix:
+#admin.user=cn=Manager,dc=example,dc=com
+# Used for read/write access to slapd access log suffix, for openldap audit support:
 #log.admin.user=cn=Manager,cn=log
-# For corresponding log user:
 #log.admin.pw=secret
-
-
-# ApacheDS stores its password policies objects here by default:
-apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
 
 # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
 min.admin.conn=1
@@ -73,3 +68,6 @@ disable.dsd.cache=false
 
 # Boolean value. If true, requires rfc2307bis schema because posixUser and posixGroup must be auxiliary object classes to work with ftRls which is structural..
 rfc2307=false
+
+# ApacheDS stores its password policies objects here by default:
+apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
