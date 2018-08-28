@@ -816,6 +816,19 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
+    @Path("/" + HttpIds.USER_ASGNED_CONSTRAINTS + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse assignedUsersConstraints( FortRequest request )
+    {
+        return reviewMgrImpl.assignedUsersConstraints( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
     @Path("/" + HttpIds.ROLE_ASGNED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
