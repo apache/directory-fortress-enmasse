@@ -678,6 +678,32 @@ public class FortressServiceImpl implements FortressService
 
 
     /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.ROLE_ENABLE_CONSTRAINT + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse enableRoleConstraint( FortRequest request )
+    {
+        return adminMgrImpl.enableRoleConstraint( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.ROLE_DISABLE_CONSTRAINT + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse disableRoleConstraint( FortRequest request )
+    {
+        return adminMgrImpl.disableRoleConstraint( request );
+    }
+
+
+    /**
      * ************************************************************************************************************************************
      * BEGIN REVIEWMGR
      * **************************************************************************************************************************************

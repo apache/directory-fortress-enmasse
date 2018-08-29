@@ -2303,7 +2303,114 @@ public interface FortressService
      */
     FortResponse setDsdSetCardinality( FortRequest request );
 
-    
+
+    /**
+     * This command enables a role to be constained by attributes.
+     * <p>
+     * The command is valid if and only if:
+     * <ul>
+     *   <li>The role exists.</li>
+     * </ul>
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Role required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to
+     *             be created.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity2} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleConstraint} object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Role required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.RoleConstraint#key} - contains the name of the constraint being set onto role.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity}
+     */
+    FortResponse enableRoleConstraint( FortRequest request );
+
+    /**
+     * This command enables a role to be removed from being constained by attributes.
+     * <p>
+     * The command is valid if and only if:
+     * <ul>
+     *   <li>The role exists.</li>
+     * </ul>
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Role} object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Role required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role to removed.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity2} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleConstraint} object
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>Role required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.RoleConstraint#key} - contains the name of the constraint being set onto role.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entity}
+     */
+    FortResponse disableRoleConstraint( FortRequest request );
+
     //------------ ReviewMgr ----------------------------------------------------------------------------------------------
     /**
      * This method returns a matching permission entity to caller.
