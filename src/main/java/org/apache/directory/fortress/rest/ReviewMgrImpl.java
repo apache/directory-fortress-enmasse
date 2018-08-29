@@ -349,6 +349,28 @@ class ReviewMgrImpl extends AbstractMgrImpl
     }
 
 
+    /* No qualifier */  FortResponse assignedUsersConstraintsKey( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
+            reviewMgr.setAdmin( request.getSession() );
+            Role inRole = (Role) request.getEntity();
+            RoleConstraint inConstraint = (RoleConstraint) request.getEntity2();
+            List<UserRole> uRoles = reviewMgr.assignedUsers( inRole, inConstraint.getType(), inConstraint.getKey() );
+            response.setEntities( uRoles );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
     /* No qualifier */  FortResponse assignedRolesM( FortRequest request )
     {
         FortResponse response = createResponse();

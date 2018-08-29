@@ -1031,6 +1031,27 @@ class AdminMgrImpl extends AbstractMgrImpl
     }
 
 
+    /* No qualifier */ FortResponse removeRoleConstraintWid( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AdminMgr adminMgr = AdminMgrFactory.createInstance( request.getContextId() );
+            adminMgr.setAdmin( request.getSession() );
+            UserRole inRole = (UserRole) request.getEntity();
+            String szConstraintId = request.getValue();
+            adminMgr.removeRoleConstraint( inRole, szConstraintId );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, log, se );
+        }
+
+        return response;
+    }
+
+
     /* No qualifier */ FortResponse addPermissionAttributeToSet( FortRequest request )
     {
         FortResponse response = createResponse();

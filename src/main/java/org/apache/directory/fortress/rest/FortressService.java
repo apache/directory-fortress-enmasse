@@ -2783,6 +2783,41 @@ public interface FortressService
 
 
     /**
+     * This method returns the data set of all users who are assigned the given role constraint.  This searches the User data set for
+     * RoleConstraint relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *  <li>
+     *    {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.RoleConstraint} entity
+     *  </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>{@link org.apache.directory.fortress.core.model.RoleConstraint} required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Role#name} - contains the name to use for the Role
+     *             {@link org.apache.directory.fortress.core.model.RoleConstraint#type} - contains the name to use for the RoleConstraint type
+     *             {@link org.apache.directory.fortress.core.model.RoleConstraint#key} - contains the name to use for the key
+     *             targeted for search.
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#entities} contains a reference to a List of type
+     * {@link org.apache.directory.fortress.core.model.UserRole}
+     */
+    FortResponse assignedUsersConstraintsKey( FortRequest request );
+
+
+    /**
      * This function returns the set of roles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
      * <h3></h3>
@@ -6945,6 +6980,14 @@ public interface FortressService
      * @return reference to {@code FortResponse}
      */
     FortResponse removeRoleConstraint( FortRequest request );
+
+    /**
+     * Thie method removes a roleConstraint (ftRC) from the user ldap entry.
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}
+     */
+    FortResponse removeRoleConstraintWid( FortRequest request );
 
     /**
      * This method will create a new permission attribute set object with resides under the

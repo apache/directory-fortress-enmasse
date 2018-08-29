@@ -603,6 +603,19 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
+    @Path("/" + HttpIds.ROLE_DELETE_CONSTRAINT_ID + "/")
+    @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
+    @Override
+    public FortResponse removeRoleConstraintWid( FortRequest request )
+    {
+        return adminMgrImpl.removeRoleConstraintWid( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
     @Path("/" + HttpIds.PERM_ADD_ATTRIBUTE_SET + "/")
     @RolesAllowed({SUPER_USER, ADMIN_MGR_USER})
     @Override
@@ -822,6 +835,19 @@ public class FortressServiceImpl implements FortressService
     public FortResponse assignedUsersConstraints( FortRequest request )
     {
         return reviewMgrImpl.assignedUsersConstraints( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/" + HttpIds.USER_ASGNED_CONSTRAINTS_KEY + "/")
+    @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
+    @Override
+    public FortResponse assignedUsersConstraintsKey( FortRequest request )
+    {
+        return reviewMgrImpl.assignedUsersConstraintsKey( request );
     }
 
 
