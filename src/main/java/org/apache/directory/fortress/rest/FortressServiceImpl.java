@@ -20,12 +20,16 @@
 package org.apache.directory.fortress.rest;
 
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 
+import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.directory.fortress.core.rest.HttpIds;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,6 +40,7 @@ import org.springframework.stereotype.Service;
 @Service("fortressService")
 public class FortressServiceImpl implements FortressService
 {
+    private static final Logger log = Logger.getLogger( FortressServiceImpl.class.getName() );
     // Instantiate the implementation classes where the actual work is done:
     private final ReviewMgrImpl reviewMgrImpl = new ReviewMgrImpl();
     private final AdminMgrImpl adminMgrImpl = new AdminMgrImpl();
@@ -59,6 +64,9 @@ public class FortressServiceImpl implements FortressService
     private static final String PASSWORD_MGR_USER = "fortress-rest-pwmgr-user";
     private static final String AUDIT_MGR_USER = "fortress-rest-audit-user";
     private static final String CONFIG_MGR_USER = "fortress-rest-config-user";
+
+    @Context
+    private HttpServletRequest httpRequest;
 
     /**
      * ************************************************************************************************************************************
@@ -2082,5 +2090,34 @@ public class FortressServiceImpl implements FortressService
     public FortResponse deassignGroup(FortRequest request)
     {
         return groupMgrImpl.deassignGroup( request );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
+    @Path("/{any : .*}")
+    @RolesAllowed(
+    {
+        SUPER_USER,
+        ACCESS_MGR_USER,
+        ADMIN_MGR_USER,
+        REVIEW_MGR_USER,
+        DELEGATED_ACCESS_MGR_USER,
+        DELEGATED_ADMIN_MGR_USER,
+        DELEGATED_REVIEW_MGR_USER,
+        PASSWORD_MGR_USER,
+        AUDIT_MGR_USER,
+        CONFIG_MGR_USER
+    } )
+    @Override
+    public FortResponse invalid(FortRequest request)
+    {
+        String szError = "Could not find a matching service. HTTP request URI:" + httpRequest.getRequestURI() + ". User: " + httpRequest.getRemoteUser();
+        log.warn( szError );
+        FortResponse response = new FortResponse();
+        response.setErrorCode( GlobalErrIds.REST_NOT_FOUND_ERR );
+        response.setErrorMessage( szError );
+        return response;
     }
 }

@@ -25,6 +25,7 @@ import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -36,20 +37,22 @@ import java.io.IOException;
  */
 public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Message>
 {
+    private static final Logger LOG = Logger.getLogger(SecurityOutFaultInterceptor.class.getName());
+
     public SecurityOutFaultInterceptor()
     {
         super( Phase.PRE_STREAM );
 
     }
 
-    
     public void handleMessage( Message message ) throws Fault
     {
         Fault fault = (Fault) message.getContent( Exception.class );
         Throwable ex = fault.getCause();
-        
+
         if ( !(ex instanceof SecurityException) )
         {
+            LOG.warn("SecurityOutFaultInterceptor caught invalid exception: " + ex );
             throw new RuntimeException( "Security Exception is expected:" + ex );
         }
 
@@ -65,7 +68,7 @@ public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Messag
         }
         catch ( IOException iex )
         {
-            // ignore
+            LOG.warn("SecurityOutFaultInterceptor caught IOException: " + iex);
         }
 
         message.getInterceptorChain().abort();
