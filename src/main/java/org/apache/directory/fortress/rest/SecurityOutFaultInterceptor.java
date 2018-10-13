@@ -49,18 +49,22 @@ public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Messag
     {
         Fault fault = (Fault) message.getContent( Exception.class );
         Throwable ex = fault.getCause();
-
-        if ( !(ex instanceof SecurityException) )
-        {
-            LOG.warn("SecurityOutFaultInterceptor caught invalid exception: " + ex );
-            throw new RuntimeException( "Security Exception is expected:" + ex );
-        }
-
         HttpServletResponse response = (HttpServletResponse) message.getExchange().getInMessage()
             .get( AbstractHTTPDestination.HTTP_RESPONSE );
-        int status = ex instanceof AccessDeniedException ? 403 : 401;
-        response.setStatus( status );
-        
+
+        // Not a security violation:
+        if ( !(ex instanceof SecurityException) )
+        {
+            LOG.warn("SecurityOutFaultInterceptor caught exception: " + ex );
+            response.setStatus( 500 );
+        }
+        // Security violation:
+        else
+        {
+            int status = ex instanceof AccessDeniedException ? 403 : 401;
+            response.setStatus( status );
+            LOG.warn("SecurityOutFaultInterceptor caught security violation: " + ex );
+        }
         try
         {
             response.getOutputStream().write( ex.getMessage().getBytes() );
@@ -70,7 +74,6 @@ public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Messag
         {
             LOG.warn("SecurityOutFaultInterceptor caught IOException: " + iex);
         }
-
         message.getInterceptorChain().abort();
     }
 }
