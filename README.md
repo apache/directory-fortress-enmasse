@@ -27,12 +27,12 @@
  * Tips for first-time users.
  * SECTION 1. Prerequisites.
  * SECTION 2. Download & Install.
- * SECTION 3. Get the fortress.properties.
- * SECTION 4. Load Sample Security Policy.
- * SECTION 5. Deploy to Tomcat Server.
+ * SECTION 3. Prepare Tomcat for Java EE Security
+ * SECTION 4. Prepare directory-fortress-rest package to use LDAP server
+ * SECTION 5. Build and deploy directory-fortress-rest
  * SECTION 6. Unit Test.
- * SECTION 7. Alternate testing procedures.
- * SECTION 8. Fortress rest properties
+ * SECTION 7. Fortress rest properties
+ * SECTION 8. Understand the security model of Apache Fortress Rest
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -42,32 +42,29 @@ This document contains instructions to download, build, and test operations usin
 ___________________________________________________________________________________
 ##  Tips for first-time users
 
- * For a tutorial on how to use Apache Fortress check out the Fortress Core quickstart guides.
- * If you see **FORTRESS_CORE_HOME**, refer to the base package of [directory-fortress-core].
- * If you see **FORTRESS_REALM_HOME**, refer to the base package of [directory-fortress-realm].
- * If you see **FORTRESS_REST_HOME**, refer to this packages base folder.
- * If you see **TOMCAT_HOME**, refer to the location of that package's base folder.
+ * For a tutorial on how to use Apache Fortress with LDAP, check out the Fortress Core quickstart guides.
  * Questions about this software package should be directed to its mailing list:
    * http://mail-archives.apache.org/mod_mbox/directory-fortress/
-
 
 -------------------------------------------------------------------------------
 ## SECTION 1. Prerequisites
 
 Minimum hardware requirements:
- * 2 Cores
- * 4GB RAM
+ * 1 Cores
+ * 1GB RAM
 
 Minimum software requirements:
- * Java SDK 8
+ * Java 8
  * git
- * Apache Maven3++
- * Apache Tomcat8++
- * Apache Fortress Core **Download & Install** in **FORTRESS_CORE_HOME** package **README.md**.
- * Apache Fortress Core **Options for using Apache Fortress and LDAP server** in **FORTRESS_CORE_HOME** package **README.md**.
- * Apache Fortress Realm **Download & Install** in **FORTRESS_REALM_HOME** package **README.md**.
+ * Apache Maven 3++
+ * Apache Tomcat 7++
+ * Basic LDAP server setup by completing one of these Quickstarts
+    * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
+    * [APACHEDS & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
+    * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
 
-Everything else covered in steps that follow.  Tested on Debian, Centos & Windows systems.
+Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
 -------------------------------------------------------------------------------
 ## SECTION 2. Download & Install
@@ -98,94 +95,147 @@ Everything else covered in steps that follow.  Tested on Debian, Centos & Window
 
 3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
 
-___________________________________________________________________________________
-## SECTION 3. Get the fortress.properties
+-------------------------------------------------------------------------------
+## SECTION 3. Prepare Tomcat for Java EE Security
 
-These contain the coordinates to the target LDAP server.
+This web app uses Java EE security.
 
-1. Copy the **fortress.properties**, created during **FORTRESS_CORE_HOME** **README.md**, to this package's resource folder.
+#### 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
+  ```bash
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.2/fortress-realm-proxy-2.0.2.jar -P $TOMCAT_HOME/lib
+  ```
+
+ * Where `$TOMCAT_HOME` points to the execution env.
+
+ Note: The realm proxy enables Tomcat container-managed security functions to call back to fortress.
+
+#### 2. Optional - Prepare tomcat to allow autodeploy of rbac-abac-sample web app:
+
+ ```bash
+ sudo vi /usr/local/tomcat8/conf/tomcat-users.xml
  ```
- cp $FORTRESS_CORE_HOME/config/fortress.properties $FORTRESS_REST_HOME/src/main/resources
+
+#### 3. Optional - Add tomcat user to deploy rbac-abac-sample:
+
+ ```xml
+ <role rolename="manager-script"/>
+ <user username="tcmanager" password="m@nager123" roles="manager-script"/>
  ```
 
-2. Verify they match your target LDAP server.
+#### 4. Restart tomcat for new settings to take effect.
+
+-------------------------------------------------------------------------------
+## SECTION 4. Prepare directory-fortress-rest package to use LDAP server
+
+#### 1. Copy the fortress.properties example:
+
+ ```bash
+ cp src/main/resources/fortress.properties.example src/main/resources/fortress.properties
  ```
+
+#### 2. Edit the file:
+
+ ```bash
+ vi src/main/resources/fortress.properties
+ ```
+
+ Pick either Apache Directory or OpenLDAP server:
+
+ a. Prepare fortress for ApacheDS usage:
+
+ ```properties
  # This param tells fortress what type of ldap server in use:
  ldap.server.type=apacheds
 
- # ldap host name
+ # Use value from [Set Hostname Entry]:
  host=localhost
 
- # if ApacheDS is listening on
+ # ApacheDS defaults to this:
  port=10389
 
- # If ApacheDS, these credentials are used for read/write to fortress DIT
+ # These credentials are used for read/write access to all nodes under suffix:
  admin.user=uid=admin,ou=system
  admin.pw=secret
-
- # This is min/max settings for admin pool connections:
- min.admin.conn=1
- max.admin.conn=10
-
- # This node contains more fortress properties stored on behalf of connecting LDAP clients:
- config.realm=DEFAULT
- config.root=ou=Config,dc=example,dc=com
-
- # Used by application security components:
- perms.cached=true
-
- # Fortress uses a cache:
- ehcache.config.file=ehcache.xml
-
- # Default for pool reconnect flag is false:
- enable.pool.reconnect=true
  ```
 
-___________________________________________________________________________________
-## SECTION 4. Load Sample Security Policy
+ -- Or --
 
-Run maven install with load file:
-```
-mvn install -Dload.file=./src/main/resources/FortressRestServerPolicy.xml
-```
+ b. Prepare fortress for OpenLDAP usage:
 
-___________________________________________________________________________________
-## SECTION 5. Deploy to Tomcat Server
+ ```properties
+ # This param tells fortress what type of ldap server in use:
+ ldap.server.type=openldap
 
-1. If Tomcat has global security enabled you must add credentials to pom.xml to authenticate:
+ # Use value from [Set Hostname Entry]:
+ host=localhost
 
- ```
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>tomcat-maven-plugin</artifactId>
-        <version>${version.tomcat.maven.plugin}</version>
-        <configuration>
-            ...
-          <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
-          <username>tcmanager</username>
-          <password>m@nager123</password>
-        </configuration>
-      </plugin>
+ # OpenLDAP defaults to this:
+ port=389
+
+ # These credentials are used for read/write access to all nodes under suffix:
+ admin.user=cn=Manager,dc=example,dc=com
+ admin.pw=secret
  ```
 
-2. copy **FORTRESS_REALM_HOME** proxy jar to **TOMCAT_HOME**/lib/
+-------------------------------------------------------------------------------
+## SECTION 5. Build and deploy directory-fortress-rest
 
- ```
- cp $FORTRESS_REALM_HOME/proxy/target/fortress-realm-proxy-[version].jar $TOMCAT_HOME/lib
- ```
+#### 1. Verify the java and maven home env variables are set.
 
-3. Restart Tomcat server.
-
-4. Enter maven command to deploy to Tomcat:
- ```
- mvn tomcat:deploy
+ ```maven
+ mvn -version
  ```
 
-5. To redeploy:
+ This sample requires Java 8 and Maven 3 to be setup within the execution env.
+
+#### 2. Build the sample and load test data:
+
+  ```maven
+ mvn install -Dload.file
+  ```
+
+ Build Notes:
+ * `-Dload.file` automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
+ * This load needs to happen just once for the default test cases to work and may be dropped from future `mvn` commands.
+
+#### 3. Deploy the sample to Tomcat:
+
+ a. If using autodeploy feature, verify the Tomcat auto-deploy options are set correctly in the [pom.xml](pom.xml) file:
+ ```xml
+ <plugin>
+     <groupId>org.codehaus.mojo</groupId>
+     <artifactId>tomcat-maven-plugin</artifactId>
+     <version>1.0-beta-1</version>
+     <configuration>
+     ...
+         <url>http://localhost:8080/manager/text</url>
+         <path>/${project.artifactId}</path>
+         <username>tcmanager</username>
+         <password>m@nager123</password>
+     </configuration>
+ </plugin>
  ```
- mvn tomcat:redeploy
+
+ b. Now, automatically deploy to tomcat server:
+
+  ```maven
+ mvn clean tomcat:deploy
+  ```
+
+ c. To automatically redeploy sample app:
+
+  ```maven
+ mvn clean tomcat:redeploy
+  ```
+
+ d. To manually deploy app to Tomcat:
+
+ ```bash
+ cp target/rbac-abac-sample.war $TOMCAT_HOME/webapps
  ```
+
+ * Where `$TOMCAT_HOME` points to the execution env.
 
 ___________________________________________________________________________________
 ## SECTION 6. Unit Test
@@ -202,42 +252,13 @@ Run unit test:
  * The tests depend on sample security policy being loaded.
 
 ___________________________________________________________________________________
-## SECTION 7: Alternate testing procedures
-
-1. Another way to test Fortress Rest is using the Fortress Core APIs which can be configured to communicate via HTTP/REST.
-To enable Fortress Core test client to route requests through Fortress Rest server, add these properties to build.properties in **FORTRESS_CORE_HOME** root folder:
-
-2. Add these credentials to build.properties file located in the directory-fortress-core root folder.  It contains the HTTP coordinates to your deployed Fortress Rest server:
- ```
- http.user=demouser4
- http.pw=password
- http.host=localhost
- http.port=8080
- ```
-
-3. Add this to the same file.  It will override default fortress managers to route calls through REST interface:
- ```
- enable.mgr.impl.rest=true
- ```
-
-4. Now run the **FORTRESS_CORE_HOME** mvn install to seed the new properties:
- ```
- mvn install
- ```
-
-5. Now run the **FORTRESS_CORE_HOME** unit tests:
- ```
- mvn test -Dtest=FortressJUnitTest
- ```
-
- All operations should now route through Fortress Rest server.
-
-___________________________________________________________________________________
-## SECTION 8. Fortress Rest properties
+## SECTION 7. Fortress Rest properties
 
 This section describes the properties needed to control fortress rest.
 
-1. LDAP Hostname coordinates.  The host name can be specified as a fully qualified domain name or IP address.
+#### 1. LDAP Hostname coordinates.
+
+ The host name can be specified as a fully qualified domain name or IP address:
 
  ```
  # Host name and port of LDAP DIT:
@@ -245,7 +266,7 @@ This section describes the properties needed to control fortress rest.
  port=10389
  ```
 
-2. LDAP Server type.  Each LDAP server impl has different behavior on operations like password policies and audit.  If using a 3rd type of server that isn't formally supported, leave blank or type is other.
+#### 2. LDAP Server type.  Each LDAP server impl
 
  ```
  # If ApacheDS server:
@@ -262,7 +283,11 @@ This section describes the properties needed to control fortress rest.
  #ldap.server.type=other
  ```
 
-3.  Set the credentials of service account.  Must have read/write privileges over the Fortress LDAP DIT:
+ * note: has different behavior on operations like password policies and audit.  If using a 3rd type of server that isn't formally supported, leave blank or type is other.
+
+#### 3.  Set the credentials of service account.
+
+ This service account must have read/write privileges over the entire Fortress LDAP Directory Information Tree (DIT):
 
  ```
  # If ApacheDS it will look something like this:
@@ -275,7 +300,7 @@ This section describes the properties needed to control fortress rest.
  admin.user=cn=Manager,dc=example,dc=com
  ```
 
-4. Define the number of LDAP connections to use in the pool  This setting will be proportional to the number of concurrent users but won't be one-to-one.  The number of required ldap connections will be much lower than concurrent users:
+#### 4. Define the number of LDAP connections to use in the pool
 
  ```
  # This is min/max settings for LDAP connections.  For testing and low-volume instances this will work:
@@ -283,7 +308,13 @@ This section describes the properties needed to control fortress rest.
  max.admin.conn=10
  ```
 
-5. Give coordinates to the Config node that contains all of the other Fortress properties.  This will match your LDAP's server's config node per Fortress Core setup.
+ Notes on connection pools:
+ * This setting will be proportional to the number of concurrent users but won't be one-to-one.
+ * The number of required ldap connections will be much lower than concurrent users.
+
+#### 5. Give coordinates to the Config node that contains all of the other Fortress properties.
+
+ This will match your LDAP's server's config node per Fortress Core setup:
 
  ```
  # This node contains fortress properties stored on behalf of connecting LDAP clients:
@@ -291,7 +322,7 @@ This section describes the properties needed to control fortress rest.
  config.root=ou=Config,dc=example,dc=com
  ```
 
-6. If using LDAPS.
+#### 6. If using LDAPS.
 
  ```
  # Used for SSL Connection to LDAP Server:
@@ -302,23 +333,46 @@ This section describes the properties needed to control fortress rest.
  trust.store.set.prop=true
  ```
 
-7. If using ApacheDS and setting password policies, point to the correction location.
+#### 7. If using ApacheDS and setting password policies, point to the correction location.
 
  ```
  # ApacheDS stores its password policies objects here by default:
  apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
  ```
 
-12. Each instance of a fortress web can be scoped to one and only one tenant.  The default tenant is called HOME.
+-------------------------------------------------------------------------------
+## SECTION 8. Understand the security model of Apache Fortress Rest
 
- ```
- # This is the default tenant or home context
- contextId=HOME
- ```
+ * Apache Fortress Rest is a JAX-RS Web application that allows the Apache Fortress Core APIs to be called over an HTTP interface.
+ * It deploys inside of any compliant Java Servlet container although here we'll be using Apache Tomcat.
 
- ```
- # If you need to scope to a different tenant, supply its ID here:
- contextId=mytenantid
- ```
+### Apache Fortress Rest security model includes:
+
+### TLS
+
+Nothing special or unique going on here.  Refer to the documentation of your servlet container for how to enable.
+
+### Java EE security
+
+ * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
+ * The policy for Apache Fortress Rest is simple.  Any user with the **fortress-rest-user** role and correct credentials is allowed in.
+ * The Fortress Rest interface uses HTTP Basic Auth tokens to send the userid/password.
+
+### Apache CXF's **SimpleAuthorizingInterceptor**
+
+This enforcement mechanism maps roles to a given set of services.  The following table shows what roles map to which (sets of) services:
+
+| service type      | fortress-rest-super-user | fortress-rest-admin-user | fortress-rest-review-user | fortress-rest-access-user | fortress-rest-deladmin-user | fortress-rest-delreview-user | fortress-rest-delaccess-user | fortress-rest-pwmgr-user | fortress-rest-audit-user | fortress-rest-config-user |
+| ----------------- | ------------------------ | ------------------------ | ------------------------- | ------------------------- | --------------------------- | ---------------------------- | ---------------------------- | ------------------------ | ------------------------ | ------------------------- |
+| Admin  Manager    | true                     | true                     | false                     | false                     | false                       | false                        | false                        | false                    | false                    | false                     |
+| Review Manager    | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | false                     |
+| Access Manager    | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | false                     |
+| Delegated Admin   | true                     | false                    | false                     | false                     | true                        | false                        | false                        | false                    | false                    | false                     |
+| Delegated Review  | true                     | false                    | false                     | false                     | false                       | true                         | false                        | false                    | false                    | false                     |
+| Delegated Access  | true                     | false                    | false                     | false                     | false                       | false                        | true                         | false                    | false                    | false                     |
+| Password  Manager | true                     | false                    | false                     | false                     | false                       | false                        | false                        | true                     | false                    | false                     |
+| Audit  Manager    | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | true                     | false                     |
+| Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
+
 ___________________________________________________________________________________
 #### END OF README
