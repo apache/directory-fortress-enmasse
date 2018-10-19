@@ -50,7 +50,7 @@ ________________________________________________________________________________
 ## SECTION 1. Prerequisites
 
 Minimum hardware requirements:
- * 1 Cores
+ * 1 Core
  * 1GB RAM
 
 Minimum software requirements:
