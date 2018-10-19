@@ -69,7 +69,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 -------------------------------------------------------------------------------
 ## SECTION 2. Download & Install
 
-1. Build the source.
+#### 1. Build the source.
 
  a. from git:
  ```
@@ -87,13 +87,13 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
  mvn clean install
  ```
 
-2. Now build the javadoc:
+#### 2. Now build the javadoc:
 
  ```
  mvn javadoc:javadoc
  ```
 
-3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
+#### 3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
 
 -------------------------------------------------------------------------------
 ## SECTION 3. Prepare Tomcat for Java EE Security
@@ -189,17 +189,17 @@ This web app uses Java EE security.
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
 
-#### 2. Build the sample and load test data:
+#### 2. Build and load test data:
 
   ```maven
- mvn install -Dload.file
+ mvn install -Dload.file=ldap/setup/FortressRestServerPolicy.xml
   ```
 
  Build Notes:
  * `-Dload.file` automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
  * This load needs to happen just once for the default test cases to work and may be dropped from future `mvn` commands.
 
-#### 3. Deploy the sample to Tomcat:
+#### 3. Deploy to Tomcat:
 
  a. If using autodeploy feature, verify the Tomcat auto-deploy options are set correctly in the [pom.xml](pom.xml) file:
  ```xml
@@ -232,7 +232,7 @@ This web app uses Java EE security.
  d. To manually deploy app to Tomcat:
 
  ```bash
- cp target/rbac-abac-sample.war $TOMCAT_HOME/webapps
+ cp target/fortress-rest-[version].war $TOMCAT_HOME/webapps
  ```
 
  * Where `$TOMCAT_HOME` points to the execution env.
