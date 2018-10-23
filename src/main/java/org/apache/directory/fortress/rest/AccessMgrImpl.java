@@ -23,9 +23,11 @@ import org.apache.directory.fortress.core.AccessMgr;
 import org.apache.directory.fortress.core.AccessMgrFactory;
 import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.SecurityException;
+import org.apache.directory.fortress.core.ant.RoleConstraintAnt;
 import org.apache.directory.fortress.core.model.*;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -176,6 +178,35 @@ class AccessMgrImpl extends AbstractMgrImpl
     }
 
     
+    /**
+     * Perform user RBAC authorization.
+     *
+     * @param request The {@link FortRequest} we have to check
+     * @return a {@link FortResponse} containing the response
+     */
+    /* no qualifier*/ FortResponse createSessionCheckAccess( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
+            Permission perm = (Permission)request.getEntity();
+            perm.setAdmin( false );
+            User user = (User) request.getEntity2();
+            boolean isTrusted = request.getIsFlag();
+            boolean result = accessMgr.checkAccess( user, perm, isTrusted );
+            response.setAuthorized( result );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
     /* No qualifier */ FortResponse sessionPermissions( FortRequest request )
     {
         FortResponse response = createResponse();

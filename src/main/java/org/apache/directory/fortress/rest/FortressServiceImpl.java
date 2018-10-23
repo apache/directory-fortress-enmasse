@@ -1235,6 +1235,19 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
+    @Path("/" + HttpIds.RBAC_CHECK + "/")
+    @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
+    @Override
+    public FortResponse createSessionCheckAccess( FortRequest request )
+    {
+        return accessMgrImpl.createSessionCheckAccess( request );
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @POST
     @Path("/" + HttpIds.RBAC_PERMS + "/")
     @RolesAllowed({SUPER_USER, ACCESS_MGR_USER})
     @Override

@@ -4004,7 +4004,54 @@ public interface FortressService
      */
     FortResponse checkAccess( FortRequest request );
 
-    
+
+    /**
+     * Perform user RBAC authorization.  This function returns a Boolean value meaning whether the subject of a given
+     * session is allowed or not to perform a given operation on a given object. The function is valid if and
+     * only if the session is a valid Fortress session, the object is a member of the OBJS data set,
+     * and the operation is a member of the OPS data set. The session's subject has the permission
+     * to perform the operation on that object if and only if that permission is assigned to (at least)
+     * one of the session's active roles. This implementation will verify the roles or userId correspond
+     * to the subject's active roles are registered in the object's access control list.
+     * <h3></h3>
+     * <h4>required parameters</h4>
+     * <ul>
+     *   <li>
+     *     {@link FortRequest#entity} - contains a reference to {@link org.apache.directory.fortress.core.model.Permission}
+     *     entity
+     *   </li>
+     *   <li>
+     *     {@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling
+     *     {@link FortressServiceImpl#createSession} method before use in this service.
+     *   </li>
+     * </ul>
+     * <ul style="list-style-type:none">
+     *   <li>
+     *     <ul style="list-style-type:none">
+     *       <li>
+     *         <h5>{@link org.apache.directory.fortress.core.model.Permission} required parameters</h5>
+     *         <ul>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Permission#objName} - contains the name of existing
+     *             object being targeted
+     *           </li>
+     *           <li>
+     *             {@link org.apache.directory.fortress.core.model.Permission#opName} - contains the name of existing
+     *             permission operation
+     *           </li>
+     *         </ul>
+     *       </li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param request contains a reference to {@code FortRequest}
+     * @return reference to {@code FortResponse}, {@link FortResponse#isAuthorized} boolean will be 'true' if User
+     * authorized, otherwise 'false'.  Updated {@link FortResponse#session} will be included in response as well.
+     */
+    FortResponse createSessionCheckAccess( FortRequest request );
+
+
     /**
      * This function returns the permissions of the session, i.e., the permissions assigned
      * to its authorized roles. The function is valid if and only if the session is a valid Fortress session.
