@@ -207,6 +207,34 @@ class AccessMgrImpl extends AbstractMgrImpl
     }
 
 
+    /**
+     * Perform user ROLE check.
+     *
+     * @param request The {@link FortRequest} we have to check
+     * @return a {@link FortResponse} containing the response
+     */
+    /* no qualifier*/ FortResponse isUserInRole( FortRequest request )
+    {
+        FortResponse response = createResponse();
+
+        try
+        {
+            AccessMgr accessMgr = AccessMgrFactory.createInstance( request.getContextId() );
+            Role role = (Role)request.getEntity();
+            User user = (User) request.getEntity2();
+            boolean isTrusted = request.getIsFlag();
+            boolean result = accessMgr.isUserInRole( user, role, isTrusted );
+            response.setAuthorized( result );
+        }
+        catch ( SecurityException se )
+        {
+            createError( response, LOG, se );
+        }
+
+        return response;
+    }
+
+
     /* No qualifier */ FortResponse sessionPermissions( FortRequest request )
     {
         FortResponse response = createResponse();
