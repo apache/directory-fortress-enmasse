@@ -93,7 +93,7 @@
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <fortress.realm.version>2.0.2</fortress.realm.version>
+    <fortress.realm.version>${project.version}</fortress.realm.version>
     <cxf.version>3.2.6</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
@@ -104,6 +104,7 @@
     <slf4j.log4j12.version>1.7.21</slf4j.log4j12.version>
     <spring.version>5.0.9.RELEASE</spring.version>
     <spring.security.version>5.0.7.RELEASE</spring.security.version>
+    <jackson-jaxrs.version>2.9.7</jackson-jaxrs.version>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -136,6 +137,12 @@
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
       <version>${cxf.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
+        <version>${jackson-jaxrs.version}</version>
     </dependency>
 
     <!-- Spring Dependencies -->
