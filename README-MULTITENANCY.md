@@ -73,7 +73,7 @@ Fortress Rest uses the tenant id found inside the request *contextId* element:
  </FortRequest>
  ```
 
- * This operation will be scoped to acme123 tenant's subtree.
+ * This operation is scoped to tenat acme123's subtree.
 
 ___________________________________________________________________________________
 ## SECTION 4.  Rationale for setting a contextId in two locations
