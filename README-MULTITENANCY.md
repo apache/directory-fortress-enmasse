@@ -56,7 +56,7 @@ Fortress Realm uses the tenant id inside the context.xml file:
  </Context>
  ```
 
- * In this example, the realm's security checks are bound for the HOME tenant, for all requests.
+ * In this example, all realm security checks are bound for the HOME tenant.
 
 -------------------------------------------------------------------------------
 ## SECTION 3.  Multitenant Fortress Rest Instance
