@@ -1,0 +1,137 @@
+Contains curl commands of some basic fortress functions.
+
+a. Add Role:
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-user.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-member.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-custodian.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-owner.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-ibm.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-acme.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAdd
+
+# Sample request:
+<FortRequest>
+  <contextId>HOME</contextId>
+      <entity xsi:type="role" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <name>acme1</name>
+         <description>access to acme group data</description>
+      </entity>
+</FortRequest>
+b. Search Role:
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-search-role.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleSearch
+
+<FortRequest>
+    <contextId>HOME</contextId>
+    <value>acme</value>
+</FortRequest>
+c. Add User:
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-user-curly.xml https://HOSTNAME:8443/fortress-rest-2.0.2/userAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-user-moe.xml https://HOSTNAME:8443/fortress-rest-2.0.2/userAdd
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-user-larry.xml https://HOSTNAME:8443/fortress-rest-2.0.2/userAdd
+
+<FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <userId>curly</userId>
+         <description>curly is a test user</description>
+         <ou>default</ou>
+         <sn>horowitz</sn>
+         <cn>curly horowitz</cn>
+         <locked>false</locked>
+      </entity>
+</FortRequest>
+d. Search User:
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-search-user.xml https://HOSTNAME:8443/fortress-rest-2.0.2/userSearch
+
+<FortRequest>
+    <entity xsi:type="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <userId>rbacuser</userId>
+    </entity>
+    <contextId>HOME</contextId>
+</FortRequest>
+e. Assign User:
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-acme.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-custodian.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-ibm.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-member.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-larry-acme.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-larry-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-larry-custodian.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-larry-member.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-moe-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-moe-ibm.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-moe-owner.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleAsgn
+
+<FortRequest>
+      <contextId>HOME</contextId>
+      <entity xsi:type="userRole" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <userId>curly</userId>
+         <name>acme</name>
+      </entity>
+</FortRequest>
+f. Create Session
+
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-create-session-curly.xml https://HOSTNAME:8443/fortress-rest-2.0.2/rbacCreateT
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-create-session-moe.xml https://HOSTNAME:8443/fortress-rest-2.0.2/rbacCreateT
+curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-create-session-larry.xml https://HOSTNAME:8443/fortress-rest-2.0.2/rbacCreateT
+h. Test Add Permission Object
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-perm-object.xml https://HOSTNAME:8443/fortress-rest-2.0.1/objAdd
+i. Test Add Permission Operation
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-perm-operation.xml https://HOSTNAME:8443/fortress-rest-2.0.2/permAdd
+j. Test Add Role Grant (to permission)
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-add-role-grant.xml https://HOSTNAME:8443/fortress-rest-2.0.2/roleGrant
+k. Test Check Access
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-check-access.xml https://HOSTNAME:8443/fortress-rest-2.0.2/rbacAuthZ
+l. Add User Role Constraint:
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-role-member-constraint-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/addRoleConstraint
+
+ <FortRequest>
+    <contextId>HOME</contextId>
+    <entity xsi:type="userRole" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>member</name>
+        <userId>curly</userId>
+    </entity>
+    <entity2 xsi:type="roleConstraint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <key>engagement</key>
+        <value>colgate</value>
+        <type>USER</type>
+    </entity2>
+ </FortRequest>
+m. Remove User Role Constraint:
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-assign-curly-role-member-constraint-colgate.xml https://HOSTNAME:8443/fortress-rest-2.0.2/removeRoleConstraint
+
+ <FortRequest>
+    <contextId>HOME</contextId>
+    <entity xsi:type="userRole" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>member</name>
+        <userId>curly</userId>
+    </entity>
+    <entity2 xsi:type="roleConstraint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <key>engagement</key>
+        <value>colgate</value>
+        <type>USER</type>
+    </entity2>
+ </FortRequest>
+n. Search Permissions:
+
+ curl -X POST -u 'rbacuser' -H 'Content-type: text/xml' -k -d @test-search-perms.xml https://HOSTNAME:8443/fortress-rest-2.0.2/permSearch
+
+ <FortRequest>
+    <contextId>HOME</contextId>
+    <entity xsi:type="permGrant" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <objName></objName>
+        <opName></opName>
+    </entity>
+ </FortRequest>
