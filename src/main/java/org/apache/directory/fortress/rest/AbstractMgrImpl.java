@@ -44,6 +44,7 @@ abstract class AbstractMgrImpl
         LOG.info( "Caught " + se );
         response.setErrorCode( se.getErrorId() );
         response.setErrorMessage( se.getMessage() );
+        response.setHttpStatus(se.getHttpStatus());
     }
     
     
