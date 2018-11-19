@@ -167,8 +167,9 @@ export default {
      },
       filters: [
         {
-          prop: ['userId', 'name', 'displayName', 'roles', 'adminRoles'],
-          value: ''
+          prop: ['userId', 'name', 'displayName'], // roles and adminRoles are handled specially in filterRows function
+          value: '',
+          filterFn: this.filterRows
         }
       ]
     }
@@ -475,6 +476,41 @@ export default {
                       }
           let respPromise = await axios.post(ft.FT_BASE_URL+ '/userDelete', ftReq, ft.AXIOS_FT_CONFIG)
           return respPromise
+      },
+      filterRows(row, filter) {
+        let show = false
+        for(let i=0; i < filter.prop.length; i++){
+          let name = filter.prop[i]
+          let val = row[name]
+          if(val !== null && val !== undefined) {
+            val = (''+val).toLowerCase()
+            if(val.indexOf(filter.value) != -1) {
+              show = true
+              break
+            }
+          }
+        }
+        if(!show) {
+          if(this.searchRoleNames(filter.value, row.roles)) {
+            show = true
+          }
+          else {
+            show = this.searchRoleNames(filter.value, row.adminRoles)
+          }
+        }
+        return show
+      },
+      searchRoleNames(val, roles) {
+        if(roles == null || roles == undefined) {
+          return false
+        }
+        for(let i=0; i < roles.length; i++) {
+          let rname = roles[i].name.toLowerCase()
+          if(rname.indexOf(val) != -1) {
+            return true
+          }
+        }
+        return false
       }
     },
     components: {
