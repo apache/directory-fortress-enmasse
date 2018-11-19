@@ -45,6 +45,8 @@ under the License.
         <constructor-arg ref="customMapper"/>
     </bean>
 
+    <bean id="fortressResponseInterceptor" class="org.apache.directory.fortress.rest.FortressResponseInterceptor"/>
+
     <jaxrs:server id="restContainer" address="/">
         <jaxrs:serviceBeans>
             <ref bean="fortressService"/>
@@ -53,6 +55,10 @@ under the License.
         <jaxrs:inInterceptors>
             <ref bean="annotationsInterceptor"/>
         </jaxrs:inInterceptors>
+
+        <jaxrs:outInterceptors>
+            <ref bean="fortressResponseInterceptor"/>
+        </jaxrs:outInterceptors>
 
         <jaxrs:outFaultInterceptors>
             <bean class="org.apache.directory.fortress.rest.SecurityOutFaultInterceptor"/>
