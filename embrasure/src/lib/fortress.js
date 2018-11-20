@@ -97,3 +97,49 @@ export function closeWait() {
         userId: null
     }
  }
+
+ export function newRole() {
+     return {
+        modCode: null,
+        modId: null,
+        adminSession: null,
+        sequenceId: 0,
+        contextId: null,
+        id: null,
+        name: null,
+        description: null,
+        dn: null,
+        occupants: null,
+        parents: [],
+        children: [],
+        beginTime: null,
+        endTime: null,
+        beginDate: null,
+        endDate: null,
+        beginLockDate: null,
+        endLockDate: null,
+        dayMask: null,
+        gidNumber: null,
+        timeout: 0
+        }
+ }
+
+ export function newPermObject() {
+     return {
+        modCode: null,
+        modId: null,
+        adminSession: null,
+        sequenceId: 0,
+        contextId: null,
+        admin: false,
+        internalId: null,
+        objName: null,
+        description: null,
+        props: {
+            fqcn: 'org.apache.directory.fortress.core.model.Props'
+        },
+        ou: null,
+        type: null,
+        dn: null
+    }
+ }

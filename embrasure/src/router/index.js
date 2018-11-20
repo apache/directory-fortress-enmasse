@@ -4,7 +4,8 @@ import ViewRouter from 'vue-router'
 import UserList from '@/components/UserList'
 import UserParent from '@/components/UserParent'
 import Users from '@/components/Users'
-//import UserDetails from '@/components/UserDetails'
+import Roles from '@/components/Roles'
+import PermObjects from '@/components/PermObjects'
 
 Vue.use(ViewRouter)
 
@@ -16,20 +17,14 @@ export default new ViewRouter({
       component: Users
     },
     {
-      path: '/users',
-      component: UserParent,
-      children: [
-        {
-          path: '',
-          name: 'UserList',
-          component: UserList
-        },
-        // {
-        //   path: ':id',
-        //   name: 'UserDetails',
-        //   component: UserDetails
-        // }
-      ]
+      path: '/roles',
+      name: 'Roles',
+      component: Roles,
+    },
+    {
+      path: '/pobjs',
+      name: 'PermObjects',
+      component: PermObjects,
     }
   ]
 })
