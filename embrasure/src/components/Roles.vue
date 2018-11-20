@@ -24,7 +24,7 @@
           <el-tab-pane name="RBAC Role Details" label="RBAC Role Details">
             <el-row justify="start" type="flex">
               <el-form-item label="Name:">
-                <el-input label="Name" placeholder="Name" v-model="entity.name" size="small"></el-input>
+                <el-input ref="firstField" label="Name" placeholder="Name" v-model="entity.name" size="small"></el-input>
               </el-form-item>
             </el-row>
             <el-row justify="start" type="flex">
@@ -132,6 +132,7 @@ export default {
       newRole() {
         this.entity = ft.newRole()
         this.entity._justLoaded = true
+        ft.focusFirstField(this)
       },
       showEntity(val) {
         if(val !== undefined && val != null) {

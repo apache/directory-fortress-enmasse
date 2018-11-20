@@ -24,7 +24,7 @@
           <el-tab-pane name="RBAC Permission Object Details" label="RBAC Permission Object Details">
             <el-row justify="start" type="flex">
               <el-form-item label="Object Name:">
-                <el-input label="Object Name" placeholder="Object Name" v-model="entity.objName" size="small"></el-input>
+                <el-input ref="firstField" label="Object Name" placeholder="Object Name" v-model="entity.objName" size="small"></el-input>
               </el-form-item>
             </el-row>
             <el-row justify="start" type="flex">
@@ -158,6 +158,7 @@ export default {
       newPermObject() {
         this.entity = ft.newPermObject()
         this.entity._justLoaded = true
+        ft.focusFirstField(this)
       },
       showEntity(val) {
         if(val !== undefined && val != null) {

@@ -26,7 +26,7 @@
             <el-col :span="19">
             <el-row justify="start" type="flex">
               <el-form-item label="User ID:">
-                <el-input label="User ID" placeholder="User ID" v-model="entity.userId" size="small"></el-input>
+                <el-input ref="firstField" label="User ID" placeholder="User ID" v-model="entity.userId" size="small"></el-input>
               </el-form-item>
               <el-form-item label="Password:">
                 <el-input type="password" label="Password" v-model="entity.password" size="small"></el-input>
@@ -212,6 +212,7 @@ export default {
       newUser() {
         this.entity = ft.newUser()
         this.entity._justLoaded = true
+        ft.focusFirstField(this)
       },
       showEntity(val) {
         if(val !== undefined && val != null) {

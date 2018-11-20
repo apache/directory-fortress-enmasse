@@ -40,6 +40,12 @@ export function closeWait() {
      Notification.warning({message: msg, duration: 10000})
  }
 
+ export function focusFirstField(component) {
+    component.$nextTick(function(){
+        component.$refs.firstField.focus()
+    })
+ }
+
  export function newUser() {
     return {
         address: {
