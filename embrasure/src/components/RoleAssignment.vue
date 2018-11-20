@@ -129,14 +129,13 @@ methods: {
             let add = true
             for(let j=0; j < existing.length; j++) {
                 let er = existing[j]
-                if(er.modId == sr.modId) {
+                if(er.name.toLowerCase() == sr.name.toLowerCase()) {
                     add = false
                     break
                 }
             }
             if(add) {
                 let ur = this.convertRoleToUserRole(sr)
-                console.log('adding role')
                 existing.push(ur)
             }
         }
