@@ -149,3 +149,28 @@ export function closeWait() {
         dn: null
     }
  }
+
+ export function newPermission() {
+     return {
+        modCode: null,
+        modId: null,
+        adminSession: null,
+        sequenceId: 0,
+        contextId: null,
+        admin: false,
+        internalId: null,
+        opName: null,
+        objName: null,
+        objId: null,
+        abstractName: null,
+        type: null,
+        dn: null,
+        description: null,
+        props: {
+            fqcn: 'org.apache.directory.fortress.core.model.Props'
+        },
+        roles: [],
+        users: [],
+        paSets: []
+    }
+ }

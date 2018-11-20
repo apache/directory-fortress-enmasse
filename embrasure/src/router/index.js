@@ -6,6 +6,7 @@ import UserParent from '@/components/UserParent'
 import Users from '@/components/Users'
 import Roles from '@/components/Roles'
 import PermObjects from '@/components/PermObjects'
+import Permissions from '@/components/Permissions'
 
 Vue.use(ViewRouter)
 
@@ -25,6 +26,11 @@ export default new ViewRouter({
       path: '/pobjs',
       name: 'PermObjects',
       component: PermObjects,
+    },
+    {
+      path: '/perms',
+      name: 'Permissions',
+      component: Permissions,
     }
   ]
 })
