@@ -43,6 +43,12 @@ export default {
     return {
       activeIndex: '/'
     }
+  },
+  created() {
+    let path = this.$router.history.current.path
+    if(path != '/') {
+      this.activeIndex = path
+    }
   }
 }
 </script>
