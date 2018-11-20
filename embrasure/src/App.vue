@@ -5,25 +5,25 @@
         <el-header style="text-align: right; font-size: 12px; padding: 0px;">
             <el-menu router :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
               <el-menu-item index="/" >Users</el-menu-item>
-              <el-menu-item index="/groups">Groups</el-menu-item>
+              <!-- <el-menu-item index="/groups">Groups</el-menu-item> -->
               <el-submenu index="rbac">
                 <template slot="title">RBAC</template>
                 <el-menu-item index="/roles">Roles</el-menu-item>
-                <el-menu-item index="/perms">Perms</el-menu-item>
-                <el-menu-item index="/ssds">SSDs</el-menu-item>
-                <el-menu-item index="/dsds">DSDs</el-menu-item>
+                <el-menu-item index="/perms">Permissions</el-menu-item>
+                <el-menu-item index="/pobjs">Permission Objects</el-menu-item>
+                <!-- <el-menu-item index="/ssds">SSDs</el-menu-item> -->
+                <!-- <el-menu-item index="/dsds">DSDs</el-menu-item> -->
               </el-submenu>
-              <el-submenu index="arbac">
+              <!-- <el-submenu index="arbac">
                 <template slot="title">ARBAC</template>
                 <el-menu-item index="/policies">Policies</el-menu-item>
               </el-submenu>
-              <el-menu-item index="/pobjs">PObjs</el-menu-item>
               <el-menu-item index="/ousers">OUsers</el-menu-item>
               <el-menu-item index="/ouprms">OUPrms</el-menu-item>
               <el-menu-item index="/admrles">ADMRLEs</el-menu-item>
               <el-menu-item index="/admobjs">ADMObjs</el-menu-item>
-              <el-menu-item index="/admperms">ADMPerms</el-menu-item>
-              <el-menu-item index="/logout">Logout</el-menu-item>
+              <el-menu-item index="/admperms">ADMPerms</el-menu-item> -->
+              <el-menu-item index="/logout" style="padding-left: 83%">Logout</el-menu-item>
             </el-menu>
           </el-header>
       </el-container>
