@@ -11,7 +11,7 @@
     </el-row>
     <el-row type="flex" justify="start">
       <el-col :span="10" justify="center">
-      <data-tables ref="userTable" :data="entities" :table-props="tableProps" :page-size="10" :pagination-props="{ background: true, pageSizes: [10, 20, 50, 100] }" :filters="filters" :highlight-current-row="true" max-height="250" @row-click="showEntity" @selection-change="handleSelectionChange">
+      <data-tables ref="userTable" :data="entities" :table-props="tableProps" :page-size="10" :pagination-props="{ background: true, pageSizes: [10, 20, 50, 100] }" :filters="filters" :highlight-current-row="true" max-height="200" @row-click="showEntity" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column v-for="col in columns" :prop="col.prop" :label="col.label" :key="col.label" sortable="custom" width="200" header-align="center">
         </el-table-column>
@@ -159,11 +159,7 @@ export default {
       ],
      tableProps: {
         border: false,
-        stripe: true,
-        defaultSort: {
-          prop: 'userId',
-          order: 'ascending'
-        }
+        stripe: true
      },
       filters: [
         {
