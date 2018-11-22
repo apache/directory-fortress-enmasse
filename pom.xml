@@ -188,247 +188,547 @@
     
   </dependencies>
 
-  <build>
-    <finalName>${project.artifactId}-${project.version}</finalName>
-    <plugins>
+  <profiles>
+    <profile>
+      <id>build-with-vuejs</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+          </plugin>
+    
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <executions>
+                <execution>
+                    <id>npm-install</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                    <configuration>
+                        <executable>npm</executable>
+                        <workingDirectory>${project.basedir}/embrasure</workingDirectory>
+                        <arguments>
+                            <argument>install</argument>
+                        </arguments>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>npm-build</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                    <configuration>
+                        <executable>npm</executable>
+                        <workingDirectory>${project.basedir}/embrasure</workingDirectory>
+                        <arguments>
+                            <argument>run</argument>
+                            <argument>build</argument>
+                        </arguments>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-      </plugin>
-
-      <!-- Create the fortress-rest web archive -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <!-- this is needed to pickup the context.xml in META-INF: -->
-        <configuration>
-          <warName>${project.artifactId}</warName>
-          <archive>
-            <manifest>
-              <classpathPrefix>lib/</classpathPrefix>
-            </manifest>
-          </archive>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>${project.basedir}/src/main/resources
-              </directory>
-            </resource>
-          </webResources>
-          <!--<archiveClasses>true</archiveClasses>-->
-          <attachClasses>true</attachClasses>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <inherited>true</inherited>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludeSubProjects>false</excludeSubProjects>
-          <excludes>
-            <!-- MAVEN_DEFAULT_EXCLUDES -->
-            <exclude>**/target/**/*</exclude>
-            <exclude>**/cobertura.ser</exclude>
-            <!-- ECLIPSE_DEFAULT_EXCLUDES -->
-            <exclude>**/.classpath</exclude>
-            <exclude>**/.project</exclude>
-            <exclude>**/.settings/**/*</exclude>
-            <!-- IDEA_DEFAULT_EXCLUDES -->
-            <exclude>**/*.iml</exclude>
-            <exclude>**/*.ipr</exclude>
-            <exclude>**/*.iws</exclude>
-            <!-- MANIFEST_MF_EXCLUDES -->
-            <exclude>**/MANIFEST.MF</exclude>
-            <!-- GIT_EXCLUDES -->
-            <exclude>**/.git/**/*</exclude>
-            <!-- CERT_EXCLUDES -->
-            <exclude>**/*.pem</exclude>
-            <!-- EXTERNAL_CODE_EXCLUDES -->
-            <exclude>**/CmdLineParser.java</exclude>
-            <!-- Exclude logs -->
-            <exclude>**/*.log/**</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>tomcat-maven-plugin</artifactId>
-        <configuration>
-          <warFile>target/${project.artifactId}-${project.version}.war</warFile>
-          <server>local-tomcat</server>
-          <url>http://localhost:8080/manager/text</url>
-          <path>/${project.artifactId}-${project.version}</path>
-<!--          <path>/enmasse-${version}</path>-->
-          <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
-          <username>tcmanager</username>
-          <password>m@nager123</password>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2016, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
-          <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
-          <version>true</version>
-          <author>true</author>
-          <doctitle>${project.name} Javadoc ${project.version}</doctitle>
-          <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
-          <!--<additionalparam>-Xdoclint:none</additionalparam>-->
-        </configuration>
-      </plugin>
-
-      <!-- War the app -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <warName>${project.artifactId}-${version}</warName>
-          <archive>
-            <manifest>
-              <classpathPrefix>lib/</classpathPrefix>
-            </manifest>
-          </archive>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>${project.basedir}/src/main/resources
-              </directory>
-            </resource>
-          </webResources>
-          <attachClasses>true</attachClasses>
-        </configuration>
-      </plugin>
-
-      <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
-      <!-- mvn test -Dtest=EmTest -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <version>${project.version}</version>
-          </systemPropertyVariables>
-          <excludes>
-            <exclude>${exclude.tests}</exclude>
-          </excludes>
-          <includes>
-            <include>${include.tests}</include>
-          </includes>
-          <groups>${testcase.groups}</groups>
-          <runOrder>random</runOrder>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>test</phase>
+          <!-- Create the fortress-rest web archive -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <!-- this is needed to pickup the context.xml in META-INF: -->
             <configuration>
-              <target name="fortress-load" if="load.file" description="Loads fortress rbac policy files into ldap">
-                <echo message="############### Run Fortress Rest Test Policy Load ###############" />
-                <java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" dir="${basedir}" timeout="4000000" taskname="startAnt">
-                  <classpath>
-                    <pathelement location="./src/main/resources" />
-                    <pathelement location="${org.apache.ant:ant-launcher:jar}" />
-                    <pathelement location="${org.apache.ant:ant:jar}" />
-                    <pathelement location="${org.apache.directory.fortress:fortress-core:jar}" />
-                    <pathelement location="${org.openldap:accelerator-api:jar}" />
-                    <pathelement location="${org.openldap:accelerator-impl:jar}" />
-                    <pathelement location="${log4j:log4j:jar}" />
-                    <pathelement location="${org.apache.directory.api:api-all:jar}" />
-                    <pathelement location="${org.apache.mina:mina-core:jar}" />
-                    <pathelement location="${org.jgrapht:jgrapht-core:jar}" />
-                    <pathelement location="${org.jasypt:jasypt:jar}" />
-                    <pathelement location="${commons-configuration:commons-configuration:jar}" />
-                    <pathelement location="${commons-lang:commons-lang:jar}" />
-                    <pathelement location="${commons-collections:commons-collections:jar}" />
-                    <pathelement location="${commons-logging:commons-logging:jar}" />
-                    <pathelement location="${commons-io:commons-io:jar}" />
-                    <pathelement location="${commons-pool:commons-pool:jar}" />
-                    <pathelement location="${net.sf.ehcache:ehcache-core:jar}" />
-                    <pathelement location="${org.slf4j:slf4j-api:jar}" />
-                    <pathelement location="${org.slf4j:slf4j-log4j12:jar}" />
-                    <pathelement location="${antlr:antlr:jar}" />
-                  </classpath>
-                  <sysproperty key="version" value="${project.version}" />
-                  <sysproperty key="tenant" value="${tenant}" />
-                  <arg value="-buildfile" />
-                  <arg file="./${load.file}" />
-<!--                  <arg file="./src/main/resources/FortressRestServerPolicy.xml" />-->
-                </java>
-              </target>
+              <warName>${project.artifactId}</warName>
+              <archive>
+                <manifest>
+                  <classpathPrefix>lib/</classpathPrefix>
+                </manifest>
+              </archive>
+              <webResources>
+                <resource>
+                  <!-- this is relative to the pom.xml directory -->
+                  <directory>${project.basedir}/src/main/resources
+                  </directory>
+                </resource>
+              </webResources>
+              <!--<archiveClasses>true</archiveClasses>-->
+              <attachClasses>true</attachClasses>
             </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <inherited>true</inherited>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.rat</groupId>
+            <artifactId>apache-rat-plugin</artifactId>
+            <configuration>
+              <excludeSubProjects>false</excludeSubProjects>
+              <excludes>
+                <!-- MAVEN_DEFAULT_EXCLUDES -->
+                <exclude>**/target/**/*</exclude>
+                <exclude>**/cobertura.ser</exclude>
+                <!-- ECLIPSE_DEFAULT_EXCLUDES -->
+                <exclude>**/.classpath</exclude>
+                <exclude>**/.project</exclude>
+                <exclude>**/.settings/**/*</exclude>
+                <!-- IDEA_DEFAULT_EXCLUDES -->
+                <exclude>**/*.iml</exclude>
+                <exclude>**/*.ipr</exclude>
+                <exclude>**/*.iws</exclude>
+                <!-- MANIFEST_MF_EXCLUDES -->
+                <exclude>**/MANIFEST.MF</exclude>
+                <!-- GIT_EXCLUDES -->
+                <exclude>**/.git/**/*</exclude>
+                <!-- CERT_EXCLUDES -->
+                <exclude>**/*.pem</exclude>
+                <!-- EXTERNAL_CODE_EXCLUDES -->
+                <exclude>**/CmdLineParser.java</exclude>
+                <!-- Exclude logs -->
+                <exclude>**/*.log/**</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>tomcat-maven-plugin</artifactId>
+            <configuration>
+              <warFile>target/${project.artifactId}-${project.version}.war</warFile>
+              <server>local-tomcat</server>
+              <url>http://localhost:8080/manager/text</url>
+              <path>/${project.artifactId}-${project.version}</path>
+    <!--          <path>/enmasse-${version}</path>-->
+              <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
+              <username>tcmanager</username>
+              <password>m@nager123</password>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <stylesheet>java</stylesheet>
+              <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2016, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+              <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
+              <version>true</version>
+              <author>true</author>
+              <doctitle>${project.name} Javadoc ${project.version}</doctitle>
+              <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
+              <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+            </configuration>
+          </plugin>
+    
+          <!-- War the app -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+              <warName>${project.artifactId}-${version}</warName>
+              <archive>
+                <manifest>
+                  <classpathPrefix>lib/</classpathPrefix>
+                </manifest>
+              </archive>
+              <webResources>
+                <resource>
+                  <!-- this is relative to the pom.xml directory -->
+                  <directory>${project.basedir}/src/main/resources
+                  </directory>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/embrasure/dist</directory>
+                </resource>
+              </webResources>
+              <attachClasses>true</attachClasses>
+            </configuration>
+          </plugin>
+    
+          <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
+          <!-- mvn test -Dtest=EmTest -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <version>${project.version}</version>
+              </systemPropertyVariables>
+              <excludes>
+                <exclude>${exclude.tests}</exclude>
+              </excludes>
+              <includes>
+                <include>${include.tests}</include>
+              </includes>
+              <groups>${testcase.groups}</groups>
+              <runOrder>random</runOrder>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+    
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <configuration>
+                  <target name="fortress-load" if="load.file" description="Loads fortress rbac policy files into ldap">
+                    <echo message="############### Run Fortress Rest Test Policy Load ###############" />
+                    <java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" dir="${basedir}" timeout="4000000" taskname="startAnt">
+                      <classpath>
+                        <pathelement location="./src/main/resources" />
+                        <pathelement location="${org.apache.ant:ant-launcher:jar}" />
+                        <pathelement location="${org.apache.ant:ant:jar}" />
+                        <pathelement location="${org.apache.directory.fortress:fortress-core:jar}" />
+                        <pathelement location="${org.openldap:accelerator-api:jar}" />
+                        <pathelement location="${org.openldap:accelerator-impl:jar}" />
+                        <pathelement location="${log4j:log4j:jar}" />
+                        <pathelement location="${org.apache.directory.api:api-all:jar}" />
+                        <pathelement location="${org.apache.mina:mina-core:jar}" />
+                        <pathelement location="${org.jgrapht:jgrapht-core:jar}" />
+                        <pathelement location="${org.jasypt:jasypt:jar}" />
+                        <pathelement location="${commons-configuration:commons-configuration:jar}" />
+                        <pathelement location="${commons-lang:commons-lang:jar}" />
+                        <pathelement location="${commons-collections:commons-collections:jar}" />
+                        <pathelement location="${commons-logging:commons-logging:jar}" />
+                        <pathelement location="${commons-io:commons-io:jar}" />
+                        <pathelement location="${commons-pool:commons-pool:jar}" />
+                        <pathelement location="${net.sf.ehcache:ehcache-core:jar}" />
+                        <pathelement location="${org.slf4j:slf4j-api:jar}" />
+                        <pathelement location="${org.slf4j:slf4j-log4j12:jar}" />
+                        <pathelement location="${antlr:antlr:jar}" />
+                      </classpath>
+                      <sysproperty key="version" value="${project.version}" />
+                      <sysproperty key="tenant" value="${tenant}" />
+                      <arg value="-buildfile" />
+                      <arg file="./${load.file}" />
+    <!--                  <arg file="./src/main/resources/FortressRestServerPolicy.xml" />-->
+                    </java>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+    
+        </plugins>
+      </build>
+    </profile>
 
-    </plugins>
-  </build>
+
+    <profile>
+      <id>skip-vuejs</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>skipVuejs</name>
+        </property>
+      </activation>
+      <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+          </plugin>
+    
+          <!-- Create the fortress-rest web archive -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <!-- this is needed to pickup the context.xml in META-INF: -->
+            <configuration>
+              <warName>${project.artifactId}</warName>
+              <archive>
+                <manifest>
+                  <classpathPrefix>lib/</classpathPrefix>
+                </manifest>
+              </archive>
+              <webResources>
+                <resource>
+                  <!-- this is relative to the pom.xml directory -->
+                  <directory>${project.basedir}/src/main/resources
+                  </directory>
+                </resource>
+              </webResources>
+              <!--<archiveClasses>true</archiveClasses>-->
+              <attachClasses>true</attachClasses>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <inherited>true</inherited>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.rat</groupId>
+            <artifactId>apache-rat-plugin</artifactId>
+            <configuration>
+              <excludeSubProjects>false</excludeSubProjects>
+              <excludes>
+                <!-- MAVEN_DEFAULT_EXCLUDES -->
+                <exclude>**/target/**/*</exclude>
+                <exclude>**/cobertura.ser</exclude>
+                <!-- ECLIPSE_DEFAULT_EXCLUDES -->
+                <exclude>**/.classpath</exclude>
+                <exclude>**/.project</exclude>
+                <exclude>**/.settings/**/*</exclude>
+                <!-- IDEA_DEFAULT_EXCLUDES -->
+                <exclude>**/*.iml</exclude>
+                <exclude>**/*.ipr</exclude>
+                <exclude>**/*.iws</exclude>
+                <!-- MANIFEST_MF_EXCLUDES -->
+                <exclude>**/MANIFEST.MF</exclude>
+                <!-- GIT_EXCLUDES -->
+                <exclude>**/.git/**/*</exclude>
+                <!-- CERT_EXCLUDES -->
+                <exclude>**/*.pem</exclude>
+                <!-- EXTERNAL_CODE_EXCLUDES -->
+                <exclude>**/CmdLineParser.java</exclude>
+                <!-- Exclude logs -->
+                <exclude>**/*.log/**</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>tomcat-maven-plugin</artifactId>
+            <configuration>
+              <warFile>target/${project.artifactId}-${project.version}.war</warFile>
+              <server>local-tomcat</server>
+              <url>http://localhost:8080/manager/text</url>
+              <path>/${project.artifactId}-${project.version}</path>
+    <!--          <path>/enmasse-${version}</path>-->
+              <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
+              <username>tcmanager</username>
+              <password>m@nager123</password>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <stylesheet>java</stylesheet>
+              <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2016, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+              <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
+              <version>true</version>
+              <author>true</author>
+              <doctitle>${project.name} Javadoc ${project.version}</doctitle>
+              <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
+              <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+            </configuration>
+          </plugin>
+    
+          <!-- War the app -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+              <warName>${project.artifactId}-${version}</warName>
+              <archive>
+                <manifest>
+                  <classpathPrefix>lib/</classpathPrefix>
+                </manifest>
+              </archive>
+              <webResources>
+                <resource>
+                  <!-- this is relative to the pom.xml directory -->
+                  <directory>${project.basedir}/src/main/resources
+                  </directory>
+                </resource>
+              </webResources>
+              <attachClasses>true</attachClasses>
+            </configuration>
+          </plugin>
+    
+          <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
+          <!-- mvn test -Dtest=EmTest -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <version>${project.version}</version>
+              </systemPropertyVariables>
+              <excludes>
+                <exclude>${exclude.tests}</exclude>
+              </excludes>
+              <includes>
+                <include>${include.tests}</include>
+              </includes>
+              <groups>${testcase.groups}</groups>
+              <runOrder>random</runOrder>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+            </configuration>
+          </plugin>
+    
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+    
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <configuration>
+                  <target name="fortress-load" if="load.file" description="Loads fortress rbac policy files into ldap">
+                    <echo message="############### Run Fortress Rest Test Policy Load ###############" />
+                    <java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" dir="${basedir}" timeout="4000000" taskname="startAnt">
+                      <classpath>
+                        <pathelement location="./src/main/resources" />
+                        <pathelement location="${org.apache.ant:ant-launcher:jar}" />
+                        <pathelement location="${org.apache.ant:ant:jar}" />
+                        <pathelement location="${org.apache.directory.fortress:fortress-core:jar}" />
+                        <pathelement location="${org.openldap:accelerator-api:jar}" />
+                        <pathelement location="${org.openldap:accelerator-impl:jar}" />
+                        <pathelement location="${log4j:log4j:jar}" />
+                        <pathelement location="${org.apache.directory.api:api-all:jar}" />
+                        <pathelement location="${org.apache.mina:mina-core:jar}" />
+                        <pathelement location="${org.jgrapht:jgrapht-core:jar}" />
+                        <pathelement location="${org.jasypt:jasypt:jar}" />
+                        <pathelement location="${commons-configuration:commons-configuration:jar}" />
+                        <pathelement location="${commons-lang:commons-lang:jar}" />
+                        <pathelement location="${commons-collections:commons-collections:jar}" />
+                        <pathelement location="${commons-logging:commons-logging:jar}" />
+                        <pathelement location="${commons-io:commons-io:jar}" />
+                        <pathelement location="${commons-pool:commons-pool:jar}" />
+                        <pathelement location="${net.sf.ehcache:ehcache-core:jar}" />
+                        <pathelement location="${org.slf4j:slf4j-api:jar}" />
+                        <pathelement location="${org.slf4j:slf4j-log4j12:jar}" />
+                        <pathelement location="${antlr:antlr:jar}" />
+                      </classpath>
+                      <sysproperty key="version" value="${project.version}" />
+                      <sysproperty key="tenant" value="${tenant}" />
+                      <arg value="-buildfile" />
+                      <arg file="./${load.file}" />
+    <!--                  <arg file="./src/main/resources/FortressRestServerPolicy.xml" />-->
+                    </java>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+    
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <reporting>
     <plugins>
