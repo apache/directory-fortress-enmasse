@@ -35,6 +35,14 @@
     <servlet>
         <servlet-name>CXFServlet</servlet-name>
         <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <init-param>
+           <param-name>static-resources-list</param-name>
+           <param-value>/(\w.*)+(.html|.js|.png|.css|.woff|.ttf)</param-value>
+        </init-param>
+        <init-param>
+           <param-name>static-welcome-file</param-name>
+           <param-value>index.html</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -68,5 +76,4 @@
      <security-role>
        <role-name>fortress-rest</role-name>
      </security-role>
-
 </web-app>
