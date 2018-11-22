@@ -1,5 +1,6 @@
 module.exports = {
   lintOnSave: false,
+
   devServer: {
     proxy: {
       '/fortress-rest': {
@@ -7,5 +8,8 @@ module.exports = {
         changeOrigin: true
       }
     }
-  }
+  },
+
+  baseUrl: '',
+  productionSourceMap: false
 }
