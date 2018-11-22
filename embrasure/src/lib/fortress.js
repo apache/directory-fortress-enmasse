@@ -34,7 +34,7 @@ export function closeWait() {
      }
      if(e !== null && e !== undefined && e.response !== undefined) {
         if(e.response.data !== undefined) {
-            msg = msg + ' (' + e.response.data.detail + ')'
+            msg = msg + ' (' + e.response.data.errorMessage + ')'
         }
      }
      Notification.warning({message: msg, duration: 10000})
