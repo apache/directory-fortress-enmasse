@@ -192,7 +192,10 @@
     <profile>
       <id>build-with-vuejs</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>buildVuejs</name>
+        </property>
       </activation>
       <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
@@ -479,12 +482,9 @@
 
 
     <profile>
-      <id>skip-vuejs</id>
+      <id>default-build-without-vuejs</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>skipVuejs</name>
-        </property>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
