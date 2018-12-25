@@ -192,7 +192,7 @@ This web app uses Java EE security.
 #### 2. Build and load test data:
 
   ```maven
- mvn install -Dload.file=ldap/setup/FortressRestServerPolicy.xml
+ mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
   ```
 
  Build Notes:
