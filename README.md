@@ -73,7 +73,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
  a. from git:
  ```
- git clone --branch 2.0.3 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.3  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  mvn clean install
  ```
