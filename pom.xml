@@ -78,6 +78,12 @@
     </developer>
 
     <developer>
+      <id>coheigea</id>
+      <name>Colm O hEigeartaigh</name>
+      <email>coheigea@apache.org</email>
+    </developer>
+
+    <developer>
       <id>cpike</id>
       <name>Chris Pike</name>
       <email>cpike@apache.org</email>
