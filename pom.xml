@@ -72,6 +72,12 @@
     </developer>
 
     <developer>
+      <id>kayyagari</id>
+      <name>Kiran Ayyagari</name>
+      <email>kayyagari@apache.org</email>
+    </developer>
+
+    <developer>
       <id>cpike</id>
       <name>Chris Pike</name>
       <email>cpike@apache.org</email>
