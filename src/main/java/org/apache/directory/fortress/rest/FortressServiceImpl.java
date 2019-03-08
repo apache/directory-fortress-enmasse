@@ -26,11 +26,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
 import org.apache.directory.fortress.core.GlobalErrIds;
-import org.apache.directory.fortress.core.model.FortRequest;
-import org.apache.directory.fortress.core.model.FortResponse;
+import org.apache.directory.fortress.core.model.*;
 import org.apache.directory.fortress.core.rest.HttpIds;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+
 
 /**
  * Implementation for Fortress Rest Service methods forwards to delegate.  This class is thread safe.
@@ -74,6 +74,7 @@ public class FortressServiceImpl implements FortressService
      * **************************************************************************************************************************************
      */
 
+
     /**
      * {@inheritDoc}
      */
@@ -83,10 +84,13 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addUser( FortRequest request )
     {
-        return adminMgrImpl.addUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addUser( request );
+        return response;
     }
 
-    
+
     /**
      * {@inheritDoc}
      */
