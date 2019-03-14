@@ -2082,11 +2082,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canAssign( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.canAssign( request );
-        return response;
-        //return delegatedAccessMgrImpl.canAssign( request );
+        return delegatedAccessMgrImpl.canAssign( request );
     }
 
 
@@ -2099,11 +2095,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canDeassign( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.canDeassign( request );
-        return response;
-        //return delegatedAccessMgrImpl.canDeassign( request );
+        return delegatedAccessMgrImpl.canDeassign( request );
     }
 
 
@@ -2116,11 +2108,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canGrant( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.canGrant( request );
-        return response;
-        //return delegatedAccessMgrImpl.canGrant( request );
+        return delegatedAccessMgrImpl.canGrant( request );
     }
 
 
@@ -2133,11 +2121,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canRevoke( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.canRevoke( request );
-        return response;
-        //return delegatedAccessMgrImpl.canRevoke( request );
+        return delegatedAccessMgrImpl.canRevoke( request );
     }
 
 
@@ -2150,11 +2134,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse checkAdminAccess( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.checkAdminAccess( request );
-        return response;
-        //return delegatedAccessMgrImpl.checkAdminAccess( request );
+        return delegatedAccessMgrImpl.checkAdminAccess( request );
     }
 
 
@@ -2167,11 +2147,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addActiveAdminRole( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.addActiveAdminRole( request );
-        return response;
-        //return delegatedAccessMgrImpl.addActiveAdminRole( request );
+        return delegatedAccessMgrImpl.addActiveAdminRole( request );
     }
 
 
@@ -2184,11 +2160,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dropActiveAdminRole( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.dropActiveAdminRole( request );
-        return response;
-        //return delegatedAccessMgrImpl.dropActiveAdminRole( request );
+        return delegatedAccessMgrImpl.dropActiveAdminRole( request );
     }
 
 
@@ -2201,11 +2173,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse sessionAdminRoles( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.sessionAdminRoles( request );
-        return response;
-        //return delegatedAccessMgrImpl.sessionAdminRoles( request );
+        return delegatedAccessMgrImpl.sessionAdminRoles( request );
     }
 
 
@@ -2218,11 +2186,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse sessionAdminPermissions( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.sessionAdminPermissions( request );
-        return response;
-        //return delegatedAccessMgrImpl.sessionAdminPermissions( request );
+        return delegatedAccessMgrImpl.sessionAdminPermissions( request );
     }
 
 
@@ -2235,11 +2199,7 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedSessionAdminRoles( FortRequest request )
     {
-        FortResponse response = SecUtils.initializeSession(request, httpRequest);
-        if( response == null )
-            response = delegatedAccessMgrImpl.authorizedSessionRoles( request );
-        return response;
-        //return delegatedAccessMgrImpl.authorizedSessionRoles( request );
+        return delegatedAccessMgrImpl.authorizedSessionRoles( request );
     }
 
 
