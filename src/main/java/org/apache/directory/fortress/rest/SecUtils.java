@@ -26,7 +26,8 @@ public class SecUtils
         FortResponse fortResponse = null;
 
         // If the session is not contained in the request, use the service caller:
-        if( fortRequest.getSession() == null)
+/*        if( fortRequest.getSession() == null)*/
+        if( true )
         {
             if( httpRequest == null)
             {

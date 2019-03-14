@@ -100,7 +100,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteUser( FortRequest request )
     {
-        return adminMgrImpl.deleteUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteUser( request );
+        return response;
+        //return adminMgrImpl.deleteUser( request );
     }
 
 
@@ -113,7 +117,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse disableUser( FortRequest request )
     {
-        return adminMgrImpl.disableUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.disableUser( request );
+        return response;
+        //return adminMgrImpl.disableUser( request );
     }
 
 
@@ -126,7 +134,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateUser( FortRequest request )
     {
-        return adminMgrImpl.updateUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updateUser( request );
+        return response;
+        //return adminMgrImpl.updateUser( request );
     }
 
 
@@ -139,7 +151,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse changePassword( FortRequest request )
     {
-        return adminMgrImpl.changePassword( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.changePassword( request );
+        return response;
+        //return adminMgrImpl.changePassword( request );
     }
 
 
@@ -152,7 +168,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse lockUserAccount( FortRequest request )
     {
-        return adminMgrImpl.lockUserAccount( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.lockUserAccount( request );
+        return response;
+        //return adminMgrImpl.lockUserAccount( request );
     }
 
 
@@ -165,7 +185,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse unlockUserAccount( FortRequest request )
     {
-        return adminMgrImpl.unlockUserAccount( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.unlockUserAccount( request );
+        return response;
+        //return adminMgrImpl.unlockUserAccount( request );
     }
 
 
@@ -178,7 +202,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse resetPassword( FortRequest request )
     {
-        return adminMgrImpl.resetPassword( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.resetPassword( request );
+        return response;
+        //return adminMgrImpl.resetPassword( request );
     }
 
 
@@ -191,7 +219,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addRole( FortRequest request )
     {
-        return adminMgrImpl.addRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addRole( request );
+        return response;
+        //return adminMgrImpl.addRole( request );
     }
 
 
@@ -204,7 +236,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteRole( FortRequest request )
     {
-        return adminMgrImpl.deleteRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteRole( request );
+        return response;
+        //return adminMgrImpl.deleteRole( request );
     }
 
 
@@ -217,7 +253,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateRole( FortRequest request )
     {
-        return adminMgrImpl.updateRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updateRole( request );
+        return response;
+        //return adminMgrImpl.updateRole( request );
     }
 
 
@@ -230,7 +270,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignUser( FortRequest request )
     {
-        return adminMgrImpl.assignUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.assignUser( request );
+        return response;
+        //return adminMgrImpl.assignUser( request );
     }
 
 
@@ -243,7 +287,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deassignUser( FortRequest request )
     {
-        return adminMgrImpl.deassignUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deassignUser( request );
+        return response;
+        //return adminMgrImpl.deassignUser( request );
     }
 
 
@@ -256,7 +304,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addPermission( FortRequest request )
     {
-        return adminMgrImpl.addPermission( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addPermission( request );
+        return response;
+        //return adminMgrImpl.addPermission( request );
     }
 
 
@@ -269,7 +321,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updatePermission( FortRequest request )
     {
-        return adminMgrImpl.updatePermission( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updatePermission( request );
+        return response;
+        //return adminMgrImpl.updatePermission( request );
     }
 
 
@@ -282,7 +338,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deletePermission( FortRequest request )
     {
-        return adminMgrImpl.deletePermission( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deletePermission( request );
+        return response;
+        //return adminMgrImpl.deletePermission( request );
     }
 
 
@@ -295,7 +355,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addPermObj( FortRequest request )
     {
-        return adminMgrImpl.addPermObj( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addPermObj( request );
+        return response;
+        //return adminMgrImpl.addPermObj( request );
     }
 
 
@@ -308,7 +372,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updatePermObj( FortRequest request )
     {
-        return adminMgrImpl.updatePermObj( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updatePermObj( request );
+        return response;
+        //return adminMgrImpl.updatePermObj( request );
     }
 
 
@@ -321,7 +389,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deletePermObj( FortRequest request )
     {
-        return adminMgrImpl.deletePermObj( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deletePermObj( request );
+        return response;
+        //return adminMgrImpl.deletePermObj( request );
     }
 
 
@@ -334,7 +406,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse grant( FortRequest request )
     {
-        return adminMgrImpl.grant( request, this );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.grant( request, this );
+        return response;
+        //return adminMgrImpl.grant( request, this );
     }
 
 
@@ -347,7 +423,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse revoke( FortRequest request )
     {
-        return adminMgrImpl.revoke( request, this );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.revoke( request, this );
+        return response;
+        //return adminMgrImpl.revoke( request, this );
     }
 
 
@@ -360,7 +440,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse grantUser( FortRequest request )
     {
-        return adminMgrImpl.grantUser( request, this );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.grantUser( request, this );
+        return response;
+        //return adminMgrImpl.grantUser( request, this );
     }
 
 
@@ -373,7 +457,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse revokeUser( FortRequest request )
     {
-        return adminMgrImpl.revokeUser( request, this );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.revokeUser( request, this );
+        return response;
+        //return adminMgrImpl.revokeUser( request, this );
     }
 
 
@@ -386,7 +474,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addDescendant( FortRequest request )
     {
-        return adminMgrImpl.addDescendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addDescendant( request );
+        return response;
+        //return adminMgrImpl.addDescendant( request );
     }
 
 
@@ -399,7 +491,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addAscendant( FortRequest request )
     {
-        return adminMgrImpl.addAscendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addAscendant( request );
+        return response;
+        //return adminMgrImpl.addAscendant( request );
     }
 
 
@@ -412,7 +508,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addInheritance( FortRequest request )
     {
-        return adminMgrImpl.addInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addInheritance( request );
+        return response;
+        //return adminMgrImpl.addInheritance( request );
     }
 
 
@@ -425,7 +525,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteInheritance( FortRequest request )
     {
-        return adminMgrImpl.deleteInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteInheritance( request );
+        return response;
+        //return adminMgrImpl.deleteInheritance( request );
     }
 
 
@@ -438,7 +542,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse createSsdSet( FortRequest request )
     {
-        return adminMgrImpl.createSsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.createSsdSet( request );
+        return response;
+        //return adminMgrImpl.createSsdSet( request );
     }
 
 
@@ -451,7 +559,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateSsdSet( FortRequest request )
     {
-        return adminMgrImpl.updateSsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updateSsdSet( request );
+        return response;
+        //return adminMgrImpl.updateSsdSet( request );
     }
 
 
@@ -464,7 +576,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addSsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.addSsdRoleMember( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addSsdRoleMember( request );
+        return response;
+        //return adminMgrImpl.addSsdRoleMember( request );
     }
 
 
@@ -477,7 +593,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteSsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.deleteSsdRoleMember( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteSsdRoleMember( request );
+        return response;
+        //return adminMgrImpl.deleteSsdRoleMember( request );
     }
 
 
@@ -490,7 +610,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteSsdSet( FortRequest request )
     {
-        return adminMgrImpl.deleteSsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteSsdSet( request );
+        return response;
+        //return adminMgrImpl.deleteSsdSet( request );
     }
 
 
@@ -503,7 +627,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse setSsdSetCardinality( FortRequest request )
     {
-        return adminMgrImpl.setSsdSetCardinality( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.setSsdSetCardinality( request );
+        return response;
+        //return adminMgrImpl.setSsdSetCardinality( request );
     }
 
 
@@ -516,7 +644,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse createDsdSet( FortRequest request )
     {
-        return adminMgrImpl.createDsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.createDsdSet( request );
+        return response;
+        //return adminMgrImpl.createDsdSet( request );
     }
 
 
@@ -529,7 +661,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateDsdSet( FortRequest request )
     {
-        return adminMgrImpl.updateDsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updateDsdSet( request );
+        return response;
+        //return adminMgrImpl.updateDsdSet( request );
     }
 
 
@@ -542,7 +678,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addDsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.addDsdRoleMember( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addDsdRoleMember( request );
+        return response;
+        //return adminMgrImpl.addDsdRoleMember( request );
     }
 
 
@@ -555,7 +695,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteDsdRoleMember( FortRequest request )
     {
-        return adminMgrImpl.deleteDsdRoleMember( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteDsdRoleMember( request );
+        return response;
+        //return adminMgrImpl.deleteDsdRoleMember( request );
     }
 
 
@@ -568,7 +712,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteDsdSet( FortRequest request )
     {
-        return adminMgrImpl.deleteDsdSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deleteDsdSet( request );
+        return response;
+        //return adminMgrImpl.deleteDsdSet( request );
     }
 
 
@@ -581,7 +729,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse setDsdSetCardinality( FortRequest request )
     {
-        return adminMgrImpl.setDsdSetCardinality( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.setDsdSetCardinality( request );
+        return response;
+        //return adminMgrImpl.setDsdSetCardinality( request );
     }
 
 
@@ -594,7 +746,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addRoleConstraint( FortRequest request )
     {
-        return adminMgrImpl.addRoleConstraint( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addRoleConstraint( request );
+        return response;
+        //return adminMgrImpl.addRoleConstraint( request );
     }
 
 
@@ -607,7 +763,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse removeRoleConstraint( FortRequest request )
     {
-        return adminMgrImpl.removeRoleConstraint( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.removeRoleConstraint( request );
+        return response;
+        //return adminMgrImpl.removeRoleConstraint( request );
     }
 
 
@@ -620,7 +780,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse removeRoleConstraintWid( FortRequest request )
     {
-        return adminMgrImpl.removeRoleConstraintWid( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.removeRoleConstraintWid( request );
+        return response;
+        //return adminMgrImpl.removeRoleConstraintWid( request );
     }
 
 
@@ -633,7 +797,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addPermissionAttributeSet( FortRequest request )
     {
-        return adminMgrImpl.addPermissionAttributeSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addPermissionAttributeSet( request );
+        return response;
+        //return adminMgrImpl.addPermissionAttributeSet( request );
     }
 
 
@@ -646,7 +814,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deletePermissionAttributeSet( FortRequest request )
     {
-        return adminMgrImpl.deletePermissionAttributeSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.deletePermissionAttributeSet( request );
+        return response;
+        //return adminMgrImpl.deletePermissionAttributeSet( request );
     }
 
 
@@ -659,7 +831,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addPermissionAttributeToSet( FortRequest request )
     {
-        return adminMgrImpl.addPermissionAttributeToSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.addPermissionAttributeToSet( request );
+        return response;
+        //return adminMgrImpl.addPermissionAttributeToSet( request );
     }
 
 
@@ -672,7 +848,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse removePermissionAttributeFromSet( FortRequest request )
     {
-        return adminMgrImpl.removePermissionAttributeFromSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.removePermissionAttributeFromSet( request );
+        return response;
+        //return adminMgrImpl.removePermissionAttributeFromSet( request );
     }
 
 
@@ -685,7 +865,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updatePermissionAttributeInSet( FortRequest request )
     {
-        return adminMgrImpl.updatePermissionAttributeInSet( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.updatePermissionAttributeInSet( request );
+        return response;
+        //return adminMgrImpl.updatePermissionAttributeInSet( request );
     }
 
 
@@ -698,7 +882,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse enableRoleConstraint( FortRequest request )
     {
-        return adminMgrImpl.enableRoleConstraint( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.enableRoleConstraint( request );
+        return response;
+        //return adminMgrImpl.enableRoleConstraint( request );
     }
 
 
@@ -711,7 +899,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse disableRoleConstraint( FortRequest request )
     {
-        return adminMgrImpl.disableRoleConstraint( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = adminMgrImpl.disableRoleConstraint( request );
+        return response;
+        //return adminMgrImpl.disableRoleConstraint( request );
     }
 
 
@@ -730,7 +922,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readPermission( FortRequest request )
     {
-        return reviewMgrImpl.readPermission( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.readPermission( request );
+        return response;
+        //return reviewMgrImpl.readPermission( request );
     }
 
 
@@ -743,7 +939,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readPermObj( FortRequest request )
     {
-        return reviewMgrImpl.readPermObj( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.readPermObj( request );
+        return response;
+        //return reviewMgrImpl.readPermObj( request );
     }
 
     /**
@@ -755,7 +955,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findPermissions( FortRequest request )
     {
-        return reviewMgrImpl.findPermissions( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findPermissions( request );
+        return response;
+        //return reviewMgrImpl.findPermissions( request );
     }
 
 
@@ -768,7 +972,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findPermsByObj( FortRequest request )
     {
-        return reviewMgrImpl.findObjPermissions( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findObjPermissions( request );
+        return response;
+        //return reviewMgrImpl.findObjPermissions( request );
     }
 
 
@@ -781,7 +989,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findAnyPermissions( FortRequest request )
     {
-        return reviewMgrImpl.findAnyPermissions( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findAnyPermissions( request );
+        return response;
+        //return reviewMgrImpl.findAnyPermissions( request );
     }
 
 
@@ -794,7 +1006,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findPermObjs( FortRequest request )
     {
-        return reviewMgrImpl.findPermObjs( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findPermObjs( request );
+        return response;
+        //return reviewMgrImpl.findPermObjs( request );
     }
 
 
@@ -807,7 +1023,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readRole( FortRequest request )
     {
-        return reviewMgrImpl.readRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.readRole( request );
+        return response;
+        //return reviewMgrImpl.readRole( request );
     }
 
 
@@ -820,7 +1040,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findRoles( FortRequest request )
     {
-        return reviewMgrImpl.findRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findRoles( request );
+        return response;
+        //return reviewMgrImpl.findRoles( request );
     }
 
 
@@ -833,7 +1057,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readUser( FortRequest request )
     {
-        return reviewMgrImpl.readUserM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.readUserM( request );
+        return response;
+        //return reviewMgrImpl.readUserM( request );
     }
 
 
@@ -846,7 +1074,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findUsers( FortRequest request )
     {
-        return reviewMgrImpl.findUsersM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findUsersM( request );
+        return response;
+        //return reviewMgrImpl.findUsersM( request );
     }
 
 
@@ -859,7 +1091,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedUsers( FortRequest request )
     {
-        return reviewMgrImpl.assignedUsersM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.assignedUsersM( request );
+        return response;
+        //return reviewMgrImpl.assignedUsersM( request );
     }
 
 
@@ -872,7 +1108,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedUsersConstraints( FortRequest request )
     {
-        return reviewMgrImpl.assignedUsersConstraints( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.assignedUsersConstraints( request );
+        return response;
+        //return reviewMgrImpl.assignedUsersConstraints( request );
     }
 
 
@@ -885,7 +1125,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedUsersConstraintsKey( FortRequest request )
     {
-        return reviewMgrImpl.assignedUsersConstraintsKey( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.assignedUsersConstraintsKey( request );
+        return response;
+        //return reviewMgrImpl.assignedUsersConstraintsKey( request );
     }
 
 
@@ -898,7 +1142,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedRoles( FortRequest request )
     {
-        return reviewMgrImpl.assignedRolesM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.assignedRolesM( request );
+        return response;
+        //return reviewMgrImpl.assignedRolesM( request );
     }
 
 
@@ -911,7 +1159,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedUsers( FortRequest request )
     {
-        return reviewMgrImpl.authorizedUsersM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.authorizedUsersM( request );
+        return response;
+        //return reviewMgrImpl.authorizedUsersM( request );
     }
 
 
@@ -924,7 +1176,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedRoles( FortRequest request )
     {
-        return reviewMgrImpl.authorizedRoleM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.authorizedRoleM( request );
+        return response;
+        //return reviewMgrImpl.authorizedRoleM( request );
     }
 
 
@@ -937,7 +1193,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse permissionRoles( FortRequest request )
     {
-        return reviewMgrImpl.permissionRolesM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.permissionRolesM( request );
+        return response;
+        //return reviewMgrImpl.permissionRolesM( request );
     }
 
 
@@ -947,7 +1207,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findRoleConstraints( FortRequest request )
     {
-        return reviewMgrImpl.findRoleConstraintsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.findRoleConstraintsM( request );
+        return response;
+        //return reviewMgrImpl.findRoleConstraintsM( request );
     }
 
     /**
@@ -959,7 +1223,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse rolePermissions( FortRequest request )
     {
-        return reviewMgrImpl.rolePermissionsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.rolePermissionsM( request );
+        return response;
+        //return reviewMgrImpl.rolePermissionsM( request );
     }
 
 
@@ -972,7 +1240,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse userPermissions( FortRequest request )
     {
-        return reviewMgrImpl.userPermissionsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.userPermissionsM( request );
+        return response;
+        //return reviewMgrImpl.userPermissionsM( request );
     }
 
 
@@ -985,7 +1257,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedPermissionRoles( FortRequest request )
     {
-        return reviewMgrImpl.authorizedPermissionRolesM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.authorizedPermissionRolesM( request );
+        return response;
+        //return reviewMgrImpl.authorizedPermissionRolesM( request );
     }
 
 
@@ -998,7 +1274,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse permissionUsers( FortRequest request )
     {
-        return reviewMgrImpl.permissionUsersM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.permissionUsersM( request );
+        return response;
+        //return reviewMgrImpl.permissionUsersM( request );
     }
 
 
@@ -1011,7 +1291,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedPermissionUsers( FortRequest request )
     {
-        return reviewMgrImpl.authorizedPermissionUsersM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.authorizedPermissionUsersM( request );
+        return response;
+        //return reviewMgrImpl.authorizedPermissionUsersM( request );
     }
 
 
@@ -1021,7 +1305,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readPermAttributeSet( FortRequest request )
     {
-        return reviewMgrImpl.readPermAttributeSetM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.readPermAttributeSetM( request );
+        return response;
+        //return reviewMgrImpl.readPermAttributeSetM( request );
     }
 
 
@@ -1031,7 +1319,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse rolePermissionAttributeSets( FortRequest request )
     {
-        return reviewMgrImpl.rolePermissionAttributeSetsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.rolePermissionAttributeSetsM( request );
+        return response;
+        //return reviewMgrImpl.rolePermissionAttributeSetsM( request );
     }
 
 
@@ -1044,7 +1336,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse ssdRoleSets( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.ssdRoleSetsM( request );
+        return response;
+        //return reviewMgrImpl.ssdRoleSetsM( request );
     }
 
 
@@ -1057,7 +1353,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse ssdRoleSet( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.ssdRoleSetM( request );
+        return response;
+        //return reviewMgrImpl.ssdRoleSetM( request );
     }
 
 
@@ -1070,7 +1370,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse ssdRoleSetRoles( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetRolesM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.ssdRoleSetRolesM( request );
+        return response;
+        //return reviewMgrImpl.ssdRoleSetRolesM( request );
     }
 
 
@@ -1083,7 +1387,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse ssdRoleSetCardinality( FortRequest request )
     {
-        return reviewMgrImpl.ssdRoleSetCardinalityM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.ssdRoleSetCardinalityM( request );
+        return response;
+        //return reviewMgrImpl.ssdRoleSetCardinalityM( request );
     }
 
 
@@ -1096,7 +1404,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse ssdSets( FortRequest request )
     {
-        return reviewMgrImpl.ssdSetsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.ssdSetsM( request );
+        return response;
+        //return reviewMgrImpl.ssdSetsM( request );
     }
 
 
@@ -1109,7 +1421,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dsdRoleSets( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.dsdRoleSetsM( request );
+        return response;
+        //return reviewMgrImpl.dsdRoleSetsM( request );
     }
 
 
@@ -1122,7 +1438,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dsdRoleSet( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.dsdRoleSetM( request );
+        return response;
+        //return reviewMgrImpl.dsdRoleSetM( request );
     }
 
 
@@ -1135,7 +1455,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dsdRoleSetRoles( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetRolesM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.dsdRoleSetRolesM( request );
+        return response;
+        //return reviewMgrImpl.dsdRoleSetRolesM( request );
     }
 
 
@@ -1148,7 +1472,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dsdRoleSetCardinality( FortRequest request )
     {
-        return reviewMgrImpl.dsdRoleSetCardinalityM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.dsdRoleSetCardinalityM( request );
+        return response;
+        //return reviewMgrImpl.dsdRoleSetCardinalityM( request );
     }
 
 
@@ -1161,7 +1489,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dsdSets( FortRequest request )
     {
-        return reviewMgrImpl.dsdSetsM( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = reviewMgrImpl.dsdSetsM( request );
+        return response;
+        //return reviewMgrImpl.dsdSetsM( request );
     }
 
 
@@ -1366,7 +1698,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addAdminRole( request );
+        return response;
+        //return delegatedAdminMgrImpl.addAdminRole( request );
     }
 
 
@@ -1379,7 +1715,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.deleteAdminRole( request );
+        return response;
+        //return delegatedAdminMgrImpl.deleteAdminRole( request );
     }
 
 
@@ -1392,7 +1732,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateAdminRole( FortRequest request )
     {
-        return delegatedAdminMgrImpl.updateAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.updateAdminRole( request );
+        return response;
+        //return delegatedAdminMgrImpl.updateAdminRole( request );
     }
 
 
@@ -1405,7 +1749,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignAdminUser( FortRequest request )
     {
-        return delegatedAdminMgrImpl.assignAdminUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.assignAdminUser( request );
+        return response;
+        //return delegatedAdminMgrImpl.assignAdminUser( request );
     }
 
 
@@ -1418,7 +1766,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deassignAdminUser( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deassignAdminUser( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.deassignAdminUser( request );
+        return response;
+        //return delegatedAdminMgrImpl.deassignAdminUser( request );
     }
 
 
@@ -1431,7 +1783,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addAdminDescendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminDescendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addAdminDescendant( request );
+        return response;
+        //return delegatedAdminMgrImpl.addAdminDescendant( request );
     }
 
 
@@ -1444,7 +1800,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addAdminAscendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminAscendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addAdminAscendant( request );
+        return response;
+        //return delegatedAdminMgrImpl.addAdminAscendant( request );
     }
 
 
@@ -1457,7 +1817,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addAdminInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addAdminInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addAdminInheritance( request );
+        return response;
+        //return delegatedAdminMgrImpl.addAdminInheritance( request );
     }
 
 
@@ -1470,7 +1834,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteAdminInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteAdminInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.deleteAdminInheritance( request );
+        return response;
+        //return delegatedAdminMgrImpl.deleteAdminInheritance( request );
     }
 
 
@@ -1483,7 +1851,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrg( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addOrg( request );
+        return response;
+        //return delegatedAdminMgrImpl.addOrg( request );
     }
 
 
@@ -1496,7 +1868,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.updateOrg( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.updateOrg( request );
+        return response;
+        //return delegatedAdminMgrImpl.updateOrg( request );
     }
 
 
@@ -1509,7 +1885,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteOrg( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteOrg( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.deleteOrg( request );
+        return response;
+        //return delegatedAdminMgrImpl.deleteOrg( request );
     }
 
 
@@ -1522,7 +1902,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addOrgDescendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgDescendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addOrgDescendant( request );
+        return response;
+        //return delegatedAdminMgrImpl.addOrgDescendant( request );
     }
 
 
@@ -1535,7 +1919,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addOrgAscendant( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgAscendant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addOrgAscendant( request );
+        return response;
+        //return delegatedAdminMgrImpl.addOrgAscendant( request );
     }
 
 
@@ -1548,7 +1936,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addOrgInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.addOrgInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.addOrgInheritance( request );
+        return response;
+        //return delegatedAdminMgrImpl.addOrgInheritance( request );
     }
 
 
@@ -1561,7 +1953,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteOrgInheritance( FortRequest request )
     {
-        return delegatedAdminMgrImpl.deleteOrgInheritance( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAdminMgrImpl.deleteOrgInheritance( request );
+        return response;
+        //return delegatedAdminMgrImpl.deleteOrgInheritance( request );
     }
 
 
@@ -1579,7 +1975,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readAdminRole( FortRequest request )
     {
-        return delegatedReviewMgrImpl.readAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.readAdminRole( request );
+        return response;
+        //return delegatedReviewMgrImpl.readAdminRole( request );
     }
 
 
@@ -1592,7 +1992,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse findAdminRoles( FortRequest request )
     {
-        return delegatedReviewMgrImpl.findAdminRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.findAdminRoles( request );
+        return response;
+        //return delegatedReviewMgrImpl.findAdminRoles( request );
     }
 
 
@@ -1605,7 +2009,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedAdminRoles( FortRequest request )
     {
-        return delegatedReviewMgrImpl.assignedAdminRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.assignedAdminRoles( request );
+        return response;
+        //return delegatedReviewMgrImpl.assignedAdminRoles( request );
     }
 
 
@@ -1618,7 +2026,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedAdminUsers( FortRequest request )
     {
-        return delegatedReviewMgrImpl.assignedAdminUsers( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.assignedAdminUsers( request );
+        return response;
+        //return delegatedReviewMgrImpl.assignedAdminUsers( request );
     }
 
 
@@ -1631,7 +2043,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readOrg( FortRequest request )
     {
-        return delegatedReviewMgrImpl.readOrg( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.readOrg( request );
+        return response;
+        //return delegatedReviewMgrImpl.readOrg( request );
     }
 
 
@@ -1644,7 +2060,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchOrg( FortRequest request )
     {
-        return delegatedReviewMgrImpl.searchOrg( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedReviewMgrImpl.searchOrg( request );
+        return response;
+        //return delegatedReviewMgrImpl.searchOrg( request );
     }
 
     
@@ -1662,7 +2082,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canAssign( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canAssign( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.canAssign( request );
+        return response;
+        //return delegatedAccessMgrImpl.canAssign( request );
     }
 
 
@@ -1675,7 +2099,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canDeassign( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canDeassign( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.canDeassign( request );
+        return response;
+        //return delegatedAccessMgrImpl.canDeassign( request );
     }
 
 
@@ -1688,7 +2116,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canGrant( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canGrant( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.canGrant( request );
+        return response;
+        //return delegatedAccessMgrImpl.canGrant( request );
     }
 
 
@@ -1701,7 +2133,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse canRevoke( FortRequest request )
     {
-        return delegatedAccessMgrImpl.canRevoke( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.canRevoke( request );
+        return response;
+        //return delegatedAccessMgrImpl.canRevoke( request );
     }
 
 
@@ -1714,7 +2150,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse checkAdminAccess( FortRequest request )
     {
-        return delegatedAccessMgrImpl.checkAdminAccess( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.checkAdminAccess( request );
+        return response;
+        //return delegatedAccessMgrImpl.checkAdminAccess( request );
     }
 
 
@@ -1727,7 +2167,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addActiveAdminRole( FortRequest request )
     {
-        return delegatedAccessMgrImpl.addActiveAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.addActiveAdminRole( request );
+        return response;
+        //return delegatedAccessMgrImpl.addActiveAdminRole( request );
     }
 
 
@@ -1740,7 +2184,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse dropActiveAdminRole( FortRequest request )
     {
-        return delegatedAccessMgrImpl.dropActiveAdminRole( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.dropActiveAdminRole( request );
+        return response;
+        //return delegatedAccessMgrImpl.dropActiveAdminRole( request );
     }
 
 
@@ -1753,7 +2201,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse sessionAdminRoles( FortRequest request )
     {
-        return delegatedAccessMgrImpl.sessionAdminRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.sessionAdminRoles( request );
+        return response;
+        //return delegatedAccessMgrImpl.sessionAdminRoles( request );
     }
 
 
@@ -1766,7 +2218,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse sessionAdminPermissions( FortRequest request )
     {
-        return delegatedAccessMgrImpl.sessionAdminPermissions( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.sessionAdminPermissions( request );
+        return response;
+        //return delegatedAccessMgrImpl.sessionAdminPermissions( request );
     }
 
 
@@ -1779,7 +2235,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse authorizedSessionAdminRoles( FortRequest request )
     {
-        return delegatedAccessMgrImpl.authorizedSessionRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = delegatedAccessMgrImpl.authorizedSessionRoles( request );
+        return response;
+        //return delegatedAccessMgrImpl.authorizedSessionRoles( request );
     }
 
 
@@ -1797,7 +2257,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.addPolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.addPolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.addPolicy( request );
     }
 
 
@@ -1810,7 +2274,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updatePolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.updatePolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.updatePolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.updatePolicy( request );
     }
 
 
@@ -1823,7 +2291,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deletePolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.deletePolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.deletePolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.deletePolicy( request );
     }
 
 
@@ -1836,7 +2308,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.readPolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.readPolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.readPolicy( request );
     }
 
 
@@ -1849,7 +2325,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.searchPolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.searchPolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.searchPolicy( request );
     }
 
 
@@ -1862,7 +2342,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateUserPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.updateUserPolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.updateUserPolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.updateUserPolicy( request );
     }
 
 
@@ -1875,7 +2359,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteUserPolicy( FortRequest request )
     {
-        return pswdPolicyMgrImpl.deleteUserPolicy( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = pswdPolicyMgrImpl.deleteUserPolicy( request );
+        return response;
+        //return pswdPolicyMgrImpl.deleteUserPolicy( request );
     }
 
     
@@ -1893,7 +2381,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchBinds( FortRequest request )
     {
-        return auditMgrImpl.searchBinds( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.searchBinds( request );
+        return response;
+        //return auditMgrImpl.searchBinds( request );
     }
 
 
@@ -1906,7 +2398,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse getUserAuthZs( FortRequest request )
     {
-        return auditMgrImpl.getUserAuthZs( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.getUserAuthZs( request );
+        return response;
+        //return auditMgrImpl.getUserAuthZs( request );
     }
 
 
@@ -1919,7 +2415,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchAuthZs( FortRequest request )
     {
-        return auditMgrImpl.searchAuthZs( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.searchAuthZs( request );
+        return response;
+        //return auditMgrImpl.searchAuthZs( request );
     }
 
 
@@ -1932,7 +2432,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchUserSessions( FortRequest request )
     {
-        return auditMgrImpl.searchUserSessions( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.searchUserSessions( request );
+        return response;
+        //return auditMgrImpl.searchUserSessions( request );
     }
 
 
@@ -1945,7 +2449,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchAdminMods( FortRequest request )
     {
-        return auditMgrImpl.searchAdminMods( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.searchAdminMods( request );
+        return response;
+        //return auditMgrImpl.searchAdminMods( request );
     }
 
 
@@ -1958,7 +2466,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse searchInvalidUsers( FortRequest request )
     {
-        return auditMgrImpl.searchInvalidUsers( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = auditMgrImpl.searchInvalidUsers( request );
+        return response;
+        //return auditMgrImpl.searchInvalidUsers( request );
     }
 
     
@@ -1976,7 +2488,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addConfig( FortRequest request )
     {
-        return configMgrImpl.addConfig( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = configMgrImpl.addConfig( request );
+        return response;
+        //return configMgrImpl.addConfig( request );
     }
 
 
@@ -1989,7 +2505,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateConfig( FortRequest request )
     {
-        return configMgrImpl.updateConfig( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = configMgrImpl.updateConfig( request );
+        return response;
+        //return configMgrImpl.updateConfig( request );
     }
 
 
@@ -2002,7 +2522,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteConfig( FortRequest request )
     {
-        return configMgrImpl.deleteConfig( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = configMgrImpl.deleteConfig( request );
+        return response;
+        //return configMgrImpl.deleteConfig( request );
     }
 
 
@@ -2015,7 +2539,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readConfig( FortRequest request )
     {
-        return configMgrImpl.readConfig( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = configMgrImpl.readConfig( request );
+        return response;
+        //return configMgrImpl.readConfig( request );
     }
 
     /**
@@ -2033,7 +2561,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse readGroup( FortRequest request )
     {
-        return groupMgrImpl.readGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.readGroup( request );
+        return response;
+        //return groupMgrImpl.readGroup( request );
     }
 
     /**
@@ -2045,7 +2577,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse addGroup( FortRequest request )
     {
-        return groupMgrImpl.addGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.addGroup( request );
+        return response;
+        //return groupMgrImpl.addGroup( request );
     }
 
 
@@ -2058,7 +2594,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deleteGroup( FortRequest request )
     {
-        return groupMgrImpl.deleteGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.deleteGroup( request );
+        return response;
+        //return groupMgrImpl.deleteGroup( request );
     }
 
 
@@ -2071,7 +2611,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse updateGroup( FortRequest request )
     {
-        return groupMgrImpl.updateGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.updateGroup( request );
+        return response;
+        //return groupMgrImpl.updateGroup( request );
     }
 
     /**
@@ -2083,7 +2627,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedGroupRoles( FortRequest request )
     {
-        return groupMgrImpl.assignedRoles( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.assignedRoles( request );
+        return response;
+        //return groupMgrImpl.assignedRoles( request );
     }
 
     /**
@@ -2095,7 +2643,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignedGroups( FortRequest request )
     {
-        return groupMgrImpl.assignedGroups( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.assignedGroups( request );
+        return response;
+        //return groupMgrImpl.assignedGroups( request );
     }
 
     /**
@@ -2107,7 +2659,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse assignGroup(FortRequest request)
     {
-        return groupMgrImpl.assignGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.assignGroup( request );
+        return response;
+        //return groupMgrImpl.assignGroup( request );
     }
 
     /**
@@ -2119,7 +2675,11 @@ public class FortressServiceImpl implements FortressService
     @Override
     public FortResponse deassignGroup(FortRequest request)
     {
-        return groupMgrImpl.deassignGroup( request );
+        FortResponse response = SecUtils.initializeSession(request, httpRequest);
+        if( response == null )
+            response = groupMgrImpl.deassignGroup( request );
+        return response;
+        //return groupMgrImpl.deassignGroup( request );
     }
 
     /**
