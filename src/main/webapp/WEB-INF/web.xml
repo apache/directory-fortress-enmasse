@@ -64,9 +64,8 @@
        <realm-name>Fortress Rest Realm Authentication Area</realm-name>
      </login-config>
 
-     <!-- Security roles referenced by this web application -->
+     <!-- Security role needed to pass realm authZ -->
      <security-role>
-       <role-name>fortress-rest</role-name>
+       <role-name>fortress-rest-user</role-name>
      </security-role>
-
 </web-app>
