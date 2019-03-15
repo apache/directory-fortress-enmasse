@@ -104,7 +104,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteUser( request );
         return response;
-        //return adminMgrImpl.deleteUser( request );
     }
 
 
@@ -121,7 +120,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.disableUser( request );
         return response;
-        //return adminMgrImpl.disableUser( request );
     }
 
 
@@ -138,7 +136,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updateUser( request );
         return response;
-        //return adminMgrImpl.updateUser( request );
     }
 
 
@@ -155,7 +152,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.changePassword( request );
         return response;
-        //return adminMgrImpl.changePassword( request );
     }
 
 
@@ -172,7 +168,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.lockUserAccount( request );
         return response;
-        //return adminMgrImpl.lockUserAccount( request );
     }
 
 
@@ -189,7 +184,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.unlockUserAccount( request );
         return response;
-        //return adminMgrImpl.unlockUserAccount( request );
     }
 
 
@@ -206,7 +200,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.resetPassword( request );
         return response;
-        //return adminMgrImpl.resetPassword( request );
     }
 
 
@@ -223,7 +216,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addRole( request );
         return response;
-        //return adminMgrImpl.addRole( request );
     }
 
 
@@ -240,7 +232,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteRole( request );
         return response;
-        //return adminMgrImpl.deleteRole( request );
     }
 
 
@@ -257,7 +248,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updateRole( request );
         return response;
-        //return adminMgrImpl.updateRole( request );
     }
 
 
@@ -274,7 +264,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.assignUser( request );
         return response;
-        //return adminMgrImpl.assignUser( request );
     }
 
 
@@ -291,7 +280,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deassignUser( request );
         return response;
-        //return adminMgrImpl.deassignUser( request );
     }
 
 
@@ -308,7 +296,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addPermission( request );
         return response;
-        //return adminMgrImpl.addPermission( request );
     }
 
 
@@ -325,7 +312,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updatePermission( request );
         return response;
-        //return adminMgrImpl.updatePermission( request );
     }
 
 
@@ -342,7 +328,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deletePermission( request );
         return response;
-        //return adminMgrImpl.deletePermission( request );
     }
 
 
@@ -359,7 +344,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addPermObj( request );
         return response;
-        //return adminMgrImpl.addPermObj( request );
     }
 
 
@@ -376,7 +360,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updatePermObj( request );
         return response;
-        //return adminMgrImpl.updatePermObj( request );
     }
 
 
@@ -393,7 +376,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deletePermObj( request );
         return response;
-        //return adminMgrImpl.deletePermObj( request );
     }
 
 
@@ -410,7 +392,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.grant( request, this );
         return response;
-        //return adminMgrImpl.grant( request, this );
     }
 
 
@@ -427,7 +408,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.revoke( request, this );
         return response;
-        //return adminMgrImpl.revoke( request, this );
     }
 
 
@@ -444,7 +424,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.grantUser( request, this );
         return response;
-        //return adminMgrImpl.grantUser( request, this );
     }
 
 
@@ -461,7 +440,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.revokeUser( request, this );
         return response;
-        //return adminMgrImpl.revokeUser( request, this );
     }
 
 
@@ -478,7 +456,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addDescendant( request );
         return response;
-        //return adminMgrImpl.addDescendant( request );
     }
 
 
@@ -495,7 +472,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addAscendant( request );
         return response;
-        //return adminMgrImpl.addAscendant( request );
     }
 
 
@@ -512,7 +488,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addInheritance( request );
         return response;
-        //return adminMgrImpl.addInheritance( request );
     }
 
 
@@ -529,7 +504,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteInheritance( request );
         return response;
-        //return adminMgrImpl.deleteInheritance( request );
     }
 
 
@@ -546,7 +520,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.createSsdSet( request );
         return response;
-        //return adminMgrImpl.createSsdSet( request );
     }
 
 
@@ -563,7 +536,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updateSsdSet( request );
         return response;
-        //return adminMgrImpl.updateSsdSet( request );
     }
 
 
@@ -580,7 +552,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addSsdRoleMember( request );
         return response;
-        //return adminMgrImpl.addSsdRoleMember( request );
     }
 
 
@@ -597,7 +568,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteSsdRoleMember( request );
         return response;
-        //return adminMgrImpl.deleteSsdRoleMember( request );
     }
 
 
@@ -614,7 +584,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteSsdSet( request );
         return response;
-        //return adminMgrImpl.deleteSsdSet( request );
     }
 
 
@@ -631,7 +600,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.setSsdSetCardinality( request );
         return response;
-        //return adminMgrImpl.setSsdSetCardinality( request );
     }
 
 
@@ -648,7 +616,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.createDsdSet( request );
         return response;
-        //return adminMgrImpl.createDsdSet( request );
     }
 
 
@@ -665,7 +632,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updateDsdSet( request );
         return response;
-        //return adminMgrImpl.updateDsdSet( request );
     }
 
 
@@ -682,7 +648,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addDsdRoleMember( request );
         return response;
-        //return adminMgrImpl.addDsdRoleMember( request );
     }
 
 
@@ -699,7 +664,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteDsdRoleMember( request );
         return response;
-        //return adminMgrImpl.deleteDsdRoleMember( request );
     }
 
 
@@ -716,7 +680,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deleteDsdSet( request );
         return response;
-        //return adminMgrImpl.deleteDsdSet( request );
     }
 
 
@@ -733,7 +696,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.setDsdSetCardinality( request );
         return response;
-        //return adminMgrImpl.setDsdSetCardinality( request );
     }
 
 
@@ -750,7 +712,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addRoleConstraint( request );
         return response;
-        //return adminMgrImpl.addRoleConstraint( request );
     }
 
 
@@ -767,7 +728,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.removeRoleConstraint( request );
         return response;
-        //return adminMgrImpl.removeRoleConstraint( request );
     }
 
 
@@ -784,7 +744,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.removeRoleConstraintWid( request );
         return response;
-        //return adminMgrImpl.removeRoleConstraintWid( request );
     }
 
 
@@ -801,7 +760,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addPermissionAttributeSet( request );
         return response;
-        //return adminMgrImpl.addPermissionAttributeSet( request );
     }
 
 
@@ -818,7 +776,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.deletePermissionAttributeSet( request );
         return response;
-        //return adminMgrImpl.deletePermissionAttributeSet( request );
     }
 
 
@@ -835,7 +792,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.addPermissionAttributeToSet( request );
         return response;
-        //return adminMgrImpl.addPermissionAttributeToSet( request );
     }
 
 
@@ -852,7 +808,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.removePermissionAttributeFromSet( request );
         return response;
-        //return adminMgrImpl.removePermissionAttributeFromSet( request );
     }
 
 
@@ -869,7 +824,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.updatePermissionAttributeInSet( request );
         return response;
-        //return adminMgrImpl.updatePermissionAttributeInSet( request );
     }
 
 
@@ -886,7 +840,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.enableRoleConstraint( request );
         return response;
-        //return adminMgrImpl.enableRoleConstraint( request );
     }
 
 
@@ -903,7 +856,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = adminMgrImpl.disableRoleConstraint( request );
         return response;
-        //return adminMgrImpl.disableRoleConstraint( request );
     }
 
 
@@ -926,7 +878,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.readPermission( request );
         return response;
-        //return reviewMgrImpl.readPermission( request );
     }
 
 
@@ -943,7 +894,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.readPermObj( request );
         return response;
-        //return reviewMgrImpl.readPermObj( request );
     }
 
     /**
@@ -959,7 +909,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findPermissions( request );
         return response;
-        //return reviewMgrImpl.findPermissions( request );
     }
 
 
@@ -976,7 +925,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findObjPermissions( request );
         return response;
-        //return reviewMgrImpl.findObjPermissions( request );
     }
 
 
@@ -993,7 +941,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findAnyPermissions( request );
         return response;
-        //return reviewMgrImpl.findAnyPermissions( request );
     }
 
 
@@ -1010,7 +957,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findPermObjs( request );
         return response;
-        //return reviewMgrImpl.findPermObjs( request );
     }
 
 
@@ -1027,7 +973,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.readRole( request );
         return response;
-        //return reviewMgrImpl.readRole( request );
     }
 
 
@@ -1044,7 +989,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findRoles( request );
         return response;
-        //return reviewMgrImpl.findRoles( request );
     }
 
 
@@ -1061,7 +1005,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.readUserM( request );
         return response;
-        //return reviewMgrImpl.readUserM( request );
     }
 
 
@@ -1078,7 +1021,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findUsersM( request );
         return response;
-        //return reviewMgrImpl.findUsersM( request );
     }
 
 
@@ -1095,7 +1037,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.assignedUsersM( request );
         return response;
-        //return reviewMgrImpl.assignedUsersM( request );
     }
 
 
@@ -1112,7 +1053,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.assignedUsersConstraints( request );
         return response;
-        //return reviewMgrImpl.assignedUsersConstraints( request );
     }
 
 
@@ -1129,7 +1069,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.assignedUsersConstraintsKey( request );
         return response;
-        //return reviewMgrImpl.assignedUsersConstraintsKey( request );
     }
 
 
@@ -1146,7 +1085,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.assignedRolesM( request );
         return response;
-        //return reviewMgrImpl.assignedRolesM( request );
     }
 
 
@@ -1163,7 +1101,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.authorizedUsersM( request );
         return response;
-        //return reviewMgrImpl.authorizedUsersM( request );
     }
 
 
@@ -1180,7 +1117,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.authorizedRoleM( request );
         return response;
-        //return reviewMgrImpl.authorizedRoleM( request );
     }
 
 
@@ -1197,7 +1133,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.permissionRolesM( request );
         return response;
-        //return reviewMgrImpl.permissionRolesM( request );
     }
 
 
@@ -1211,7 +1146,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.findRoleConstraintsM( request );
         return response;
-        //return reviewMgrImpl.findRoleConstraintsM( request );
     }
 
     /**
@@ -1227,7 +1161,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.rolePermissionsM( request );
         return response;
-        //return reviewMgrImpl.rolePermissionsM( request );
     }
 
 
@@ -1244,7 +1177,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.userPermissionsM( request );
         return response;
-        //return reviewMgrImpl.userPermissionsM( request );
     }
 
 
@@ -1261,7 +1193,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.authorizedPermissionRolesM( request );
         return response;
-        //return reviewMgrImpl.authorizedPermissionRolesM( request );
     }
 
 
@@ -1278,7 +1209,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.permissionUsersM( request );
         return response;
-        //return reviewMgrImpl.permissionUsersM( request );
     }
 
 
@@ -1295,7 +1225,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.authorizedPermissionUsersM( request );
         return response;
-        //return reviewMgrImpl.authorizedPermissionUsersM( request );
     }
 
 
@@ -1309,7 +1238,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.readPermAttributeSetM( request );
         return response;
-        //return reviewMgrImpl.readPermAttributeSetM( request );
     }
 
 
@@ -1323,7 +1251,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.rolePermissionAttributeSetsM( request );
         return response;
-        //return reviewMgrImpl.rolePermissionAttributeSetsM( request );
     }
 
 
@@ -1340,7 +1267,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.ssdRoleSetsM( request );
         return response;
-        //return reviewMgrImpl.ssdRoleSetsM( request );
     }
 
 
@@ -1357,7 +1283,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.ssdRoleSetM( request );
         return response;
-        //return reviewMgrImpl.ssdRoleSetM( request );
     }
 
 
@@ -1374,7 +1299,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.ssdRoleSetRolesM( request );
         return response;
-        //return reviewMgrImpl.ssdRoleSetRolesM( request );
     }
 
 
@@ -1391,7 +1315,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.ssdRoleSetCardinalityM( request );
         return response;
-        //return reviewMgrImpl.ssdRoleSetCardinalityM( request );
     }
 
 
@@ -1408,7 +1331,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.ssdSetsM( request );
         return response;
-        //return reviewMgrImpl.ssdSetsM( request );
     }
 
 
@@ -1425,7 +1347,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.dsdRoleSetsM( request );
         return response;
-        //return reviewMgrImpl.dsdRoleSetsM( request );
     }
 
 
@@ -1442,7 +1363,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.dsdRoleSetM( request );
         return response;
-        //return reviewMgrImpl.dsdRoleSetM( request );
     }
 
 
@@ -1459,7 +1379,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.dsdRoleSetRolesM( request );
         return response;
-        //return reviewMgrImpl.dsdRoleSetRolesM( request );
     }
 
 
@@ -1476,7 +1395,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.dsdRoleSetCardinalityM( request );
         return response;
-        //return reviewMgrImpl.dsdRoleSetCardinalityM( request );
     }
 
 
@@ -1493,7 +1411,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = reviewMgrImpl.dsdSetsM( request );
         return response;
-        //return reviewMgrImpl.dsdSetsM( request );
     }
 
 
@@ -1702,7 +1619,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addAdminRole( request );
         return response;
-        //return delegatedAdminMgrImpl.addAdminRole( request );
     }
 
 
@@ -1719,7 +1635,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.deleteAdminRole( request );
         return response;
-        //return delegatedAdminMgrImpl.deleteAdminRole( request );
     }
 
 
@@ -1736,7 +1651,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.updateAdminRole( request );
         return response;
-        //return delegatedAdminMgrImpl.updateAdminRole( request );
     }
 
 
@@ -1753,7 +1667,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.assignAdminUser( request );
         return response;
-        //return delegatedAdminMgrImpl.assignAdminUser( request );
     }
 
 
@@ -1770,7 +1683,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.deassignAdminUser( request );
         return response;
-        //return delegatedAdminMgrImpl.deassignAdminUser( request );
     }
 
 
@@ -1787,7 +1699,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addAdminDescendant( request );
         return response;
-        //return delegatedAdminMgrImpl.addAdminDescendant( request );
     }
 
 
@@ -1804,7 +1715,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addAdminAscendant( request );
         return response;
-        //return delegatedAdminMgrImpl.addAdminAscendant( request );
     }
 
 
@@ -1821,7 +1731,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addAdminInheritance( request );
         return response;
-        //return delegatedAdminMgrImpl.addAdminInheritance( request );
     }
 
 
@@ -1838,7 +1747,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.deleteAdminInheritance( request );
         return response;
-        //return delegatedAdminMgrImpl.deleteAdminInheritance( request );
     }
 
 
@@ -1855,7 +1763,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addOrg( request );
         return response;
-        //return delegatedAdminMgrImpl.addOrg( request );
     }
 
 
@@ -1872,7 +1779,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.updateOrg( request );
         return response;
-        //return delegatedAdminMgrImpl.updateOrg( request );
     }
 
 
@@ -1889,7 +1795,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.deleteOrg( request );
         return response;
-        //return delegatedAdminMgrImpl.deleteOrg( request );
     }
 
 
@@ -1906,7 +1811,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addOrgDescendant( request );
         return response;
-        //return delegatedAdminMgrImpl.addOrgDescendant( request );
     }
 
 
@@ -1923,7 +1827,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addOrgAscendant( request );
         return response;
-        //return delegatedAdminMgrImpl.addOrgAscendant( request );
     }
 
 
@@ -1940,7 +1843,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.addOrgInheritance( request );
         return response;
-        //return delegatedAdminMgrImpl.addOrgInheritance( request );
     }
 
 
@@ -1957,7 +1859,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedAdminMgrImpl.deleteOrgInheritance( request );
         return response;
-        //return delegatedAdminMgrImpl.deleteOrgInheritance( request );
     }
 
 
@@ -1979,7 +1880,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.readAdminRole( request );
         return response;
-        //return delegatedReviewMgrImpl.readAdminRole( request );
     }
 
 
@@ -1996,7 +1896,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.findAdminRoles( request );
         return response;
-        //return delegatedReviewMgrImpl.findAdminRoles( request );
     }
 
 
@@ -2013,7 +1912,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.assignedAdminRoles( request );
         return response;
-        //return delegatedReviewMgrImpl.assignedAdminRoles( request );
     }
 
 
@@ -2030,7 +1928,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.assignedAdminUsers( request );
         return response;
-        //return delegatedReviewMgrImpl.assignedAdminUsers( request );
     }
 
 
@@ -2047,7 +1944,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.readOrg( request );
         return response;
-        //return delegatedReviewMgrImpl.readOrg( request );
     }
 
 
@@ -2064,7 +1960,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = delegatedReviewMgrImpl.searchOrg( request );
         return response;
-        //return delegatedReviewMgrImpl.searchOrg( request );
     }
 
     
@@ -2221,7 +2116,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.addPolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.addPolicy( request );
     }
 
 
@@ -2238,7 +2132,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.updatePolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.updatePolicy( request );
     }
 
 
@@ -2255,7 +2148,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.deletePolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.deletePolicy( request );
     }
 
 
@@ -2272,7 +2164,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.readPolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.readPolicy( request );
     }
 
 
@@ -2289,7 +2180,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.searchPolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.searchPolicy( request );
     }
 
 
@@ -2306,7 +2196,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.updateUserPolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.updateUserPolicy( request );
     }
 
 
@@ -2323,7 +2212,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = pswdPolicyMgrImpl.deleteUserPolicy( request );
         return response;
-        //return pswdPolicyMgrImpl.deleteUserPolicy( request );
     }
 
     
@@ -2345,7 +2233,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.searchBinds( request );
         return response;
-        //return auditMgrImpl.searchBinds( request );
     }
 
 
@@ -2362,7 +2249,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.getUserAuthZs( request );
         return response;
-        //return auditMgrImpl.getUserAuthZs( request );
     }
 
 
@@ -2379,7 +2265,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.searchAuthZs( request );
         return response;
-        //return auditMgrImpl.searchAuthZs( request );
     }
 
 
@@ -2396,7 +2281,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.searchUserSessions( request );
         return response;
-        //return auditMgrImpl.searchUserSessions( request );
     }
 
 
@@ -2413,7 +2297,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.searchAdminMods( request );
         return response;
-        //return auditMgrImpl.searchAdminMods( request );
     }
 
 
@@ -2430,7 +2313,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = auditMgrImpl.searchInvalidUsers( request );
         return response;
-        //return auditMgrImpl.searchInvalidUsers( request );
     }
 
     
@@ -2452,7 +2334,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = configMgrImpl.addConfig( request );
         return response;
-        //return configMgrImpl.addConfig( request );
     }
 
 
@@ -2469,7 +2350,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = configMgrImpl.updateConfig( request );
         return response;
-        //return configMgrImpl.updateConfig( request );
     }
 
 
@@ -2486,7 +2366,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = configMgrImpl.deleteConfig( request );
         return response;
-        //return configMgrImpl.deleteConfig( request );
     }
 
 
@@ -2503,7 +2382,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = configMgrImpl.readConfig( request );
         return response;
-        //return configMgrImpl.readConfig( request );
     }
 
     /**
@@ -2525,7 +2403,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.readGroup( request );
         return response;
-        //return groupMgrImpl.readGroup( request );
     }
 
     /**
@@ -2541,7 +2418,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.addGroup( request );
         return response;
-        //return groupMgrImpl.addGroup( request );
     }
 
 
@@ -2558,7 +2434,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.deleteGroup( request );
         return response;
-        //return groupMgrImpl.deleteGroup( request );
     }
 
 
@@ -2575,7 +2450,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.updateGroup( request );
         return response;
-        //return groupMgrImpl.updateGroup( request );
     }
 
     /**
@@ -2591,7 +2465,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.assignedRoles( request );
         return response;
-        //return groupMgrImpl.assignedRoles( request );
     }
 
     /**
@@ -2607,7 +2480,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.assignedGroups( request );
         return response;
-        //return groupMgrImpl.assignedGroups( request );
     }
 
     /**
@@ -2623,7 +2495,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.assignGroup( request );
         return response;
-        //return groupMgrImpl.assignGroup( request );
     }
 
     /**
@@ -2639,7 +2510,6 @@ public class FortressServiceImpl implements FortressService
         if( response == null )
             response = groupMgrImpl.deassignGroup( request );
         return response;
-        //return groupMgrImpl.deassignGroup( request );
     }
 
     /**
