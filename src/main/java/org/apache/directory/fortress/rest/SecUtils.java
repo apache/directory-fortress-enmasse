@@ -59,7 +59,7 @@ public class SecUtils
      *
      * @param fortRequest Used to carry the session and other data.
      * @param httpRequest Used to get the security principal.
-     * @return Response containing the RBAC session object.
+     * @return Response containing the RBAC session object if found or error, otherwise (not arbac02 not enabled) return NULL value.
      */
     static FortResponse initializeSession(FortRequest fortRequest, HttpServletRequest httpRequest)
     {
