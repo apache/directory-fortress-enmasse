@@ -129,9 +129,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             adminMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
             adminMgr.changePassword( inUser, inUser.getNewPassword() );
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
-            User outUser = reviewMgr.readUser( inUser );
-            response.setEntity( outUser );
+            response.setEntity( inUser );
         }
         catch ( SecurityException se )
         {
@@ -152,9 +150,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             adminMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
             adminMgr.lockUserAccount( inUser );
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
-            User outUser = reviewMgr.readUser( inUser );
-            response.setEntity( outUser );
+            response.setEntity( inUser );
         }
         catch ( SecurityException se )
         {
@@ -175,9 +171,7 @@ class AdminMgrImpl extends AbstractMgrImpl
             adminMgr.setAdmin( request.getSession() );
             User inUser = (User) request.getEntity();
             adminMgr.unlockUserAccount( inUser );
-            ReviewMgr reviewMgr = ReviewMgrFactory.createInstance( request.getContextId() );
-            User outUser = reviewMgr.readUser( inUser );
-            response.setEntity( outUser );
+            response.setEntity( inUser );
         }
         catch ( SecurityException se )
         {
