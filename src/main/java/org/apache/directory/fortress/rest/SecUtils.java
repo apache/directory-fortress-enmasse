@@ -71,10 +71,7 @@ public class SecUtils
             if (httpRequest == null)
             {
                 // Improper container config.
-                fortResponse = new FortResponse();
-                fortResponse.setErrorCode(GlobalErrIds.REST_NULL_HTTP_REQ_ERR);
-                fortResponse.setErrorMessage("initializeSession detected null HTTP Request");
-                fortResponse.setHttpStatus(403);
+                fortResponse = createError( GlobalErrIds.REST_NULL_HTTP_REQ_ERR, "initializeSession detected null HTTP Request", 403);
             }
             else
             {
@@ -91,26 +88,26 @@ public class SecUtils
                     }
                     else
                     {
-                        String error = "initializeSession couldn't get a Security Session.";
-                        fortResponse = new FortResponse();
-                        fortResponse.setErrorCode(GlobalErrIds.USER_SESS_NULL);
-                        fortResponse.setErrorMessage(error);
-                        fortResponse.setHttpStatus(403);
-                        LOG.info(error);
+                        fortResponse = createError( GlobalErrIds.USER_SESS_NULL, "initializeSession couldn't get a Security Session.", 403);
                     }
                 }
                 catch (SecurityException se)
                 {
                     // A problem deserializing the security principal.
-                    String error = "initializeSession caught SecurityException=" + se.getMessage();
-                    fortResponse = new FortResponse();
-                    LOG.info(error);
-                    fortResponse.setErrorCode(se.getErrorId());
-                    fortResponse.setErrorMessage(error);
-                    fortResponse.setHttpStatus(se.getHttpStatus());
+                    fortResponse = createError( se.getErrorId(), "initializeSession caught SecurityException=" + se.getMessage(), se.getHttpStatus());
                 }
             }
         }
+        return fortResponse;
+    }
+
+    private static FortResponse createError(int errId, String errMsg, int hCode)
+    {
+        FortResponse fortResponse = new FortResponse();
+        fortResponse.setErrorCode(errId);
+        fortResponse.setErrorMessage(errMsg);
+        fortResponse.setHttpStatus(hCode);
+        LOG.info(errMsg);
         return fortResponse;
     }
 }
