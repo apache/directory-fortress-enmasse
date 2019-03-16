@@ -100,17 +100,18 @@ The ARBAC checks include the following:
     
  Where a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
 
- In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis indicates exclusiveness for a particular endpoint.
+ In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis, '(', ')' excludes its corresponding endpoint.
 
- Some example ranges that can be derived:
+ Some example ranges that can be derived from the role graph above:
 
  * [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}. 
  * (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
  * [A, ENG] includes: {A, DA, E1, E2, ENG}, 
  * [A, ENG) includes: {A, DA, E1, E2}. 
+ * (QA, QC] has {Q1, Q2, QC} in its range.
  * etc... 
 
- For an administrator to be authorized to target an RBAC role in one of the specified APIs listed above, at least one of their activated ADMIN roles must pass the role range test.  There are currently two roles 
+ For an administrator to be authorized to target an RBAC role in one of the specified APIs listed above, at least one of their activated ADMIN roles must pass the ARBAC role range test.  There are currently two roles 
  created by the security policy in this project, that are excluded from this type of check: 
  *fortress-rest-admin* and *fortress-core-super-admin*. 
 
@@ -118,9 +119,9 @@ The ARBAC checks include the following:
                                          
 3. Some APIs on the *AdminMgr* do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
 
- For example, de/assignUser(User, Role) will verify that the caller has an admin role with a matching user org unit (UserOU) on the target role.
+ For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a matching user org unit, *userOU*, on the target role.
   
- There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated admin role matching the perm org unit (PermOU), corresponding with permission being targeted.
+ There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated ADMIN role matching the perm org unit, *permOU*, corresponding with the permission being targeted.
 
  The complete list of APIs that enforce range and OU checks follow:
 
