@@ -78,27 +78,27 @@ is.arbac02=true
 
 The ARBAC checks include the following:
 
-1. All service invocations map to DelAdminMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. org.apache.directory.fortress.core.impl.AdminMgrImpl.addUser.  
+1. All service invocations map to DelAccessMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. *org.apache.directory.fortress.core.impl.AdminMgrImpl.addUser*.  
  This means at least one ADMIN role activates that has been granted the required permission.
 
-2. The assignUser, deassignUser, grantPermission, revokePermission APIs enforce administrative authority over the RBAC role being targeted. This is being done by establishing a range of roles (hierarchically), for which the target role falls inside.
-
+2. The *assignUser*, *deassignUser*, *grantPermission*, *revokePermission* APIs enforce administrative authority over the RBAC role being targeted. 
+ This is being done by establishing a range of roles (hierarchically), for which the target role falls inside.   
  For example, the following top-down contains an RBAC role hierarchy for a fictional software development organization:
 
  ```
-        CTO
+        *CTO*
+          |
+     |         |
+   *ENG*      *QC*
+   |   |     |    |   
+ *E1* *E2* *Q1*  *Q2*
+     |         |
+   *DA*       *QA*
          |
-     |       |
-    ENG      QC
-   |   |   |    |   
- E1   E2  Q1    Q2
-    |        |
-   DA        QA
-         |
-         A
+        *A*
  ```
     
- Where a role called 'CTO' is the highest ascendant in the graph, and 'A' is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role 'A' inherits all that are above.
+ Where a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
 
  In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis indicates exclusiveness for a particular endpoint.
 
@@ -116,7 +116,7 @@ The ARBAC checks include the following:
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-3. Some APIs on the AdminMgr do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
+3. Some APIs on the *AdminMgr* do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
 
  For example, de/assignUser(User, Role) will verify that the caller has an admin role with a matching user org unit (UserOU) on the target role.
   
