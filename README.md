@@ -395,6 +395,7 @@ These checks include the following:
 
 For example, the following top-down role hierarchy:
 
+```
        CTO
         |
     |       |
@@ -405,7 +406,8 @@ E1  E2   Q1    Q2
  DA         QA
        |
        A
-       
+```
+    
 Where a role called 'CTO' is the highest ascendant, and 'A' is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend in the tree.  So a person with role 'A' inherits all that are above.
 
 In describing a range of roles, begin range is the lowest descendant in the chain, and end range the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis indicates exclusiveness for a particular endpoint.
