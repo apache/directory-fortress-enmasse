@@ -414,11 +414,11 @@ In describing a range of roles, begin range is the lowest descendant in the chai
 
 Some example ranges that can be derived:
 
-a. [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}.
-b. (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}.
-c. [A, ENG] includes: {A, DA, E1, E2, ENG}
-d. [A, ENG) includes: {A, DA, E1, E2}
-etc...
+ * [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}. 
+ * (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
+ * [A, ENG] includes: {A, DA, E1, E2, ENG}, 
+ * [A, ENG) includes: {A, DA, E1, E2}. 
+ * etc... 
 
 So, for an administrator to be able to target a role in one of the specified APIs above, at least one of their activated admin roles must pass the role range test.  There are currently two roles
 created by the security policy in this project, that are excluded from this type of check:
