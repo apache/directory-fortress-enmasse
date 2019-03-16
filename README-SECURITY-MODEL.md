@@ -24,6 +24,7 @@ ________________________________________________________________________________
  * 1. Java EE security
  * 2. Apache CXF's **SimpleAuthorizingInterceptor**
  * 3. Apache Fortress **ARBAC02 Checks**
+ * The list of APIs that enforce ARBAC role range and OU checks.
 ___________________________________________________________________________________
 
 ## Document Overview
@@ -76,15 +77,18 @@ is.arbac02=true
 
  ```
 
-The ARBAC checks include the following:
+The ARBAC checks when enabled, include the following:
 
-1. All service invocations map to DelAccessMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. objectName **org.apache.directory.fortress.core.impl.AdminMgrImpl**, operation name: **addUser**.
- This ADMIN perm will be executed automatically during the call to the **userAdd** service (if ARBAC checking is enabled)  
- This means at least one ADMIN role activates that has been granted the required permission.
+1. All service invocations perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
+ For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
+ during the call to the **userAdd** service.   
+ This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
+ The entire list of permissions can be found here: [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) along with a sample policy that can be used for testing.
 
-2. The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
- During service dispatch to the APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
- These checks are based on a range of roles (hierarchically), for which the target role must fall inside.   
+2. Some services (listed below) perform an ARBAC role range check on the target RBAC role. 
+ The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
+ During service dispatch of these APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
+ These checks are based on a (hierarchical) range of roles, for which the target role must fall inside.   
  For example, the following top-down contains a sample RBAC role hierarchy for a fictional software development organization:
 
  ```
@@ -119,13 +123,11 @@ The ARBAC checks include the following:
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-3. Some APIs on the *AdminMgr* do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
+3. Some APIs (listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
+ There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
+ There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
- For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.
-  
- There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated ADMIN role with a perm org unit that matches the ou on the target permission.
-
- The complete list of APIs that enforce range and OU checks follow:
+### The list of APIs that enforce ARBAC role range and OU checks.
 
 | API                            | Validate UserOU  | Validate PermOU | Range Check On Role | 
 | ------------------------------ | ---------------- | ----------------| ------------------- | 
