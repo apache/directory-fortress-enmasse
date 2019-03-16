@@ -41,7 +41,7 @@ ________________________________________________________________________________
 ##  Tips for first-time users
 
  * For a tutorial on how to use Apache Fortress with LDAP, check out the Fortress Core quickstart guides.
- * For a a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations: [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
+ * For a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations: [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
  * Questions about this software package should be directed to its mailing list:
    * http://mail-archives.apache.org/mod_mbox/directory-fortress/
 
