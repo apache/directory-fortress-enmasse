@@ -86,16 +86,16 @@ The ARBAC checks include the following:
  For example, the following top-down contains an RBAC role hierarchy for a fictional software development organization:
 
  ```
-        *CTO*
-          |
-     |         |
-   *ENG*      *QC*
-   |   |     |    |   
- *E1* *E2* *Q1*  *Q2*
-     |         |
-   *DA*       *QA*
+        CTO
          |
-        *A*
+     |         |
+    ENG        QC
+   |   |     |    |   
+  E1   E2   Q1    Q2
+     |         |
+    DA        QA
+         |
+         A
  ```
     
  Where a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
