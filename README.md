@@ -434,20 +434,20 @@ There is similar check on grant/revokePermission(Role, Permission), where the ca
 
 The complete list of APIs that enforce range and OU checks follow:
 
-| API                            | Validate UserOU  | Validate PermOU | Range Check On Role |
-| ------------------------------ | ---------------- | ------------------------------------- |
-| AdminMgr.addUser               | true             | false           | false               |
-| AdminMgr.updateUser            | true             | false           | false               |
-| AdminMgr.deleteUser            | true             | false           | false               |
-| AdminMgr.disableUser           | true             | false           | false               |
-| AdminMgr.changePassword        | true             | false           | false               |
-| AdminMgr.resetPassword         | true             | false           | false               |
-| AdminMgr.lockUserAccount       | true             | false           | false               |
-| AdminMgr.unlockUserAccount     | true             | false           | false               |
-| AdminMgr.deletePasswordPolicy  | true             | false           | false               |
-| AdminMgr.assignUser            | true             | false           | true                |
-| AdminMgr.deassignUser          | true             | false           | true                |
-| AdminMgr.grantPermission       | false            | true            | true                |
-| AdminMgr.revokePermission      | false            | true            | true                |
+| API                            | Validate UserOU  | Validate PermOU | Range Check On Role | 
+| ------------------------------ | ---------------- | ------------------------------------- | 
+| AdminMgr.addUser               | true             | false           | false               | 
+| AdminMgr.updateUser            | true             | false           | false               | 
+| AdminMgr.deleteUser            | true             | false           | false               | 
+| AdminMgr.disableUser           | true             | false           | false               | 
+| AdminMgr.changePassword        | true             | false           | false               | 
+| AdminMgr.resetPassword         | true             | false           | false               | 
+| AdminMgr.lockUserAccount       | true             | false           | false               | 
+| AdminMgr.unlockUserAccount     | true             | false           | false               | 
+| AdminMgr.deletePasswordPolicy  | true             | false           | false               | 
+| AdminMgr.assignUser            | true             | false           | true                | 
+| AdminMgr.deassignUser          | true             | false           | true                | 
+| AdminMgr.grantPermission       | false            | true            | true                | 
+| AdminMgr.revokePermission      | false            | true            | true                | 
 
 #### END OF README
