@@ -51,7 +51,7 @@ ________________________________________________________________________________
 ___________________________________________________________________________________
 ## 2. Apache CXF's **SimpleAuthorizingInterceptor**
 
-This enforcement mechanism maps roles to a given set of services.  The following table shows what roles map to which (sets of) services:
+This policy enforcement mechanism maps RBAC roles to a given set of services.  The following table shows what roles map to which (sets of) services:
 
 | service type      | fortress-rest-super-user | fortress-rest-admin-user | fortress-rest-review-user | fortress-rest-access-user | fortress-rest-deladmin-user | fortress-rest-delreview-user | fortress-rest-delaccess-user | fortress-rest-pwmgr-user | fortress-rest-audit-user | fortress-rest-config-user |
 | ----------------- | ------------------------ | ------------------------ | ------------------------- | ------------------------- | --------------------------- | ---------------------------- | ---------------------------- | ------------------------ | ------------------------ | ------------------------- |
@@ -78,12 +78,14 @@ is.arbac02=true
 
 The ARBAC checks include the following:
 
-1. All service invocations map to DelAccessMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. *org.apache.directory.fortress.core.impl.AdminMgrImpl.addUser*.  
+1. All service invocations map to DelAccessMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. objectName **org.apache.directory.fortress.core.impl.AdminMgrImpl**, operation name: **addUser**.
+ This ADMIN perm will be executed automatically during the call to the **userAdd** service (if ARBAC checking is enabled)  
  This means at least one ADMIN role activates that has been granted the required permission.
 
-2. The *assignUser*, *deassignUser*, *grantPermission*, *revokePermission* APIs enforce administrative authority over the RBAC role being targeted. 
- This is being done by establishing a range of roles (hierarchically), for which the target role falls inside.   
- For example, the following top-down contains an RBAC role hierarchy for a fictional software development organization:
+2. The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
+ During service dispatch to the APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
+ These checks are based on a range of roles (hierarchically), for which the target role must fall inside.   
+ For example, the following top-down contains a sample RBAC role hierarchy for a fictional software development organization:
 
  ```
         CTO
@@ -98,11 +100,11 @@ The ARBAC checks include the following:
          A
  ```
     
- Where a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
+ Here a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
 
- In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis, '(', ')' excludes its corresponding endpoint.
+ In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness with an endpoint, whereas parenthesis, '(', ')' will exclude a corresponding endpoint.
 
- Some example ranges that can be derived from the role graph above:
+ Some example ranges that can be derived from the sample role graph above:
 
  * [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}. 
  * (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
@@ -112,16 +114,16 @@ The ARBAC checks include the following:
  * etc... 
 
  For an administrator to be authorized to target an RBAC role in one of the specified APIs listed above, at least one of their activated ADMIN roles must pass the ARBAC role range test.  There are currently two roles 
- created by the security policy in this project, that are excluded from this type of check: 
- *fortress-rest-admin* and *fortress-core-super-admin*. 
+ created by the security policy in this project, [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml), that are excluded from this type of check: 
+ **fortress-rest-admin** and **fortress-core-super-admin**. 
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
 3. Some APIs on the *AdminMgr* do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
 
- For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a matching user org unit that matches the ou of the target user.
+ For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.
   
- There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated ADMIN role matching the perm org unit that matches the ou on the target permission.
+ There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
  The complete list of APIs that enforce range and OU checks follow:
 
