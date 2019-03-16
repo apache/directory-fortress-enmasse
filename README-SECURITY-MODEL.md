@@ -16,22 +16,19 @@
    under the License.
 
 # README for Apache Fortress Security Model
- ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
-
 ___________________________________________________________________________________
 ## Table of Contents
 
  * Document Overview
  * Understand the security model of Apache Fortress Rest
- * Java EE security
- * Apache CXF's **SimpleAuthorizingInterceptor**
- * Apache Fortress **ARBAC02 Checks**
-
+ * 1. Java EE security
+ * 2. Apache CXF's **SimpleAuthorizingInterceptor**
+ * 3. Apache Fortress **ARBAC02 Checks**
 ___________________________________________________________________________________
 
 ## Document Overview
 
-Provides a description of the security mechanisms that may be applied during Apache Fortress REST operation.
+ Provides a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations.
 ___________________________________________________________________________________
 
 ## Understand the security model of Apache Fortress Rest
@@ -43,16 +40,16 @@ ________________________________________________________________________________
 
 ### TLS
 
-Nothing special or unique going on here.  Refer to the documentation of your servlet container for how to enable.
+ Nothing special or unique going on here.  Refer to the documentation of your servlet container for how to enable.
 
 ___________________________________________________________________________________
-## Java EE security
+## 1. Java EE security
 
  * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
  * The policy for Apache Fortress Rest is simple.  Any user with the **fortress-rest-user** role and correct credentials is allowed in.
  * The Fortress Rest interface uses HTTP Basic Auth tokens to send the userid/password.
 ___________________________________________________________________________________
-## Apache CXF's **SimpleAuthorizingInterceptor**
+## 2. Apache CXF's **SimpleAuthorizingInterceptor**
 
 This enforcement mechanism maps roles to a given set of services.  The following table shows what roles map to which (sets of) services:
 
@@ -69,42 +66,43 @@ This enforcement mechanism maps roles to a given set of services.  The following
 | Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
 
 ___________________________________________________________________________________
-## Apache Fortress **ARBAC02 Checks**
+## 3. Apache Fortress **ARBAC02 Checks**
 
-Disabled by default.  To enable, add this to fortress.properties file and restart instance:
+ Disabled by default.  To enable, add this to fortress.properties file and restart instance:
 
-```concept
+ ```concept
 # Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
 is.arbac02=true
 
-```
+ ```
 
-These checks include the following:
+The ARBAC checks include the following:
 
-1. All API invocations calls checkAccess on an admin perm corresponding with the API being called, e.g. AdminMgr.addUser.  This means at least one admin role activated for the caller has to have been granted that particular permission.
+1. All service invocations map to DelAdminMgr.checkAccess calls using an ADMIN perm that corresponding with the service/API being called, e.g. org.apache.directory.fortress.core.impl.AdminMgrImpl.addUser.  
+ This means at least one ADMIN role activates that has been granted the required permission.
 
-2. The assignUser, deassignUser, grantPermission, revokePermission APIs enforce administrative authority over the role being targeted. This is being done by establishing a range of roles (hierarchically), for which the target role falls inside.
+2. The assignUser, deassignUser, grantPermission, revokePermission APIs enforce administrative authority over the RBAC role being targeted. This is being done by establishing a range of roles (hierarchically), for which the target role falls inside.
 
-For example, the following top-down role hierarchy:
+ For example, the following top-down contains an RBAC role hierarchy for a fictional software development organization:
 
-```
-       CTO
-        |
-    |       |
-   ENG      QC
- |  |     |    |   
-E1  E2   Q1    Q2
-  |         |
- DA         QA
-       |
-       A
-```
+ ```
+        CTO
+         |
+     |       |
+    ENG      QC
+   |   |   |    |   
+ E1   E2  Q1    Q2
+    |        |
+   DA        QA
+         |
+         A
+ ```
     
-Where a role called 'CTO' is the highest ascendant, and 'A' is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend in the tree.  So a person with role 'A' inherits all that are above.
+ Where a role called 'CTO' is the highest ascendant in the graph, and 'A' is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role 'A' inherits all that are above.
 
-In describing a range of roles, begin range is the lowest descendant in the chain, and end range the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis indicates exclusiveness for a particular endpoint.
+ In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness, whereas parenthesis indicates exclusiveness for a particular endpoint.
 
-Some example ranges that can be derived:
+ Some example ranges that can be derived:
 
  * [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}. 
  * (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
@@ -112,19 +110,19 @@ Some example ranges that can be derived:
  * [A, ENG) includes: {A, DA, E1, E2}. 
  * etc... 
 
-So, for an administrator to be able to target a role in one of the specified APIs above, at least one of their activated admin roles must pass the role range test.  There are currently two roles
-created by the security policy in this project, that are excluded from this type of check:
-fortress-rest-admin and fortress-core-super-admin
+ For an administrator to be authorized to target an RBAC role in one of the specified APIs listed above, at least one of their activated ADMIN roles must pass the role range test.  There are currently two roles 
+ created by the security policy in this project, that are excluded from this type of check: 
+ *fortress-rest-admin* and *fortress-core-super-admin*. 
 
-Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure.
+ Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
 3. Some APIs on the AdminMgr do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
 
-For example, de/assignUser(User, Role) will verify that the caller has an admin role with a matching user org unit (UserOU) on the target role.
+ For example, de/assignUser(User, Role) will verify that the caller has an admin role with a matching user org unit (UserOU) on the target role.
   
-There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated admin role matching the perm org unit (PermOU), corresponding with permission being targeted.
+ There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated admin role matching the perm org unit (PermOU), corresponding with permission being targeted.
 
-The complete list of APIs that enforce range and OU checks follow:
+ The complete list of APIs that enforce range and OU checks follow:
 
 | API                            | Validate UserOU  | Validate PermOU | Range Check On Role | 
 | ------------------------------ | ---------------- | ----------------| ------------------- | 
