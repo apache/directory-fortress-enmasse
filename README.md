@@ -435,7 +435,7 @@ There is similar check on grant/revokePermission(Role, Permission), where the ca
 The complete list of APIs that enforce range and OU checks follow:
 
 | API                            | Validate UserOU  | Validate PermOU | Range Check On Role | 
-| ------------------------------ | ---------------- | ------------------------------------- | 
+| ------------------------------ | ---------------- | ----------------| ------------------- | 
 | AdminMgr.addUser               | true             | false           | false               | 
 | AdminMgr.updateUser            | true             | false           | false               | 
 | AdminMgr.deleteUser            | true             | false           | false               | 
