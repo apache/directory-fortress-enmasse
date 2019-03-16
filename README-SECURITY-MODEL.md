@@ -119,7 +119,7 @@ The ARBAC checks include the following:
                                          
 3. Some APIs on the *AdminMgr* do organization checks, matching the org on the admin role with that on the target.  There are two types of organziations, User and Permission.
 
- For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a matching user org unit, *userOU*, on the target role.
+ For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a matching user org unit, *userOU*, on the target user.
   
  There is similar check on grant/revokePermission(Role, Permission), where the caller must have activated ADMIN role matching the perm org unit, *permOU*, corresponding with the permission being targeted.
 
