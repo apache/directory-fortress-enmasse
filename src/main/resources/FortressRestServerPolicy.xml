@@ -17,7 +17,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<project basedir="." default="all" name="Fortress Rest Server Role Policy">
+<project basedir="." default="all" name="Apache Fortress Rest Server Sample ARBAC Policy">
     <taskdef classname="org.apache.directory.fortress.core.ant.FortressAntTask" name="FortressAdmin" >
         <classpath path="${java.class.path}"/>
     </taskdef>
@@ -25,48 +25,31 @@
     <target name="all">
         <FortressAdmin>
 
-            <!-- Begin RBAC Admin Data: -->
+            <!-- This test demo user here will have all of the required roles to pass the security checks when calling the Apache Fortress REST services during integration testing. -->
+            <!-- In actual practice, you would establish a much stricter security policy, limiting users to only the sets of services, data needed to complete their jobs. -->
             <adduser>
-                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="JoeUser4" sn="User4"  beginTime="0000" endTime="0000" beginDate="20090101" endDate="20990101" beginLockDate="" endLockDate="" dayMask="1234567" timeout="60" photo="p4.jpeg"/>
+                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="Demo User" sn="User4"/>
             </adduser>
 
+            <!-- Assign the test user to the role that passes all RBAC checks for testing. -->
             <adduserrole>
-                <userrole userId="demoUser4" name="fortress-rest-power-user"  beginTime="0000" endTime="0000" beginDate="" endDate="" beginLockDate="" endLockDate="" dayMask="" timeout="0"/>
+                <userrole userId="demoUser4" name="fortress-rest-power-user" />
             </adduserrole>
 
+            <!-- Assign the test user to the ADMIN role that passes all ARBAC02 checks for testing. -->
             <adduseradminrole>
-                <userrole userId="demoUser4"
-                          name="fortress-rest-admin"
-                          beginTime="0000"
-                          endTime="0000"
-                          beginDate=""
-                          endDate=""
-                          beginLockDate=""
-                          endLockDate=""
-                          dayMask=""
-                          timeout="0"
-                />
+                <userrole userId="demoUser4" name="fortress-rest-admin" />
             </adduseradminrole>
 
-            <deladminrole>
-                <role name="fortress-rest-admin"/>
-            </deladminrole>
-
+            <!-- This ADMIN role is quite powerful.  It gives user the administrative authority over all the individual services, authority to grant and revoke any role, and authority over a fairly large set of User and Perm OUS. -->
             <addadminrole>
+                <!-- fortress-rest-admin role bypasses ARBAC02 runtime role range checks.-->
                 <role name="fortress-rest-admin"
                       description="Fortress Rest Admin"
                       begininclusive="true"
                       endinclusive="true"
                       osps="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,oamT3POrg8,oamT3POrg9,oamT3POrg1,oamT3POrg10,oamT3POrg2,oamT3POrg3,oamT3POrg4,oamT3POrg5,oamT3POrg6,oamT3POrg7,oamT3POrg8,oamT4POrg1,oamT4POrg10,oamT4POrg2,oamT4POrg3,oamT4POrg4,oamT4POrg5,oamT4POrg6,oamT4POrg7,oamT4POrg8,oamT4POrg9,T5POrg1,T5POrg2,T5POrg3,T5POrg4,T5POrg5,T6POrg1,T6POrg2,T6POrg3,T6POrg4,T6POrg5,T6POrg6,T6POrg7,T7POrg1,T7POrg2,T7POrg3,T7POrg4,T7POrg5,T7POrg6,T7POrg7,"
                       osus="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,oamT1UOrg1,oamT1UOrg10,oamT1UOrg2,oamT1UOrg3,oamT1UOrg4,oamT1UOrg5,oamT1UOrg6,oamT1UOrg7,oamT1UOrg8,oamT1UOrg9,oamT2UOrg1,oamT2UOrg10,oamT2UOrg2,oamT2UOrg3,oamT2UOrg4,oamT2UOrg5,oamT2UOrg6,oamT2UOrg7,oamT2UOrg8,oamT2UOrg9,T5UOrg1,T5UOrg2,T5UOrg3,T5UOrg4,T5UOrg5,T6UOrg1,T6UOrg2,T6UOrg3,T6UOrg4,T6UOrg5,T6UOrg6,T6UOrg7,T7UOrg1,T7UOrg2,T7UOrg3,T7UOrg4,T7UOrg5,T7UOrg6,T7UOrg7"
-                      beginTime="0000"
-                      endTime="0000"
-                      beginDate="none"
-                      endDate="none"
-                      beginLockDate="none"
-                      endLockDate="none"
-                      dayMask="all"
-                      timeout="0"
                       beginrange=""
                       endrange=""/>
             </addadminrole>
@@ -116,6 +99,7 @@
             </addorgunit>
 
             <addpermgrant>
+                <!-- Setting admin="true" makes these ADMIN permissions to be granted to permissions used by Fortress runtime during ARBAC02 checking. -->
                 <permgrant objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchBinds" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchAuthZs" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="getUserAuthZs" roleNm="fortress-rest-admin" admin="true"/>
