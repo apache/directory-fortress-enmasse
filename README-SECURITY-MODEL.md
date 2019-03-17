@@ -89,9 +89,12 @@ a. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN 
  This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
  The entire list of permissions in the table below..
 
-b.. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range check on the target RBAC role. 
- The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
- During service dispatch of these APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
+b. Some services (#'s 1 - 12 listed below) do organization checks, comparing the org on the ADMIN role with that on the target user or permission.  
+ There are two types of organziations, User and Permission.  For example, **roleAsgn** and **roleDeasgn**  (9 and 10 below) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
+ There is a similar check on **roleGrant** and **roleRevoke** (11 and 12) verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
+
+c.. Some services (#'s 9,10,11,12) perform an ARBAC role range check on the target RBAC role. 
+ The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
  These checks are based on a (hierarchical) range of roles, for which the target role must fall inside.   
  For example, the following top-down contains a sample RBAC role hierarchy for a fictional software development organization:
 
@@ -127,10 +130,6 @@ b.. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range chec
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-c. Some APIs (#'s 1 - 12 listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
- There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
- There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
-
 ### The list of Services that enforce ARBAC02.
 
 |  #  | **Services**                   | UserOU Check | PermOU Check | Role Range Check | **ADMIN Permissions**                                                                             | 
