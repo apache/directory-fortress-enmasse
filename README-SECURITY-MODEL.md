@@ -79,13 +79,13 @@ is.arbac02=true
 
 The ARBAC checks when enabled, include the following:
 
-1. All service invocations perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
+1. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.   
  This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
- The entire list of permissions can be found here: [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) along with a sample policy that can be used for testing.
+ The entire list of permissions in the table below..
 
-2. Some services (listed below) perform an ARBAC role range check on the target RBAC role. 
+2. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range check on the target RBAC role. 
  The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
  During service dispatch of these APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
  These checks are based on a (hierarchical) range of roles, for which the target role must fall inside.   
@@ -123,27 +123,140 @@ The ARBAC checks when enabled, include the following:
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-3. Some APIs (listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
+3. Some APIs (#'s 1 - 12 listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
  There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
  There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
 ### The list of APIs that enforce ARBAC role range and OU checks.
 
-| API                            | Validate UserOU  | Validate PermOU | Range Check On Role | 
-| ------------------------------ | ---------------- | ----------------| ------------------- | 
-| AdminMgr.addUser               | true             | false           | false               | 
-| AdminMgr.updateUser            | true             | false           | false               | 
-| AdminMgr.deleteUser            | true             | false           | false               | 
-| AdminMgr.disableUser           | true             | false           | false               | 
-| AdminMgr.changePassword        | true             | false           | false               | 
-| AdminMgr.resetPassword         | true             | false           | false               | 
-| AdminMgr.lockUserAccount       | true             | false           | false               | 
-| AdminMgr.unlockUserAccount     | true             | false           | false               | 
-| AdminMgr.deletePasswordPolicy  | true             | false           | false               | 
-| AdminMgr.assignUser            | true             | false           | true                | 
-| AdminMgr.deassignUser          | true             | false           | true                | 
-| AdminMgr.grantPermission       | false            | true            | true                | 
-| AdminMgr.revokePermission      | false            | true            | true                | 
+|  #  | **Service**                    | Validate UserOU  | Validate PermOU | Role Range Check | **ADMIN Permission**                                                                              | 
+| --- | ------------------------------ | ---------------- | --------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
+|   1 | userAdd                        | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addUser"                   |
+|   2 | userUpdate                     | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updateUser"                |
+|   3 | userDelete                     | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteUser"                | 
+|   4 | userDisable                    | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="disableUser"               |
+|   5 | userChange                     | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="changePassword"            |
+|   6 | userReset                      | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="resetPassword"             |
+|   7 | userLock                       | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="lockUserAccount"           |
+|   8 | userUnlock                     | true             | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="unlockUserAccount"         |
+|   9 | roleAsgn                       | true             | false           | true             | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="assignUser"                |
+|  10 | roleDeasgn                     | true             | false           | true             | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deassignUser"              |
+|  11 | roleGrant                      | false            | true            | true             | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="grantPermission"           |
+|  12 | roleRevoke                     | false            | true            | true             | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="revokePermission"          |
+|  13 | roleAdd                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addRole"                   |
+|  14 | roleDelete                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteRole"                |
+|  15 | roleUpdate                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updateRole"                |
+|  16 | addRoleConstraint              | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addRoleConstraint"         |
+|  17 | removeRoleConstraint           | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="removeRoleConstraint"      |
+|  18 | roleEnableConstraint           | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="enableRoleConstraint"      |
+|  19 | roleDisableConstraint          | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="disableRoleConstraint"     |
+|  20 | permAdd                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addPermission"             |
+|  21 | objAdd                         | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addPermObj"                |
+|  22 | permDelete                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deletePermission"          |
+|  23 | objDelete                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deletePermObj"             |
+|  24 | permUpdate                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updatePermission"          |
+|  25 | objUpdate                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updatePermObj"             |
+|  26 | userGrant                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="grantPermissionUser"       |
+|  27 | userRevoke                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="revokePermissionUser"      |
+|  28 | roleDescendant                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addDescendant"             |
+|  29 | roleAscendent                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addAscendant"              |
+|  30 | roleAddinherit                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addInheritance"            |
+|  31 | roleDelinherit                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteInheritance"         |
+|  32 | ssdAdd                         | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="createSsdSet"              |
+|  33 | ssdUpdate                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updateSsdSet"              |
+|  34 | ssdAddMember                   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addSsdRoleMember"          |
+|  35 | ssdDelMember                   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteSsdRoleMember"       |
+|  36 | ssdDelete                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteSsdSet"              |
+|  37 | ssdCardUpdate                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="setSsdSetCardinality"      |
+|  38 | dsdAdd                         | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="createDsdSet"              |
+|  39 | dsdUpdate                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="updateDsdSet"              |
+|  40 | dsdAddMember                   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addDsdRoleMember"          |
+|  41 | dsdDelMember                   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteDsdRoleMember"       |
+|  42 | dsdDelete                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deleteDsdSet"              |
+|  43 | dsdCardUpdate                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="setDsdSetCardinality"      |
+|  44 | addPermissionAttributeSet      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addPermissionAttributeSet" |
+|  45 | deletePermissionAttributeSet   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="deletePermissionAttributeSet"|
+|  46 | addPermissionAttributeToSet    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addPermissionAttributeToSet" |
+|  47 | permRead                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="readPermission"           |
+|  48 | objRead                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="readPermObj"              |
+|  49 | permSearch                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findPermissions"          |
+|  50 | objSearch                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findPermObjs"             |
+|  51 | permObjSearch                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findPermsByObj"           |
+|  52 | roleRead                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="readRole"                 |
+|  53 | roleSearch                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findRoles"                |
+|  54 | userRead                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="readUser"                 |
+|  55 | userSearch                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findUsers"                |
+|  56 | userAsigned                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="assignedUsers"            |
+|  57 | roleAsigned                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="assignedRoles"            |
+|  58 | roleAuthzed                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedUsers"          |
+|  59 | userAuthzed                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedRoles"          |
+|  60 | rolePerms                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="rolePermissions"          |
+|  61 | userPerms                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="userPermissions"          |
+|  62 | permRoles                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="permissionRoles"          |
+|  63 | permRolesAuthzed               | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedPermissionRoles"|
+|  64 | permUsers                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="permissionUsers"          |
+|  65 | permUsersAuthzed               | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedPermissionUsers"|
+|  66 | ssdRoleSets                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="ssdRoleSets"              |
+|  67 | ssdRead                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="ssdRoleSet"               |
+|  68 | ssdRoles                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="ssdRoleSetRoles"          |
+|  69 | ssdCard                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="ssdRoleSetCardinality"    |
+|  70 | dsdRoleSets                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="dsdRoleSets"              |
+|  71 | dsdSets                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="ssdSets"                  |
+|  72 | dsdRead                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="dsdRoleSet"               |
+|  73 | dsdRoles                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="dsdRoleSetRoles"          |
+|  74 | dsdCard                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="dsdRoleSetCardinality"    |
+|  75 | dsdSets                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="dsdSets"                  |
+|  76 | readPermAttributeSet           | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="readPermAttributeSet"     |
+|  77 | findRoleConstraints            | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findRoleConstraints"      |
+|  78 | arleAdd                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addRole"                |
+|  79 | arleDelete                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="deleteRole"             |
+|  80 | arleUpdate                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="updateRole"             |
+|  81 | adminAssign                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="assignUser"             |
+|  82 | adminDeassign                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="deassignUser"           |
+|  83 | orgAdd                         | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addOU"                  |
+|  84 | orgUpdate                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="updateOU"               |
+|  85 | orgDelete                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="deleteOU"               |
+|  86 | orgDescendant                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addDescendantOU"        |
+|  87 | orgAscendent                   | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addAscendantOU"         |
+|  88 | orgAddinherit                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addInheritanceOU"       |
+|  89 | orgDelinherit                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="deleteInheritanceOU"    |
+|  90 | arleDescendant                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addDescendantRole"      |
+|  91 | arleAscendent                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addAscendantRole"       |
+|  92 | arleAddinherit                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="addInheritanceRole"     |
+|  93 | arleDelinherit                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelAdminMgrImpl" opName="deleteInheritanceRole"  |
+|  94 | arleRead                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="readRole"              |
+|  95 | arleSearch                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="findRoles"             |
+|  96 | arleAsigned                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="assignedRoles"         |
+|  97 | userAsignedAdmin               | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="assignedUsers"         |
+|  98 | orgRead                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="readOU"                |
+|  99 | orgSearch                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="searchOU"              |
+| 100 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="rolePermissions"       |
+| 101 | groupAdd                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="add"                       |
+| 102 | groupUpdate                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="update"                    |
+| 103 | groupDelete                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="delete"                    |
+| 104 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="addProperty"               |
+| 105 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="deleteProperty"            |
+| 106 | groupAsgn                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="assign"                    |
+| 107 | groupDeasgn                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="deassign"                  |
+| 108 | groupRead                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="read"                      |
+| 109 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="find"                      |
+| 110 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="findWithUsers"             |
+| 111 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="groupRoles"                |
+| 112 | roleGroupAsigned               | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="roleGroups"                |
+| 113 | pswdAdd                        | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="add"                    |
+| 114 | pswdUpdate                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="update"                 |
+| 115 | pswdDelete                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="delete"                 |
+| 116 |                                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="updateUserPolicy"       |
+| 117 | pswdUserDelete                 | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="deletePasswordPolicy"   |
+| 118 | pswdSearch                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="search"                 |
+| 119 | pswdRead                       | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.PwPolicyMgrImpl" opName="read"                   |
+| 120 | auditBinds                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchBinds"               |
+| 121 | auditAuthzs                    | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchAuthZs"              |
+| 122 | auditUserAuthzs                | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="getUserAuthZs"             |
+| 123 | auditSessions                  | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchUserSessions"        |
+| 124 | auditMods                      | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchAdminMods"           |
+| 125 | auditInvld                     | false            | false           | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchInvalidUsers"        |
+|   |                                | false            | false           | false            |   |
 
 
 #### END OF README
