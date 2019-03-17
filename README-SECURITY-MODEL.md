@@ -84,12 +84,14 @@ is.arbac02=true
 The ARBAC checks when enabled, include the following:
 
 a. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
+ 
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.   
  This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
  The entire list of permissions, and their mappings to services are listed in the table that follows.
 
-b. Some services (#'s 1 - 12 listed below) perform organizational verification, comparing the org on the ADMIN role with that on the target user or permission in the HTTP request.  
+b. Some services (#'s 1 - 12 listed below) perform organizational verification, comparing the org on the ADMIN role with that on the target user or permission in the HTTP request.
+  
  There are two types of organziations being checked, User and Permission.  For example, **roleAsgn** and **roleDeasgn**  (9 and 10 below) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
  There is a similar check on **roleGrant** and **roleRevoke** (11 and 12) verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
