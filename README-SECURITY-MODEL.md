@@ -15,7 +15,7 @@
    specific language governing permissions and limitations
    under the License.
 
-# README for Apache Fortress Security Model
+# README for Apache Fortress REST Security Model
 ![Apache Fortress Rest Security Model](images/ApacheFortressRestSecurityModel.png "Apache Fortress Rest Security Model")
 
 /home/smckinn/GIT/fortressDev/directory-fortress-enmasse/images/ApacheFortressRestSecurityModel.png
@@ -98,26 +98,26 @@ b.. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range chec
  ```
         CTO
          |
-     |         |
-    ENG        QC
-   |   |     |    |   
-  E1   E2   Q1    Q2
-     |         |
+     |       |
+    ENG      QC
+   |   |   |    |   
+  E1   E2  Q1   Q2
+     |        |
     DA        QA
          |
-         A
+         A1
  ```
     
- Here a role called *CTO* is the highest ascendant in the graph, and *A* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A* inherits all that are above.
+ Here a role called *CTO* is the highest ascendant in the graph, and *A1* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A1* inherits all that are above.
 
  In describing a range of roles, *beginRange* is the lowest descendant in the chain, and *endRange* the highest. Furthermore a bracket, '[', ']', indicates inclusiveness with an endpoint, whereas parenthesis, '(', ')' will exclude a corresponding endpoint.
 
  Some example ranges that can be derived from the sample role graph above:
 
- * [A, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A}. 
- * (A, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
- * [A, ENG] includes: {A, DA, E1, E2, ENG}, 
- * [A, ENG) includes: {A, DA, E1, E2}. 
+ * [A1, CTO] is the full set: {CTO, ENG, QC, E1, E2, Q1, Q2, DA, QA, A1}. 
+ * (A1, CTO) is the full set, minus the endpoints: {ENG, QC, E1, E2, Q1, Q2, DA, QA}. 
+ * [A1, ENG] includes: {A1, DA, E1, E2, ENG}, 
+ * [A1, ENG) includes: {A1, DA, E1, E2}. 
  * (QA, QC] has {Q1, Q2, QC} in its range.
  * etc... 
 
