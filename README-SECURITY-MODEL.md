@@ -24,9 +24,10 @@ ________________________________________________________________________________
 
  * Document Overview
  * Understand the security model of Apache Fortress Rest
- * 1. Java EE security
- * 2. Apache CXF's **SimpleAuthorizingInterceptor**
- * 3. Apache Fortress **ARBAC02 Checks**
+ * 1. TLS
+ * 2. Java EE security
+ * 3. Apache CXF's **SimpleAuthorizingInterceptor**
+ * 4. Apache Fortress **ARBAC02 Checks**
  * The list of APIs that enforce ARBAC role range, org unit and ADMIN perm checks.
 ___________________________________________________________________________________
 
@@ -42,18 +43,18 @@ ________________________________________________________________________________
 
 ### Apache Fortress Rest security model includes:
 
-### TLS
+### 1. TLS
 
  Nothing special or unique going on here.  Refer to the documentation of your servlet container for how to enable.
 
 ___________________________________________________________________________________
-## 1. Java EE security
+## 2. Java EE security
 
  * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
  * The policy for Apache Fortress Rest is simple.  Any user with the **fortress-rest-user** role and correct credentials is allowed in.
  * The Fortress Rest interface uses HTTP Basic Auth tokens to send the userid/password.
 ___________________________________________________________________________________
-## 2. Apache CXF's **SimpleAuthorizingInterceptor**
+## 3. Apache CXF's **SimpleAuthorizingInterceptor**
 
 This policy enforcement mechanism maps RBAC roles to a given set of services.  The following table shows what roles map to which (sets of) services:
 
@@ -70,7 +71,7 @@ This policy enforcement mechanism maps RBAC roles to a given set of services.  T
 | Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
 
 ___________________________________________________________________________________
-## 3. Apache Fortress **ARBAC02 Checks**
+## 4. Apache Fortress **ARBAC02 Checks**
 
  Disabled by default.  To enable, add this to fortress.properties file and restart instance:
 
@@ -82,13 +83,13 @@ is.arbac02=true
 
 The ARBAC checks when enabled, include the following:
 
-1. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
+a. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.   
  This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
  The entire list of permissions in the table below..
 
-2. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range check on the target RBAC role. 
+b.. Some services (#'s 9,10,11,12 listed below) perform an ARBAC role range check on the target RBAC role. 
  The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services map to the **assignUser**, **deassignUser**, **grantPermission**, **revokePermission** Apache Fortress Core AdminMgr APIs respectively.
  During service dispatch of these APIs, the runtime will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
  These checks are based on a (hierarchical) range of roles, for which the target role must fall inside.   
@@ -126,7 +127,7 @@ The ARBAC checks when enabled, include the following:
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-3. Some APIs (#'s 1 - 12 listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
+c. Some APIs (#'s 1 - 12 listed below) do organization checks, matching the org on the ADMIN role with that on the target user or permission.  
  There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
  There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
