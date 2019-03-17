@@ -24,11 +24,11 @@ ________________________________________________________________________________
 
  * Document Overview
  * Understand the security model of Apache Fortress Rest
- * 1. TLS
- * 2. Java EE security
- * 3. Apache CXF's **SimpleAuthorizingInterceptor**
- * 4. Apache Fortress **ARBAC02 Checks**
- * The list of APIs that enforce ARBAC role range, org unit and ADMIN perm checks.
+ * 1.TLS
+ * 2.Java EE security
+ * 3.Apache CXF's **SimpleAuthorizingInterceptor**
+ * 4.Apache Fortress **ARBAC02 Checks**
+ * The list of Services that enforce ARBAC02.
 ___________________________________________________________________________________
 
 ## Document Overview
@@ -131,7 +131,7 @@ c. Some APIs (#'s 1 - 12 listed below) do organization checks, matching the org 
  There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
  There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
-### The list of APIs that enforce ARBAC role range, org unit and ADMIN perm checks.
+### The list of Services that enforce ARBAC02.
 
 |  #  | **Services**                   | UserOU Check | PermOU Check | Role Range Check | **ADMIN Permissions**                                                                             | 
 | --- | ------------------------------ | ------------ | ------------ | ---------------- | ------------------------------------------------------------------------------------------------- |
