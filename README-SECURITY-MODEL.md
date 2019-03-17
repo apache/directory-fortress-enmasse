@@ -24,7 +24,7 @@ ________________________________________________________________________________
  * 1. Java EE security
  * 2. Apache CXF's **SimpleAuthorizingInterceptor**
  * 3. Apache Fortress **ARBAC02 Checks**
- * The list of APIs that enforce ARBAC role range and OU checks.
+ * The list of APIs that enforce ARBAC role range, org unit and ADMIN perm checks.
 ___________________________________________________________________________________
 
 ## Document Overview
@@ -127,7 +127,7 @@ The ARBAC checks when enabled, include the following:
  There are two types of organziations, User and Permission.  For example, de/assignUser(User, Role) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
  There is a similar check on grant/revokePermission(Role, Permission), verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
-### The list of APIs that enforce ARBAC role range and OU checks.
+### The list of APIs that enforce ARBAC role range, org unit and ADMIN perm checks.
 
 |  #  | **Service**                    | Validate UserOU  | Validate PermOU | Role Range Check | **ADMIN Permission**                                                                              | 
 | --- | ------------------------------ | ---------------- | --------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
