@@ -114,6 +114,8 @@ ________________________________________________________________________________
 ___________________________________________________________________________________
 ## SECTION 5. Table with External Config Switches
 
+ Below is the list of Fortress config properties that can be set via Java System Property.  
+
 |  #  |  Name                            | Sample Values                      |
 | --- | -------------------------------- | ---------------------------------- |
 |   1 | fortress.host                    | localhost, myhostname, 10.14.74.28 |
@@ -136,5 +138,16 @@ ________________________________________________________________________________
 |  18 | fortress.config.root             | ou=config,dc=example,dc=com        |
 |  19 | fortress.ldap.server.type        | apacheds, openldap, other          |
 |  20 | fortress.is.arbac02              | false(default), true               |
+
+### Sample Config
+
+ The following will connect to OpenLDAP over encrypted connection.  The runtime has ARBAC02 checks enabled.
+ ```concept
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \ 
+            -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
+            -Dfortress.admin.pw=secret  \ 
+            -Dfortress.config.root=ou=Config,dc=example,dc=com  \
+            -Dfortress.is.arbac02=true"
+```
 
 #### END OF README-QUICKSTART
