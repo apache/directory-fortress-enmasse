@@ -196,8 +196,8 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 |  55 | userSearch                     | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="findUsers"                |
 |  56 | userAsigned                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="assignedUsers"            |
 |  57 | roleAsigned                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="assignedRoles"            |
-|  58 | roleAuthzed                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedUsers"          |
-|  59 | userAuthzed                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedRoles"          |
+|  58 | roleAuthzed                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedRoles"          |
+|  59 | userAuthzed                    | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="authorizedUsers"          |
 |  60 | rolePerms                      | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="rolePermissions"          |
 |  61 | userPerms                      | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="userPermissions"          |
 |  62 | permRoles                      | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.ReviewMgrImpl" opName="permissionRoles"          |

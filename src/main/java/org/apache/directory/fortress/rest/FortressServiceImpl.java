@@ -1092,7 +1092,7 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
-    @Path("/" + HttpIds.ROLE_AUTHZED + "/")
+    @Path("/" + HttpIds.USER_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
     public FortResponse authorizedUsers( FortRequest request )
@@ -1108,7 +1108,7 @@ public class FortressServiceImpl implements FortressService
      * {@inheritDoc}
      */
     @POST
-    @Path("/" + HttpIds.USER_AUTHZED + "/")
+    @Path("/" + HttpIds.ROLE_AUTHZED + "/")
     @RolesAllowed({SUPER_USER, REVIEW_MGR_USER})
     @Override
     public FortResponse authorizedRoles( FortRequest request )
