@@ -27,6 +27,7 @@
  * SECTION 3. Load Sample Security Policy
  * SECTION 4. Test
  * SECTION 5. Table with External Config Switches
+ * SECTION 6. Sample Config
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -116,38 +117,71 @@ ________________________________________________________________________________
 
  Below is the list of Fortress config properties that can be set via Java System Property.  
 
-|  #  |  Name                            | Sample Values                      |
-| --- | -------------------------------- | ---------------------------------- |
-|   1 | fortress.host                    | localhost, myhostname, 10.14.74.28 |
-|   2 | fortress.port                    | 389 (default), 636, 1389, 1636     |
-|   3 | fortress.admin.user              | cn=manager,dc=example,dc=com       |
-|   4 | fortress.admin.pw                | secret                             |
-|   5 | fortress.min.admin.conn          | 1                                  |
-|   6 | fortress.max.admin.conn          | 10                                 |
-|   7 | fortress.log.user                | cn=log                             |
-|   8 | fortress.log.pw                  | secret                             |
-|   9 | fortress.min.log.conn            | 1                                  |
-|  10 | fortress.max.log.conn            | 5                                  |
-|  11 | fortress.enable.ldap.ssl         | false(default), true               |
-|  12 | fortress.enable.ldap.starttls    | false(default), true               |
-|  13 | fortress.enable.ldap.ssl.debug   | false(default), true               |
-|  14 | fortress.trust.store             | mytruststore                       |
-|  15 | fortress.trust.store.password    | changeit                           |
-|  16 | fortress.trust.store.onclasspath | false(default), true               |
-|  17 | fortress.config.realm            | default                            |
-|  18 | fortress.config.root             | ou=config,dc=example,dc=com        |
-|  19 | fortress.ldap.server.type        | apacheds, openldap, other          |
-|  20 | fortress.is.arbac02              | false(default), true               |
+|  #  |  Name                            | Sample Values                               |
+| --- | -------------------------------- | ------------------------------------------- |
+|   1 | fortress.host                    | localhost(default), myhostname, 10.14.74.28 |
+|   2 | fortress.port                    | 389 (default), 636, 1389, 1636              |
+|   3 | fortress.admin.user              | cn=manager,dc=example,dc=com                |
+|   4 | fortress.admin.pw                | secret                                      |
+|   5 | fortress.min.admin.conn          | 1                                           |
+|   6 | fortress.max.admin.conn          | 10                                          |
+|   7 | fortress.log.user                | cn=log                                      |
+|   8 | fortress.log.pw                  | secret                                      |
+|   9 | fortress.min.log.conn            | 1                                           |
+|  10 | fortress.max.log.conn            | 5                                           |
+|  11 | fortress.enable.ldap.ssl         | false(default), true                        |
+|  12 | fortress.enable.ldap.starttls    | false(default), true                        |
+|  13 | fortress.enable.ldap.ssl.debug   | false(default), true                        |
+|  14 | fortress.trust.store             | mytruststore                                |
+|  15 | fortress.trust.store.password    | changeit                                    |
+|  16 | fortress.trust.store.onclasspath | false(default), true                        |
+|  17 | fortress.config.realm            | default                                     |
+|  18 | fortress.config.root             | ou=config,dc=example,dc=com                 |
+|  19 | fortress.ldap.server.type        | apacheds, openldap, other                   |
+|  20 | fortress.is.arbac02              | false(default), true                        |
 
-### Sample Config
+___________________________________________________________________________________
+## SECTION 6. Sample Config
 
- The following will connect to OpenLDAP over encrypted connection.  The runtime has ARBAC02 checks enabled.
+ Setting Apache Fortress external configurations via Java System properties can be done using the startup scripts for the instance. For example the following are valid configurations.
+
+ a. Connect to an OpenLDAP over localhost, port 389 (defaults) using unencrypted connections.  The runtime has ARBAC02 checks enabled.
  ```concept
 JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \ 
             -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
             -Dfortress.admin.pw=secret  \ 
             -Dfortress.config.root=ou=Config,dc=example,dc=com  \
+            -Dfortress.ldap.server.type=openldap   \
             -Dfortress.is.arbac02=true"
+```
+ b. The following will connect to ApacheDS over encrypted connection, truststore on the classpath.
+ ```concept
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \
+            -Dfortress.host=mydomainname.com
+            -Dfortress.port=1636
+            -Dfortress.ldap.server.type=apacheds   \             
+            -Dfortress.admin.user=uid=admin,ou=system  \ 
+            -Dfortress.admin.pw=secret  \ 
+            -Dfortress.config.root=ou=Config,dc=example,dc=com  \
+            -Dfortress.enable.ldap.ssl=true"     \
+            -Dfortress.trust.store=mystruststore  \
+            -Dfortress.trust.store.password=changeit  \
+            -Dfortress.trust.store.onclasspath=true
+```
+
+ c. This one OpenLDAP again, encrypted connections, truststore found on fully qualified path.
+ ```concept
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \
+            -Dfortress.host=mydomainname.com
+            -Dfortress.port=636
+            -Dfortress.ldap.server.type=openldap   \             
+            -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
+            -Dfortress.admin.pw=secret  \ 
+            -Dfortress.config.root=ou=Config,dc=example,dc=com  \
+            -Dfortress.enable.ldap.ssl=true"     \
+            -Dfortress.trust.store=/fully/qualified/file/name/mystruststore  \
+            -Dfortress.trust.store.password=changeit  \
+            -Dfortress.trust.store.onclasspath=false
 ```
 
 #### END OF README-QUICKSTART
