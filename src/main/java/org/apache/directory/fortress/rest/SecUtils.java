@@ -22,6 +22,7 @@ package org.apache.directory.fortress.rest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.directory.fortress.core.GlobalErrIds;
+import org.apache.directory.fortress.core.GlobalIds;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
@@ -66,7 +67,7 @@ public class SecUtils
         Session realmSession;
         FortResponse fortResponse = null;
         // Have the fortress arbac02 runtime checks been enabled?.
-        if (Config.getInstance().getBoolean("is.arbac02"))
+        if (Config.getInstance().getBoolean(GlobalIds.IS_ARBAC02))
         {
             if (httpRequest == null)
             {

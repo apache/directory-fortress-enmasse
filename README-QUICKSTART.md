@@ -26,6 +26,7 @@
  * SECTION 2. Configure Tomcat and Deploy Fortress Rest
  * SECTION 3. Load Sample Security Policy
  * SECTION 4. Test
+ * SECTION 5. Table with External Config Switches
 
 ___________________________________________________________________________________
 ## Document Overview
@@ -110,6 +111,30 @@ ________________________________________________________________________________
  ```
 
 2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
-
 ___________________________________________________________________________________
+## SECTION 5. Table with External Config Switches
+
+|  # |  Name                            | Sample Values                      |
+| -- | -------------------------------- | ---------------------------------- |
+|  1 | fortress.host                    | localhost, myhostname, 10.14.74.28 |
+|  2 | fortress.port                    | 389 (default), 636, 1389, 1636     |
+|  3 | fortress.admin.user              | cn=manager,dc=example,dc=com       |
+|  4 | fortress.admin.pw                | secret                             |
+|  5 | fortress.min.admin.conn          | 1                                 |
+|  6 | fortress.max.admin.conn          | 10                                 |
+|  7 | fortress.log.user                | cn=log                             |
+|  8 | fortress.log.pw                  | secret                             |
+|  9 | fortress.min.log.conn            | 1                                  |
+| 10 | fortress.max.log.conn            | 5                                  |
+| 11 | fortress.enable.ldap.ssl         | false(default), true               |
+| 12 | fortress.enable.ldap.starttls    | false(default), true               |
+| 13 | fortress.enable.ldap.ssl.debug   | false(default), true               |
+| 14 | fortress.trust.store             | mytruststore                       |
+| 15 | fortress.trust.store.password    | changeit                           |
+| 16 | fortress.trust.store.onclasspath | false(default), true               |
+| 17 | fortress.config.realm            | default                            |
+| 18 | fortress.config.root             | ou=config,dc=example,dc=com        |
+| 19 | fortress.ldap.server.type        | apacheds, openldap, other          |
+| 20 | fortress.is.arbac02              | false(default), true               |
+
 #### END OF README-QUICKSTART
