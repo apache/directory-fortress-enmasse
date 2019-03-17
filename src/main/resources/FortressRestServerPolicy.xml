@@ -145,7 +145,6 @@
                 <permgrant objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="assignedUsers" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="readOU" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="searchOU" roleNm="fortress-rest-admin" admin="true"/>
-                <permgrant objName="org.apache.directory.fortress.core.impl.DelReviewMgrImpl" opName="rolePermissions" roleNm="fortress-rest-admin" admin="true"/>
 
                 <permgrant objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="addUser" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.AdminMgrImpl" opName="disableUser" roleNm="fortress-rest-admin" admin="true"/>
@@ -222,13 +221,11 @@
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="add" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="update" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="delete" roleNm="fortress-rest-admin" admin="true"/>
-                <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="addProperty" roleNm="fortress-rest-admin" admin="true"/>
-                <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="deleteProperty" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="assign" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="deassign" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="read" roleNm="fortress-rest-admin" admin="true"/>
-                <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="find" roleNm="fortress-rest-admin" admin="true"/>
-                <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="findWithUsers" roleNm="fortress-rest-admin" admin="true"/>
+<!--                <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="find" roleNm="fortress-rest-admin" admin="true"/>-->
+                <!--<permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="findWithUsers" roleNm="fortress-rest-admin" admin="true"/>-->
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="groupRoles" roleNm="fortress-rest-admin" admin="true"/>
                 <permgrant objName="org.apache.directory.fortress.core.impl.GroupMgrImpl" opName="roleGroups" roleNm="fortress-rest-admin" admin="true"/>
             </addpermgrant>

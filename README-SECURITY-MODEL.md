@@ -16,6 +16,9 @@
    under the License.
 
 # README for Apache Fortress Security Model
+![Apache Fortress Rest Security Model](images/ApacheFortressRestSecurityModel.png "Apache Fortress Rest Security Model")
+
+/home/smckinn/GIT/fortressDev/directory-fortress-enmasse/images/ApacheFortressRestSecurityModel.png
 ___________________________________________________________________________________
 ## Table of Contents
 
