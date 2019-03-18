@@ -143,44 +143,44 @@ ________________________________________________________________________________
 ___________________________________________________________________________________
 ## SECTION 6. Sample Config
 
- Setting Apache Fortress external configurations via Java System properties can be done using the startup scripts for the instance. For example the following are valid configurations.
+ Setting Apache Fortress external configurations via Java System properties can be done using the startup scripts for the server instance. For example, the following are valid configurations.
 
  a. Connect to an OpenLDAP over localhost, port 389 (defaults) using unencrypted connections.  The runtime has ARBAC02 checks enabled.
  ```concept
-JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \ 
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT                            \ 
             -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
-            -Dfortress.admin.pw=secret  \ 
+            -Dfortress.admin.pw=secret                          \ 
             -Dfortress.config.root=ou=Config,dc=example,dc=com  \
-            -Dfortress.ldap.server.type=openldap   \
+            -Dfortress.ldap.server.type=openldap                \
             -Dfortress.is.arbac02=true"
 ```
- b. The following will connect to ApacheDS over encrypted connection, truststore on the classpath.
+ b. Connect to ApacheDS server over an encrypted connection, the truststore found on the classpath.
  ```concept
-JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \
-            -Dfortress.host=mydomainname.com
-            -Dfortress.port=1636
-            -Dfortress.ldap.server.type=apacheds   \             
-            -Dfortress.admin.user=uid=admin,ou=system  \ 
-            -Dfortress.admin.pw=secret  \ 
-            -Dfortress.config.root=ou=Config,dc=example,dc=com  \
-            -Dfortress.enable.ldap.ssl=true"     \
-            -Dfortress.trust.store=mystruststore  \
-            -Dfortress.trust.store.password=changeit  \
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT                             \
+            -Dfortress.host=mydomainname.com                     \
+            -Dfortress.port=1636                                 \
+            -Dfortress.ldap.server.type=apacheds                 \             
+            -Dfortress.admin.user=uid=admin,ou=system            \ 
+            -Dfortress.admin.pw=secret                           \ 
+            -Dfortress.config.root=ou=Config,dc=example,dc=com   \
+            -Dfortress.enable.ldap.ssl=true"                     \
+            -Dfortress.trust.store=mystruststore                 \
+            -Dfortress.trust.store.password=changeit             \
             -Dfortress.trust.store.onclasspath=true
 ```
 
- c. This one OpenLDAP again, encrypted connections, truststore found on fully qualified path.
+ c. This one OpenLDAP again, use encrypted connections, truststore located on fully qualified path.
  ```concept
-JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT   \
-            -Dfortress.host=mydomainname.com
-            -Dfortress.port=636
-            -Dfortress.ldap.server.type=openldap   \             
-            -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
-            -Dfortress.admin.pw=secret  \ 
-            -Dfortress.config.root=ou=Config,dc=example,dc=com  \
-            -Dfortress.enable.ldap.ssl=true"     \
-            -Dfortress.trust.store=/fully/qualified/file/name/mystruststore  \
-            -Dfortress.trust.store.password=changeit  \
+JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT                                        \
+            -Dfortress.host=mydomainname.com                                \
+            -Dfortress.port=636                                             \
+            -Dfortress.ldap.server.type=openldap                            \             
+            -Dfortress.admin.user=cn=Manager,dc=example,dc=com              \ 
+            -Dfortress.admin.pw=secret                                      \ 
+            -Dfortress.config.root=ou=Config,dc=example,dc=com              \
+            -Dfortress.enable.ldap.ssl=true"                                \
+            -Dfortress.trust.store=/fully/qualified/file/name/mystruststore \
+            -Dfortress.trust.store.password=changeit                        \
             -Dfortress.trust.store.onclasspath=false
 ```
 
