@@ -21,6 +21,7 @@ package org.apache.directory.fortress.rest;
 
 import org.apache.directory.fortress.core.ConfigMgr;
 import org.apache.directory.fortress.core.ConfigMgrFactory;
+import org.apache.directory.fortress.core.model.Configuration;
 import org.apache.directory.fortress.core.model.Props;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
@@ -47,17 +48,14 @@ class ConfigMgrImpl extends AbstractMgrImpl
     /* No qualifier */ FortResponse addConfig(FortRequest request)
     {
         FortResponse response = createResponse();
-
         try
         {
             ConfigMgr configMgr = ConfigMgrFactory.createInstance();
-            Properties inProperties = RestUtils.getProperties( (Props)request.getEntity() );
-            Properties outProperties = configMgr.add( request.getValue(), inProperties );
-            Props retProps = RestUtils.getProps( outProperties );
-            
-            if ( retProps != null )
+            Configuration inCfg = (Configuration)request.getEntity();
+            Configuration outCfg = configMgr.add( inCfg );
+            if ( outCfg != null )
             {
-                response.setEntity( retProps );
+                response.setEntity( outCfg );
             }
         }
         catch ( SecurityException se )
@@ -77,17 +75,14 @@ class ConfigMgrImpl extends AbstractMgrImpl
     /* No qualifier */ FortResponse updateConfig(FortRequest request)
     {
         FortResponse response = createResponse();
-
         try
         {
             ConfigMgr configMgr = ConfigMgrFactory.createInstance();
-            Properties inProperties = RestUtils.getProperties( (Props)request.getEntity() );
-            Properties outProperties = configMgr.update( request.getValue(), inProperties );
-            Props retProps = RestUtils.getProps( outProperties );
-            
-            if ( retProps != null )
+            Configuration inCfg = (Configuration)request.getEntity();
+            Configuration outCfg = configMgr.update( inCfg );
+            if ( outCfg != null )
             {
-                response.setEntity( retProps );
+                response.setEntity( outCfg );
             }
         }
         catch ( SecurityException se )
@@ -139,16 +134,13 @@ class ConfigMgrImpl extends AbstractMgrImpl
     /* No qualifier */ FortResponse readConfig(FortRequest request)
     {
         FortResponse response = createResponse();
-
         try
         {
             ConfigMgr configMgr = ConfigMgrFactory.createInstance();
-            Properties properties = configMgr.read( request.getValue() );
-            Props props = RestUtils.getProps( properties );
-            
-            if ( properties != null )
+            Configuration outCfg = configMgr.read( request.getValue() );
+            if ( outCfg != null )
             {
-                response.setEntity( props );
+                response.setEntity( outCfg );
             }
         }
         catch ( SecurityException se )
