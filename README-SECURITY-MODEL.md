@@ -166,7 +166,7 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 is.arbac02=true
  ```
 
- b. The policy load file in this section Creates an Admin RBAC (ARBAC) Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OU's:
+ b. The policy load file in this section Creates an ADMIN Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OU's:
 
  ```
 PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
@@ -192,13 +192,13 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
 
  c. Next, the ARBAC sample policy load script performs:
 
- * Create one ARBAC Permission for every Apache Fortress Rest service.
- * Grant every ARBAC Perm to the ARBAC Role *fortress-rest-admin*.
- * Assign the ARBAC Role *fortress-rest-admin* to test User *demoUser4*.
+ * Create one ADMIN Permission for every Apache Fortress Rest service.
+ * Grant every ADMIN Perm to the ADMIN Role *fortress-rest-admin*.
+ * Assign the ADMIN Role *fortress-rest-admin* to test User *demoUser4*.
  * Users who have been assigned *fortress-rest-admin*, like *demoUser4*, may...
    * call every Apache Fortress Rest service in this system and pass the ARBAC perm checks.
    * pass the ARBAC Org checks for (only) the data contained within the Apache Fortress core junit tests.
-   * pass *any/all* ARBAC Role range checks.
+   * pass *any/all* Role range checks.
 
  d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
