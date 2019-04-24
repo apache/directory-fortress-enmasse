@@ -192,12 +192,13 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
 
  c. Next, the ARBAC sample policy load script performs:
 
- * Create one ARBAC Permission for every Apache Fortress Rest service that is secured by ARBAC02 (all but the access and config managers).
- * Grants every ARBAC Perm to the ARBAC Role *fortress-rest-admin*.
- * Assigns the ARBAC Role *fortress-rest-admin* to the test User *demoUser4*.
-   * Users who have been granted this ARBAC role, like *demoUser4*, may call every Apache Fortress Rest service in this syteem and pass the ARBAC perm checks.
-   * Assigned users will pass the ARBAC organizational checks for (only) the data contained within the Apache Fortress core junit tests.
-   * Assigned users will pass *all* of the ARBAC role range checks.
+ * Create one ARBAC Permission for every Apache Fortress Rest service.
+ * Grant every ARBAC Perm to the ARBAC Role *fortress-rest-admin*.
+ * Assign the ARBAC Role *fortress-rest-admin* to test User *demoUser4*.
+ * Users who have been assigned *fortress-rest-admin*, like *demoUser4*, may...
+   * call every Apache Fortress Rest service in this system and pass the ARBAC perm checks.
+   * pass the ARBAC Org checks for (only) the data contained within the Apache Fortress core junit tests.
+   * pass *any/all* ARBAC Role range checks.
 
  d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
