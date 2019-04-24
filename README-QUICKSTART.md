@@ -28,8 +28,6 @@
  * SECTION 4. Test
  * SECTION 5. Table with External Config Switches
  * SECTION 6. Sample Config
- * SECTION 7. Integration Test with Fortress Core
-
 ___________________________________________________________________________________
 ## Document Overview
 
@@ -40,20 +38,22 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest w
 
 Minimum software requirements:
  * Apache Tomcat7++
-  * Completed integration tests in one of the Apache Fortress Core Quickstarts:
-    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
-    * *SECTION 4. Apache Fortress Core Integration Test* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
-    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-DOCKER-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
-    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-DOCKER-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
-
+ * Java 8
+ * git
+ * Apache Maven 3++
+ * Basic LDAP server setup by completing one of these Quickstarts
+    * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
+    * [APACHEDS & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
+    * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
 ___________________________________________________________________________________
 ## SECTION 2. Configure Tomcat and Deploy Fortress Rest
 
 Set the java system properties in tomcat with the target ldap server's coordinates.
 
-1. Edit the startup script for Tomcat
+#### 1. Edit the startup script for Tomcat
 
-2. Set the java opts
+#### 2. Set the java opts
 
  a. For OpenLDAP:
 
@@ -66,9 +66,9 @@ Set the java system properties in tomcat with the target ldap server's coordinat
  JAVA_OPTS="$JAVA_OPTS -Dfortress.admin.user=uid=admin,ou=system -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com -Dfortress.port=10389"
  ```
 
-3. Verify these settings match your target LDAP server.
+#### 3. Verify these settings match your target LDAP server.
 
-4. Download the fortress realm proxy jar into tomcat/lib folder:
+#### 4. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
   wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.3/fortress-realm-proxy-2.0.3.jar -P $TOMCAT_HOME/lib
@@ -76,7 +76,7 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 
   where *TOMCAT_HOME* matches your target env.
 
-5. Download the fortress rest war into tomcat/webapps folder:
+#### 5. Download the fortress rest war into tomcat/webapps folder:
 
   ```
   wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/2.0.3/fortress-rest-2.0.3.war -P $TOMCAT_HOME/webapps
@@ -84,34 +84,50 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 
   where *TOMCAT_HOME* matches your target env.
 
-6. Restart Tomcat.
+#### 6. Restart Tomcat.
 
 ___________________________________________________________________________________
 ## SECTION 3. Load Sample Security Policy
 
-1. From the project folder, run maven install to Apache Fortress RBAC security policy for Rest server:
+#### 1. Git the package.
+
+ a. from git:
+ ```
+ git clone --branch 2.0.3  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
+ cd directory-fortress-enmasse
+ mvn clean install
+ ```
+
+ b. or download package:
+ ```
+ wget http://www.apache.org/dist/directory/fortress/dist/2.0.3/fortress-rest-2.0.3-source-release.zip
+ unzip fortress-rest-2.0.3.zip
+ cd fortress-rest-2.0.3
+ mvn clean install
+ ```
+
+#### 2. From the project folder, run maven install to Apache Fortress RBAC security policy for Rest server:
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
  ```
 
  * This step creates test user, roles, needed for tests to be successfully run.
 
-2. Optional, load a sample security policy for ARBAC.
+#### 3. Optional, load a sample security policy for ARBAC.
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
  ```
-
  * See [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
 ___________________________________________________________________________________
 ## SECTION 4. Test
 
-1. Smoke test a few services:
+#### 1. Smoke test a few services:
 
  ```
  mvn test -Dtest=EmTest
  ```
 
-2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
+#### 2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
 ___________________________________________________________________________________
 ## SECTION 5. Table with External Config Switches
 
@@ -183,50 +199,5 @@ JAVA_OPTS=" -Dversion=2.0.4-SNAPSHOT                                        \
             -Dfortress.trust.store.password=changeit                        \
             -Dfortress.trust.store.onclasspath=false
 ```
-___________________________________________________________________________________
-## SECTION 7. Integration Test with Fortress Core
-
- These tests will use Apache Fortress Core test programs to drive the Apache Fortress Rest services.
- See *SECTION 1. Prerequisites* of this document for more info on how to prepare a test env.
-
-1. Point your Apache Fortress Core test env to Apache Fortress REST runtime.
-
- * Add these properties to slapd.properties or build.properties file:
-
- ```
-enable.mgr.impl.rest=true
-
-# This user account is added automatically during deployment of fortress-rest via -Dload.file=./src/main/resources/FortressRestServerPolicy.xml:
-http.user=demouser4
-http.pw=password
-http.host=localhost
-http.port=8080
-http.protocol=http
-
- ```
-
-2. Next, from **FORTRESS_CORE_HOME** enter the following command:
-
- ```
- mvn install
- ```
-
- * This will update the fortress.properties with the settings in the build and slapd.prooperties.
-
-3. Now run the integration tests:
-
- ```
- mvn -Dtest=FortressJUnitTest test
- ```
-
- * If everything was setup correctly the Apache Fortress Core tests will drive the tests via Apache Fortress Rest calls.
-
-4. Next, from **FORTRESS_CORE_HOME** enter the following command:
-
- ```
- mvn test -Pconsole
- ```
-
- * Console operations will now run through Apache Fortress Rest.
 
 #### END OF README-QUICKSTART

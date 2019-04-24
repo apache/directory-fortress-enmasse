@@ -31,7 +31,8 @@
  * SECTION 4. Prepare directory-fortress-rest package to use LDAP server
  * SECTION 5. Build and deploy directory-fortress-rest
  * SECTION 6. Unit Test.
- * SECTION 7. Fortress rest properties
+ * SECTION 7. Integration Test with Fortress Core
+ * SECTION 8. Fortress rest properties
 ___________________________________________________________________________________
 ## Document Overview
 
@@ -188,14 +189,13 @@ This web app uses Java EE security.
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
 
-#### 2. Build and load security policy to pass Apache Tomcat container and Apache CXF security checks:
+#### 2. Optional, load a sample security policy for ARBAC.
+ ```maven
+ mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
+ ```
 
-  ```maven
- mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
-  ```
-
- Build Notes:
- * `-Dload.file` automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
+ * See [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
+ * *-Dload.file* automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
  * This load needs to happen just once for the default test cases to work and may be dropped from future `mvn` commands.
 
 #### 3. Deploy to Tomcat:
@@ -249,9 +249,54 @@ Run unit test:
   is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
  * For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
  * The tests depend on sample security policy being loaded.
+___________________________________________________________________________________
+## SECTION 7. Integration Test with Fortress Core
+
+ These tests will use Apache Fortress Core test programs to drive the Apache Fortress Rest services.
+ See *SECTION 1. Prerequisites* of this document for more info on how to prepare a test env.
+
+1. Point your Apache Fortress Core test env to Apache Fortress REST runtime.
+
+ * Add these properties to slapd.properties or build.properties file:
+
+ ```
+enable.mgr.impl.rest=true
+
+# This user account is added automatically during deployment of fortress-rest via -Dload.file=./src/main/resources/FortressRestServerPolicy.xml:
+http.user=demouser4
+http.pw=password
+http.host=localhost
+http.port=8080
+http.protocol=http
+
+ ```
+
+2. Next, from **FORTRESS_CORE_HOME** enter the following command:
+
+ ```
+ mvn install
+ ```
+
+ * This will update the fortress.properties with the settings in the build and slapd.prooperties.
+
+3. Now run the integration tests:
+
+ ```
+ mvn -Dtest=FortressJUnitTest test
+ ```
+
+ * If everything was setup correctly the Apache Fortress Core tests will drive the tests via Apache Fortress Rest calls.
+
+4. Next, from **FORTRESS_CORE_HOME** enter the following command:
+
+ ```
+ mvn test -Pconsole
+ ```
+
+ * Console operations will now run through Apache Fortress Rest.
 
 ___________________________________________________________________________________
-## SECTION 7. Fortress Rest properties
+## SECTION 8. Fortress Rest properties
 
 This section describes the properties needed to control fortress rest.
 
