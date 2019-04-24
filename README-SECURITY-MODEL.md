@@ -139,8 +139,8 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 ## 5. Java EE security and Apache CXF *SimpleAuthorizingInterceptor* policy load
 
  a. The policy load file in this section performs the following:
-  * Creates an RBAC Role, *fortress-rest-user* for Java EE simple role check (described earlier). See [web.xml](src/main/webapp/WEB-INF/web.xml).
-  * Create the RBAC Role forcorresponding Apache CXF **SimpleAuthorizingInterceptor** checks (also described earlier). See [FortressInterceptor](src/main/java/org/apache/directory/fortress/rest/FortressInterceptor.java).
+  * Creates the RBAC Role, *fortress-rest-user* for the Java EE simple role check (described earlier). See [web.xml](src/main/webapp/WEB-INF/web.xml).
+  * Create the RBAC Roles for the Apache CXF **SimpleAuthorizingInterceptor** checks (also described earlier). See [FortressInterceptor](src/main/java/org/apache/directory/fortress/rest/FortressInterceptor.java).
     * For example...
     * Users assigned to *fortress-rest-admin-user* have access to every RBAC admin service. e.g. addUser, addRole, addPermission
     * "        "        *fortress-rest-review-user* have access to every RBAC review services. e.g. readUser, readRole, readPermission
