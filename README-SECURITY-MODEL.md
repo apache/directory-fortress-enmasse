@@ -24,13 +24,13 @@ ________________________________________________________________________________
 
  * Document Overview
  * Understand the security model of Apache Fortress Rest
- * 1. TLS
- * 2. Java EE security
- * 3. Apache CXF's **SimpleAuthorizingInterceptor**
- * 4. Apache Fortress **ARBAC02 Checks**
- * 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
- * 6. ARBAC policy load
- * 7. The list of Services that enforce ARBAC02
+ * SECTION 1. TLS
+ * SECTION 2. Java EE security
+ * SECTION 3. Apache CXF's **SimpleAuthorizingInterceptor**
+ * SECTION 4. Apache Fortress **ARBAC Checks**
+ * SECTION 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
+ * SECTION 6. ARBAC policy load
+ * SECTION 7. The list of Services that enforce ARBAC02
 ___________________________________________________________________________________
 
 ## Document Overview
@@ -73,18 +73,18 @@ This policy enforcement mechanism maps RBAC roles to a given set of services.  T
 | Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
 
 ___________________________________________________________________________________
-## 4. Apache Fortress **ARBAC02 Checks**
+## 4. Apache Fortress **ARBAC Checks**
 
- Disabled by default.  To enable, add this to fortress.properties file and restart instance:
+ The Apache Fortress Administrative Role-Based Access Control (ARBAC) subsystem handles delegating administrative tasks to special users.
+ Disabled in Apache Fortress REST by default, to enable, add the following declaration to the fortress.properties:
 
- ```concept
-# Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
-is.arbac02=true
+ ```
+ is.arbac02=true
  ```
 
-The ARBAC checks when enabled, include the following:
+The ARBAC checks once enabled, perform the following additional security checks:
 
-a. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called. 
+a. All service invocations, except for AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called.
  
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.
@@ -92,13 +92,13 @@ a. All service invocations, except AccessMgr and DelAccessMgr, perform an ADMIN 
  This means at least one ADMIN role must be activated for the user calling the service that has been granted the required permission.
  The entire list of permissions, and their mappings to services are listed in the table that follows.
 
-b. Some services (#'s 1 - 12 listed below) perform organizational verification, comparing the org on the ADMIN role with that on the target user or permission in the HTTP request.
+b. Some services (#'s 1 - 12 in ARBAC table below) perform organizational verification, comparing the org on the ADMIN role with that on the target user or permission in the HTTP request.
  There are two types of organizations being checked, User and Permission.  
  
- For example, **roleAsgn** and **roleDeasgn**  (9 and 10 below) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.  
+ For example, **roleAsgn** and **roleDeasgn**  (9 and 10 in ARBAC table) will verify that the caller has an ADMIN role with a user org unit that matches the ou of the target user.
  There is a similar check on **roleGrant** and **roleRevoke** (11 and 12) verifying the caller has an activated ADMIN role with a perm org unit that matches the ou on the target permission.
 
-c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role to verify user has matching ADMIN role with authority to assign to user or grant to permission. 
+c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the target RBAC role to verify user has matching ADMIN role with authority to assign to user or grant to permission.
  The Apache Fortress REST **roleAsgn**, **roleDeasgn**, **roleGrant** and **roleRevoke** services will enforce ADMIN authority over the particular RBAC role that is being targeted in the HTTP request. 
  These checks are based on a (hierarchical) range of roles, for which the target role must fall inside.   
  
@@ -161,12 +161,12 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 ## 6. ARBAC policy load
 
  a. The ARBAC policies are enforced when the following property is present in runtime *fortress.properties*:
- ```concept
+ ```
 # Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
 is.arbac02=true
  ```
 
- b. The policy load file in this section Creates an ADMIN Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OU's:
+ b. The policy load file in this section Creates an ADMIN Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OUs:
 
  ```
 PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
@@ -176,7 +176,7 @@ PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
       oamT4POrg4,oamT4POrg5,oamT4POrg6,oamT4POrg7,oamT4POrg8,
       oamT4POrg9,T5POrg1,T5POrg2,T5POrg3,T5POrg4,T5POrg5,T6POrg1,
       T6POrg2,T6POrg3,T6POrg4,T6POrg5,T6POrg6,T6POrg7,T7POrg1,T7POrg2,
-      T7POrg3,T7POrg4,T7POrg5,T7POrg6,T7POrg7,"
+      T7POrg3,T7POrg4,T7POrg5,T7POrg6,T7POrg7"
 
 UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
       oamT1UOrg1,oamT1UOrg10,oamT1UOrg2,oamT1UOrg3,oamT1UOrg4,
@@ -206,9 +206,9 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
  mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
  ```
 
- e. Now demoUser4 may execute every service and pass the ARBAC checks corresponding with the test data inside of Apache Fortress Core's integration test suite.
+ e. Now *demoUser4* may invoke every service in the subsystem and pass all of the ARBAC checks corresponding with the test data inside of Apache Fortress Core's integration test suite.
 
-## 7. The list of Services that enforce ARBAC02 checking.
+## 7. The list of Services that enforce ARBAC checking.
 
 |  #  | **Services**                   | UserOU Check | PermOU Check | Role Range Check | **ADMIN Permissions**                                                                             | 
 | --- | ------------------------------ | ------------ | ------------ | ---------------- | ------------------------------------------------------------------------------------------------- |
