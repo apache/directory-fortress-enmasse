@@ -188,7 +188,7 @@ This web app uses Java EE security.
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
 
-#### 2. Build and load test data:
+#### 2. Build and load security policy to pass Apache Tomcat container and Apache CXF security checks:
 
   ```maven
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml

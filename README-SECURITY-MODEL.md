@@ -28,7 +28,9 @@ ________________________________________________________________________________
  * 2.Java EE security
  * 3.Apache CXF's **SimpleAuthorizingInterceptor**
  * 4.Apache Fortress **ARBAC02 Checks**
- * The list of Services that enforce ARBAC02.
+ * 5.Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
+ * 6.ARBAC policy load
+ * 7.The list of Services that enforce ARBAC02
 ___________________________________________________________________________________
 
 ## Document Overview
@@ -130,12 +132,31 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
  * etc... 
 
  For an administrator to be authorized to target an RBAC role in one of the specified APIs listed above, at least one of their activated ADMIN roles must pass the ARBAC role range test.  There are currently two roles 
- created by the security policy in this project, [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml), that are excluded from this type of check: 
+ created by the security policy in this project, that are excluded from this type of check:
  **fortress-rest-admin** and **fortress-core-super-admin**. 
 
  Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
                                          
-### The list of Services that enforce ARBAC02.
+
+## 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
+
+ * Load file here: [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml)
+ * To load into LDAP:
+
+ ```maven
+ mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
+ ```
+
+## 6. ARBAC policy load
+
+ * Load file here: [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml)
+ * To load into LDAP:
+
+ ```maven
+ mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
+ ```
+
+## 7. The list of Services that enforce ARBAC02.
 
 |  #  | **Services**                   | UserOU Check | PermOU Check | Role Range Check | **ADMIN Permissions**                                                                             | 
 | --- | ------------------------------ | ------------ | ------------ | ---------------- | ------------------------------------------------------------------------------------------------- |
