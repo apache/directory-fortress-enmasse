@@ -139,7 +139,7 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 ## 5. Java EE security and Apache CXF *SimpleAuthorizingInterceptor* policy load
 
  a. The policy load file in this section performs the following:
-  * Creates an RBAC role, *fortress-rest-user* that needed for Java EE simple role check (described earlier). See [web.xml](src/main/webapp/WEB-INF/web.xml).
+  * Creates an RBAC role, *fortress-rest-user* for Java EE simple role check (described earlier). See [web.xml](src/main/webapp/WEB-INF/web.xml).
   * Create the roles for corresponding Apache CXF **SimpleAuthorizingInterceptor** checks (also described earlier). See [FortressInterceptor](src/main/java/org/apache/directory/fortress/rest/FortressInterceptor.java).
     * For example...
     * Users assigned to *fortress-rest-admin-user* have access to every RBAC admin service.
@@ -156,7 +156,7 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
  ```
 
- c. Now demoUser4 should be able to execute every service and pass the JavaEE and Apache CXF interceptor checks.
+ c. Now demoUser4 may execute every service and pass the JavaEE and Apache CXF interceptor checks.
 
 ## 6. ARBAC policy load
 
@@ -166,7 +166,7 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 is.arbac02=true
  ```
 
- b. The policy load file in this section Creates an Admin RBAC (ARBAC) Role named: *fortress-rest-admin*, and associate with (Test) Perm and User OU's:
+ b. The policy load file in this section Creates an Admin RBAC (ARBAC) Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OU's:
 
  ```
 PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
@@ -187,17 +187,17 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
       T6UOrg3,T6UOrg4,T6UOrg5,T6UOrg6,T6UOrg7,T7UOrg1,T7UOrg2,
       T7UOrg3,T7UOrg4,T7UOrg5,T7UOrg6,T7UOrg7"
  ```
- Note: These Perm and User OUs must be created prior to this sections's ARBAC sample load script being run.
- Those OUs are created during Apache Fortress Core integration testing inside the class named *FortressJUnitTest*.
+ Note: The Perm and User OUs must be created prior to the ARBAC sample load script being run.
+ They get created during Apache Fortress Core integration testing. See [FortressJUnitTest](https://github.com/apache/directory-fortress-core/blob/master/src/test/java/org/apache/directory/fortress/core/impl/FortressJUnitTest.java).
 
- c. Next the policy load script performs the following:
+ c. Next, the ARBAC sample policy load script performs:
 
- * Creates the Administrative Permissions that correspond with every Apache Fortress Rest service in this system.
- * Grants the Admin Perms to the Admin Role *fortress-rest-admin*.
- * Assigns the Admin Role *fortress-rest-admin* to the test User *demoUser4*.
-   * Users who have been granted this role, like *demoUser4*, may call every Apache Fortress Rest service in this syteem and pass the ARBAC02 perm checks.
-   * Assigned users will pass the ARBAC02 organizational checks for (only) the data contained within the Apache Fortress core junit tests.
-   * Assigned users will pass *all* of the ARBAC02 role range checks.
+ * Create one ARBAC Permission for every Apache Fortress Rest service that is secured by ARBAC02 (all but the access and config managers).
+ * Grants every ARBAC Perm to the ARBAC Role *fortress-rest-admin*.
+ * Assigns the ARBAC Role *fortress-rest-admin* to the test User *demoUser4*.
+   * Users who have been granted this ARBAC role, like *demoUser4*, may call every Apache Fortress Rest service in this syteem and pass the ARBAC perm checks.
+   * Assigned users will pass the ARBAC organizational checks for (only) the data contained within the Apache Fortress core junit tests.
+   * Assigned users will pass *all* of the ARBAC role range checks.
 
  d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
@@ -205,7 +205,9 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
  mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
  ```
 
-## 7. The list of Services that enforce ARBAC02.
+ e. Now demoUser4 may execute every service and pass the ARBAC checks corresponding with the test data inside of Apache Fortress Core's integration test suite.
+
+## 7. The list of Services that enforce ARBAC02 checking.
 
 |  #  | **Services**                   | UserOU Check | PermOU Check | Role Range Check | **ADMIN Permissions**                                                                             | 
 | --- | ------------------------------ | ------------ | ------------ | ---------------- | ------------------------------------------------------------------------------------------------- |
