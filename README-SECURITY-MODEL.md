@@ -134,27 +134,29 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
  created by the security policy in this project, that are excluded from this type of check:
  **fortress-rest-admin** and **fortress-core-super-admin**. 
 
- Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure. 
-                                         
+ Which means they won't have to pass the role range test.  All others use the range field to define authority over a particular set of roles, in a hierarchical structure.
 
-## 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
+## 5. Java EE security and Apache CXF *SimpleAuthorizingInterceptor* policy load
 
  a. The policy load file in this section performs the following:
-  * Create Java EE security role, *fortress-rest-user*, assigned users past the Java EE security role check described earlier.
-  * Create the roles needed to pass corresponding Apache CXF **SimpleAuthorizingInterceptor** checks described earlier.
-  * For example...
-  * Users assigned to *fortress-rest-admin-user* have access to all of the RBAC admin services.
-  * "        "        *fortress-rest-review-user* have access to all the RBAC review services.
-  * "        "        *fortress-rest-deladmin-user* have access to all the ARBAC admin services.
-  * etc...
-  * So a user would have to be assigned the *fortress-rest-user* and the particular interceptor role to successfully execute one of the rest services.
-  * The *fortress-rest-power-user*, inherits all of the others, making it very powerful. A user assigned this role has access to all services.
+  * Creates a RBAC role, *fortress-rest-user* that is needed to pass the Java EE security check described earlier. See [web.xml](src/main/webapp/WEB-INF/web.xml).
+  * Create the roles for corresponding Apache CXF **SimpleAuthorizingInterceptor** checks, also described earlier.
+    * For example...
+    * Users assigned to *fortress-rest-admin-user* have access to every RBAC admin service.
+    * "        "        *fortress-rest-review-user* have access to every RBAC review services.
+    * "        "        *fortress-rest-deladmin-user* have access to every ARBAC admin services.
+    * etc...
+  * Create an RBAC Role, *fortress-rest-power-user*, and make it the child of every other RBAC role.
+    * Users assigned to this role have access to every service.
+  * Create a test user, *demoUser4*, assign to *fortress-rest-power-user* RBAC role.
 
- b. To load [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) into LDAP:
+ b. Execute the policy load [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) into LDAP:
 
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
  ```
+
+ c. Now demoUser4 should be able to execute every service and pass the JavaEE and Apache CXF interceptor checks.
 
 ## 6. ARBAC policy load
 
@@ -185,14 +187,14 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
       T6UOrg3,T6UOrg4,T6UOrg5,T6UOrg6,T6UOrg7,T7UOrg1,T7UOrg2,
       T7UOrg3,T7UOrg4,T7UOrg5,T7UOrg6,T7UOrg7"
  ```
- Note: These Perm and User OUs are a prerequisite to the subsequent load script successfully running.
- They get created during Apache Fortress Core during integration testing.  That means the completion of those tests are a prerequisite to importing this data.
+ Note: These Perm and User OUs must be created prior to this sections's ARBAC sample load script being run.
+ Those OUs are created during Apache Fortress Core integration testing inside the class named *FortressJUnitTest*.
 
- c. Next the policy load scripts performs the following:
+ c. Next the policy load script performs the following:
 
  * Creates the Administrative Permissions that correspond with every Apache Fortress Rest service in this system.
  * Grants the Admin Perms to the Admin Role *fortress-rest-admin*.
- * Assigns role *fortress-rest-admin* to User *demoUser4*.
+ * Assigns the Admin Role *fortress-rest-admin* to the test User *demoUser4*.
    * Users who have been granted this role, like *demoUser4*, may call every Apache Fortress Rest service in this syteem and pass the ARBAC02 perm checks.
    * Assigned users will pass the ARBAC02 organizational checks for (only) the data contained within the Apache Fortress core junit tests.
    * Assigned users will pass *all* of the ARBAC02 role range checks.
