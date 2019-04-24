@@ -80,7 +80,6 @@ ________________________________________________________________________________
  ```concept
 # Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
 is.arbac02=true
-
  ```
 
 The ARBAC checks when enabled, include the following:
@@ -140,8 +139,18 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 
 ## 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
 
- * Load file here: [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml)
- * To load into LDAP:
+ a. The policy load file in this section performs the following:
+  * Create Java EE security role, *fortress-rest-user*, assigned users past the Java EE security role check described earlier.
+  * Create the roles needed to pass corresponding Apache CXF **SimpleAuthorizingInterceptor** checks described earlier.
+  * For example...
+  * Users assigned to *fortress-rest-admin-user* have access to all of the RBAC admin services.
+  * "        "        *fortress-rest-review-user* have access to all the RBAC review services.
+  * "        "        *fortress-rest-deladmin-user* have access to all the ARBAC admin services.
+  * etc...
+  * So a user would have to be assigned the *fortress-rest-user* and the particular interceptor role to successfully execute one of the rest services.
+  * The *fortress-rest-power-user*, inherits all of the others, making it very powerful. A user assigned this role has access to all services.
+
+ b. To load [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) into LDAP:
 
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
@@ -149,8 +158,46 @@ c. Some services (#'s 9,10,11,12) perform a range check on the target RBAC role 
 
 ## 6. ARBAC policy load
 
- * Load file here: [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml)
- * To load into LDAP:
+ a. The ARBAC policies are enforced when the following property is present in runtime *fortress.properties*:
+ ```concept
+# Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
+is.arbac02=true
+ ```
+
+ b. The policy load file in this section Creates an Admin RBAC (ARBAC) Role named: *fortress-rest-admin*, and associate with (Test) Perm and User OU's:
+
+ ```
+PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
+      oamT3POrg8,oamT3POrg9,oamT3POrg1,oamT3POrg10,oamT3POrg2,
+      oamT3POrg3,oamT3POrg4,oamT3POrg5,oamT3POrg6,oamT3POrg7,
+      oamT3POrg8,oamT4POrg1,oamT4POrg10,oamT4POrg2,oamT4POrg3,
+      oamT4POrg4,oamT4POrg5,oamT4POrg6,oamT4POrg7,oamT4POrg8,
+      oamT4POrg9,T5POrg1,T5POrg2,T5POrg3,T5POrg4,T5POrg5,T6POrg1,
+      T6POrg2,T6POrg3,T6POrg4,T6POrg5,T6POrg6,T6POrg7,T7POrg1,T7POrg2,
+      T7POrg3,T7POrg4,T7POrg5,T7POrg6,T7POrg7,"
+
+UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
+      oamT1UOrg1,oamT1UOrg10,oamT1UOrg2,oamT1UOrg3,oamT1UOrg4,
+      oamT1UOrg5,oamT1UOrg6,oamT1UOrg7,oamT1UOrg8,oamT1UOrg9,
+      oamT2UOrg1,oamT2UOrg10,oamT2UOrg2,oamT2UOrg3,oamT2UOrg4,
+      oamT2UOrg5,oamT2UOrg6,oamT2UOrg7,oamT2UOrg8,oamT2UOrg9,
+      T5UOrg1,T5UOrg2,T5UOrg3,T5UOrg4,T5UOrg5,T6UOrg1,T6UOrg2,
+      T6UOrg3,T6UOrg4,T6UOrg5,T6UOrg6,T6UOrg7,T7UOrg1,T7UOrg2,
+      T7UOrg3,T7UOrg4,T7UOrg5,T7UOrg6,T7UOrg7"
+ ```
+ Note: These Perm and User OUs are a prerequisite to the subsequent load script successfully running.
+ They get created during Apache Fortress Core during integration testing.  That means the completion of those tests are a prerequisite to importing this data.
+
+ c. Next the policy load scripts performs the following:
+
+ * Creates the Administrative Permissions that correspond with every Apache Fortress Rest service in this system.
+ * Grants the Admin Perms to the Admin Role *fortress-rest-admin*.
+ * Assigns role *fortress-rest-admin* to User *demoUser4*.
+   * Users who have been granted this role, like *demoUser4*, may call every Apache Fortress Rest service in this syteem and pass the ARBAC02 perm checks.
+   * Assigned users will pass the ARBAC02 organizational checks for (only) the data contained within the Apache Fortress core junit tests.
+   * Assigned users will pass *all* of the ARBAC02 role range checks.
+
+ d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
