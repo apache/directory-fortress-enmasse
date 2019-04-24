@@ -24,13 +24,13 @@ ________________________________________________________________________________
 
  * Document Overview
  * Understand the security model of Apache Fortress Rest
- * 1.TLS
- * 2.Java EE security
- * 3.Apache CXF's **SimpleAuthorizingInterceptor**
- * 4.Apache Fortress **ARBAC02 Checks**
- * 5.Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
- * 6.ARBAC policy load
- * 7.The list of Services that enforce ARBAC02
+ * 1. TLS
+ * 2. Java EE security
+ * 3. Apache CXF's **SimpleAuthorizingInterceptor**
+ * 4. Apache Fortress **ARBAC02 Checks**
+ * 5. Java EE security and Apache CXF SimpleAuthorizingInterceptor policy load
+ * 6. ARBAC policy load
+ * 7. The list of Services that enforce ARBAC02
 ___________________________________________________________________________________
 
 ## Document Overview
