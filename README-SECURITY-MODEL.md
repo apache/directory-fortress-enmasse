@@ -45,7 +45,7 @@ ________________________________________________________________________________
 
  The system architecture of a typical Apache Fortress Rest deployment:
 
- (*REST/JSON Client*)<--HTTP-->(*FortressREST*)<--in-process API call-->(*FortressCore*)<--LDAPv3-->(*DirectoryServer*)
+ (*REST/JSON Client*)<--https-->(*FortressREST*)<--in-process-->(*FortressCore*)<--ldaps-->(*DirectoryServer*)
 
  * REST/JSON Client is any HTTP interface that supports the message formats.
  * Fortress Rest is this project's main artifact, a web application archive (.war) file that deploys into servlet containers like Apache Tomcat.
