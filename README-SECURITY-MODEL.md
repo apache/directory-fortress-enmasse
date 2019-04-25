@@ -39,7 +39,7 @@
 
  A typical deployment:
 
- (*REST/JSON Client*)<--https-->Servlet Container(*FortressRealm*/*FortressREST*)<--in-process-->(*FortressCore*)<--ldaps-->(*DirectoryServer*)
+ (*REST/JSON Client*)<--https-->(Servlet Container(*FortressRealm*/*FortressREST*)<--in-process-->(*FortressCore*))<--ldaps-->(*DirectoryServer*)
 
  * REST/JSON Client is any HTTP interface that supports the Apache Fortress message formats.
  * Servlet Container is Apache Tomcat.
