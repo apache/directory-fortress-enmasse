@@ -255,7 +255,7 @@ ________________________________________________________________________________
  These tests will use the Apache Fortress Core test programs to drive the Apache Fortress Rest services.
  It works via fortress core's inherent ability to call itself over REST, useful for testing and hopping over firewalls.
 
- (*FortressCore*)<--https-->(*FortressREST*)<--in-process-->(*FortressCore*)<--ldaps-->(*DirectoryServer*)
+ (**FortressCore**)<--https-->(**FortressREST**)<--in-process-->(**FortressCore**)<--ldaps-->(**DirectoryServer**)
 
  See *SECTION 1. Prerequisites* of this document for more info on how to prepare a test env.
 
