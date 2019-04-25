@@ -39,20 +39,19 @@
 
  A typical deployment:
 
- (*REST/JSON Client*)<--https-->(Servlet Container(*FortressRealm*/*FortressREST*)<--in-process-->(*FortressCore*))<--ldaps-->(*DirectoryServer*)
+ (**RESTClient**)<--https-->(**FortressRest**)<--in-process-->(**FortressCore**)<--ldaps-->(**DirectoryServer**)
 
  * REST/JSON Client is any HTTP interface that supports the Apache Fortress message formats.
- * Servlet Container is Apache Tomcat.
- * Apache Fortress Realm plugs into the Servlet Container and performs declarative authN and authZ.
- * Apache Fortress Rest is a web application archive (.war) that deploys into the Servlet Container.
+ * Apache Fortress Rest is a web application archive (.war) that deploys into a Servlet Container.
     * Uses JAX-RS services to wrap Apache Fortress Core APIs over HTTP.
+ * Servlet Container is Apache Tomcat.
  * Apache Fortress Core is a set of APIs that get embedded inside of Java apps like Apache Fortress Rest.
     * A one-to-one mapping between an Apache Fortress Rest service and Apache Fortress Core api.
  * Directory Server is an LDAPv3 server instance, like ApacheDS or OpenLDAP.
 
  High-level flow:
  * The credentials are introduced into the call chain by the *REST/JSON Client* as standard HTTP basic auth header.
- * Passed into the Apache Fortress Realm for authentication and coarse-grained authorization by the Servlet Container.
+ * Passed into the Apache Fortress Rest for authentication and coarse-grained authorization by the Servlet Container.
  * Medium-grained authorization performed in the Apache Fortress Rest runtime at service dispatch time.
  * Next converted to an RBAC session and passed into the runtime inside the Fortress Request object.
  * The RBAC session gets passed into the Apache Fortress Core runtime for fine-grained checks (if enabled).
