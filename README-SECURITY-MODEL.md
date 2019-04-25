@@ -39,8 +39,9 @@
 
 ### A Typical Deployment
 
-   (**Client**)<--https-->(**FortressRest**)<--in-process-->(**FortressCore**)<--ldaps-->(**DirectoryServer**)
+   (**Client**)<--https-->(**FortressRest**)<in-process>(**FortressCore**)<--ldaps-->(**DirectoryServer**)
 
+ * Consists of three tiers: 1. **Client**, 2. Servlet Container hosting **FortressRest**, and 3. **DirectoryServer** that stores the policy information.
  * The **Client** is any HTTP interface that supports the Apache Fortress message formats.
  * **FortressRest** is a web application archive (.war) that deploys into a Servlet Container, i.e. Apache Tomcat.
  * **FortressCore** is a set of APIs that get embedded inside of Java apps (like FortressRest).
@@ -48,9 +49,9 @@
 
 ### High-level Security Flow
  * The user credentials are introduced into the call chain by the Client as a standard HTTP basic auth header.
- * Passed into the FortressRest for authentication and coarse-grained authorization before service dispatch.
- * Medium-grained authorization also performed inside Fortress Rest as the service dispatches.
- * Finally, the credentials are converted to an RBAC session and passed into the FortressCore for fine-grained checks (if enabled).
+ * Passed into the Servlet Container for authentication and coarse-grained authorization before dispatch to FortressRest.
+ * Medium-grained authorization performed inside FortressRest as the service dispatches.
+ * Finally, if ARBAC enabled (more later), the credentials are converted to an RBAC session and passed into the FortressCore for fine-grained checks.
 
 ### Apache Fortress Rest security model includes:
 
@@ -101,7 +102,7 @@
  is.arbac02=true
  ```
 
-a. When enabled, all service invocations perform an ADMIN permission check by invoking [DelAccessMgr.checkAccess](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/DelAccessMgr.html#checkAccess-org.apache.directory.fortress.core.model.Session-org.apache.directory.fortress.core.model.Permission-) down in the API layer.
+a. When enabled, all service invocations perform an ADMIN permission verification by invoking [DelAccessMgr.checkAccess](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/DelAccessMgr.html#checkAccess-org.apache.directory.fortress.core.model.Session-org.apache.directory.fortress.core.model.Permission-) down in the API layer.
  
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.
