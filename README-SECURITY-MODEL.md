@@ -37,9 +37,10 @@
  Provides a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations.
 ## Understand the security model of Apache Fortress Rest
 
+ A typical deployment:
+
  (*REST/JSON Client*)<--https-->(*FortressREST*)<--in-process-->(*FortressCore*)<--ldaps-->(*DirectoryServer*)
 
- A typical Apache Fortress Rest deployment consists of:
  * REST/JSON Client is any HTTP interface that supports the Apache Fortress message formats.
  * Apache Fortress Rest is a JAX-RS Web application that services Apache Fortress Core APIs over HTTP.
     * It deploys inside of any compliant Java Servlet container although here we'll be using Apache Tomcat.
