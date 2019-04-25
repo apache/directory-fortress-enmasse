@@ -43,9 +43,7 @@
 
  * The **Client** is any HTTP interface that supports the Apache Fortress message formats.
  * **FortressRest** is a web application archive (.war) that deploys into a Servlet Container, i.e. Apache Tomcat.
-    * Uses JAX-RS services to wrap Apache Fortress Core APIs over HTTP.
  * **FortressCore** is a set of APIs that get embedded inside of Java apps (like FortressRest).
-    * A one-to-one mapping between an Fortress Rest service and Fortress Core api.
  * **DirectoryServer** is a process implementing LDAPv3 protocols, e.g. ApacheDS or OpenLDAP.
 
 ### High-level Security Flow
@@ -62,7 +60,7 @@
 
 ## 2. Java EE security
 
- * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
+ * FortressRest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
  * This interface requires standard HTTP Basic Auth tokens for the userid/password credentials.
  * The credentials are verified by the Apache Fortress Realm via bind op invocation to the Directory Server.
  * The coarse-grained authorization policy ensures callers have the RBAC Role **fortress-rest-user**.
@@ -97,13 +95,13 @@
 ## 4. Apache Fortress **ARBAC Checks**
 
  The Apache Fortress Administrative Role-Based Access Control (ARBAC) subsystem handles delegating administrative tasks to special users.
- Disabled in Apache Fortress REST by default, to enable, add the following declaration to the fortress.properties:
+ Disabled in FortressRest by default, to enable, add the following declaration to the fortress.properties:
 
  ```
  is.arbac02=true
  ```
 
-a. When enabled, all service invocations perform an ADMIN permission check by invoking *DelAccessMgr.checkAccess* down in the API layer.
+a. When enabled, all service invocations perform an ADMIN permission check by invoking [DelAccessMgr.checkAccess](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/DelAccessMgr.html#checkAccess-org.apache.directory.fortress.core.model.Session-org.apache.directory.fortress.core.model.Permission-) down in the API layer.
  
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.
