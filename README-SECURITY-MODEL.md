@@ -37,24 +37,22 @@
  Provides a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations.
 ## Understand the security model of Apache Fortress Rest
 
- A typical deployment:
+### A Typical Deployment
 
- (**RESTClient**)<--https-->(**FortressRest**)<--in-process-->(**FortressCore**)<--ldaps-->(**DirectoryServer**)
+   (**Client**)<--https-->(**FortressRest**)<--in-process-->(**FortressCore**)<--ldaps-->(**DirectoryServer**)
 
- * REST/JSON Client is any HTTP interface that supports the Apache Fortress message formats.
- * Apache Fortress Rest is a web application archive (.war) that deploys into a Servlet Container.
+ * The **Client** is any HTTP interface that supports the Apache Fortress message formats.
+ * **FortressRest** is a web application archive (.war) that deploys into a Servlet Container, i.e. Apache Tomcat.
     * Uses JAX-RS services to wrap Apache Fortress Core APIs over HTTP.
- * Servlet Container is Apache Tomcat.
- * Apache Fortress Core is a set of APIs that get embedded inside of Java apps like Apache Fortress Rest.
-    * A one-to-one mapping between an Apache Fortress Rest service and Apache Fortress Core api.
- * Directory Server is an LDAPv3 server instance, like ApacheDS or OpenLDAP.
+ * **FortressCore** is a set of APIs that get embedded inside of Java apps (like FortressRest).
+    * A one-to-one mapping between an Fortress Rest service and Fortress Core api.
+ * **DirectoryServer** is a process implementing LDAPv3 protocols, e.g. ApacheDS or OpenLDAP.
 
- High-level flow:
- * The credentials are introduced into the call chain by the *REST/JSON Client* as standard HTTP basic auth header.
- * Passed into the Apache Fortress Rest for authentication and coarse-grained authorization by the Servlet Container.
- * Medium-grained authorization performed in the Apache Fortress Rest runtime at service dispatch time.
- * Next converted to an RBAC session and passed into the runtime inside the Fortress Request object.
- * The RBAC session gets passed into the Apache Fortress Core runtime for fine-grained checks (if enabled).
+### High-level Security Flow
+ * The user credentials are introduced into the call chain by the Client as a standard HTTP basic auth header.
+ * Passed into the FortressRest for authentication and coarse-grained authorization before service dispatch.
+ * Medium-grained authorization also performed inside Fortress Rest as the service dispatches.
+ * Finally, the credentials are converted to an RBAC session and passed into the FortressCore for fine-grained checks (if enabled).
 
 ### Apache Fortress Rest security model includes:
 
