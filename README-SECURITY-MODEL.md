@@ -43,6 +43,21 @@ ________________________________________________________________________________
  * Apache Fortress Rest is a JAX-RS Web application that allows the Apache Fortress Core APIs to be called over an HTTP interface.
  * It deploys inside of any compliant Java Servlet container although here we'll be using Apache Tomcat.
 
+ The system architecture of a typical Apache Fortress Rest deployment:
+
+ (*REST/JSON Client*)<---HTTP--->(*Fortress REST*)<---in-process API call--->(*Fortress Core*)<---LDAPv3--->(*Directory Server*)
+
+ * REST/JSON Client is any HTTP interface that supports the message formats.
+ * Fortress Rest is this project's main artifact, a web application archive (.war) file that deploys into servlet containers like Apache Tomcat.
+ * Fortress Core is a set of Java APIs that do the actual work, a one-to-one mapping between a fortress rest service and core api.
+ * Directory Server is OpenLDAP, ApacheDS or any other LDAPv3 server instance.
+
+ The security credentials of the caller are passed into call chain by the *REST/JSON Client* as standard HTTP basic auth headers
+ and verified by the Apache Fortress Realm.  This is where the role activation occurs creating an RBAC session.
+
+ This RBAC session is then handled by the container for the duration of the HTTP request, in the standard java.security.Principle format.
+ The user's RBAC session is retrieved from the container using standard Java API conveniently setting the stage for the checks that follow.
+
 ### Apache Fortress Rest security model includes:
 
 ### 1. TLS
@@ -54,11 +69,12 @@ ________________________________________________________________________________
 
  * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
  * The policy for Apache Fortress Rest is simple.  Any user with the **fortress-rest-user** role and correct credentials is allowed in.
- * The Fortress Rest interface uses HTTP Basic Auth tokens to send the userid/password.
+ * The Fortress Rest interface requires standard HTTP Basic Auth tokens for the userid/password credentials.
+ * See deployment descriptor, [web.xml](src/main/webapp/WEB-INF/web.xml), for settings.
 ___________________________________________________________________________________
 ## 3. Apache CXF's **SimpleAuthorizingInterceptor**
 
-This policy enforcement mechanism maps RBAC roles to a given set of services.  The following table shows what roles map to which (sets of) services:
+ This policy enforcement mechanism maps RBAC roles to a given set of services.  The following table shows what roles map to which (sets of) services:
 
 | service type      | fortress-rest-super-user | fortress-rest-admin-user | fortress-rest-review-user | fortress-rest-access-user | fortress-rest-deladmin-user | fortress-rest-delreview-user | fortress-rest-delaccess-user | fortress-rest-pwmgr-user | fortress-rest-audit-user | fortress-rest-config-user |
 | ----------------- | ------------------------ | ------------------------ | ------------------------- | ------------------------- | --------------------------- | ---------------------------- | ---------------------------- | ------------------------ | ------------------------ | ------------------------- |
@@ -72,6 +88,15 @@ This policy enforcement mechanism maps RBAC roles to a given set of services.  T
 | Audit  Manager    | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | true                     | false                     |
 | Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
 
+ * The service to role mapping is performed inside the [FortressServiceImpl](src/main/java/org/apache/directory/fortress/rest/FortressServiceImpl.java) module.
+ * For example, deleteUser:
+ ```
+ @POST
+ @Path("/userDelete/")
+ @RolesAllowed({"fortress-rest-super-user", "fortress-rest-admin-user"})
+ public FortResponse deleteUser...
+ ```
+ * Requires *fortress-rest-super-user* or *fortress-rest-admin-user* to gain entry AND the Java EE role described previously.
 ___________________________________________________________________________________
 ## 4. Apache Fortress **ARBAC Checks**
 
@@ -82,9 +107,7 @@ ________________________________________________________________________________
  is.arbac02=true
  ```
 
-The ARBAC checks once enabled, perform the following additional security checks:
-
-a. All service invocations, except for AccessMgr and DelAccessMgr, perform an ADMIN permission check automatically corresponding with the exact service/API being called.
+a. All service invocations, perform an ADMIN permission check automatically by invoking *DelAccessMgr.checkAccess*.
  
  For example, the permission with an objectName: **org.apache.directory.fortress.core.impl.AdminMgrImpl** and operation name: **addUser** is automatically checked
  during the call to the **userAdd** service.

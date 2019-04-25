@@ -252,7 +252,11 @@ Run unit test:
 ___________________________________________________________________________________
 ## SECTION 7. Integration Test with Fortress Core
 
- These tests will use Apache Fortress Core test programs to drive the Apache Fortress Rest services.
+ These tests will use the Apache Fortress Core test programs to drive the Apache Fortress Rest services.
+ It works via fortress core's inherent ability to call itself over REST, useful for testing and hopping over firewalls.
+
+(*Fortress Core*)<---HTTP--->(*Fortress REST*)<---in-process API call--->(*Fortress Core*)<---LDAPv3--->(*Directory Server*)
+
  See *SECTION 1. Prerequisites* of this document for more info on how to prepare a test env.
 
 1. Point your Apache Fortress Core test env to Apache Fortress REST runtime.
