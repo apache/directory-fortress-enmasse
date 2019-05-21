@@ -32,18 +32,17 @@
   <packaging>war</packaging>
   <version>2.0.4-SNAPSHOT</version>
   <name>Apache Fortress Rest</name>
-  <url>http://directory.apache.org/fortress/</url>
-  <description>Apache Fortress Rest provides a service-based implementation of the ANSI INCITS 359 RBAC Specification</description>
-
+  <url>https://directory.apache.org/fortress/</url>
+  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 350 RBAC Specification</description>
   <licenses>
     <license>
       <name>Apache License 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
 
   <scm>
-    <connection>scm:git:http://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
+    <connection>scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
     <developerConnection>
       scm:git: https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
     </developerConnection>
@@ -94,7 +93,7 @@
     <mailingList>
       <name>Apache Directory -- Fortress List</name>
       <post>fortress@directory.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/directory-fortress/</archive>
+      <archive>https://mail-archives.apache.org/mod_mbox/directory-fortress/</archive>
     </mailingList>
   </mailingLists>
 
@@ -433,7 +432,7 @@
   <repositories>
     <repository>
       <id>maven2</id>
-      <url>http://repo1.maven.org/maven2</url>
+      <url>https://repo1.maven.org/maven2</url>
     </repository>
   </repositories>
 
