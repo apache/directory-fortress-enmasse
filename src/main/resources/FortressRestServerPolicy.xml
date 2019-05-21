@@ -17,7 +17,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<project basedir="." default="all" name="Fortress Rest Server Role Policy">
+<project basedir="." default="all" name="Apache Fortress Rest Server Sample ARBAC Policy">
     <taskdef classname="org.apache.directory.fortress.core.ant.FortressAntTask" name="FortressAdmin" >
         <classpath path="${java.class.path}"/>
     </taskdef>
@@ -25,15 +25,15 @@
     <target name="all">
         <FortressAdmin>
 
-
-            <!-- Begin RBAC Admin Data: -->
+            <!-- This test demo user here will have all of the required roles to pass the security checks when calling the Apache Fortress REST services during integration testing. -->
+            <!-- In actual practice, you would establish a much stricter security policy, limiting users to only the sets of services, data needed to complete their jobs. -->
             <adduser>
-                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="JoeUser4" sn="User4"  beginTime="0000" endTime="0000" beginDate="20090101" endDate="20990101" beginLockDate="" endLockDate="" dayMask="1234567" timeout="60" photo="p4.jpeg"/>
+                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="Demo User" sn="User4"/>
             </adduser>
 
+            <!-- Assign the test user to the role that passes all RBAC checks for testing. -->
             <adduserrole>
-                <userrole userId="demoUser4" name="fortress-rest-user"  beginTime="0000" endTime="0000" beginDate="" endDate="" beginLockDate="" endLockDate="" dayMask="" timeout="0"/>
-                <userrole userId="demoUser4" name="fortress-rest-super-user"  beginTime="0000" endTime="0000" beginDate="" endDate="" beginLockDate="" endLockDate="" dayMask="" timeout="0"/>
+                <userrole userId="demoUser4" name="fortress-rest-power-user" />
             </adduserrole>
 
             <addrole>
@@ -62,7 +62,8 @@
             </addrole>
 
             <addroleinheritance>
-                <!-- Users assigned fortress-web-power-user role will inherit each of the following roles. -->
+                <!-- Users assigned fortress-rest-power-user role will inherit each of the following roles. -->
+                <relationship child="fortress-rest-power-user" parent="fortress-rest-user"/>
                 <relationship child="fortress-rest-power-user" parent="fortress-rest-access-user"/>
                 <relationship child="fortress-rest-power-user" parent="fortress-rest-admin-user"/>
                 <relationship child="fortress-rest-power-user" parent="fortress-rest-review-user"/>

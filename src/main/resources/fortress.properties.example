@@ -69,5 +69,8 @@ disable.dsd.cache=false
 # Boolean value. If true, requires rfc2307bis schema because posixUser and posixGroup must be auxiliary object classes to work with ftRls which is structural..
 rfc2307=false
 
+# Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
+is.arbac02=false
+
 # ApacheDS stores its password policies objects here by default:
 apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config

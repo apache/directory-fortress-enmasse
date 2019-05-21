@@ -34,7 +34,6 @@
   <name>Apache Fortress Rest</name>
   <url>https://directory.apache.org/fortress/</url>
   <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 350 RBAC Specification</description>
-
   <licenses>
     <license>
       <name>Apache License 2.0</name>
@@ -45,7 +44,7 @@
   <scm>
     <connection>scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-rest.git</connection>
     <developerConnection>
-      scm:git:https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+      scm:git: https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
     </developerConnection>
     <tag>2.0.3</tag>
   </scm>
@@ -72,6 +71,18 @@
     </developer>
 
     <developer>
+      <id>kayyagari</id>
+      <name>Kiran Ayyagari</name>
+      <email>kayyagari@apache.org</email>
+    </developer>
+
+    <developer>
+      <id>coheigea</id>
+      <name>Colm O hEigeartaigh</name>
+      <email>coheigea@apache.org</email>
+    </developer>
+
+    <developer>
       <id>cpike</id>
       <name>Chris Pike</name>
       <email>cpike@apache.org</email>
@@ -93,7 +104,7 @@
     <title>${project.name} ${project.version}</title>
     
     <!-- Dependencies version -->
-    <fortress.realm.version>2.0.3</fortress.realm.version>
+    <fortress.realm.version>2.0.4-SNAPSHOT</fortress.realm.version>
     <cxf.version>3.2.6</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
@@ -197,31 +208,6 @@
         <artifactId>maven-jar-plugin</artifactId>
       </plugin>
 
-      <!-- Create the fortress-rest web archive -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <!-- this is needed to pickup the context.xml in META-INF: -->
-        <configuration>
-          <warName>${project.artifactId}</warName>
-          <archive>
-            <manifest>
-              <classpathPrefix>lib/</classpathPrefix>
-            </manifest>
-          </archive>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>${project.basedir}/src/main/resources
-              </directory>
-            </resource>
-          </webResources>
-          <!--<archiveClasses>true</archiveClasses>-->
-          <attachClasses>true</attachClasses>
-        </configuration>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
@@ -320,7 +306,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <warName>${project.artifactId}-${version}</warName>
+          <warName>${project.artifactId}-${project.version}</warName>
           <archive>
             <manifest>
               <classpathPrefix>lib/</classpathPrefix>

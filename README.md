@@ -31,9 +31,8 @@
  * SECTION 4. Prepare directory-fortress-rest package to use LDAP server
  * SECTION 5. Build and deploy directory-fortress-rest
  * SECTION 6. Unit Test.
- * SECTION 7. Fortress rest properties
- * SECTION 8. Understand the security model of Apache Fortress Rest
-
+ * SECTION 7. Integration Test with Fortress Core
+ * SECTION 8. Fortress rest properties
 ___________________________________________________________________________________
 ## Document Overview
 
@@ -43,6 +42,7 @@ ________________________________________________________________________________
 ##  Tips for first-time users
 
  * For a tutorial on how to use Apache Fortress with LDAP, check out the Fortress Core quickstart guides.
+ * For a description of the various security mechanisms that are performed during Apache Fortress REST runtime operations: [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
  * Questions about this software package should be directed to its mailing list:
    * http://mail-archives.apache.org/mod_mbox/directory-fortress/
 
@@ -73,7 +73,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
  a. from git:
  ```
- git clone --branch 2.0.3 https://git-wip-us.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.3  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  mvn clean install
  ```
@@ -189,14 +189,13 @@ This web app uses Java EE security.
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
 
-#### 2. Build and load test data:
+#### 2. Optional, load a sample security policy for ARBAC.
+ ```maven
+ mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
+ ```
 
-  ```maven
- mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
-  ```
-
- Build Notes:
- * `-Dload.file` automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
+ * See [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
+ * *-Dload.file* automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
  * This load needs to happen just once for the default test cases to work and may be dropped from future `mvn` commands.
 
 #### 3. Deploy to Tomcat:
@@ -250,9 +249,59 @@ Run unit test:
   is running on a separate machine, or using port other than 8080, adjust the settings accordingly in src/main/test/java/org/apache/directory/fortress/rest/EmTest.java
  * For learning and troubleshooting, it is recommended that you use an HTTP proxy program, like Axis' tpMon to intercept the HTTP/XML request/responses between Fortress rest client and server.
  * The tests depend on sample security policy being loaded.
+___________________________________________________________________________________
+## SECTION 7. Integration Test with Fortress Core
+
+ These tests will use the Apache Fortress Core test programs to drive the Apache Fortress Rest services.
+ It works via fortress core's inherent ability to call itself over REST, useful for testing and hopping over firewalls.
+
+ (**FortressCore**)<---https--->(**FortressRest**)<-in-process->(**FortressCore**)<---ldaps--->(**DirectoryServer**)
+
+
+ See *SECTION 1. Prerequisites* of this document for more info on how to prepare a test env.
+
+1. Point your Apache Fortress Core test env to Apache Fortress REST runtime.
+
+ * Add these properties to slapd.properties or build.properties file:
+
+ ```
+enable.mgr.impl.rest=true
+
+# This user account is added automatically during deployment of fortress-rest via -Dload.file=./src/main/resources/FortressRestServerPolicy.xml:
+http.user=demouser4
+http.pw=password
+http.host=localhost
+http.port=8080
+http.protocol=http
+
+ ```
+
+2. Next, from **FORTRESS_CORE_HOME** enter the following command:
+
+ ```
+ mvn install
+ ```
+
+ * This will update the fortress.properties with the settings in the build and slapd.prooperties.
+
+3. Now run the integration tests:
+
+ ```
+ mvn -Dtest=FortressJUnitTest test
+ ```
+
+ * If everything was setup correctly the Apache Fortress Core tests will drive the tests via Apache Fortress Rest calls.
+
+4. Next, from **FORTRESS_CORE_HOME** enter the following command:
+
+ ```
+ mvn test -Pconsole
+ ```
+
+ * Console operations will now run through Apache Fortress Rest.
 
 ___________________________________________________________________________________
-## SECTION 7. Fortress Rest properties
+## SECTION 8. Fortress Rest properties
 
 This section describes the properties needed to control fortress rest.
 
@@ -340,39 +389,4 @@ This section describes the properties needed to control fortress rest.
  apacheds.pwpolicy.root=ou=passwordPolicies,ads-interceptorId=authenticationInterceptor,ou=interceptors,ads-directoryServiceId=default,ou=config
  ```
 
--------------------------------------------------------------------------------
-## SECTION 8. Understand the security model of Apache Fortress Rest
-
- * Apache Fortress Rest is a JAX-RS Web application that allows the Apache Fortress Core APIs to be called over an HTTP interface.
- * It deploys inside of any compliant Java Servlet container although here we'll be using Apache Tomcat.
-
-### Apache Fortress Rest security model includes:
-
-### TLS
-
-Nothing special or unique going on here.  Refer to the documentation of your servlet container for how to enable.
-
-### Java EE security
-
- * Apache Fortress Rest uses the [Apache Fortress Realm](https://github.com/apache/directory-fortress-realm) to provide Java EE authentication, coarse-grained authorization mapping the users and roles back to a given LDAP server.
- * The policy for Apache Fortress Rest is simple.  Any user with the **fortress-rest-user** role and correct credentials is allowed in.
- * The Fortress Rest interface uses HTTP Basic Auth tokens to send the userid/password.
-
-### Apache CXF's **SimpleAuthorizingInterceptor**
-
-This enforcement mechanism maps roles to a given set of services.  The following table shows what roles map to which (sets of) services:
-
-| service type      | fortress-rest-super-user | fortress-rest-admin-user | fortress-rest-review-user | fortress-rest-access-user | fortress-rest-deladmin-user | fortress-rest-delreview-user | fortress-rest-delaccess-user | fortress-rest-pwmgr-user | fortress-rest-audit-user | fortress-rest-config-user |
-| ----------------- | ------------------------ | ------------------------ | ------------------------- | ------------------------- | --------------------------- | ---------------------------- | ---------------------------- | ------------------------ | ------------------------ | ------------------------- |
-| Admin  Manager    | true                     | true                     | false                     | false                     | false                       | false                        | false                        | false                    | false                    | false                     |
-| Review Manager    | true                     | false                    | true                      | false                     | false                       | false                        | false                        | false                    | false                    | false                     |
-| Access Manager    | true                     | false                    | false                     | true                      | false                       | false                        | false                        | false                    | false                    | false                     |
-| Delegated Admin   | true                     | false                    | false                     | false                     | true                        | false                        | false                        | false                    | false                    | false                     |
-| Delegated Review  | true                     | false                    | false                     | false                     | false                       | true                         | false                        | false                    | false                    | false                     |
-| Delegated Access  | true                     | false                    | false                     | false                     | false                       | false                        | true                         | false                    | false                    | false                     |
-| Password  Manager | true                     | false                    | false                     | false                     | false                       | false                        | false                        | true                     | false                    | false                     |
-| Audit  Manager    | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | true                     | false                     |
-| Config  Manager   | true                     | false                    | false                     | false                     | false                       | false                        | false                        | false                    | false                    | true                      |
-
-___________________________________________________________________________________
 #### END OF README
