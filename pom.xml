@@ -33,8 +33,7 @@
   <version>2.0.4-SNAPSHOT</version>
   <name>Apache Fortress Rest</name>
   <url>https://directory.apache.org/fortress/</url>
-  <description>Apache Fortress Rest provides a service-based implementation of the ANSI INCITS 359 RBAC Specification</description>
-
+  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 350 RBAC Specification</description>
   <licenses>
     <license>
       <name>Apache License 2.0</name>
@@ -43,9 +42,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-rest.git</connection>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</developerConnection>
-    <url>https://github.com/apache/directory-fortress-enmasse/tree/master</url>
+    <url>https://github.com/apache/directory-fortress-enmasse/tree/${project.scm.tag}</url>
     <tag>master</tag>
   </scm>
 
