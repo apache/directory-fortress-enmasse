@@ -69,13 +69,12 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 -------------------------------------------------------------------------------
 ## SECTION 2. Download & Install
 
-#### 1. Build the source.
+#### 1. Download the source.
 
  a. from git:
  ```
  git clone --branch 2.0.3  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
- mvn clean install
  ```
 
  b. or download package:
@@ -84,16 +83,31 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
  wget http://www.apache.org/dist/directory/fortress/dist/2.0.3/fortress-rest-2.0.3-source-release.zip
  unzip fortress-rest-2.0.3.zip
  cd fortress-rest-2.0.3
+ ```
+
+#### 2. Build the source.
+
+a. Java 8 target
+
+ ```
  mvn clean install
  ```
 
-#### 2. Now build the javadoc:
+-- OR --
+
+b. Java 11 target
+
+ ```
+ mvn clean install -Djava.version=11
+ ```
+
+#### 3. Now build the javadoc:
 
  ```
  mvn javadoc:javadoc
  ```
 
-#### 3. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
+#### 4. View the generated document here: [./target/site/apidocs/overview-summary.html](./target/site/apidocs/overview-summary.html).
 
 -------------------------------------------------------------------------------
 ## SECTION 3. Prepare Tomcat for Java EE Security
@@ -188,6 +202,8 @@ This web app uses Java EE security.
  ```
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
+
+ mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
 
 #### 2. Optional, load a sample security policy for ARBAC.
  ```maven
