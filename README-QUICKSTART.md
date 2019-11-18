@@ -38,7 +38,7 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest w
 
 Minimum software requirements:
  * Apache Tomcat7++
- * Java 8
+ * Java 8++
  * git
  * Apache Maven 3++
  * Basic LDAP server setup by completing one of these Quickstarts
