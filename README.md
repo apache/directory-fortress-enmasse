@@ -202,10 +202,14 @@ This web app uses Java EE security.
  ```
 
  This sample requires Java 8 and Maven 3 to be setup within the execution env.
-
+ 
+#### 2. Load the default security policy for Fortress REST.
+ 
+ ```
  mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
+ ```
 
-#### 2. Optional, load a sample security policy for ARBAC.
+#### 3. Optional, load a sample security policy for ARBAC.
  ```maven
  mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
  ```
@@ -214,7 +218,7 @@ This web app uses Java EE security.
  * *-Dload.file* automatically loads the [directory-fortress-rest security policy](src/main/resources/FortressRestServerPolicy.xml) data into ldap.
  * This load needs to happen just once for the default test cases to work and may be dropped from future `mvn` commands.
 
-#### 3. Deploy to Tomcat:
+#### 4. Deploy to Tomcat:
 
  a. If using autodeploy feature, verify the Tomcat auto-deploy options are set correctly in the [pom.xml](pom.xml) file:
  ```xml

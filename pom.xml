@@ -104,7 +104,7 @@
     <java.version>1.8</java.version>
     <!-- Dependencies version -->
     <fortress.realm.version>2.0.4</fortress.realm.version>
-    <cxf.version>3.2.6</cxf.version>
+    <cxf.version>3.3.4</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
     <javadoc.version>2.9.1</javadoc.version>
@@ -112,9 +112,9 @@
     <log4j.version>1.2.17</log4j.version>
     <servlet-api.version>2.5.0</servlet-api.version>
     <slf4j.log4j12.version>1.7.21</slf4j.log4j12.version>
-    <spring.version>5.0.9.RELEASE</spring.version>
-    <spring.security.version>5.0.7.RELEASE</spring.security.version>
-    <jackson-jaxrs.version>2.9.7</jackson-jaxrs.version>
+    <jackson-jaxrs.version>2.10.1</jackson-jaxrs.version>
+    <version.jaxb.core>2.3.0.1</version.jaxb.core>
+    <version.jaxb.impl>2.3.2</version.jaxb.impl>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -155,17 +155,16 @@
         <version>${jackson-jaxrs.version}</version>
     </dependency>
 
-    <!-- Spring Dependencies -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
+      <version>5.2.2.RELEASE</version>
     </dependency>
     
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>${spring.security.version}</version>
+      <version>5.2.1.RELEASE</version>
     </dependency>
 
     <!-- Logging Dependencies -->
@@ -197,16 +196,16 @@
     </dependency>
 
     <dependency>
-         <groupId>com.sun.xml.bind</groupId>
-         <artifactId>jaxb-core</artifactId>
-         <version>2.3.0</version>
-       </dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>${version.jaxb.impl}</version>
+    </dependency>
 
     <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>2.3.0</version>
-      </dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>${version.jaxb.core}</version>
+    </dependency>
 
   </dependencies>
 
@@ -289,7 +288,6 @@
           <server>local-tomcat</server>
           <url>http://localhost:8080/manager/text</url>
           <path>/${project.artifactId}-${project.version}</path>
-<!--          <path>/enmasse-${version}</path>-->
           <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
           <username>tcmanager</username>
           <password>m@nager123</password>
@@ -311,11 +309,21 @@
         </configuration>
       </plugin>
 
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>5.2.4</version>
+        <configuration>
+          <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+          <suppressionFile>${project.basedir}/src/owasp/suppression.xml</suppressionFile>
+        </configuration>
+      </plugin>
+
       <!-- War the app -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.2.3</version>
         <configuration>
           <warName>${project.artifactId}-${project.version}</warName>
           <archive>
@@ -357,7 +365,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -369,7 +377,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -451,4 +459,26 @@
     </repository>
   </repositories>
 
+  <!-- OWASP Dependency Vulnerability Scanner Profile -->
+  <profiles>
+
+  <profile>
+    <id>owasp</id>
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+  </profile>
+</profiles>
 </project>
