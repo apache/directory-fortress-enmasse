@@ -16,7 +16,7 @@
    under the License.
 
 # README-QUICKSTART for Apache Fortress Rest
- * version 2.0.3
+ * version 2.0.4
 
 -------------------------------------------------------------------------------
 ## Table of Contents
@@ -58,7 +58,7 @@ Set the java system properties in tomcat with the target ldap server's coordinat
  a. For OpenLDAP:
 
  ```
- JAVA_OPTS="-Dversion=2.0.3 -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
+ JAVA_OPTS="-Dversion=2.0.4 -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
  ```
 
  b. For ApacheDS:
@@ -71,7 +71,7 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 #### 4. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.3/fortress-realm-proxy-2.0.3.jar -P $TOMCAT_HOME/lib
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.4/fortress-realm-proxy-2.0.4.jar -P $TOMCAT_HOME/lib
   ```
 
   where *TOMCAT_HOME* matches your target env.
@@ -79,7 +79,7 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 #### 5. Download the fortress rest war into tomcat/webapps folder:
 
   ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/2.0.3/fortress-rest-2.0.3.war -P $TOMCAT_HOME/webapps
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/2.0.4/fortress-rest-2.0.4.war -P $TOMCAT_HOME/webapps
   ```
 
   where *TOMCAT_HOME* matches your target env.
@@ -93,16 +93,16 @@ ________________________________________________________________________________
 
  a. from git:
  ```
- git clone --branch 2.0.3  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.4  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  mvn clean install
  ```
 
  b. or download package:
  ```
- wget http://www.apache.org/dist/directory/fortress/dist/2.0.3/fortress-rest-2.0.3-source-release.zip
- unzip fortress-rest-2.0.3.zip
- cd fortress-rest-2.0.3
+ wget http://www.apache.org/dist/directory/fortress/dist/2.0.4/fortress-rest-2.0.4-source-release.zip
+ unzip fortress-rest-2.0.4.zip
+ cd fortress-rest-2.0.4
  mvn clean install
  ```
 
