@@ -25,18 +25,6 @@
     <target name="all">
         <FortressAdmin>
 
-            <!-- This script requires that the fortress core JUNIT tests passed successfully, dependent on test User and Perm OUs created. -->
-            <!-- This test demo user here will have all of the required roles to pass the security checks when calling the Apache Fortress REST services during integration testing. -->
-            <!-- In actual practice, you would establish a much stricter security policy, limiting users to only the sets of services, data needed to complete their jobs. -->
-            <!--adduser>
-                <user userId="demoUser4" password="password" description="Demo Test User 4" ou="demousrs1" cn="Demo User" sn="User4"/>
-            </adduser-->
-
-            <!-- Assign the test user to the role that passes all RBAC checks for testing. -->
-            <!--adduserrole>
-                <userrole userId="demoUser4" name="fortress-rest-power-user" />
-            </adduserrole-->
-
             <!-- Assign the test user to the ADMIN role that passes all ARBAC02 checks for testing. -->
             <adduseradminrole>
                 <userrole userId="demoUser4" name="fortress-rest-admin" />
