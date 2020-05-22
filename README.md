@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 2.0.4
+ * Version 2.0.5
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
@@ -73,16 +73,16 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
  a. from git:
  ```
- git clone --branch 2.0.4  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.5  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  ```
 
  b. or download package:
 
  ```
- wget http://www.apache.org/dist/directory/fortress/dist/2.0.4/fortress-rest-2.0.4-source-release.zip
- unzip fortress-rest-2.0.4.zip
- cd fortress-rest-2.0.4
+ wget http://www.apache.org/dist/directory/fortress/dist/2.0.5/fortress-rest-2.0.5-source-release.zip
+ unzip fortress-rest-2.0.5.zip
+ cd fortress-rest-2.0.5
  ```
 
 #### 2. Build the source.
@@ -117,7 +117,7 @@ This web app uses Java EE security.
 #### 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```bash
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.4/fortress-realm-proxy-2.0.4.jar -P $TOMCAT_HOME/lib
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.5/fortress-realm-proxy-2.0.5.jar -P $TOMCAT_HOME/lib
   ```
 
  * Where `$TOMCAT_HOME` points to the execution env.
