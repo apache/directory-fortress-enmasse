@@ -57,7 +57,7 @@ Minimum software requirements:
  * Java 8++
  * git
  * Apache Maven 3++
- * Apache Tomcat 7++
+ * Apache Tomcat 8++
  * Basic LDAP server setup by completing one of these Quickstarts
     * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
     * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
@@ -344,7 +344,7 @@ This section describes the properties needed to control fortress rest.
 
  ```
  # Else if OpenLDAP server:
- ldap.server.type=slapd
+ ldap.server.type=openldap
  ```
 
  ```
