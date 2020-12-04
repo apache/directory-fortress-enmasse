@@ -348,7 +348,5 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
 | 118 | auditSessions                  | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchUserSessions"        |
 | 119 | auditMods                      | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchAdminMods"           |
 | 120 | auditInvld                     | false        | false        | false            | objName="org.apache.directory.fortress.core.impl.AuditMgrImpl" opName="searchInvalidUsers"        |
-|     |                                | false        | false        | false            |   |
-
 
 #### END OF README
