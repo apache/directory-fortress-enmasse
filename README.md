@@ -399,7 +399,6 @@ This section describes the properties needed to control fortress rest.
  enable.ldap.ssl.debug=true
  trust.store=/fully/qualified/path/and/file/name/to/java/truststore
  trust.store.password=changeit
- trust.store.set.prop=true
  ```
 
 #### 7. If using ApacheDS and setting password policies, point to the correction location.
