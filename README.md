@@ -52,8 +52,6 @@ ________________________________________________________________________________
       * Service security using Apache CXF's **SimpleAuthorizingInterceptor**
    * programmatic controls:
       * fine-grained authorization
-
-* More here: [README-SECURITY-MODEL](README-SECURITY-MODEL.md)
 ___________________________________________________________________________________
 ##  Tips for first-time users
 
