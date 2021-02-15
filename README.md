@@ -24,6 +24,7 @@
 ## Table of Contents
 
  * Document Overview
+ * About Apache Fortress Rest
  * Tips for first-time users.
  * SECTION 1. Prerequisites.
  * SECTION 2. Download & Install.
@@ -38,6 +39,21 @@ ________________________________________________________________________________
 
 This document contains instructions to download, build, and test operations using Apache Fortress Rest component.
 
+___________________________________________________________________________________
+## About Apache Fortress Rest
+
+* An http service interface to drive Apache Fortress APIs.
+
+* Uses Apache CXF as the rest framework.
+
+* Layered security using ...
+   * declarative controls:
+      * HTTP Basic Authentication and coarse-grained role check (Tomcat Realm)
+      * Service security using Apache CXF's **SimpleAuthorizingInterceptor**
+   * programmatic controls:
+      * fine-grained authorization
+
+* More here: [README-SECURITY-MODEL](README-SECURITY-MODEL.md)
 ___________________________________________________________________________________
 ##  Tips for first-time users
 
