@@ -60,6 +60,9 @@ debug.ldap.pool=false
 # Default for pool reconnect flag is false:
 enable.pool.reconnect=true
 
+# Set to true if using API 2.0.2 and need relax control (default is false):
+enable.relax.control.registration=false
+
 ehcache.config.file=ehcache.xml
 
 # If for any reason echcache must be DISABLED for DSD, make sure this parameter is set to 'true' which is the default.  Otherwise performance penalty will be incurred during multi-role activations.
