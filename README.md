@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 2.0.5
+ * Version 2.0.6
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
