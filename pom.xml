@@ -111,7 +111,7 @@
     <junit.version>4.13.2</junit.version>
     <version.log4j>2.14.1</version.log4j>
     <servlet-api.version>2.5.0</servlet-api.version>
-    <jackson-jaxrs.version>2.10.1</jackson-jaxrs.version>
+    <jackson-jaxrs.version>2.12.3</jackson-jaxrs.version>
     <version.jaxb.core>2.3.0.1</version.jaxb.core>
     <version.jaxb.impl>2.3.2</version.jaxb.impl>
     <!--  Other properties -->
@@ -302,7 +302,7 @@
         <configuration>
           <source>8</source>
           <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2016, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2021, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
           <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
           <version>true</version>
           <author>true</author>
@@ -315,7 +315,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>5.2.4</version>
+        <version>6.2.2</version>
         <configuration>
           <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
           <suppressionFile>${project.basedir}/src/owasp/suppression.xml</suppressionFile>

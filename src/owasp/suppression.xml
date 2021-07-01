@@ -22,16 +22,9 @@
     <!-- Suppress OWASP warnings about spring security, security method override, not applicable here. -->
     <suppress>
         <notes><![CDATA[
-   file name: spring-security-core-5.2.1.RELEASE.jar
+   file name: api-i18n-2.0.0.jar
    ]]></notes>
-        <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-core@.*$</packageUrl>
-        <cve>CVE-2018-1258</cve>
-    </suppress>
-    <suppress>
-        <notes><![CDATA[
-   file name: spring-security-web-5.2.1.RELEASE.jar
-   ]]></notes>
-        <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-web@.*$</packageUrl>
-        <cpe>cpe:/a:pivotal_software:spring_security</cpe>
+        <packageUrl regex="true">^pkg:maven/org\.apache\.directory\.api/api\-i18n@.*$</packageUrl>
+        <cpe>cpe:/a:i18n_project:i18n</cpe>
     </suppress>
 </suppressions>
