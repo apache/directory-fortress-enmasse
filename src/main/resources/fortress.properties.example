@@ -36,13 +36,30 @@ admin.user=uid=admin,ou=system
 admin.pw=secret
 # Else If OpenLDAP it will look something like this:
 #admin.user=cn=Manager,dc=example,dc=com
-# Used for read/write access to slapd access log suffix, for openldap audit support:
-#log.admin.user=cn=Manager,cn=log
-#log.admin.pw=secret
 
 # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
 min.admin.conn=1
 max.admin.conn=25
+
+# This is min/max connection pool settings for LDAP User authentication connection pool:
+min.user.conn=1
+max.user.conn=10
+
+# Used for read/write access to slapd access log suffix, for openldap audit support (OpenLDAP only):
+#log.admin.user=cn=Manager,cn=log
+#log.admin.pw=secret
+# This is min/max settings for LDAP connections to read slapo access log (OpenLDAP only):
+#min.log.conn=1
+#max.log.conn=3
+
+# Applies to all pools, connection validated on retrieval with dummy ldapsearch. (default is false)
+#validate.conn.borrow=false
+# Applies to all pools, connection validated when idle with dummy ldapsearch. (default is false)
+#validate.conn.idle=false
+# Applies to all pools, when all connections are exhausted will block. (default is true)
+#max.conn.block=true
+# Applies to all pools, when all connections are exhausted will block for this many milliseconds. (default is 5000)
+#max.conn.block.time=5000
 
 # Used for SSL Connection to LDAP Server:
 #enable.ldap.ssl=true
