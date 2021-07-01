@@ -126,6 +126,7 @@
     <dependency>
       <groupId>org.apache.directory.fortress</groupId>
       <artifactId>fortress-realm-impl</artifactId>
+      <version>${fortress.realm.version}</version>
     </dependency>
 
     <!-- CXF Dependencies -->
