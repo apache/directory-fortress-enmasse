@@ -27,8 +27,8 @@ import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.directory.fortress.core.rest.RestUtils;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Properties;
 
 /**
@@ -38,7 +38,7 @@ import java.util.Properties;
  */
 class ConfigMgrImpl extends AbstractMgrImpl
 {
-    private static final Logger log = Logger.getLogger( ConfigMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( ConfigMgrImpl.class.getName() );
 
     /**
      *
@@ -60,7 +60,7 @@ class ConfigMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -87,7 +87,7 @@ class ConfigMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -119,7 +119,7 @@ class ConfigMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -145,7 +145,7 @@ class ConfigMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;

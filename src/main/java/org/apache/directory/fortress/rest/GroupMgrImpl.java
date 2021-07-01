@@ -23,7 +23,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.directory.fortress.core.*;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.*;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ import java.util.List;
 class GroupMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger log = Logger.getLogger( GroupMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( GroupMgrImpl.class.getName() );
 
     
     /* No qualifier */ FortResponse addGroup( FortRequest request )
@@ -53,7 +54,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -73,7 +74,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -95,7 +96,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -116,7 +117,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -137,7 +138,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -173,7 +174,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -193,7 +194,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -213,7 +214,7 @@ class GroupMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;

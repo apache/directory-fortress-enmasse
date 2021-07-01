@@ -25,7 +25,8 @@ import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.PwPolicy;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ import java.util.List;
 class PswdPolicyMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger LOG = Logger.getLogger( PswdPolicyMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( PswdPolicyMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************

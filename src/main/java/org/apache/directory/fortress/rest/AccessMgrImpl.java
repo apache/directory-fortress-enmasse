@@ -23,11 +23,9 @@ import org.apache.directory.fortress.core.AccessMgr;
 import org.apache.directory.fortress.core.AccessMgrFactory;
 import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.SecurityException;
-import org.apache.directory.fortress.core.ant.RoleConstraintAnt;
 import org.apache.directory.fortress.core.model.*;
-import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Set;
 
@@ -39,8 +37,8 @@ import java.util.Set;
 class AccessMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger LOG = Logger.getLogger( AccessMgrImpl.class.getName() );
-    
+    private static final Logger LOG = LoggerFactory.getLogger( AccessMgrImpl.class.getName() );
+
     /** A flag for trusted sessions */
     private static final boolean TRUSTED = true;
     

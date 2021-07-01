@@ -30,7 +30,8 @@ import org.apache.directory.fortress.core.model.Session;
 import org.apache.directory.fortress.core.util.Config;
 import org.apache.directory.fortress.realm.J2eePolicyMgr;
 import org.apache.directory.fortress.realm.J2eePolicyMgrFactory;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -39,7 +40,7 @@ import org.apache.log4j.Logger;
  */
 public class SecUtils
 {
-    private static final Logger LOG = Logger.getLogger(SecUtils.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger( SecUtils.class.getName() );
     private static J2eePolicyMgr j2eePolicyMgr;
 
     static

@@ -19,7 +19,8 @@
  */
 package org.apache.directory.fortress.rest;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+
 import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.FortResponse;

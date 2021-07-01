@@ -22,7 +22,9 @@ package org.apache.directory.fortress.rest;
 import org.apache.directory.fortress.core.*;
 import org.apache.directory.fortress.core.SecurityException;
 import org.apache.directory.fortress.core.model.*;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Utility for Fortress Rest Server.  This class is thread safe.
@@ -32,8 +34,7 @@ import org.apache.log4j.Logger;
 class AdminMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger log = Logger.getLogger( AdminMgrImpl.class.getName() );
-
+    private static final Logger LOG = LoggerFactory.getLogger( AdminMgrImpl.class.getName() );
     
     /* No qualifier */ FortResponse addUser( FortRequest request )
     {
@@ -49,7 +50,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -70,7 +71,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -91,7 +92,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -112,7 +113,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -133,7 +134,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -154,7 +155,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -175,7 +176,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -196,7 +197,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -217,7 +218,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -238,7 +239,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -259,7 +260,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -280,7 +281,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -301,7 +302,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -322,7 +323,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -343,7 +344,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -364,7 +365,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -385,7 +386,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -406,7 +407,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -427,7 +428,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -551,7 +552,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -578,7 +579,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -606,7 +607,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -634,7 +635,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -656,7 +657,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -677,7 +678,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -698,7 +699,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -719,7 +720,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -740,7 +741,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -761,7 +762,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -783,7 +784,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -805,7 +806,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -826,7 +827,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -847,7 +848,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -868,7 +869,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -889,7 +890,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -911,7 +912,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -933,7 +934,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -954,7 +955,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -975,7 +976,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -997,7 +998,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1018,7 +1019,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1039,7 +1040,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1060,7 +1061,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         return response;
     }
@@ -1080,7 +1081,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         return response;
     }
@@ -1101,7 +1102,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1123,7 +1124,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1144,7 +1145,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1164,7 +1165,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -1184,7 +1185,7 @@ class AdminMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;

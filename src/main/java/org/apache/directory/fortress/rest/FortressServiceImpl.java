@@ -28,7 +28,9 @@ import javax.ws.rs.core.Context;
 import org.apache.directory.fortress.core.GlobalErrIds;
 import org.apache.directory.fortress.core.model.*;
 import org.apache.directory.fortress.core.rest.HttpIds;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 
 
@@ -40,7 +42,7 @@ import org.springframework.stereotype.Service;
 @Service("fortressService")
 public class FortressServiceImpl implements FortressService
 {
-    private static final Logger log = Logger.getLogger( FortressServiceImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( FortressServiceImpl.class.getName() );
     // Instantiate the implementation classes where the actual work is done:
     private final ReviewMgrImpl reviewMgrImpl = new ReviewMgrImpl();
     private final AdminMgrImpl adminMgrImpl = new AdminMgrImpl();
@@ -2534,7 +2536,7 @@ public class FortressServiceImpl implements FortressService
     public FortResponse invalid(FortRequest request)
     {
         String szError = "Could not find a matching service. HTTP request URI:" + httpRequest.getRequestURI() + ". User: " + httpRequest.getRemoteUser();
-        log.warn( szError );
+        LOG.warn( szError );
         FortResponse response = new FortResponse();
         response.setErrorCode( GlobalErrIds.REST_NOT_FOUND_ERR );
         response.setErrorMessage( szError );

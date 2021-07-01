@@ -31,7 +31,8 @@ import java.util.Set;
 import org.apache.cxf.common.classloader.ClassLoaderUtils;
 import org.apache.cxf.common.util.ClassHelper;
 import org.apache.cxf.interceptor.security.SimpleAuthorizingInterceptor;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -42,7 +43,7 @@ import org.apache.log4j.Logger;
 public class FortressInterceptor extends SimpleAuthorizingInterceptor
 {
     /** A logger for this class */
-    private static final Logger LOG = Logger.getLogger(FortressInterceptor.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger( FortressInterceptor.class.getName() );
 
     private static final String DEFAULT_ANNOTATION_CLASS_NAME = "javax.annotation.security.RolesAllowed";
     

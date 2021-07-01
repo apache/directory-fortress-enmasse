@@ -29,7 +29,8 @@ import org.apache.directory.fortress.core.model.OrgUnitRelationship;
 import org.apache.directory.fortress.core.model.UserAdminRole;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -40,7 +41,7 @@ import org.apache.log4j.Logger;
 class DelegatedAdminMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger LOG = Logger.getLogger( DelegatedAdminMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( DelegatedAdminMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************

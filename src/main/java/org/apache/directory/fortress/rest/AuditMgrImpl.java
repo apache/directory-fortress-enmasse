@@ -28,8 +28,8 @@ import org.apache.directory.fortress.core.model.Mod;
 import org.apache.directory.fortress.core.model.UserAudit;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ import java.util.List;
 class AuditMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger log = Logger.getLogger( AuditMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( AuditMgrImpl.class.getName() );
 
     /**
      * ************************************************************************************************************************************
@@ -62,7 +62,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch ( SecurityException se )
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -83,7 +83,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch (SecurityException se)
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -104,7 +104,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch (SecurityException se)
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -125,7 +125,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch (SecurityException se)
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
 
         return response;
@@ -146,7 +146,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch (SecurityException se)
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;
@@ -167,7 +167,7 @@ class AuditMgrImpl extends AbstractMgrImpl
         }
         catch (SecurityException se)
         {
-            createError( response, log, se );
+            createError( response, LOG, se );
         }
         
         return response;

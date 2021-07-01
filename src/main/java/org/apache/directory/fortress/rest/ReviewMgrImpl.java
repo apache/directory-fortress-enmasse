@@ -34,8 +34,8 @@ import org.apache.directory.fortress.core.model.User;
 import org.apache.directory.fortress.core.model.UserRole;
 import org.apache.directory.fortress.core.model.FortRequest;
 import org.apache.directory.fortress.core.model.FortResponse;
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Set;
 
@@ -47,7 +47,7 @@ import java.util.Set;
 class ReviewMgrImpl extends AbstractMgrImpl
 {
     /** A logger for this class */
-    private static final Logger LOG = Logger.getLogger( ReviewMgrImpl.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( ReviewMgrImpl.class.getName() );
 
     /* No qualifier */  FortResponse readPermission( FortRequest request )
     {

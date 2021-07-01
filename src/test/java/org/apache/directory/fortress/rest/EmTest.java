@@ -35,7 +35,8 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.cxf.common.util.Base64Utility;
 import org.apache.cxf.helpers.IOUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,7 +51,7 @@ import javax.ws.rs.WebApplicationException;
 public final class EmTest
 {
     private static final String CLS_NM = EmTest.class.getName();
-    private static final Logger log = Logger.getLogger(CLS_NM);
+    private static final Logger LOG = LoggerFactory.getLogger( CLS_NM );
     private static final String HOST = "localhost";
     private static final String PORT = "8080";
     private static final String VERSION = System.getProperty("version");
@@ -66,7 +67,7 @@ public final class EmTest
     @Test
     public void testServices()
     {
-        log.info(CLS_NM + ".testServices STARTED");
+        LOG.info(CLS_NM + ".testServices STARTED");
         try
         {
             // Don't fail if the delete was not successful as this may be the first run:
@@ -123,14 +124,14 @@ public final class EmTest
             // Use this group session to check access (URL is the same as for user, but session has 'isGroupSession' == true)
             testFunction("emTestCheckAccessGroupSession.xml", HttpIds.RBAC_AUTHZ, true);
 
-            log.info(CLS_NM + ".testServices SUCCESS");
+            LOG.info(CLS_NM + ".testServices SUCCESS");
         }
         catch(RestException re)
         {
             String error = CLS_NM + ".post caught RestException=" + re;
-            log.error(error);
+            LOG.error(error);
         }
-        log.info(CLS_NM + ".testServices FINISHED");
+        LOG.info(CLS_NM + ".testServices FINISHED");
     }
 
     /**
@@ -149,7 +150,7 @@ public final class EmTest
         String warn = CLS_NM + ".testServices FAILED calling " + function + " rc=" + rc + " error message=" + szErrorMsg;
         if(rc != 0)
         {
-            log.info(warn);
+            LOG.info(warn);
         }
         if (failOnError)
         {
@@ -169,7 +170,7 @@ public final class EmTest
     public String post(String userId, String password, String xmlFile, String function) throws RestException
     {
         String szResponse;
-        log.info(CLS_NM + ".post file:" + xmlFile + " HTTP POST request to:" + function);
+        LOG.info(CLS_NM + ".post file:" + xmlFile + " HTTP POST request to:" + function);
         URL fUrl = EmTest.class.getClassLoader().getResource(xmlFile);
         PostMethod post = null;
         try
@@ -185,8 +186,8 @@ public final class EmTest
                 HttpClient httpclient = new HttpClient();
                 int result = httpclient.executeMethod(post);
                 szResponse = IOUtils.toString(post.getResponseBodyAsStream(), "UTF-8");
-                log.info(CLS_NM + ".post Response status code: " + result);
-                log.info(CLS_NM + ".post Response value: " + szResponse);
+                LOG.info(CLS_NM + ".post Response status code: " + result);
+                LOG.info(CLS_NM + ".post Response value: " + szResponse);
             }
             else
             {
