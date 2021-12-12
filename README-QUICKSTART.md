@@ -16,7 +16,7 @@
    under the License.
 
 # README-QUICKSTART for Apache Fortress Rest
- * version 2.0.6
+ * version 2.0.7
 
 -------------------------------------------------------------------------------
 ## Table of Contents
@@ -58,7 +58,7 @@ Set the java system properties in tomcat with the target ldap server's coordinat
  a. For OpenLDAP:
 
  ```
- JAVA_OPTS="-Dversion=2.0.6 -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
+ JAVA_OPTS="-Dversion=2.0.7 -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
  ```
 
  b. For ApacheDS:
