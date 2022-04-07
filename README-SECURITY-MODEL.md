@@ -121,16 +121,21 @@ c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the ta
  For example, the following top-down contains a sample RBAC role hierarchy for a fictional software development organization:
 
  ```
-        CTO
-         |
-     |       |
-    ENG      QC
-   |   |   |    |   
-  E1   E2  Q1   Q2
-     |        |
-    DA        QA
-         |
-         A1
+    ┌────────┐      
+    │  CTO   │      
+    └┬──────┬┘      
+    ┌▽────┐┌▽─────┐ 
+    │ QC  ││ ENG  │ 
+    └┬───┬┘└─┬───┬┘ 
+    ┌▽─┐┌▽─┐┌▽─┐┌▽─┐
+    │Q1││Q2││E1││E2│
+    └┬─┘└┬─┘└┬─┘└┬─┘
+    ┌▽───▽┐┌─▽───▽┐ 
+    │ QA  ││  DA  │ 
+    └┬────┘└┬─────┘ 
+    ┌▽──────▽┐      
+    │   A1   │      
+    └────────┘      
  ```
     
  Here a role called *CTO* is the highest ascendant in the graph, and *A1* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A1* inherits all that are above.
