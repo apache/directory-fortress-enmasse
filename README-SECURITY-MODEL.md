@@ -37,7 +37,23 @@
 
 ### A Typical Deployment
 
-   (**Client**)<---https--->(**FortressRest**)<-in-process->(**FortressCore**)<---ldaps--->(**DirectoryServer**)
+```
+               .---------.      
+               |  Client |      
+               '----.----'      
+                    | HTTPS
+            .-------'------.
+            | FortressRest |
+            '-------.------'
+                    | in-process
+            .-------'------.
+            | FortressCore |
+            '-------.------'
+                    | LDAPS
+          .---------'-------.
+          | DirectoryServer |
+          '-----------------'
+```
 
  * Consists of three tiers: 1. **Client**, 2. Servlet Container hosting **FortressRest**, and 3. **DirectoryServer** that stores the policy information.
  * The **Client** is any HTTP interface that supports the Apache Fortress message formats.
