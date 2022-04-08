@@ -99,12 +99,12 @@
 
  * The service-to-role mappings are performed inside the [FortressServiceImpl](src/main/java/org/apache/directory/fortress/rest/FortressServiceImpl.java) module.
  * For example, the deleteUser service:
- ```
- @POST
- @Path("/userDelete/")
- @RolesAllowed({"fortress-rest-super-user", "fortress-rest-admin-user"})
- public FortResponse deleteUser...
- ```
+```
+@POST
+@Path("/userDelete/")
+@RolesAllowed({"fortress-rest-super-user", "fortress-rest-admin-user"})
+public FortResponse deleteUser...
+```
  * The caller needs either *fortress-rest-super-user* or *fortress-rest-admin-user* RBAC role to invoke the specified service.
 
 ## 4. Apache Fortress **ARBAC Checks**
@@ -112,9 +112,9 @@
  The Apache Fortress Administrative Role-Based Access Control (ARBAC) subsystem handles delegating administrative tasks to special users.
  Disabled in FortressRest by default, to enable, add the following declaration to the fortress.properties:
 
- ```
- is.arbac02=true
- ```
+```
+is.arbac02=true
+```
 
 a. When enabled, all service invocations perform an ADMIN permission verification by invoking [DelAccessMgr.checkAccess](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/DelAccessMgr.html#checkAccess-org.apache.directory.fortress.core.model.Session-org.apache.directory.fortress.core.model.Permission-) down in the API layer.
  
@@ -136,7 +136,7 @@ c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the ta
  
  For example, the following top-down contains a sample RBAC role hierarchy for a fictional software development organization:
 
- ```
+```
       ┌────────┐      
       │  CTO   │      
       └─△─────△┘      
@@ -152,7 +152,7 @@ c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the ta
       ┌┴──────┴┐      
       │   A1   │      
       └────────┘      
- ```
+```
     
  Here a role called *CTO* is the highest ascendant in the graph, and *A1* is the lowest descendant. In a top-down role hierarchy, privilege increases as we descend downward.  So a person with role *A1* inherits all that are above.
 
@@ -189,23 +189,23 @@ c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the ta
 
  b. Execute the policy load [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) into LDAP:
 
- ```maven
- mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
- ```
+```maven
+mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
+```
 
  c. Now *demoUser4* may execute every service and pass the JavaEE and Apache CXF interceptor checks.
 
 ## 6. ARBAC policy load
 
  a. The ARBAC policies are enforced when the following property is present in runtime *fortress.properties*:
- ```
+```
 # Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
 is.arbac02=true
- ```
+```
 
  b. The policy load file in this section Creates an ADMIN Role named: *fortress-rest-admin*, and associates with (Test) Perm and User OUs:
 
- ```
+```
 PermOUs="APP0,APP1,APP2,APP3,APP4,APP5,APP6,APP7,APP8,APP9,APP10,
       oamT3POrg8,oamT3POrg9,oamT3POrg1,oamT3POrg10,oamT3POrg2,
       oamT3POrg3,oamT3POrg4,oamT3POrg5,oamT3POrg6,oamT3POrg7,
@@ -223,7 +223,7 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
       T5UOrg1,T5UOrg2,T5UOrg3,T5UOrg4,T5UOrg5,T6UOrg1,T6UOrg2,
       T6UOrg3,T6UOrg4,T6UOrg5,T6UOrg6,T6UOrg7,T7UOrg1,T7UOrg2,
       T7UOrg3,T7UOrg4,T7UOrg5,T7UOrg6,T7UOrg7"
- ```
+```
  Note: The Perm and User OUs must be created prior to the ARBAC sample load script being run.
  They get created during Apache Fortress Core integration testing. See [FortressJUnitTest](https://github.com/apache/directory-fortress-core/blob/master/src/test/java/org/apache/directory/fortress/core/impl/FortressJUnitTest.java).
 
@@ -239,9 +239,9 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
 
  d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
- ```maven
- mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
- ```
+```maven
+mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
+```
 
  e. Now *demoUser4* may invoke every service in the subsystem and pass all of the ARBAC checks corresponding with the test data inside of Apache Fortress Core's integration test suite.
 
