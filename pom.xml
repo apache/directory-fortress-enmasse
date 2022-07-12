@@ -104,16 +104,16 @@
     <java.version>1.8</java.version>
     <!-- Dependencies version -->
     <fortress.realm.version>2.0.7</fortress.realm.version>
-    <cxf.version>3.5.1</cxf.version>
+    <cxf.version>3.5.3</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
     <javadoc.version>2.9.1</javadoc.version>
     <junit.version>4.13.2</junit.version>
-    <version.log4j>2.17.2</version.log4j>
+    <version.log4j>2.18.0</version.log4j>
     <servlet-api.version>2.5.0</servlet-api.version>
-    <jackson-jaxrs.version>2.13.2</jackson-jaxrs.version>
+    <jackson-jaxrs.version>2.13.3</jackson-jaxrs.version>
     <version.jaxb.core>3.0.2</version.jaxb.core>
-    <version.jaxb.impl>3.0.2</version.jaxb.impl>
+    <version.jaxb.impl>4.0.0</version.jaxb.impl>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -162,13 +162,13 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>5.3.19</version>
+      <version>5.3.21</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>5.6.2</version>
+      <version>5.7.2</version>
     </dependency>
 
     <!-- Logging Dependencies -->
