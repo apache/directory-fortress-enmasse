@@ -87,7 +87,7 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
  a. from git:
  ```
- git clone --branch 2.0.5  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
+ git clone --branch 2.0.8  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
  cd directory-fortress-enmasse
  ```
 
