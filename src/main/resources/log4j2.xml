@@ -26,6 +26,7 @@
     <Loggers>
         <Logger name="org.apache.directory.fortress.rest.FortressInterceptor" level="info"/>
         <Logger name="org.apache.directory.fortress.core" level="info"/>
+        <Logger name="org.apache.directory.fortress.rest" level="info"/>
         <Root level="warn">
             <AppenderRef ref="console"/>
         </Root>
