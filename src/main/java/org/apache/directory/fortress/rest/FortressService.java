@@ -27,9 +27,9 @@ import org.apache.directory.fortress.core.model.FortResponse;
 import org.apache.directory.fortress.core.model.Group;
 import org.apache.directory.fortress.core.model.UserRole;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
 
 /**
  * Interface for Fortress Rest Service methods.

@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 
 /**
