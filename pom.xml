@@ -104,7 +104,7 @@
     <java.version>1.8</java.version>
     <!-- Dependencies version -->
     <fortress.realm.version>2.0.8</fortress.realm.version>
-    <cxf.version>3.5.3</cxf.version>
+    <cxf.version>3.5.5</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <java.version>1.8</java.version>
     <javadoc.version>2.9.1</javadoc.version>
