@@ -45,8 +45,9 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
     /** A logger for this class */
     private static final Logger LOG = LoggerFactory.getLogger( FortressInterceptor.class.getName() );
 
-    private static final String DEFAULT_ANNOTATION_CLASS_NAME = "javax.annotation.security.RolesAllowed";
-    
+    //private static final String DEFAULT_ANNOTATION_CLASS_NAME = "javax.annotation.security.RolesAllowed";
+    private static final String DEFAULT_ANNOTATION_CLASS_NAME = "jakarta.annotation.security.RolesAllowed";
+
     /** The list of methods we want to skip */
     private static final Set<String> SKIP_METHODS;
 

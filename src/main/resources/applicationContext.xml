@@ -41,9 +41,11 @@ under the License.
     <bean id="customMapper" class="org.apache.directory.fortress.rest.JacksonFieldOnlyMapper">
     </bean>
 
+<!--
     <bean id="customJsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
         <constructor-arg ref="customMapper"/>
     </bean>
+-->
 
     <bean id="fortressResponseInterceptor" class="org.apache.directory.fortress.rest.FortressResponseInterceptor"/>
 
@@ -64,9 +66,11 @@ under the License.
             <bean class="org.apache.directory.fortress.rest.SecurityOutFaultInterceptor"/>
         </jaxrs:outFaultInterceptors>
 
+<!--
         <jaxrs:providers>
            <ref bean="customJsonProvider"/>
         </jaxrs:providers>
+-->
     </jaxrs:server>
 
 </beans>
