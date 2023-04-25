@@ -101,21 +101,14 @@
   <!-- ====================================================== -->
   <properties>
     <title>${project.name} ${project.version}</title>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
     <!-- Dependencies version -->
     <fortress.realm.version>2.0.9-SNAPSHOT</fortress.realm.version>
-<!--    <fortress.realm.version>2.0.8</fortress.realm.version>-->
-    <!--<cxf.version>3.5.5</cxf.version>-->
     <cxf.version>4.0.0</cxf.version>
     <httpclient.version>3.1</httpclient.version>
-    <java.version>1.8</java.version>
     <javadoc.version>2.9.1</javadoc.version>
     <junit.version>4.13.2</junit.version>
     <version.log4j>2.18.0</version.log4j>
-    <servlet-api.version>2.5.0</servlet-api.version>
-    <jackson-jaxrs.version>2.13.3</jackson-jaxrs.version>
-    <version.jaxb.core>3.0.2</version.jaxb.core>
-    <version.jaxb.impl>4.0.0</version.jaxb.impl>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -130,68 +123,22 @@
       <version>${fortress.realm.version}</version>
     </dependency>
 
-    <!-- CXF Dependencies -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-core</artifactId>
       <version>${cxf.version}</version>
-<!--
-      <exclusions>
-        <exclusion>
-          <groupId>org.jboss.spec.javax.rmi</groupId>
-          <artifactId>jboss-rmi-api_1.0_spec</artifactId>
-        </exclusion>
-      </exclusions>
--->
     </dependency>
 
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
       <version>${cxf.version}</version>
-<!--
-      <exclusions>
-        <exclusion>
-          <groupId>org.jboss.spec.javax.rmi</groupId>
-          <artifactId>jboss-rmi-api_1.0_spec</artifactId>
-        </exclusion>
-      </exclusions>
--->
     </dependency>
 
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxws</artifactId>
       <version>4.0.0</version>
-    </dependency>
-
-<!--
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>${version.javaee.api}</version>
-    </dependency>
--->
-
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-
-<!--
-    <dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>${jackson-jaxrs.version}</version>
-    </dependency>
--->
-    <dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>2.15.0-rc3</version>
     </dependency>
 
     <dependency>
@@ -206,21 +153,6 @@
       <version>6.0.3</version>
     </dependency>
 
-<!--
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>5.3.27</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
-      <version>5.7.2</version>
-    </dependency>
--->
-
-    <!-- Logging Dependencies -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -231,6 +163,19 @@
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
       <version>${version.log4j}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+      <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+      <version>2.15.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Test Dependencies -->
@@ -247,45 +192,6 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>4.0.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jaxb</groupId>
-      <artifactId>jaxb-runtime</artifactId>
-      <version>4.0.2</version>
-    </dependency>
-
-<!--
-
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>${version.jaxb.impl}</version>
-    </dependency>
-
--->
-
-<!--
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>3.0.0</version>
-    </dependency>
--->
-
-<!--
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>3.0.0</version>
-      <scope>runtime</scope>
-    </dependency>
--->
 
   </dependencies>
 
