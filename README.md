@@ -64,14 +64,14 @@ ________________________________________________________________________________
 ## SECTION 1. Prerequisites
 
 Minimum hardware requirements:
- * 1 Core
- * 1GB RAM
+ * 2 Core
+ * 2GB RAM
 
 Minimum software requirements:
- * Java 8++
  * git
- * Apache Maven 3++
- * Apache Tomcat 8++
+ * Java SDK >= 11
+ * Apache Maven >= 3
+ * Apache Tomcat >= 10
  * Basic LDAP server setup by completing one of these Quickstarts
     * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
     * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
@@ -95,18 +95,8 @@ Everything else covered in steps that follow.  Tested on Debian, Centos systems.
 
 #### 2. Build the source.
 
-a. Java 8 target
-
  ```
  mvn clean install
- ```
-
--- OR --
-
-b. Java 11 target
-
- ```
- mvn clean install -Djava.version=11
  ```
 
 #### 3. Now build the javadoc:

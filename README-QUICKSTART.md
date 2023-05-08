@@ -37,10 +37,10 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest w
 ## SECTION 1. Prerequisites
 
 Minimum software requirements:
- * Apache Tomcat7++
- * Java 8++
+ * Java SDK >= 11
+ * Apache Maven >= 3
+ * Apache Tomcat >= 10
  * git
- * Apache Maven 3++
  * Basic LDAP server setup by completing one of these Quickstarts
     * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
     * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
