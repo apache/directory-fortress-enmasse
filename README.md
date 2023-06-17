@@ -69,7 +69,7 @@ Minimum hardware requirements:
 
 Minimum software requirements:
  * git
- * Java SDK >= 11
+ * Java SDK >= 17
  * Apache Maven >= 3
  * Apache Tomcat >= 10
  * Basic LDAP server setup by completing one of these Quickstarts
@@ -78,7 +78,7 @@ Minimum software requirements:
     * [APACHEDS & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
     * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
 
-Everything else covered in steps that follow.  Tested on Debian, Centos systems.
+Everything else covered in steps that follow.  Tested on Debian and Redhat systems.
 
 -------------------------------------------------------------------------------
 ## SECTION 2. Download & Install
