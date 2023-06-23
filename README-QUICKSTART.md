@@ -16,7 +16,7 @@
    under the License.
 
 # README-QUICKSTART for Apache Fortress Rest
- * version 2.0.8
+ * version 3.0.0
 
 -------------------------------------------------------------------------------
 ## Table of Contents
@@ -37,7 +37,7 @@ This document contains instructions to deploy a pre-built Apache Fortress Rest w
 ## SECTION 1. Prerequisites
 
 Minimum software requirements:
- * Java SDK >= 11
+ * Java SDK >= 17
  * Apache Maven >= 3
  * Apache Tomcat >= 10
  * git
@@ -57,9 +57,9 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 
  a. For OpenLDAP:
 
- ```
- JAVA_OPTS="-Dversion=2.0.8 -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
- ```
+```
+JAVA_OPTS="-Dversion=[version] -Dfortress.admin.user=cn=Manager,dc=example,dc=com -Dfortress.admin.pw=secret -Dfortress.config.root=ou=Config,dc=example,dc=com"
+```
 
  b. For ApacheDS:
  ```
@@ -70,19 +70,21 @@ Set the java system properties in tomcat with the target ldap server's coordinat
 
 #### 4. Download the fortress realm proxy jar into tomcat/lib folder:
 
-  ```
-  wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.8/fortress-realm-proxy-2.0.8.jar -P $TOMCAT_HOME/lib
-  ```
+```bash
+wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/[version]/fortress-realm-proxy-[version].jar -P $TOMCAT_HOME/lib
+```
 
   where *TOMCAT_HOME* matches your target env.
+  where *[version]* is a particular fortress release, e.g. 3.0.0.
 
 #### 5. Download the fortress rest war into tomcat/webapps folder:
 
-  ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/2.0.8/fortress-rest-2.0.8.war -P $TOMCAT_HOME/webapps
-  ```
+```bash
+wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-rest/[version]/fortress-rest-[version].war -P $TOMCAT_HOME/webapps
+```
 
   where *TOMCAT_HOME* matches your target env.
+  where *[version]* is a particular fortress release, e.g. 3.0.0.
 
 #### 6. Restart Tomcat.
 
@@ -92,40 +94,40 @@ ________________________________________________________________________________
 #### 1. Git the package.
 
  a. from git:
- ```
- git clone --branch 2.0.8  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
- cd directory-fortress-enmasse
- mvn clean install
- ```
+```bash
+git clone --branch [version]  https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git
+cd directory-fortress-enmasse
+mvn clean install
+```
 
  b. or [apache fortress downloads](https://directory.apache.org/fortress/download/download-sources.html)
 
- ```
- unzip fortress-rest-2.0.8.zip
- cd fortress-rest-2.0.8
- mvn clean install
- ```
+```bash
+unzip fortress-rest-[version].zip
+cd fortress-rest-[version]
+mvn clean install
+```
 
 #### 2. From the project folder, run maven install to Apache Fortress RBAC security policy for Rest server:
- ```maven
- mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
- ```
+```bash
+mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
+```
 
  * This step creates test user, roles, needed for tests to be successfully run.
 
 #### 3. Optional, load a sample security policy for ARBAC.
- ```maven
- mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
- ```
+```bash
+mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
+```
  * See [README-SECURITY-MODEL](./README-SECURITY-MODEL.md)
 ___________________________________________________________________________________
 ## SECTION 4. Test
 
 #### 1. Smoke test a few services:
 
- ```
- mvn test -Dtest=EmTest
- ```
+```bash
+mvn test -Dtest=EmTest
+```
 
 #### 2. Complete *SECTION 7: Alternate testing procedures* in [Fortress Core README.md](https://github.com/apache/directory-fortress-enmasse/blob/master/README.md)
 ___________________________________________________________________________________
@@ -162,8 +164,8 @@ ________________________________________________________________________________
  Setting Apache Fortress external configurations via Java System properties can be done using the startup scripts for the server instance. For example, the following are valid configurations.
 
  a. Connect to an OpenLDAP over localhost, port 389 (defaults) using unencrypted connections.  The runtime has ARBAC02 checks enabled.
- ```concept
-JAVA_OPTS=" -Dversion=2.0.8                                     \ 
+```concept
+JAVA_OPTS=" -Dversion=[version]                                     \ 
             -Dfortress.admin.user=cn=Manager,dc=example,dc=com  \ 
             -Dfortress.admin.pw=secret                          \ 
             -Dfortress.config.root=ou=Config,dc=example,dc=com  \
@@ -171,8 +173,8 @@ JAVA_OPTS=" -Dversion=2.0.8                                     \
             -Dfortress.is.arbac02=true"
 ```
  b. Connect to ApacheDS server over an encrypted connection, the truststore found on the classpath.
- ```concept
-JAVA_OPTS=" -Dversion=2.0.8                                      \
+```concept
+JAVA_OPTS=" -Dversion=[version]                                      \
             -Dfortress.host=mydomainname.com                     \
             -Dfortress.port=1636                                 \
             -Dfortress.ldap.server.type=apacheds                 \             
@@ -187,7 +189,7 @@ JAVA_OPTS=" -Dversion=2.0.8                                      \
 
  c. This one OpenLDAP again, use encrypted connections, truststore located on fully qualified path.
  ```concept
-JAVA_OPTS=" -Dversion=2.0.8                                                 \
+JAVA_OPTS=" -Dversion=[version]                                                 \
             -Dfortress.host=mydomainname.com                                \
             -Dfortress.port=636                                             \
             -Dfortress.ldap.server.type=openldap                            \             

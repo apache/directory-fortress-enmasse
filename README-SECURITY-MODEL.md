@@ -189,7 +189,7 @@ c. Some services (#'s 9,10,11,12 in ARBAC table) perform a range check on the ta
 
  b. Execute the policy load [FortressRestServerPolicy](./src/main/resources/FortressRestServerPolicy.xml) into LDAP:
 
-```maven
+```bash
 mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
 ```
 
@@ -198,7 +198,7 @@ mvn install -Dload.file=src/main/resources/FortressRestServerPolicy.xml
 ## 6. ARBAC policy load
 
  a. The ARBAC policies are enforced when the following property is present in runtime *fortress.properties*:
-```
+```properties
 # Boolean value. Disabled by default. If this is set to true, the runtime will enforce administrative permissions and ARBAC02 DA checks:
 is.arbac02=true
 ```
@@ -239,7 +239,7 @@ UserOUs="DEV0,DEV1,DEV2,DEV3,DEV4,DEV5,DEV6,DEV7,DEV8,DEV9,DEV10,
 
  d. To load the [FortressRestArbacSamplePolicy](./src/main/resources/FortressRestArbacSamplePolicy.xml) into LDAP:
 
-```maven
+```bash
 mvn install -Dload.file=src/main/resources/FortressRestArbacSamplePolicy.xml
 ```
 

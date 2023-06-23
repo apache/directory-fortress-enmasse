@@ -44,17 +44,17 @@ For an overview of how fortress multitenancy works:
 
 Fortress Realm uses the tenant id inside the context.xml file:
 
- ```
- <Context path="/commander" reloadable="true">
+```xml
+<Context path="/commander" reloadable="true">
 
-    <Realm className="org.apache.directory.fortress.realm.tomcat.Tc7AccessMgrProxy"
-           defaultRoles=""
-           containerType="TomcatContext"
-           realmClasspath=""
-           contextId="HOME"
-           />
- </Context>
- ```
+   <Realm className="org.apache.directory.fortress.realm.tomcat.Tc7AccessMgrProxy"
+          defaultRoles=""
+          containerType="TomcatContext"
+          realmClasspath=""
+          contextId="HOME"
+          />
+</Context>
+```
 
  * In this example, all realm security checks are bound for the HOME tenant.
 
@@ -63,15 +63,15 @@ Fortress Realm uses the tenant id inside the context.xml file:
 
 Fortress Rest uses the tenant id found inside the request *contextId* element:
 
- ```
- <FortRequest>
-    <contextId>acme123</contextId>
-    <entity xsi:type="permission" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <objName></objName>
-        <opName></opName>
-    </entity>
- </FortRequest>
- ```
+```xml
+<FortRequest>
+   <contextId>acme123</contextId>
+   <entity xsi:type="permission" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+       <objName></objName>
+       <opName></opName>
+   </entity>
+</FortRequest>
+```
 
  * This operation is scoped to tenat acme123's subtree.
 
