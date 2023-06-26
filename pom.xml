@@ -108,7 +108,7 @@
     <httpclient.version>3.1</httpclient.version>
     <javadoc.version>2.9.1</javadoc.version>
     <junit.version>4.13.2</junit.version>
-    <version.log4j>2.20.0</version.log4j>
+    <slf4j.impl.version>2.20.0</slf4j.impl.version>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -155,8 +155,8 @@
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>${version.log4j}</version>
+      <artifactId>log4j-slf4j2-impl</artifactId>
+      <version>${slf4j.impl.version}</version>
     </dependency>
 
     <dependency>
