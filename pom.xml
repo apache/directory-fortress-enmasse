@@ -284,7 +284,7 @@
         <configuration>
           <source>8</source>
           <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2021, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2023, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
           <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
           <version>true</version>
           <author>true</author>
