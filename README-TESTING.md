@@ -64,7 +64,7 @@ It works via fortress core's inherent ability to call itself over REST, useful f
 
 1. Point your Apache Fortress Core test env to Apache Fortress REST runtime.
 
-* Add these properties to slapd.properties or build.properties file:
+- Add these properties to slapd.properties or build.properties file:
 
 ```properties
 enable.mgr.impl.rest=true
@@ -79,26 +79,35 @@ http.protocol=http
 
 2. Next, from **FORTRESS_CORE_HOME** enter the following command:
 
-```
+```bash
 mvn install
 ```
 
-* This will update the fortress.properties with the settings in the build and slapd.prooperties.
+- This will update the fortress.properties with the settings in the build.properties and slapd.properties files.
 
 3. Now run the integration tests:
 
-```
+```bash
 mvn -Dtest=FortressJUnitTest test
 ```
 
-* If everything was setup correctly the Apache Fortress Core tests will drive the tests via Apache Fortress Rest calls.
+- The Apache Fortress Core tests run through the Apache Fortress Rest services.
 
 4. Next, from **FORTRESS_CORE_HOME** enter the following command:
 
-```
+```bash
 mvn test -Pconsole
 ```
 
-* Console operations will now run through Apache Fortress Rest.
+- Console operations will now run through Apache Fortress Rest.
+
+5. Run the jmeter load tests 
+
+from **FORTRESS_CORE_HOME**:
+
+```bash
+mvn verify -Ploadtest -Dtype=...
+```
+- [README-LOAD-TESTING](https://github.com/apache/directory-fortress-core/blob/master/README-LOAD-TESTING.md)
 ___________________________________________________________________________________
 #### END OF README-TESTING
