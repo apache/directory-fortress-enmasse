@@ -80,6 +80,10 @@
     <src.java.dir>${base.dir}/src/main/java</src.java.dir>
   </properties>
 
+  <prerequisites>
+    <maven>3.1.0</maven>
+  </prerequisites>
+
   <dependencies>
     <!-- Fortress Realm pulls in Fortress Core for RBAC 'CRUD' & policy enforcement apis. -->
     <dependency>
