@@ -33,6 +33,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JacksonFieldOnlyMapper extends ObjectMapper
 {
+
+    /**
+     * default constructor
+     */
     public JacksonFieldOnlyMapper()
     {
         super();

@@ -34,6 +34,9 @@ import org.apache.directory.fortress.core.model.FortResponse;
  */
 public class FortressResponseInterceptor extends AbstractPhaseInterceptor<Message>
 {
+    /**
+     * default constructor
+     */
     public FortressResponseInterceptor()
     {
         super(Phase.MARSHAL);

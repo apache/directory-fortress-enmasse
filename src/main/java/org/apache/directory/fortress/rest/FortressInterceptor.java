@@ -51,6 +51,13 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
     /** The list of methods we want to skip */
     private static final Set<String> SKIP_METHODS;
 
+    /**
+     * default constructor
+     */
+    public FortressInterceptor()
+    {
+    }
+
     static
     {
         SKIP_METHODS = new HashSet<String>();
@@ -61,8 +68,9 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     private String annotationClassName = DEFAULT_ANNOTATION_CLASS_NAME;
 
+
     /**
-     *
+     * set annotation
      * @param name The annotation class name
      */
     public void setAnnotationClassName( String name )
@@ -81,6 +89,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
     
 
     /**
+     * set secured object
      *
      * @param object The Object to secure
      */
@@ -167,7 +176,7 @@ public class FortressInterceptor extends SimpleAuthorizingInterceptor
 
     
     /**
-     *
+     * get roles
      * @param anns
      * @param annName
      * @return String roles

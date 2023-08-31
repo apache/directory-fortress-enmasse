@@ -57,6 +57,13 @@ public class SecUtils
     }
 
     /**
+     * default constructor
+     */
+    public SecUtils()
+    {
+    }
+
+    /**
      * Use Apache Fortress Realm interface to load the RBAC session via a standard interface.
      *
      * @param fortRequest Used to carry the session and other data.

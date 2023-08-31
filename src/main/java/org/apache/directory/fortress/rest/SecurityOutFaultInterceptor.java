@@ -40,6 +40,9 @@ public class SecurityOutFaultInterceptor extends AbstractPhaseInterceptor<Messag
 {
     private static final Logger LOG = LoggerFactory.getLogger( SecurityOutFaultInterceptor.class.getName() );
 
+    /**
+     * default constructor
+     */
     public SecurityOutFaultInterceptor()
     {
         super( Phase.PRE_STREAM );

@@ -76,6 +76,12 @@ public class FortressServiceImpl implements FortressService
      * **************************************************************************************************************************************
      */
 
+    /**
+     * default contructor
+     */
+    public FortressServiceImpl()
+    {
+    }
 
     /**
      * {@inheritDoc}

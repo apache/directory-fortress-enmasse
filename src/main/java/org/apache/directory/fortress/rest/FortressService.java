@@ -43,7 +43,6 @@ public interface FortressService
      * This command creates a new RBAC user. The command is valid only if the new user is
      * not already a member of the USERS data set. The USER data set is updated. The new user
      * does not own any session at the time of its creation.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -155,7 +154,7 @@ public interface FortressService
      *     </ul>
      *   </li>
      * </ul>
-     * <h3>optional parameters</h3>
+     * optional parameters
      * <ul>
      *   <li>
      *     {@link FortRequest#session} - contains a reference to administrative session and if included service will 
@@ -175,7 +174,6 @@ public interface FortressService
      * UA data sets and the assigned_users function are updated.
      * This method performs a "hard" delete.  It completely removes all data associated with this user from the directory.
      * User entity must exist in directory prior to making this call else exception will be thrown.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -220,7 +218,6 @@ public interface FortressService
      *   <li>locks the user's password in LDAP</li>
      *   <li>revokes all perms that have been granted to user entity.</li>
      * </ul>
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -257,7 +254,6 @@ public interface FortressService
     /**
      * This method performs an update on User entity in directory.  Prior to making this call the entity must exist in
      * directory.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -377,7 +373,6 @@ public interface FortressService
     
     /**
      * Method will change user's password.  This method will evaluate user's password policies.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -415,7 +410,6 @@ public interface FortressService
     
     /**
      * Method will lock user's password which will prevent the user from authenticating with directory.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -451,7 +445,6 @@ public interface FortressService
     
     /**
      * Method will unlock user's password which will enable user to authenticate with directory.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -489,7 +482,6 @@ public interface FortressService
      * Method will reset user's password which will require user to change password before successful authentication 
      * with directory.
      * This method will not evaluate password policies on the new user password as it must be changed before use.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -527,7 +519,6 @@ public interface FortressService
      * This command creates a new role. The command is valid if and only if the new role is not
      * already a member of the ROLES data set. The ROLES data set is updated.
      * Initially, no user or permission is assigned to the new role.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -610,7 +601,6 @@ public interface FortressService
      * This command deletes an existing role from the RBAC database. The command is valid
      * if and only if the role to be deleted is a member of the ROLES data set.  This command will
      * also deassign role from all users.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -649,7 +639,6 @@ public interface FortressService
     
     /**
      * Method will update a Role entity in the directory.  The role must exist in role container prior to this call.     *
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -756,7 +745,6 @@ public interface FortressService
      *     </ul>
      *   </li>
      * </ul>
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -843,7 +831,6 @@ public interface FortressService
      * User entity in USER data set has role assignment removed.
      * Role entity in ROLE data set has userId removed as role occupant.
      * (optional) Temporal constraints will be removed from user aux object if set prior to call.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -893,7 +880,6 @@ public interface FortressService
      * A Fortress Permission instance exists in a hierarchical, one-many relationship between its parent and itself 
      * as stored in ldap tree: ({@link org.apache.directory.fortress.core.model.PermObj}*-&gt;
      * {@link org.apache.directory.fortress.core.model.Permission}).
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -956,7 +942,7 @@ public interface FortressService
      * The perm operation entity may also contain {@link org.apache.directory.fortress.core.model.Role} 
      * or {@link org.apache.directory.fortress.core.model.User} associations to add or remove using this function.
      * The perm operation must exist before making this call.  Only non-null attributes will be updated.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1017,7 +1003,7 @@ public interface FortressService
      * This method will remove permission operation entity from permission object. A Fortress permission is 
      * (object-&gt;operation).
      * The perm operation must exist before making this call.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1064,7 +1050,7 @@ public interface FortressService
      * one-many relationship between itself and children as stored in ldap tree: 
      * ({@link org.apache.directory.fortress.core.model.PermObj}*-&gt;
      * {@link org.apache.directory.fortress.core.model.Permission}).
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1120,7 +1106,7 @@ public interface FortressService
      * A {@link org.apache.directory.fortress.core.model.PermObj} instance exists in a hierarchical, one-many relationship 
      * between itself and children as stored in ldap tree: ({@link org.apache.directory.fortress.core.model.PermObj}*-&gt;
      * {@link org.apache.directory.fortress.core.model.Permission}).
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1173,7 +1159,7 @@ public interface FortressService
     /**
      * This method will remove permission object to perms container in directory.  This method will also remove
      * in associated permission objects that are attached to this object.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1216,7 +1202,7 @@ public interface FortressService
      * the object involved.
      * The command is valid if and only if the pair (operation, object) represents a permission,
      * and the role is a member of the ROLES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1262,7 +1248,7 @@ public interface FortressService
      * list of the object involved.
      * The command is valid if and only if the pair (operation, object) represents a permission,
      * the role is a member of the ROLES data set, and the permission is assigned to that role.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1308,7 +1294,7 @@ public interface FortressService
      * the object involved.
      * The command is valid if and only if the pair (operation, object) represents a permission,
      * and the user is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1356,7 +1342,7 @@ public interface FortressService
      * list of the object involved.
      * The command is valid if and only if the pair (operation, object) represents a permission,
      * the user is a member of the USERS data set, and the permission is assigned to that user.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1412,7 +1398,7 @@ public interface FortressService
      *   <li> Adds new role.
      *   <li> Assigns role relationship between new childRole and pre-existing parentRole.
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1503,7 +1489,7 @@ public interface FortressService
      *   <li> Adds new role.
      *   <li> Assigns role relationship between new parentRole and pre-existing childRole.
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1582,7 +1568,7 @@ public interface FortressService
      *   <li> The parentRole is not an immediate ascendant of childRole.
      *   <li> The childRole does not properly inherit parentRole (in order to avoid cycle creation).
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *  <li>
@@ -1635,7 +1621,7 @@ public interface FortressService
      *     relation resulted after deleting the relationship parentRole &lt;&lt;-- childRole.
      *   </li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1689,7 +1675,7 @@ public interface FortressService
      *   </li>
      *   <li>The SSD constraint for the new role set is satisfied.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1752,7 +1738,7 @@ public interface FortressService
      *  </li>
      *   <li>The SSD constraint for the new role set is satisfied.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1811,7 +1797,7 @@ public interface FortressService
      *   <li>The role to be added is a member of the ROLES data set but not of a member of the SSD role set.</li>
      *   <li>The SSD constraint is satisfied after the addition of the role to the SSD role set.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the Role name to add as member to SSD set</li>
@@ -1861,7 +1847,7 @@ public interface FortressService
      *   <li>The cardinality associated with the SSD role set is less than the number of elements of the SSD role set.</li>
      * </ul>
      * Note that the SSD constraint should be satisfied after the removal of the role from the SSD role set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the Role name to remove as member to SSD set</li>
@@ -1902,7 +1888,7 @@ public interface FortressService
     
     /**
      * This command deletes a SSD role set completely. The command is valid if and only if the SSD role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -1951,7 +1937,7 @@ public interface FortressService
      *   </li>
      *   <li>The SSD constraint is satisfied after setting the new cardinality.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2005,7 +1991,7 @@ public interface FortressService
      *   </li>
      *   <li>The DSD constraint for the new role set is satisfied.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2067,7 +2053,7 @@ public interface FortressService
      *   </li>
      *   <li>The DSD constraint for the new role set is satisfied.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2125,7 +2111,7 @@ public interface FortressService
      *   <li>The role to be added is a member of the ROLES data set but not of a member of the DSD role set.</li>
      *   <li>The DSD constraint is satisfied after the addition of the role to the DSD role set.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the Role name to add as member to DSD set</li>
@@ -2174,7 +2160,7 @@ public interface FortressService
      *   <li>The cardinality associated with the DSD role set is less than the number of elements of the DSD role set.</li>
      * </ul>
      * Note that the DSD constraint should be satisfied after the removal of the role from the DSD role set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the Role name to remove as member to DSD set</li>
@@ -2214,7 +2200,7 @@ public interface FortressService
     
     /**
      * This command deletes a DSD role set completely. The command is valid if and only if the DSD role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2263,7 +2249,7 @@ public interface FortressService
      *   </li>
      *   <li>The DSD constraint is satisfied after setting the new cardinality.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2311,7 +2297,7 @@ public interface FortressService
      * <ul>
      *   <li>The role exists.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2365,7 +2351,7 @@ public interface FortressService
      * <ul>
      *   <li>The role exists.</li>
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2414,7 +2400,7 @@ public interface FortressService
     //------------ ReviewMgr ----------------------------------------------------------------------------------------------
     /**
      * This method returns a matching permission entity to caller.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2458,7 +2444,7 @@ public interface FortressService
     
     /**
      * Method reads permission object from perm container in directory.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2498,7 +2484,7 @@ public interface FortressService
     
     /**
      * Method returns a list of type Permission that match the perm object search string.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2542,7 +2528,7 @@ public interface FortressService
 
     /**
      * Method returns Permission operations for the provided permission object.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2586,7 +2572,7 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.Permission#opName} search strings.
      * This method differs from findPermissions in that any permission that matches any part of the perm obj or any part 
      * of the perm op will be returned in result set (uses substring string matching).
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2630,7 +2616,7 @@ public interface FortressService
 
     /**
      * Method returns a list of type Permission that match the perm object search string.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2670,7 +2656,7 @@ public interface FortressService
     
     /**
      * Method reads Role entity from the role container in directory.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2709,7 +2695,7 @@ public interface FortressService
     /**
      * Method will return a list of type Role matching all or part of 
      * {@link org.apache.directory.fortress.core.model.Role#name}.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2733,7 +2719,7 @@ public interface FortressService
     
     /**
      * Method returns matching User entity that is contained within the people container in the directory.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2774,7 +2760,7 @@ public interface FortressService
      * Return a list of type User of all users in the people container that match all or part of the 
      * {@link org.apache.directory.fortress.core.model.User#userId} or 
      * {@link org.apache.directory.fortress.core.model.User#ou} fields passed in User entity.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2818,7 +2804,7 @@ public interface FortressService
     /**
      * This method returns the data set of all users who are assigned the given role.  This searches the User data set for
      * Role relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *  <li>
@@ -2858,7 +2844,7 @@ public interface FortressService
     /**
      * This method returns the data set of all users who are assigned the given role constraint.  This searches the User data set for
      * RoleConstraint relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *  <li>
@@ -2892,7 +2878,7 @@ public interface FortressService
     /**
      * This method returns the data set of all users who are assigned the given role constraint.  This searches the User data set for
      * RoleConstraint relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *  <li>
@@ -2927,7 +2913,7 @@ public interface FortressService
     /**
      * This function returns the set of roles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -2967,7 +2953,7 @@ public interface FortressService
     /**
      * This function returns the set of users authorized to a given role, i.e., the users that are assigned to a role that
      * inherits the given role. The function is valid if and only if the given role is a member of the ROLES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3007,7 +2993,7 @@ public interface FortressService
     /**
      * This function returns the set of roles authorized for a given user. The function is valid if
      * and only if the user is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3046,7 +3032,7 @@ public interface FortressService
     
     /**
      * Return a list of type String of all roles that have granted a particular permission.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3092,7 +3078,7 @@ public interface FortressService
      * This function returns the set of all permissions (op, obj), granted to or inherited by a
      * given role. The function is valid if and only if the role is a member of the ROLES data
      * set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3132,7 +3118,7 @@ public interface FortressService
     /**
      * This function returns the set of permissions a given user gets through his/her authorized
      * roles. The function is valid if and only if the user is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3172,7 +3158,7 @@ public interface FortressService
     /**
      * Return all role names that have been authorized for a given permission.  This will process role hierarchies to 
      * determine set of all Roles who have access to a given permission.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3217,7 +3203,7 @@ public interface FortressService
     /**
      * Return all userIds that have been granted (directly) a particular permission.  This will not consider assigned 
      * or authorized Roles.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3262,7 +3248,7 @@ public interface FortressService
     /**
      * Return all userIds that have been authorized for a given permission.  This will process role hierarchies to determine 
      * set of all Users who have access to a given permission.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3311,7 +3297,7 @@ public interface FortressService
     /**
      * This function returns the list of all SSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all SSD role sets.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3350,7 +3336,7 @@ public interface FortressService
     
     /**
      * This function returns the SSD data set that matches a particular set name.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3390,7 +3376,7 @@ public interface FortressService
     /**
      * This function returns the set of roles of a SSD role set. The function is valid if and only if the
      * role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3430,7 +3416,7 @@ public interface FortressService
     /**
      * This function returns the cardinality associated with a SSD role set. The function is valid if and only if the
      * role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>name contains the name of existing SSD set being targeted</li>
@@ -3445,7 +3431,7 @@ public interface FortressService
     /**
      * This function returns the list of all SSD sets that have a particular SSD set name.
      * If the parameter is left blank, function will return all SSD sets.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3484,7 +3470,7 @@ public interface FortressService
     /**
      * This function returns the list of all DSD role sets that have a particular Role as member or Role's
      * parent as a member.  If the Role parameter is left blank, function will return all DSD role sets.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3523,7 +3509,7 @@ public interface FortressService
     
     /**
      * This function returns the DSD data set that matches a particular set name.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3563,7 +3549,7 @@ public interface FortressService
     /**
      * This function returns the set of roles of a DSD role set. The function is valid if and only if the
      * role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3603,7 +3589,7 @@ public interface FortressService
     /**
      * This function returns the cardinality associated with a DSD role set. The function is valid if and only if the
      * role set exists.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>name contains the name of existing DSD set being targeted</li>
@@ -3618,7 +3604,7 @@ public interface FortressService
     /**
      * This function returns the list of all DSD sets that have a particular DSD set name.
      * If the parameter is left blank, function will return all DSD sets.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3658,7 +3644,7 @@ public interface FortressService
     /**
      * Perform user authentication only.  It does not activate RBAC roles in session but will evaluate
      * password policies.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3694,7 +3680,7 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.User#adminRoles}.<br>
      * In addition to checking user password validity it will apply configured password policy checks 
      * {@link org.apache.directory.fortress.core.model.User#pwPolicy}..<br>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3799,7 +3785,7 @@ public interface FortressService
      * The successful result is {@link org.apache.directory.fortress.core.model.Session} that contains target user's 
      * RBAC {@link org.apache.directory.fortress.core.model.User#roles} and Admin role 
      * {@link org.apache.directory.fortress.core.model.User#adminRoles}.<br>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -3894,7 +3880,7 @@ public interface FortressService
      * This method must be called once per group prior to calling other methods within this class.
      * The successful result is {@link org.apache.directory.fortress.core.model.Session} that contains target group's RBAC
      * {@link Group#members}
-     * <h3></h3>
+
      * <h4>This API will...</h4>
      * <ul>
      *   <li>
@@ -3966,7 +3952,7 @@ public interface FortressService
      * to perform the operation on that object if and only if that permission is assigned to (at least)
      * one of the session's active roles. This implementation will verify the roles or userId correspond
      * to the subject's active roles are registered in the object's access control list.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4013,7 +3999,7 @@ public interface FortressService
      * to perform the operation on that object if and only if that permission is assigned to (at least)
      * one of the session's active roles. This implementation will verify the roles or userId correspond
      * to the user's active roles are registered in the object's access control list.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4076,7 +4062,7 @@ public interface FortressService
      * Combine createSession and a role check into a single method.
      * This function returns a Boolean value meaning whether the User has a particular role.
      * The function is valid if and only if the user is a valid Fortress user and the role is a member of the ROLES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4134,7 +4120,7 @@ public interface FortressService
     /**
      * This function returns the permissions of the session, i.e., the permissions assigned
      * to its authorized roles. The function is valid if and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#session} - contains a reference to User's RBAC session that is created by calling 
@@ -4152,7 +4138,7 @@ public interface FortressService
     /**
      * This function returns the active roles associated with a session. The function is valid if
      * and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4172,7 +4158,7 @@ public interface FortressService
     /**
      * This function returns the authorized roles associated with a session based on hierarchical relationships. The 
      * function is valid if and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4190,7 +4176,7 @@ public interface FortressService
     
     /**
      * This function adds a role as an active role of a session whose owner is a given user.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4238,7 +4224,7 @@ public interface FortressService
      * The function is valid if and only if the user is a member of the USERS data set, the
      * session object contains a valid Fortress session, the session is owned by the user,
      * and the role is an active role of that session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4275,7 +4261,7 @@ public interface FortressService
     /**
      * This function returns the userId value that is contained within the session object.
      * The function is valid if and only if the session object contains a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4294,7 +4280,7 @@ public interface FortressService
     /**
      * This function returns the user object that is contained within the session object.
      * The function is valid if and only if the session object contains a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4315,7 +4301,7 @@ public interface FortressService
      * This command creates a new admin role. The command is valid if and only if the new admin role is not
      * already a member of the ADMIN ROLES data set. The ADMIN ROLES data set is updated.
      * Initially, no user or permission is assigned to the new role.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4414,7 +4400,7 @@ public interface FortressService
      * This command deletes an existing admin role from the ARBAC database. The command is valid
      * if and only if the role to be deleted is a member of the ADMIN ROLES data set.  This command will
      * also deassign role from all users.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4454,7 +4440,7 @@ public interface FortressService
     
     /**
      * Method will update an AdminRole entity in the directory.  The role must exist in directory prior to this call.     *
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4557,7 +4543,7 @@ public interface FortressService
      *   <li> The role is a member of the ADMIN ROLES data set
      *   <li> The user is not already assigned to the admin role
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4659,7 +4645,7 @@ public interface FortressService
      * del Role to User assignment in User data set<br>
      * AND<br>
      * User to Role assignment in Admin Role data set.<br>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4704,7 +4690,7 @@ public interface FortressService
      * This commands creates a new role childRole, and inserts it in the role hierarchy as an immediate descendant of
      * the existing role parentRole. The command is valid if and only if childRole is not a member of the ADMINROLES data 
      * set, and parentRole is a member of the ADMINROLES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4795,7 +4781,7 @@ public interface FortressService
      * This commands creates a new role parentRole, and inserts it in the role hierarchy as an immediate ascendant of
      * the existing role childRole. The command is valid if and only if parentRole is not a member of the ADMINROLES data set,
      * and childRole is a member of the ADMINROLES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4884,7 +4870,7 @@ public interface FortressService
      * roles parentRole, childRole. The command is valid if and only if parentRole and childRole are members of the 
      * ADMINROLES data set, parentRole is not an immediate ascendant of childRole, and childRole does not properly 
      * inherit parentRole (in order to avoid cycle creation).
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4936,7 +4922,7 @@ public interface FortressService
      * valid if and only if the adminRoles parentRole and childRole are members of the ADMINROLES data set, and parentRole 
      * is an immediate ascendant of childRole. The new inheritance relation is computed as the reflexive-transitive
      * closure of the immediate inheritance relation resulted after deleting the relationship parentRole &lt;&lt;-- childRole.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -4989,7 +4975,7 @@ public interface FortressService
     /**
      * Commands adds a new OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5038,7 +5024,7 @@ public interface FortressService
     /**
      * Commands updates existing OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5087,7 +5073,7 @@ public interface FortressService
     /**
      * Commands deletes existing OrgUnit entity to OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5132,7 +5118,7 @@ public interface FortressService
     /**
      * This commands creates a new orgunit child, and inserts it in the orgunit hierarchy as an immediate descendant of
      * the existing orgunit parent.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5198,7 +5184,7 @@ public interface FortressService
     /**
      * This commands creates a new orgunit parent, and inserts it in the orgunit hierarchy as an immediate ascendant of
      * the existing child orgunit.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5263,7 +5249,7 @@ public interface FortressService
     
     /**
      * This commands establishes a new immediate inheritance relationship with parent orgunit &lt;&lt;-- child orgunit
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5317,7 +5303,7 @@ public interface FortressService
     
     /**
      * This command deletes an existing immediate inheritance relationship parent &lt;&lt;-- child.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5375,7 +5361,7 @@ public interface FortressService
     //------------ DelegatedReviewtMgr ------------------------------------------------------------------------------------
     /**
      * Method reads Admin Role entity from the admin role container in directory.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5416,7 +5402,7 @@ public interface FortressService
     /**
      * Method will return a list of type AdminRole matching all or part of 
      * {@link org.apache.directory.fortress.core.model.AdminRole#name}.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5442,7 +5428,7 @@ public interface FortressService
     /**
      * This function returns the set of adminRoles assigned to a given user. The function is valid if and
      * only if the user is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5482,7 +5468,7 @@ public interface FortressService
     /**
      * This method returns the data set of all users who are assigned the given admin role.  This searches the User data set 
      * for AdminRole relationship.  This method does NOT search for hierarchical AdminRoles relationships.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5523,7 +5509,7 @@ public interface FortressService
     /**
      * Commands reads existing OrgUnit entity from OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type attribute.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5569,7 +5555,7 @@ public interface FortressService
     /**
      * Commands searches existing OrgUnit entities from OrgUnit dataset.  The OrgUnit can be either User or Perm and is
      * set by setting type parameter on API.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5616,7 +5602,7 @@ public interface FortressService
     /**
      * This function will determine if the user contains an AdminRole that is authorized assignment control over
      * User-Role Assignment (URA).  This adheres to the ARBAC02 functional specification for can-assign URA.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5658,7 +5644,7 @@ public interface FortressService
     /**
      * This function will determine if the user contains an AdminRole that is authorized revoke control over
      * User-Role Assignment (URA).  This adheres to the ARBAC02 functional specification for can-revoke URA.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5700,7 +5686,7 @@ public interface FortressService
     /**
      * This function will determine if the user contains an AdminRole that is authorized assignment control over
      * Permission-Role Assignment (PRA).  This adheres to the ARBAC02 functional specification for can-assign-p PRA.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5746,7 +5732,7 @@ public interface FortressService
     /**
      * This function will determine if the user contains an AdminRole that is authorized revoke control over
      * Permission-Role Assignment (PRA).  This adheres to the ARBAC02 functional specification for can-revoke-p PRA.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5797,7 +5783,7 @@ public interface FortressService
      * to perform the operation on that object if and only if that permission is assigned to (at least)
      * one of the session's active roles. This implementation will verify the roles or userId correspond
      * to the subject's active roles are registered in the object's access control list.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5838,7 +5824,7 @@ public interface FortressService
     
     /**
      * This function adds an AdminRole as an active role of a session whose owner is a given user.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5885,7 +5871,7 @@ public interface FortressService
      * The function is valid if and only if the user is a member of the USERS data set, the
      * session object contains a valid Fortress session, the session is owned by the user,
      * and the AdminRole is an active role of that session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5922,7 +5908,7 @@ public interface FortressService
     /**
      * This function returns the active admin roles associated with a session. The function is valid if
      * and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5942,7 +5928,7 @@ public interface FortressService
     /**
      * This function returns the ARBAC (administrative) permissions of the session, i.e., the admin permissions assigned
      * to its authorized admin roles. The function is valid if and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5963,7 +5949,7 @@ public interface FortressService
      * This function returns the authorized ARBAC (administrative) roles associated with a session based on hierarchical 
      * relationships. The function is valid if
      * and only if the session is a valid Fortress session.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -5983,7 +5969,7 @@ public interface FortressService
     /**
      * This method will add a new policy entry to the POLICIES data set.  This command is valid
      * if and only if the policy entry is not already present in the POLICIES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6117,7 +6103,7 @@ public interface FortressService
     /**
      * This method will update an exiting policy entry to the POLICIES data set.  This command is valid
      * if and only if the policy entry is already present in the POLICIES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6252,7 +6238,7 @@ public interface FortressService
      * This method will delete exiting policy entry from the POLICIES data set.  This command is valid
      * if and only if the policy entry is already present in the POLICIES data set.  Existing users that
      * are assigned this policy will be removed from association.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6292,7 +6278,7 @@ public interface FortressService
     /**
      * This method will return the password policy entity to the caller.  This command is valid
      * if and only if the policy entry is present in the POLICIES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6333,7 +6319,7 @@ public interface FortressService
     /**
      * This method will return a list of all password policy entities that match a particular search string.
      * This command will return an empty list of no matching entries are found.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6375,7 +6361,7 @@ public interface FortressService
      * This method will associate a user entity with a password policy entity.  This function is valid
      * if and only if the user is a member of the USERS data set and the policyName refers to a
      * policy that is a member of the PWPOLICIES data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the userId targeted for update</li>
@@ -6418,7 +6404,7 @@ public interface FortressService
      * if and only if the user is a member of the USERS data set and the policy attribute is assigned.
      * Removal of pw policy assignment will revert the user's policy to use the global default for OpenLDAP
      * instance that contains user.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the userId targeted for removal of policy assignment</li>
@@ -6442,7 +6428,7 @@ public interface FortressService
      * This method returns a list of authentication audit events for a particular user 
      * {@link org.apache.directory.fortress.core.model.UserAudit#userId}, and given timestamp field 
      * {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6491,7 +6477,7 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
      * Method also can discriminate between all events or failed only by setting 
      * {@link org.apache.directory.fortress.core.model.UserAudit#failedOnly}.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6541,7 +6527,7 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.<BR>
      * Method also can discriminate between all events or failed only by setting flag 
      * {@link org.apache.directory.fortress.core.model.UserAudit#failedOnly}..
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6584,7 +6570,7 @@ public interface FortressService
      * This method returns a list of sessions created for a given user 
      * {@link org.apache.directory.fortress.core.model.UserAudit#userId}, and timestamp 
      * {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6633,7 +6619,7 @@ public interface FortressService
      * {@link org.apache.directory.fortress.core.model.UserAudit#beginDate}.  If the internal
      * userId {@link org.apache.directory.fortress.core.model.UserAudit#internalUserId} is set it will limit search by that 
      * field.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6699,7 +6685,7 @@ public interface FortressService
      * possible fraudulent logon attempt by hostile agent.
      * <p>
      * This event is generated when Fortress looks up User record prior to LDAP bind operation.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6747,7 +6733,7 @@ public interface FortressService
      * Create a new configuration node with given name and properties.  The name is required.  If node already exists,
      * a {@link org.apache.directory.fortress.core.SecurityException} with error 
      * {@link org.apache.directory.fortress.core.GlobalErrIds#FT_CONFIG_ALREADY_EXISTS} will be thrown.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the name to call the new configuration node</li>
@@ -6774,7 +6760,6 @@ public interface FortressService
      * Update existing configuration node with additional properties, or, replace existing properties.  The name is 
      * required.  If node does not exist, a {@link org.apache.directory.fortress.core.SecurityException} with error 
      * {@link org.apache.directory.fortress.core.GlobalErrIds#FT_CONFIG_NOT_FOUND} will be thrown.
-     * <h3></h3>
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the name of existing configuration node targeted for update</li>
@@ -6805,7 +6790,7 @@ public interface FortressService
      * directory.<br>
      * Care should be taken during execution to ensure target name is correct and permanent removal of all parameters located
      * there is intended.  There is no 'undo' for this operation.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the name of existing configuration node targeted for removal</li>
@@ -6832,7 +6817,7 @@ public interface FortressService
      * Read an existing configuration node with given name and return to caller.  The name is required.  If node doesn't 
      * exist, a {@link org.apache.directory.fortress.core.SecurityException} with error 
      * {@link org.apache.directory.fortress.core.GlobalErrIds#FT_CONFIG_NOT_FOUND} will be thrown.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>{@link FortRequest#value} - contains the name to call the new configuration node</li>
@@ -6858,7 +6843,7 @@ public interface FortressService
      * This command creates a new group. The command is valid only if the new group is
      * not already a member of the GROUPS data set. The GROUP data set is updated. The new group
      * does not own any session at the time of its creation.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6896,7 +6881,7 @@ public interface FortressService
      *     </ul>
      *   </li>
      * </ul>
-     * <h3>optional parameters</h3>
+     * optional parameters
      * <ul>
      *   <li>
      *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
@@ -6911,7 +6896,7 @@ public interface FortressService
 
     /**
      * Method returns matching Group entity that is contained within the GROUPS container in the directory.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6951,7 +6936,7 @@ public interface FortressService
     /**
      * This command deletes an existing Group from the database. The command is valid
      * if and only if the Group to be deleted is a member of the GROUPS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -6987,7 +6972,7 @@ public interface FortressService
 
     /**
      * This command update an existing Group.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -7029,7 +7014,7 @@ public interface FortressService
      *     </ul>
      *   </li>
      * </ul>
-     * <h3>optional parameters</h3>
+     * optional parameters
      * <ul>
      *   <li>
      *     {@link FortRequest#session} - contains a reference to administrative session and if included service will
@@ -7045,7 +7030,7 @@ public interface FortressService
     /**
      * This method returns the data set of all groups who are assigned the given role.  This searches the Groups data set
      * for Role relationship.  This method does NOT search for hierarchical RBAC Roles relationships.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *  <li>
@@ -7084,7 +7069,7 @@ public interface FortressService
     /**
      * This function returns the set of roles assigned to a given group. The function is valid if and
      * only if the group is a member of the USERS data set.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -7128,7 +7113,7 @@ public interface FortressService
      *   <li> The role is a member of the ROLES data set
      *   <li> The group is not already assigned to the role
      * </ul>
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -7166,7 +7151,7 @@ public interface FortressService
      * Any sessions that currently have this role activated will not be effected.
      * Successful completion includes:
      * Group entity in GROUP data set has role assignment removed.
-     * <h3></h3>
+
      * <h4>required parameters</h4>
      * <ul>
      *   <li>
@@ -7271,7 +7256,7 @@ public interface FortressService
      * This function returns all the permission attribute set (which contain 0 to many permission attributes)
      * for a given role. The function is valid if and only if the role is a member of the ROLES data
      * set.
-     *      * <h3></h3>
+     *
      * @param request contains a reference to {@code FortRequest}
      * @return reference to {@code FortResponse}
      */
@@ -7282,7 +7267,6 @@ public interface FortressService
      * This function returns all the permission attribute set (which contain 0 to many permission attributes)
      * for a given role. The function is valid if and only if the role is a member of the ROLES data
      * set.
-     *      * <h3></h3>
      * @param request contains a reference to {@code FortRequest}
      * @return reference to {@code FortResponse}
      */
