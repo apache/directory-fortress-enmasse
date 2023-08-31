@@ -45,7 +45,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</developerConnection>
     <url>https://github.com/apache/directory-fortress-enmasse/tree/${project.scm.tag}</url>
-    <tag>3.0.0</tag>
+    <tag>master</tag>
   </scm>
 
   <issueManagement>
