@@ -7185,7 +7185,7 @@ public interface FortressService
     FortResponse deassignGroup(FortRequest request);
 
     /**
-     * This method adds a roleConstraint (ftRC) to the user ldap entry. (ftRC=ROLE_NAME$type$CONSTRAINT_TYPE$CONSTRAINT_PASETNAME$CONSTRAINT_VALUE)
+     * This method adds a roleConstraint (ftRC) to the user ldap entry.
      * @param request contains a reference to {@code FortRequest}
      * @return reference to {@code FortResponse}
      */
