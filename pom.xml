@@ -33,7 +33,7 @@
   <version>3.0.1-SNAPSHOT</version>
   <name>Apache Fortress Rest</name>
   <url>https://directory.apache.org/fortress/</url>
-  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 350 RBAC Specification</description>
+  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 359 RBAC Specification</description>
   <licenses>
     <license>
       <name>Apache License 2.0</name>
