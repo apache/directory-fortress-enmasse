@@ -23,18 +23,17 @@
   <parent>
     <groupId>org.apache.directory.project</groupId>
     <artifactId>project</artifactId>
-    <version>34</version>
+    <version>35</version>
     <relativePath />
   </parent>
 
   <groupId>org.apache.directory.fortress</groupId>
-  <artifactId>fortress-web</artifactId>
+  <artifactId>fortress-rest</artifactId>
   <packaging>war</packaging>
   <version>3.0.1-SNAPSHOT</version>
-  <name>Apache Fortress Web</name>
+  <name>Apache Fortress Rest</name>
   <url>https://directory.apache.org/fortress/</url>
-  <description>Apache Fortress Web is a policy administration and review user interface.</description>
-
+  <description>Fortress Rest provides a RESTful implementation of the ANSI INCITS 359 RBAC Specification</description>
   <licenses>
     <license>
       <name>Apache License 2.0</name>
@@ -43,9 +42,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-commander.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-commander.git/ </developerConnection>
-    <url>https://github.com/apache/directory-fortress-commander/tree/{project.scm.tag}</url>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/directory-fortress-enmasse.git</developerConnection>
+    <url>https://github.com/apache/directory-fortress-enmasse/tree/${project.scm.tag}</url>
     <tag>master</tag>
   </scm>
 
@@ -62,16 +61,23 @@
     </mailingList>
   </mailingLists>
 
+  <!-- ====================================================== -->
+  <!-- The used properties for this project                   -->
+  <!-- ====================================================== -->
   <properties>
     <title>${project.name} ${project.version}</title>
     <java.version>17</java.version>
+    <!-- Dependencies version -->
     <fortress.realm.version>3.0.0</fortress.realm.version>
-    <wicket.version>10.1.0</wicket.version>
-    <wicketstuff.version>10.1.1</wicketstuff.version>
-    <wicket.googlecode.version>10.0.0-M1</wicket.googlecode.version>
-    <spring.security.version>6.3.1</spring.security.version>
-    <slf4j.impl.version>2.20.0</slf4j.impl.version>
+    <cxf.version>4.0.5</cxf.version>
+    <httpclient.version>3.1</httpclient.version>
     <javadoc.version>2.9.1</javadoc.version>
+    <junit.version>4.13.2</junit.version>
+    <slf4j.impl.version>2.20.0</slf4j.impl.version>
+
+    <!--  Other properties -->
+    <base.dir>.</base.dir>
+    <src.java.dir>${base.dir}/src/main/java</src.java.dir>
   </properties>
 
   <prerequisites>
@@ -79,7 +85,7 @@
   </prerequisites>
 
   <dependencies>
-    <!-- Fortress Realm also pulls in Fortress Core APIs. -->
+    <!-- Fortress Realm pulls in Fortress Core for RBAC 'CRUD' & policy enforcement apis. -->
     <dependency>
       <groupId>org.apache.directory.fortress</groupId>
       <artifactId>fortress-realm-impl</artifactId>
@@ -87,88 +93,59 @@
     </dependency>
 
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <!-- Wicket, Spring and other Web UI framework tools -->
-    <dependency>
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-spring</artifactId>
-      <version>${wicket.version}</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-core</artifactId>
+      <version>${cxf.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-extensions</artifactId>
-      <version>${wicket.version}</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+      <version>${cxf.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-native-websocket-javax</artifactId>
-      <version>${wicket.version}</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.wicketstuff</groupId>
-      <artifactId>wicketstuff-inmethod-grid</artifactId>
-      <version>${wicketstuff.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.googlecode.wicket-jquery-ui</groupId>
-      <artifactId>wicket-jquery-ui</artifactId>
-      <version>${wicket.googlecode.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.googlecode.wicket-jquery-ui</groupId>
-      <artifactId>wicket-kendo-ui</artifactId>
-      <version>${wicket.googlecode.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>${spring.security.version}</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>6.2.0</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>${spring.security.version}</version>
+      <version>6.4.1</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j2-impl</artifactId>
       <version>${slf4j.impl.version}</version>
-      <scope>runtime</scope>
     </dependency>
 
-    <!-- Begin test dependencies -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+      <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+      <version>2.15.2</version>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>${httpclient.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.23.0</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Use [WebDriverManager](https://github.com/bonigarcia/webdrivermanager#webdrivermanager-as-java-dependency) for running tests -->
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.9.1</version>      
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -176,156 +153,13 @@
 
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
-    <resources>
-      <!-- include all these to be able to view their source -->
-      <resource>
-        <filtering>false</filtering>
-        <directory>${basedir}/src/main/java</directory>
-        <includes>
-          <include>**/*.html</include>
-          <include>**/*.js</include>
-          <include>**/*.css</include>
-          <include>**/*.jpg</include>
-          <include>**/*.gif</include>
-          <include>**/*.png</include>
-          <include>**/*.txt</include>
-          <include>**/*.xml</include>
-          <include>**/*.properties</include>
-        </includes>
-      </resource>
-      
-      <resource>
-        <filtering>false</filtering>
-        <directory>${basedir}/src/main/resources</directory>
-        <includes>
-          <include>**/*.html</include>
-          <include>**/*.js</include>
-          <include>**/*.css</include>
-          <include>**/*.jks</include>
-          <include>**/*.jpg</include>
-          <include>**/*.gif</include>
-          <include>**/*.png</include>
-          <include>**/*.txt</include>
-          <include>**/*.xml</include>
-          <include>**/*.properties</include>
-          <include>**/*.vm</include>
-          <include>**/*.tmpl</include>
-        </includes>
-      </resource>
-      
-      <resource>
-        <filtering>false</filtering>
-        <directory>src/main/webapp/login</directory>
-        <includes>
-          <include>**/*.html</include>
-        </includes>
-      </resource>
-    </resources>
     <plugins>
 
-      <!-- Deploy the finished war -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>tomcat-maven-plugin</artifactId>
-        <version>1.1</version>
-        <configuration>
-          <warFile>target/${project.artifactId}-${project.version}.war</warFile>
-          <server>local-tomcat</server>
-          <url>http://localhost:8080/manager/text</url>
-          <path>/${project.artifactId}</path>
-          <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
-          <username>tcmanager</username>
-          <password>m@nager123</password>
-        </configuration>
-      </plugin>
-      
-      <!-- Compile the fortress web source -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
+        <artifactId>maven-jar-plugin</artifactId>
       </plugin>
 
-      <!-- War the commander app -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.3</version>
-        <configuration>
-          <warName>${project.artifactId}-${project.version}</warName>
-          <archive>
-            <manifest>
-              <classpathPrefix>lib/</classpathPrefix>
-            </manifest>
-          </archive>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>${project.basedir}/src/main/resources
-              </directory>
-            </resource>
-          </webResources>
-          <attachClasses>true</attachClasses>
-        </configuration>
-      </plugin>
-      
-      <!-- Javadoc archive -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <stylesheet>java</stylesheet>
-          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2023, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
-          <overview>src/main/java/org/apache/directory/fortress/web/overview.html</overview>
-          <version>true</version>
-          <author>true</author>
-          <doctitle>${project.name} Javadoc ${project.version}</doctitle>
-          <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
-          <additionalparam>-Xdoclint:none</additionalparam>
-        </configuration>
-      </plugin>
-      
-      <!-- Source archive -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Fires on 'mvn test -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
-      <!-- mvn test -Dtest=FortressWebSeleniumITCase -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <version>${project.version}</version>
-          </systemPropertyVariables>
-          <excludes>
-            <exclude>${exclude.tests}</exclude>
-          </excludes>
-          <includes>
-            <include>${include.tests}</include>
-          </includes>
-          <groups>${testcase.groups}</groups>
-          <runOrder>random</runOrder>
-        </configuration>
-      </plugin>
-      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
@@ -391,23 +225,122 @@
             <exclude>**/.git/**/*</exclude>
             <!-- CERT_EXCLUDES -->
             <exclude>**/*.pem</exclude>
+            <!-- EXTERNAL_CODE_EXCLUDES -->
+            <exclude>**/CmdLineParser.java</exclude>
             <!-- Exclude logs -->
             <exclude>**/*.log/**</exclude>
           </excludes>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-core</artifactId>
-            <version>1.6</version>
-            <exclusions>
-              <exclusion>
-                <groupId>xerces</groupId>
-                <artifactId>xercesImpl</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>tomcat-maven-plugin</artifactId>
+        <configuration>
+          <warFile>target/${project.artifactId}-${project.version}.war</warFile>
+          <server>local-tomcat</server>
+          <url>http://localhost:8080/manager/text</url>
+          <path>/${project.artifactId}-${project.version}</path>
+          <!-- Warning the tomcat manager creds here are for deploying into a demo environment only. -->
+          <username>tcmanager</username>
+          <password>m@nager123</password>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <stylesheet>java</stylesheet>
+          <bottom>&lt;small&gt;Copyright &amp;copy; 2003-2023, The Apache Software Foundation. All Rights Reserved. Generated ${maven.build.timestamp}&lt;/small&gt;</bottom>
+          <overview>src/main/java/org/apache/directory/fortress/rest/overview.html</overview>
+          <version>true</version>
+          <author>true</author>
+          <doctitle>${project.name} Javadoc ${project.version}</doctitle>
+          <windowtitle>Apache ${project.name} Javadoc ${project.version}</windowtitle>
+          <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>8.3.1</version>
+        <configuration>
+          <failBuildOnCVSS>0</failBuildOnCVSS>
+          <suppressionFile>${project.basedir}/src/owasp/suppression.xml</suppressionFile>
+        </configuration>
+      </plugin>
+
+      <!-- War the app -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+          <warName>${project.artifactId}-${project.version}</warName>
+          <archive>
+            <manifest>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+          </archive>
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>${project.basedir}/src/main/resources
+              </directory>
+            </resource>
+          </webResources>
+          <attachClasses>true</attachClasses>
+        </configuration>
+      </plugin>
+
+      <!-- Fires on 'mvn -Dtest=ClassName' where ClassName is junit test class name, for this project: -->
+      <!-- mvn test -Dtest=EmTest -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <version>${project.version}</version>
+          </systemPropertyVariables>
+          <excludes>
+            <exclude>${exclude.tests}</exclude>
+          </excludes>
+          <includes>
+            <include>${include.tests}</include>
+          </includes>
+          <groups>${testcase.groups}</groups>
+          <runOrder>random</runOrder>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <optimize>true</optimize>
+          <encoding>ISO-8859-1</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -434,18 +367,21 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>8.3.1</version>
-        <configuration>
-          <failBuildOnCVSS>0</failBuildOnCVSS>
-          <suppressionFile>${project.basedir}/src/owasp/suppression.xml</suppressionFile>
-        </configuration>
-      </plugin>
-
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <!--aggregate>true</aggregate-->
+          <quiet>true</quiet>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <repositories>
     <repository>
@@ -476,5 +412,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>
