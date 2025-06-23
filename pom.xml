@@ -69,11 +69,11 @@
     <java.version>17</java.version>
     <!-- Dependencies version -->
     <fortress.realm.version>3.0.0</fortress.realm.version>
-    <cxf.version>4.0.6</cxf.version>
+    <cxf.version>4.1.2</cxf.version>
     <httpclient.version>3.1</httpclient.version>
     <javadoc.version>2.9.1</javadoc.version>
     <junit.version>4.13.2</junit.version>
-    <slf4j.impl.version>2.20.0</slf4j.impl.version>
+    <slf4j.impl.version>2.25.0</slf4j.impl.version>
 
     <!--  Other properties -->
     <base.dir>.</base.dir>
@@ -113,13 +113,13 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>6.2.0</version>
+      <version>6.2.8</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>6.4.1</version>
+      <version>6.5.1</version>
     </dependency>
 
     <dependency>
@@ -141,7 +141,7 @@
       <version>${httpclient.version}</version>
       <scope>test</scope>
     </dependency>
-
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
