@@ -19,7 +19,7 @@
  */
 package org.apache.directory.fortress.rest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.directory.fortress.core.ReviewMgr;
 import org.apache.directory.fortress.core.ReviewMgrFactory;
 import org.apache.directory.fortress.core.SecurityException;
