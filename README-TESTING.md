@@ -24,6 +24,7 @@ under the License.
 * SECTION 1. Testing Overview
 * SECTION 2. Test with Curl
 * SECTION 3. Test with Fortress Core
+* SECTION 4. Troubleshooting
 
 -------------------------------------------------------------------------------
 ## SECTION 1.  Testing Overview
@@ -109,5 +110,84 @@ from **FORTRESS_CORE_HOME**:
 mvn verify -Ploadtest -Dtype=...
 ```
 - [README-LOAD-TESTING](https://github.com/apache/directory-fortress-core/blob/master/README-LOAD-TESTING.md)
+
+-------------------------------------------------------------------------------
+## SECTION 4. Troubleshooting
+
+1. Error: Unable to find valid certification path to requested target 
+
+Error in Fortress Core log:
+
+```
+2025-06-29 14:17:040 ERROR RestUtils:389 - post uri=[https://fortress-c:8443/fortress-rest-3.0.1-SNAPSHOT/], function=[cfgRead], caught IOException=PKIX path building failed: sun.security.provide
+r.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at sun.security.ssl.Alert.createSSLException(Alert.java:131) ~[?:?]
+        at sun.security.ssl.TransportContext.fatal(TransportContext.java:383) ~[?:?]
+        at sun.security.ssl.TransportContext.fatal(TransportContext.java:326) ~[?:?]
+        at sun.security.ssl.TransportContext.fatal(TransportContext.java:321) ~[?:?]
+        at sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1351) ~[?:?]
+       at sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1226) ~[?:?]
+        at sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1169) ~[?:?]
+        at sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396) ~[?:?]
+...
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested t
+...
+2025-06-29 14:17:040 ERROR Config:825 - static init: Error loading from remote config: SecurityException=org.apache.directory.fortress.core.RestException: post uri=[https://fortress-c:8443/fortre
+ss-rest-3.0.1-SNAPSHOT/], function=[cfgRead], caught IOException=PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to 
+requested target
+...
+```
+
+Solution:
+
+a. Check the truststore params in the fortress properties:
+
+```fortress.properties
+trust.store=/opt/fortress/directory-fortress-core/config/truststore.jks
+trust.store.password=changeit
+trust.store.onclasspath=false
+```
+
+b. Correctly correspond in the runtime folder:
+
+```bash
+# ls -al /opt/fortress/directory-fortress-core/config/truststore.jks
+-rw-r--r--. 1 root root 1910 Jun 29 14:03 /opt/fortress/directory-fortress-core/config/truststore.jks
+```
+
+c. Or, if the trust.store.onclasspath=true, that the file exists on the Java classpath of the Fortress Core runtime.
+
+
+d. Verify the corresponding Java keystore is in place inside the tomcat/conf folder:
+
+```bash
+# ls -al /opt/tomcat/conf/keystore.jks 
+-rw-r--r--. 1 tomcat tomcat 4524 Jun 29 14:11 /opt/tomcat/conf/keystore.jks
+```
+
+e. Verify the Java keystore's correctly configured in tomcat server.conf:
+
+```
+cat /opt/tomcat/conf/server.xml
+...
+<Connector                                                                                       
+  protocol="org.apache.coyote.http11.Http11NioProtocol"                 
+  port="8443" maxThreads="100" SSLEnabled="true">                         
+  scheme="https" clientAuth="false"                                                              
+  <SSLHostConfig>                                                                                
+    <Certificate                                                                                 
+      certificateKeystoreFile="conf/keystore.jks"
+      certificateKeystorePassword="1Ec,Cc41OWuk:9vjNV.H"                        
+      hostName="fortress-c"                                                                      
+    />                                                                                           
+  </SSLHostConfig>                                                                               
+</Connector>             
+```
+
+f. If everything's correct and it still fails:
+
+Try it again. There's a known bug, the first time fortress core attempts connect with Apache Tomcat it will fail with this error.
+
 ___________________________________________________________________________________
 #### END OF README-TESTING
