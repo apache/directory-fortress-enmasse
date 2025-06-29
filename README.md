@@ -16,7 +16,7 @@
    under the License.
 
 # README for Apache Fortress Rest
- * Version 3.0.0
+ * Version 3.0.1
  * Apache Fortress Rest System Architecture Diagram
  ![Apache Fortress Rest System Architecture](images/fortress-rest-system-arch.png "Apache Fortress Rest System Architecture")
 
@@ -115,7 +115,7 @@ wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress
 ```
 
  * Where `$TOMCAT_HOME` points to the execution env.
- * Where `[version]` points to the particular release, e.g. 3.0.0.
+ * Where `[version]` points to the particular release, e.g. 3.0.1.
 
  Note: The realm proxy enables Tomcat container-managed security functions to call back to fortress.
 

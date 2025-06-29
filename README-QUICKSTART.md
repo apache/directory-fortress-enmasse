@@ -16,7 +16,7 @@
    under the License.
 
 # README-QUICKSTART for Apache Fortress Rest
- * version 3.0.0
+ * version 3.0.1
 
 -------------------------------------------------------------------------------
 ## Table of Contents
@@ -75,7 +75,7 @@ wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress
 ```
 
   where *TOMCAT_HOME* matches your target env.
-  where *[version]* is a particular fortress release, e.g. 3.0.0.
+  where *[version]* is a particular fortress release, e.g. 3.0.1.
 
 #### 5. Download the fortress rest war into tomcat/webapps folder:
 
@@ -84,7 +84,7 @@ wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-
 ```
 
   where *TOMCAT_HOME* matches your target env.
-  where *[version]* is a particular fortress release, e.g. 3.0.0.
+  where *[version]* is a particular fortress release, e.g. 3.0.1.
 
 #### 6. Restart Tomcat.
 
